@@ -80,7 +80,7 @@
 </a>
     
   <div class="article-category">
-    <a class="article-category-link" href="/andy-tech-note/categories/vue/">vue</a>
+    <a class="article-category-link" href="/andy-tech-note/categories/codemirror/">codemirror</a>
   </div>
 
   </div>
@@ -114,10 +114,12 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://crazycjh.github.io/andy-tech-note/2023/01/16/codemirror-set-eventListener/" data-id="cld34k8i7000a0na80fwm00pa" data-title="codemirror 設定(註冊)事件觸發Codemirror.on" class="article-share-link">Share</a>
+      <a data-url="http://crazycjh.github.io/andy-tech-note/2023/01/16/codemirror-set-eventListener/" data-id="cld37aymz000gr7a8fj7na3wt" data-title="codemirror 設定(註冊)事件觸發Codemirror.on" class="article-share-link">Share</a>
       
       
       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/andy-tech-note/tags/codemirror/" rel="tag">codemirror</a></li></ul>
+
     </footer>
   </div>
   
@@ -172,10 +174,12 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://crazycjh.github.io/andy-tech-note/2023/01/14/deep-copy-Shallow-copy/" data-id="cld34k8i600070na8evp27kkv" data-title="在JS中複製object-深拷貝/淺拷貝" class="article-share-link">Share</a>
+      <a data-url="http://crazycjh.github.io/andy-tech-note/2023/01/14/deep-copy-Shallow-copy/" data-id="cld37aymy000br7a8bo3dht3h" data-title="在JS中複製object-深拷貝/淺拷貝" class="article-share-link">Share</a>
       
       
       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/andy-tech-note/tags/js/" rel="tag">js</a></li></ul>
+
     </footer>
   </div>
   
@@ -220,101 +224,11 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://crazycjh.github.io/andy-tech-note/2023/01/14/vue-ref-css-vbind/" data-id="cld34k8i8000d0na839o763wr" data-title="在vue中把變數傳進css" class="article-share-link">Share</a>
+      <a data-url="http://crazycjh.github.io/andy-tech-note/2023/01/14/vue-ref-css-vbind/" data-id="cld37aymy000cr7a8eofs61c0" data-title="在vue中把變數傳進css" class="article-share-link">Share</a>
       
       
       
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-how-to-edit-sourcecode-installed-by-npm-nodemodule" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/andy-tech-note/2023/01/11/how-to-edit-sourcecode-installed-by-npm-nodemodule/" class="article-date">
-  <time class="dt-published" datetime="2023-01-11T03:00:00.000Z" itemprop="datePublished">2023-01-11</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/andy-tech-note/categories/javascript/">javascript</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/andy-tech-note/2023/01/11/how-to-edit-sourcecode-installed-by-npm-nodemodule/">如何修改NPM下載的程式碼</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h4 id="在Vue3-amp-Composition下，想一次watch多個變數的實現方法"><a href="#在Vue3-amp-Composition下，想一次watch多個變數的實現方法" class="headerlink" title="在Vue3 &amp; Composition下，想一次watch多個變數的實現方法"></a>在Vue3 &amp; Composition下，想一次watch多個變數的實現方法</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">setup()&#123;</span><br><span class="line">    const message = ref(&#x27;&#x27;);</span><br><span class="line">    const name = ref(&#x27;&#x27;);</span><br><span class="line">    watch([message,name],([newValueMessage,newValueName],[oldValueMessage,oldValueName])=&gt;&#123;</span><br><span class="line">        //do something</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<h4 id="watch-vuex裡面的state或是其他reactive裡的某個值"><a href="#watch-vuex裡面的state或是其他reactive裡的某個值" class="headerlink" title="watch vuex裡面的state或是其他reactive裡的某個值"></a>watch vuex裡面的state或是其他reactive裡的某個值</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">//假設vuex state中影一個名為msg的值</span><br><span class="line">setup()&#123;</span><br><span class="line">    const message= reactive(&#123;user1:&#x27;&#x27;&#125;)</span><br><span class="line">    watch([()=&gt;message.user1,()=&gt;store.state.msg],()=&gt;&#123;</span><br><span class="line">        //do something</span><br><span class="line"></span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p>使用 <code>()=&gt; arrow</code> function去return reactive的值才能watch</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://crazycjh.github.io/andy-tech-note/2023/01/11/how-to-edit-sourcecode-installed-by-npm-nodemodule/" data-id="cld34k8i600080na8hagy7o7l" data-title="如何修改NPM下載的程式碼" class="article-share-link">Share</a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-regular-express-basic" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/andy-tech-note/2023/01/11/regular-express-basic/" class="article-date">
-  <time class="dt-published" datetime="2023-01-11T03:00:00.000Z" itemprop="datePublished">2023-01-11</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/andy-tech-note/categories/javascript/">javascript</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/andy-tech-note/2023/01/11/regular-express-basic/">正規表示式基本使用</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h4 id="在Vue3-amp-Composition下，想一次watch多個變數的實現方法"><a href="#在Vue3-amp-Composition下，想一次watch多個變數的實現方法" class="headerlink" title="在Vue3 &amp; Composition下，想一次watch多個變數的實現方法"></a>在Vue3 &amp; Composition下，想一次watch多個變數的實現方法</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">setup()&#123;</span><br><span class="line">    const message = ref(&#x27;&#x27;);</span><br><span class="line">    const name = ref(&#x27;&#x27;);</span><br><span class="line">    watch([message,name],([newValueMessage,newValueName],[oldValueMessage,oldValueName])=&gt;&#123;</span><br><span class="line">        //do something</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<h4 id="watch-vuex裡面的state或是其他reactive裡的某個值"><a href="#watch-vuex裡面的state或是其他reactive裡的某個值" class="headerlink" title="watch vuex裡面的state或是其他reactive裡的某個值"></a>watch vuex裡面的state或是其他reactive裡的某個值</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">//假設vuex state中影一個名為msg的值</span><br><span class="line">setup()&#123;</span><br><span class="line">    const message= reactive(&#123;user1:&#x27;&#x27;&#125;)</span><br><span class="line">    watch([()=&gt;message.user1,()=&gt;store.state.msg],()=&gt;&#123;</span><br><span class="line">        //do something</span><br><span class="line"></span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p>使用 <code>()=&gt; arrow</code> function去return reactive的值才能watch</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://crazycjh.github.io/andy-tech-note/2023/01/11/regular-express-basic/" data-id="cld34k8i700090na851gu4g52" data-title="正規表示式基本使用" class="article-share-link">Share</a>
-      
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/andy-tech-note/tags/js-regularExpress/" rel="tag">js,regularExpress</a></li></ul>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/andy-tech-note/tags/vue/" rel="tag">vue</a></li></ul>
 
     </footer>
   </div>
@@ -357,10 +271,12 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://crazycjh.github.io/andy-tech-note/2023/01/10/vue-watch-multiple-value/" data-id="cld34k8hz00010na86t0q6q3o" data-title="在vue中一次watch多個變數" class="article-share-link">Share</a>
+      <a data-url="http://crazycjh.github.io/andy-tech-note/2023/01/10/vue-watch-multiple-value/" data-id="cld37aymx0007r7a81ib0fqrk" data-title="在vue中一次watch多個變數" class="article-share-link">Share</a>
       
       
       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/andy-tech-note/tags/js/" rel="tag">js</a></li></ul>
+
     </footer>
   </div>
   
@@ -413,10 +329,12 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://crazycjh.github.io/andy-tech-note/2023/01/09/how-to-create-codemirror/" data-id="cld34ks7x00001ra89auuaw07" data-title="如何在vue上建立codemirror編輯器" class="article-share-link">Share</a>
+      <a data-url="http://crazycjh.github.io/andy-tech-note/2023/01/09/how-to-create-codemirror/" data-id="cld37aymx0006r7a82cid5ujz" data-title="如何在vue上建立codemirror編輯器" class="article-share-link">Share</a>
       
       
       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/andy-tech-note/tags/js/" rel="tag">js</a></li></ul>
+
     </footer>
   </div>
   
@@ -461,10 +379,12 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://crazycjh.github.io/andy-tech-note/2023/01/01/Javascript-async-sync%20copy/" data-id="cld34k8i100020na80l5679nn" data-title="JS中的Async/Sync" class="article-share-link">Share</a>
+      <a data-url="http://crazycjh.github.io/andy-tech-note/2023/01/01/Javascript-async-sync%20copy/" data-id="cld37aymw0005r7a8c5589cur" data-title="JS中的Async/Sync" class="article-share-link">Share</a>
       
       
       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/andy-tech-note/tags/js/" rel="tag">js</a></li></ul>
+
     </footer>
   </div>
   
@@ -483,7 +403,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">分類</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/andy-tech-note/categories/javascript/">javascript</a></li><li class="category-list-item"><a class="category-list-link" href="/andy-tech-note/categories/vue/">vue</a></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/andy-tech-note/categories/codemirror/">codemirror</a></li><li class="category-list-item"><a class="category-list-link" href="/andy-tech-note/categories/javascript/">javascript</a></li><li class="category-list-item"><a class="category-list-link" href="/andy-tech-note/categories/vue/">vue</a></li></ul>
     </div>
   </div>
 
@@ -493,7 +413,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">標籤</h3>
     <div class="widget">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/andy-tech-note/tags/js-regularExpress/" rel="tag">js,regularExpress</a></li></ul>
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/andy-tech-note/tags/codemirror/" rel="tag">codemirror</a></li><li class="tag-list-item"><a class="tag-list-link" href="/andy-tech-note/tags/js/" rel="tag">js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/andy-tech-note/tags/vue/" rel="tag">vue</a></li></ul>
     </div>
   </div>
 
@@ -503,7 +423,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">標籤雲</h3>
     <div class="widget tagcloud">
-      <a href="/andy-tech-note/tags/js-regularExpress/" style="font-size: 10px;">js,regularExpress</a>
+      <a href="/andy-tech-note/tags/codemirror/" style="font-size: 10px;">codemirror</a> <a href="/andy-tech-note/tags/js/" style="font-size: 20px;">js</a> <a href="/andy-tech-note/tags/vue/" style="font-size: 10px;">vue</a>
     </div>
   </div>
 
@@ -537,11 +457,11 @@
           </li>
         
           <li>
-            <a href="/andy-tech-note/2023/01/11/how-to-edit-sourcecode-installed-by-npm-nodemodule/">如何修改NPM下載的程式碼</a>
+            <a href="/andy-tech-note/2023/01/10/vue-watch-multiple-value/">在vue中一次watch多個變數</a>
           </li>
         
           <li>
-            <a href="/andy-tech-note/2023/01/11/regular-express-basic/">正規表示式基本使用</a>
+            <a href="/andy-tech-note/2023/01/09/how-to-create-codemirror/">如何在vue上建立codemirror編輯器</a>
           </li>
         
       </ul>

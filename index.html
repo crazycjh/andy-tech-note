@@ -73,12 +73,16 @@
       <div class="outer">
         <section id="main">
   
-    <article id="post-hello-world" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+    <article id="post-codemirror-set-eventListener" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
-    <a href="/andy-tech-note/2023/01/19/hello-world/" class="article-date">
-  <time class="dt-published" datetime="2023-01-19T12:31:58.395Z" itemprop="datePublished">2023-01-19</time>
+    <a href="/andy-tech-note/2023/01/16/codemirror-set-eventListener/" class="article-date">
+  <time class="dt-published" datetime="2023-01-16T10:01:00.000Z" itemprop="datePublished">2023-01-16</time>
 </a>
     
+  <div class="article-category">
+    <a class="article-category-link" href="/andy-tech-note/categories/vue/">vue</a>
+  </div>
+
   </div>
   <div class="article-inner">
     
@@ -87,7 +91,7 @@
         
   
     <h1 itemprop="name">
-      <a class="p-name article-title" href="/andy-tech-note/2023/01/19/hello-world/">Hello World</a>
+      <a class="p-name article-title" href="/andy-tech-note/2023/01/16/codemirror-set-eventListener/">codemirror 設定(註冊)事件觸發Codemirror.on</a>
     </h1>
   
 
@@ -95,24 +99,369 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+        <h3 id="codemirror"><a href="#codemirror" class="headerlink" title="codemirror"></a>codemirror</h3><p>什麼是codemirror，它是一款可以實現在前端網頁上的編輯器。<br>如同現在網路上看到的文字編輯器一樣，但你可以去設定當使用者做哪些操作時codemirror做哪些對應的行為。<br><a target="_blank" rel="noopener" href="https://codemirror.net/5/">CodeMirror v5</a></p>
+<h3 id="如何在codemirror編輯器設定事件觸發"><a href="#如何在codemirror編輯器設定事件觸發" class="headerlink" title="如何在codemirror編輯器設定事件觸發"></a>如何在codemirror編輯器設定事件觸發</h3><p><a target="_blank" rel="noopener" href="https://codemirror.net/5/doc/manual.html#events">Event列表</a></p>
+<p>使用 const editor &#x3D; CodeMirror.fromTextArea()建立編輯器instance後<br>在透過這個instance去呼叫 <code>on</code> 這個function</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">editor.on(&quot;change&quot;,(cm,changeObj)=&gt;&#123;                  </span><br><span class="line">    //這個意思是當editor文字有改變時就執行callback function</span><br><span class="line">    </span><br><span class="line">    //do something，這裡也可以加入其他CodeMirror的function執行</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>要怎麼使用on呢？ <a target="_blank" rel="noopener" href="https://codemirror.net/5/doc/manual.html#on">官方介紹</a></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cm.on(type: string, func: (...args))</span><br></pre></td></tr></table></figure>
 
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+<p>舉例：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">//建議以下function可以在頁面建立一併執行(如果是馬上要用到)，on的功能可以看成註冊的概念，把這個功能註冊給editor，條件有達到就會執行</span><br><span class="line">editor.on(&quot;change&quot;,(cm,changeObj)=&gt;&#123;                  </span><br><span class="line">    console.log(changeObj.ch);</span><br><span class="line">    console.log(changeObj.line); </span><br><span class="line">    //在change中會有ch(第幾個位元) line第幾行</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>這裡的cm是指codemirror，在官方頁面中有提到，不管是看到codemirror(簡寫cm)或是doc，在使用上都可以用前面建立好的editor instance(端看使用者怎麼命名)</p>
+<p>on裡面第一的參數 <code>type</code> 也就是 cursorActivity  或者 change 之類的事件，後面callback function裡面的參數，在每個event中都會清楚告訴你有什麼參數可以用。<br>在<code>change</code>中可以使用cm instance以及獲取改變的文字及其相關資訊。</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://crazycjh.github.io/andy-tech-note/2023/01/19/hello-world/" data-id="cld32yk6f00001da89ubg469r" data-title="Hello World" class="article-share-link">Share</a>
+      <a data-url="http://crazycjh.github.io/andy-tech-note/2023/01/16/codemirror-set-eventListener/" data-id="cld34k8i7000a0na80fwm00pa" data-title="codemirror 設定(註冊)事件觸發Codemirror.on" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-deep-copy-Shallow-copy" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/andy-tech-note/2023/01/14/deep-copy-Shallow-copy/" class="article-date">
+  <time class="dt-published" datetime="2023-01-14T12:01:00.000Z" itemprop="datePublished">2023-01-14</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/andy-tech-note/categories/javascript/">javascript</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/andy-tech-note/2023/01/14/deep-copy-Shallow-copy/">在JS中複製object-深拷貝/淺拷貝</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h3 id="在JS複製object"><a href="#在JS複製object" class="headerlink" title="在JS複製object"></a>在JS複製object</h3><p>在寫code有時候會需要使用某些變數或是object，但是又不希望直接對其做操作，因為可能在其他地方會繼續使用原始的object，<br>這時候就會宣告一個新的變數去把原先的object assign過去。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">const source = &#123;name:&#x27;Andy&#x27;,coutry:&#x27;Taiwan&#x27;,phone:&#x27;0911-111-111&#x27;&#125;</span><br><span class="line">//原始資料</span><br><span class="line"></span><br><span class="line">const destination = source </span><br><span class="line">//新變數</span><br><span class="line">destination.name = &#x27;Rendy&#x27;;</span><br><span class="line"></span><br><span class="line">console.log(destination.name);  //結果: Rendy</span><br><span class="line">console.log(source.name);       //結果: Rendy</span><br></pre></td></tr></table></figure>
+
+<p>會發現，變更 <code>destination</code> 同時也變更 <code>source</code> 裡面的值。<br>這就要提到 call by value 以及 call by refence</p>
+<h3 id="call-by-value-x2F-call-by-object"><a href="#call-by-value-x2F-call-by-object" class="headerlink" title="call by value &#x2F; call by object"></a>call by value &#x2F; call by object</h3><h4 id="什麼是call-by-value"><a href="#什麼是call-by-value" class="headerlink" title="什麼是call by value?"></a>什麼是call by value?</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">let x =1;</span><br><span class="line">let y = x;</span><br><span class="line"></span><br><span class="line">console.log(y); // 結果:1</span><br><span class="line">y=10;</span><br><span class="line">console.log(y); //結果:10</span><br><span class="line">console.log(x); //結果:1</span><br></pre></td></tr></table></figure>
+<p>以一般變數assign來說，是以call by value，也就是說直接把 <code>x</code> 的值傳給 <code>y</code></p>
+<h4 id="什麼又是-call-by-reference"><a href="#什麼又是-call-by-reference" class="headerlink" title="什麼又是 call by reference?"></a>什麼又是 call by reference?</h4><p>在一開始的object assign方法就是 call by reference，意思就是說 <code>source</code> 這個變數在assign給 <code>destination</code> 時，他是以傳遞記憶體位址方式給<code>destination</code>，可以想像 <code>destination</code> 就是儲存一個記憶體位置，當程式要讀取資料時就會透過這個位置去存取這個記憶體位置實際儲存的值。</p>
+<p>所以這樣就可以很明確的瞭解為什麼改變object的值的時候，<code>source</code> <code>destination</code> 裡面的值會被同步更動，因為兩者都是指到同一個記憶體位置。</p>
+<h4 id="要怎麼做才能不更動-source-的值"><a href="#要怎麼做才能不更動-source-的值" class="headerlink" title="要怎麼做才能不更動 source 的值"></a>要怎麼做才能不更動 source 的值</h4><p>不更動的方式有兩種： <em>淺拷貝跟深拷貝</em></p>
+<h4 id="淺拷貝"><a href="#淺拷貝" class="headerlink" title="淺拷貝"></a>淺拷貝</h4><p>字面意思就是比較淺，<br>這時候就會使用Object.assign <a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Global_Objects/Object/assign">MDN介紹</a><br>舉例：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">//Object.assign()</span><br><span class="line">const source = &#123;name:&#x27;Andy&#x27;,coutry:&#x27;Taiwan&#x27;,phone:&#x27;0911-111-111&#x27;,detail:&#123;age:10, job:&#x27;photographer&#x27;&#125;&#125;</span><br><span class="line">//原始資料</span><br><span class="line"></span><br><span class="line">const destination = &#123;&#125; </span><br><span class="line">Object.assign(destination,source);  //把objec assign 給 destination</span><br><span class="line"></span><br><span class="line">destination.name=&#x27;rendy&#x27;;</span><br><span class="line">console.log(destination.name,source.name) //結果 Rendy Andy 互不影響</span><br><span class="line"></span><br><span class="line">destination.detail.age=100;</span><br><span class="line">console.log(destination.detail.age,source.detail.age) //結果: 100 100</span><br></pre></td></tr></table></figure>
+<p>在這裡會發現修改 <code>name</code> 時資料互不影響，但在修改detail.age時又互相影響了，這是因為使用的是淺拷貝，這個copy只有單純複製第一層的資料，第二層以下的都還是以call by referenc，所以當你修改detail.age時兩邊同時都會被修改。</p>
+<h4 id="以深拷貝來解決淺拷貝的問題"><a href="#以深拷貝來解決淺拷貝的問題" class="headerlink" title="以深拷貝來解決淺拷貝的問題"></a>以深拷貝來解決淺拷貝的問題</h4><p>使用 JSON.parse(JSON.stringify())，用這個方法就可以把淺拷貝碰到裡面有多層的問題解決。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">const destination = JSON.parse(JSON.stringify(source));</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>相關參考<br><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Global_Objects/Object/assign">參考1</a><br><a target="_blank" rel="noopener" href="https://jamie-life-coding.site/2021/10/javascript-copy-object/">參考2</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://crazycjh.github.io/andy-tech-note/2023/01/14/deep-copy-Shallow-copy/" data-id="cld34k8i600070na8evp27kkv" data-title="在JS中複製object-深拷貝/淺拷貝" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-vue-ref-css-vbind" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/andy-tech-note/2023/01/14/vue-ref-css-vbind/" class="article-date">
+  <time class="dt-published" datetime="2023-01-14T12:01:00.000Z" itemprop="datePublished">2023-01-14</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/andy-tech-note/categories/vue/">vue</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/andy-tech-note/2023/01/14/vue-ref-css-vbind/">在vue中把變數傳進css</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>某些時候會希望動態改變css的樣式高度、寬度、顏色…等等的<br>在vue中可以宣告一個ref變數(composition API)，然後把搭丟到vue檔案中的 <style></style>中，又或者透過inline的方式直接插入到html tag中，舉例如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">setup()&#123;</span><br><span class="line">    const mdSize = ref(&quot;100px&quot;);</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="傳到-lt-style-gt"><a href="#傳到-lt-style-gt" class="headerlink" title="傳到 &lt;style&gt;"></a>傳到 <code>&lt;style&gt;</code></h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;div class=&quot;md-size&quot;&gt;&lt;/div&gt; //在這裏class不需要v-bind</span><br><span class="line">&lt;style&gt;</span><br><span class="line">.md-size&#123;</span><br><span class="line">    height:v-bind(mdSize);</span><br><span class="line">&#125;</span><br><span class="line">&lt;/style&gt;    </span><br></pre></td></tr></table></figure>
+
+<h3 id="以傳值的方式丟到inline"><a href="#以傳值的方式丟到inline" class="headerlink" title="以傳值的方式丟到inline"></a>以傳值的方式丟到inline</h3><p>搭配v-bind 也就是縮寫 “:”<br>把mdSize放進去style</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;button :style=&quot;&#123; height: mdSize &#125;&quot; &gt; 按鈕名稱 &lt;/button&gt;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://crazycjh.github.io/andy-tech-note/2023/01/14/vue-ref-css-vbind/" data-id="cld34k8i8000d0na839o763wr" data-title="在vue中把變數傳進css" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-how-to-edit-sourcecode-installed-by-npm-nodemodule" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/andy-tech-note/2023/01/11/how-to-edit-sourcecode-installed-by-npm-nodemodule/" class="article-date">
+  <time class="dt-published" datetime="2023-01-11T03:00:00.000Z" itemprop="datePublished">2023-01-11</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/andy-tech-note/categories/javascript/">javascript</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/andy-tech-note/2023/01/11/how-to-edit-sourcecode-installed-by-npm-nodemodule/">如何修改NPM下載的程式碼</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h4 id="在Vue3-amp-Composition下，想一次watch多個變數的實現方法"><a href="#在Vue3-amp-Composition下，想一次watch多個變數的實現方法" class="headerlink" title="在Vue3 &amp; Composition下，想一次watch多個變數的實現方法"></a>在Vue3 &amp; Composition下，想一次watch多個變數的實現方法</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">setup()&#123;</span><br><span class="line">    const message = ref(&#x27;&#x27;);</span><br><span class="line">    const name = ref(&#x27;&#x27;);</span><br><span class="line">    watch([message,name],([newValueMessage,newValueName],[oldValueMessage,oldValueName])=&gt;&#123;</span><br><span class="line">        //do something</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h4 id="watch-vuex裡面的state或是其他reactive裡的某個值"><a href="#watch-vuex裡面的state或是其他reactive裡的某個值" class="headerlink" title="watch vuex裡面的state或是其他reactive裡的某個值"></a>watch vuex裡面的state或是其他reactive裡的某個值</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">//假設vuex state中影一個名為msg的值</span><br><span class="line">setup()&#123;</span><br><span class="line">    const message= reactive(&#123;user1:&#x27;&#x27;&#125;)</span><br><span class="line">    watch([()=&gt;message.user1,()=&gt;store.state.msg],()=&gt;&#123;</span><br><span class="line">        //do something</span><br><span class="line"></span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>使用 <code>()=&gt; arrow</code> function去return reactive的值才能watch</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://crazycjh.github.io/andy-tech-note/2023/01/11/how-to-edit-sourcecode-installed-by-npm-nodemodule/" data-id="cld34k8i600080na8hagy7o7l" data-title="如何修改NPM下載的程式碼" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-regular-express-basic" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/andy-tech-note/2023/01/11/regular-express-basic/" class="article-date">
+  <time class="dt-published" datetime="2023-01-11T03:00:00.000Z" itemprop="datePublished">2023-01-11</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/andy-tech-note/categories/javascript/">javascript</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/andy-tech-note/2023/01/11/regular-express-basic/">正規表示式基本使用</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h4 id="在Vue3-amp-Composition下，想一次watch多個變數的實現方法"><a href="#在Vue3-amp-Composition下，想一次watch多個變數的實現方法" class="headerlink" title="在Vue3 &amp; Composition下，想一次watch多個變數的實現方法"></a>在Vue3 &amp; Composition下，想一次watch多個變數的實現方法</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">setup()&#123;</span><br><span class="line">    const message = ref(&#x27;&#x27;);</span><br><span class="line">    const name = ref(&#x27;&#x27;);</span><br><span class="line">    watch([message,name],([newValueMessage,newValueName],[oldValueMessage,oldValueName])=&gt;&#123;</span><br><span class="line">        //do something</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h4 id="watch-vuex裡面的state或是其他reactive裡的某個值"><a href="#watch-vuex裡面的state或是其他reactive裡的某個值" class="headerlink" title="watch vuex裡面的state或是其他reactive裡的某個值"></a>watch vuex裡面的state或是其他reactive裡的某個值</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">//假設vuex state中影一個名為msg的值</span><br><span class="line">setup()&#123;</span><br><span class="line">    const message= reactive(&#123;user1:&#x27;&#x27;&#125;)</span><br><span class="line">    watch([()=&gt;message.user1,()=&gt;store.state.msg],()=&gt;&#123;</span><br><span class="line">        //do something</span><br><span class="line"></span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>使用 <code>()=&gt; arrow</code> function去return reactive的值才能watch</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://crazycjh.github.io/andy-tech-note/2023/01/11/regular-express-basic/" data-id="cld34k8i700090na851gu4g52" data-title="正規表示式基本使用" class="article-share-link">Share</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/andy-tech-note/tags/js-regularExpress/" rel="tag">js,regularExpress</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-vue-watch-multiple-value" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/andy-tech-note/2023/01/10/vue-watch-multiple-value/" class="article-date">
+  <time class="dt-published" datetime="2023-01-10T10:00:50.000Z" itemprop="datePublished">2023-01-10</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/andy-tech-note/categories/javascript/">javascript</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/andy-tech-note/2023/01/10/vue-watch-multiple-value/">在vue中一次watch多個變數</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h4 id="在Vue3-amp-Composition下，想一次watch多個變數的實現方法"><a href="#在Vue3-amp-Composition下，想一次watch多個變數的實現方法" class="headerlink" title="在Vue3 &amp; Composition下，想一次watch多個變數的實現方法"></a>在Vue3 &amp; Composition下，想一次watch多個變數的實現方法</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">setup()&#123;</span><br><span class="line">    const message = ref(&#x27;&#x27;);</span><br><span class="line">    const name = ref(&#x27;&#x27;);</span><br><span class="line">    watch([message,name],([newValueMessage,newValueName],[oldValueMessage,oldValueName])=&gt;&#123;</span><br><span class="line">        //do something</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h4 id="watch-vuex裡面的state或是其他reactive裡的某個值"><a href="#watch-vuex裡面的state或是其他reactive裡的某個值" class="headerlink" title="watch vuex裡面的state或是其他reactive裡的某個值"></a>watch vuex裡面的state或是其他reactive裡的某個值</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">//假設vuex state中影一個名為msg的值</span><br><span class="line">setup()&#123;</span><br><span class="line">    const message= reactive(&#123;user1:&#x27;&#x27;&#125;)</span><br><span class="line">    watch([()=&gt;message.user1,()=&gt;store.state.msg],()=&gt;&#123;</span><br><span class="line">        //do something</span><br><span class="line"></span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>使用 <code>()=&gt; arrow</code> function去return reactive的值才能watch</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://crazycjh.github.io/andy-tech-note/2023/01/10/vue-watch-multiple-value/" data-id="cld34k8hz00010na86t0q6q3o" data-title="在vue中一次watch多個變數" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-how-to-create-codemirror" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/andy-tech-note/2023/01/09/how-to-create-codemirror/" class="article-date">
+  <time class="dt-published" datetime="2023-01-09T02:53:18.000Z" itemprop="datePublished">2023-01-09</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/andy-tech-note/categories/javascript/">javascript</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/andy-tech-note/2023/01/09/how-to-create-codemirror/">如何在vue上建立codemirror編輯器</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h3 id="什麼是codemirror"><a href="#什麼是codemirror" class="headerlink" title="什麼是codemirror"></a>什麼是codemirror</h3><p>codemirror是一個可以應用在web頁面的程式碼編輯器。</p>
+<h3 id="如何使用？"><a href="#如何使用？" class="headerlink" title="如何使用？"></a>如何使用？</h3><p>前一陣子為了寫一個markdown編輯器尋尋覓覓的網路上搜尋資料，找到codemirror，後來在vue上實現它。<br><code>codemirror</code> 目前最新版為 v6。<br>但目前使用的是v5<br>v5官方文件 <a target="_blank" rel="noopener" href="https://codemirror.net/5/">codemirror v5</a></p>
+<h3 id="把editor放到web上"><a href="#把editor放到web上" class="headerlink" title="把editor放到web上"></a>把editor放到web上</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">var myCodeMirror = CodeMirror(document.body, &#123;</span><br><span class="line">  value: &quot;function myScript()&#123;return 100;&#125;\n&quot;,</span><br><span class="line">  mode:  &quot;javascript&quot;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>CodeMirror第一個參數，是要把editor掛的地方，在範例是選擇對body做掛載，而我是選擇用另一個方法，在html建立一個textarea，把editor建立在這上面。</p>
+<p><a target="_blank" rel="noopener" href="https://codemirror.net/5/doc/manual.html#fromTextArea">參考</a></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var myCodeMirror = CodeMirror.fromTextArea(myTextArea);</span><br></pre></td></tr></table></figure>
+<p>要怎麼使用myTextArea這個參數，可以 <em>document.getElementById(‘idName’)</em> 的方式去對textarea與codemirror做連結，所以在textarea的tag中要記得先建立好相對應的id。</p>
+<p>不管是body或是textarea，第二個參數都是configuration，他們是以json格式的方式儲存設定，裡面可以設定theme,mode,keyMap,extraKeys,configureMouse…等等的東西。<a target="_blank" rel="noopener" href="https://codemirror.net/5/doc/manual.html#config">configuration</a></p>
+<h4 id="Event"><a href="#Event" class="headerlink" title="Event"></a>Event</h4><p><a target="_blank" rel="noopener" href="https://codemirror.net/5/doc/manual.html#events">Event</a></p>
+<p>在上面建立好codemirror後，就可以對編輯器的一些事件作設定，他可以有編輯器內文字變化(change),focus,scroll等等，詳細的可以網路上查更多資訊，<a target="_blank" rel="noopener" href="https://codemirror.net/5/doc/manual.html#events">官方資料</a></p>
+<p>使用方法：以上面建立好的codemirror物件(?)， <code>myCodeMirror.on(&#39;change&#39;,()=&gt;&#123;&#125;)</code><br>這裡除了on之外還可以off，也就是可以把事件關閉。<br>在這裡帶的callback function的參數可以參考<a target="_blank" rel="noopener" href="https://codemirror.net/5/doc/manual.html#events">event</a>，依照每個不同的事件都有對應的參數，以change為例，他的第二個參數中有 <code>&#123;from, to, text, removed, origin&#125;</code> ，可以看到起始位置、最後位置、移除什麼字元、是移除還是新增。</p>
+<h4 id="取editor裡面的text-x2F-set-text-API-constructor-連結"><a href="#取editor裡面的text-x2F-set-text-API-constructor-連結" class="headerlink" title="取editor裡面的text&#x2F;set text API constructor 連結"></a>取editor裡面的text&#x2F;set text <em>API constructor</em> <a target="_blank" rel="noopener" href="https://codemirror.net/5/doc/manual.html#api_constructor">連結</a></h4><p><code>myCodeMirror.getValue()</code><br><code>myCodeMirror.setValue(&#39;字串&#39;)</code></p>
+<h4 id="instance-x2F-doc"><a href="#instance-x2F-doc" class="headerlink" title="instance&#x2F; doc"></a>instance&#x2F; doc</h4><p>在文件中config或是api中會看到cm(應該就是codemirror這個instance)與doc，我的理解是instance是指整個編輯器，而doc是指編輯器中這個文字document，所以以文件中寫的<code>doc.getValue()</code> ，照理說要這樣寫，<code>myCodeMirror.doc.getValue()</code>(實測也是沒問題的)。</p>
+<p>不過在文件中有提到 <em>Methods prefixed with doc. can, unless otherwise specified, be called both on CodeMirror (editor) instances and CodeMirror.Doc instances. Methods prefixed with cm. are only available on CodeMirror instances.</em><br>所以可以直接以 <code>CodeMirror instance 取代 CodeMirror.Doc instance，不過兩者都可以使用</code> </p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://crazycjh.github.io/andy-tech-note/2023/01/09/how-to-create-codemirror/" data-id="cld34ks7x00001ra89auuaw07" data-title="如何在vue上建立codemirror編輯器" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-Javascript-async-sync copy" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/andy-tech-note/2023/01/01/Javascript-async-sync%20copy/" class="article-date">
+  <time class="dt-published" datetime="2023-01-01T00:53:18.000Z" itemprop="datePublished">2023-01-01</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/andy-tech-note/categories/javascript/">javascript</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/andy-tech-note/2023/01/01/Javascript-async-sync%20copy/">JS中的Async/Sync</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h2 id="同步與非同步？"><a href="#同步與非同步？" class="headerlink" title="同步與非同步？"></a>同步與非同步？</h2><h4 id="什麼是同步"><a href="#什麼是同步" class="headerlink" title="什麼是同步"></a>什麼是同步</h4><p>一般來說JS都是以 <code>同步synchronous</code> 的方式執行程式碼，以圖中左邊來說，由上而下的時間軸順序執行程式碼，每次只做一件事，<br>以<code>同步</code>的字面上來說很像是同時做很多件事，但其實是一次只執行一件事。</p>
+<h4 id="什麼是非同步"><a href="#什麼是非同步" class="headerlink" title="什麼是非同步"></a>什麼是非同步</h4><p>什麼又是 <code>非同步</code> ，上面提到的一次只能一次做一件，以下圖來看的意思就是，某些時候會有些運算或是網路請求耗時會較長，但我們又不希望整個程式碼因為要等待某個function執行完畢才往下繼續執行，這時候就需要非同步。<br>想像一下，你在正瀏覽某個網頁，因為點擊某個按鈕，而這按鈕因為需要做些費時較長的功能，而因為這樣頁面就卡住無法瀏覽，這樣使用者體驗應該會很差吧？</p>
+<ul>
+<li>舉例：JS中有個function <code>setTimeout()</code> 是可以在這裡面寫一個callback function，在設定的倒數時間到之後執行它，那如果現在他是以同步的方式執行，這樣程式碼會卡在那邊等到時間到才能往下繼續執行，那如果是非同步，程式碼會繼續往下執行之外同時在背景還會繼續倒數直到時間到執行設定好的callback function。</li>
+</ul>
+<p><img src="https://www.freecodecamp.org/news/content/images/2021/09/freeCodeCamp-Cover-2.png" alt="async"></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://crazycjh.github.io/andy-tech-note/2023/01/01/Javascript-async-sync%20copy/" data-id="cld34k8i100020na80l5679nn" data-title="JS中的Async/Sync" class="article-share-link">Share</a>
       
       
       
@@ -131,12 +480,33 @@
           <aside id="sidebar">
   
     
+  <div class="widget-wrap">
+    <h3 class="widget-title">分類</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/andy-tech-note/categories/javascript/">javascript</a></li><li class="category-list-item"><a class="category-list-link" href="/andy-tech-note/categories/vue/">vue</a></li></ul>
+    </div>
+  </div>
+
 
   
     
+  <div class="widget-wrap">
+    <h3 class="widget-title">標籤</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/andy-tech-note/tags/js-regularExpress/" rel="tag">js,regularExpress</a></li></ul>
+    </div>
+  </div>
+
 
   
     
+  <div class="widget-wrap">
+    <h3 class="widget-title">標籤雲</h3>
+    <div class="widget tagcloud">
+      <a href="/andy-tech-note/tags/js-regularExpress/" style="font-size: 10px;">js,regularExpress</a>
+    </div>
+  </div>
+
   
     
   <div class="widget-wrap">
@@ -155,7 +525,23 @@
       <ul>
         
           <li>
-            <a href="/andy-tech-note/2023/01/19/hello-world/">Hello World</a>
+            <a href="/andy-tech-note/2023/01/16/codemirror-set-eventListener/">codemirror 設定(註冊)事件觸發Codemirror.on</a>
+          </li>
+        
+          <li>
+            <a href="/andy-tech-note/2023/01/14/deep-copy-Shallow-copy/">在JS中複製object-深拷貝/淺拷貝</a>
+          </li>
+        
+          <li>
+            <a href="/andy-tech-note/2023/01/14/vue-ref-css-vbind/">在vue中把變數傳進css</a>
+          </li>
+        
+          <li>
+            <a href="/andy-tech-note/2023/01/11/how-to-edit-sourcecode-installed-by-npm-nodemodule/">如何修改NPM下載的程式碼</a>
+          </li>
+        
+          <li>
+            <a href="/andy-tech-note/2023/01/11/regular-express-basic/">正規表示式基本使用</a>
           </li>
         
       </ul>

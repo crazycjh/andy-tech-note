@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>在vue中一次watch多個變數 | Andy的技術筆記、生活紀錄</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="在Vue3 &amp; Composition下，想一次watch多個變數的實現方法12345678setup()&amp;#123;    const message &#x3D; ref(&amp;#x27;&amp;#x27;);    const name &#x3D; ref(&amp;#x27;&amp;#x27;);    watch([message,name],([newValueMessage,newValueName],[oldVal">
+<meta property="og:type" content="article">
+<meta property="og:title" content="在vue中一次watch多個變數">
+<meta property="og:url" content="http://crazycjh.github.io/andy-tech-note/2023/01/10/vue-watch-multiple-value/index.html">
+<meta property="og:site_name" content="Andy的技術筆記、生活紀錄">
+<meta property="og:description" content="在Vue3 &amp; Composition下，想一次watch多個變數的實現方法12345678setup()&amp;#123;    const message &#x3D; ref(&amp;#x27;&amp;#x27;);    const name &#x3D; ref(&amp;#x27;&amp;#x27;);    watch([message,name],([newValueMessage,newValueName],[oldVal">
+<meta property="og:locale" content="zh_TW">
+<meta property="article:published_time" content="2023-01-10T10:00:50.000Z">
+<meta property="article:modified_time" content="2023-01-19T13:07:56.720Z">
+<meta property="article:author" content="Andy Chen">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/andy-tech-note/atom.xml" title="Andy的技術筆記、生活紀錄" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/andy-tech-note/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/andy-tech-note/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/andy-tech-note/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/andy-tech-note/" id="logo">Andy的技術筆記、生活紀錄</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/andy-tech-note/">Home</a>
+        
+          <a class="main-nav-link" href="/andy-tech-note/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/andy-tech-note/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜尋"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="搜尋"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://crazycjh.github.io/andy-tech-note"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-vue-watch-multiple-value" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/andy-tech-note/2023/01/10/vue-watch-multiple-value/" class="article-date">
+  <time class="dt-published" datetime="2023-01-10T10:00:50.000Z" itemprop="datePublished">2023-01-10</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/andy-tech-note/categories/javascript/">javascript</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      在vue中一次watch多個變數
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h4 id="在Vue3-amp-Composition下，想一次watch多個變數的實現方法"><a href="#在Vue3-amp-Composition下，想一次watch多個變數的實現方法" class="headerlink" title="在Vue3 &amp; Composition下，想一次watch多個變數的實現方法"></a>在Vue3 &amp; Composition下，想一次watch多個變數的實現方法</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">setup()&#123;</span><br><span class="line">    const message = ref(&#x27;&#x27;);</span><br><span class="line">    const name = ref(&#x27;&#x27;);</span><br><span class="line">    watch([message,name],([newValueMessage,newValueName],[oldValueMessage,oldValueName])=&gt;&#123;</span><br><span class="line">        //do something</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h4 id="watch-vuex裡面的state或是其他reactive裡的某個值"><a href="#watch-vuex裡面的state或是其他reactive裡的某個值" class="headerlink" title="watch vuex裡面的state或是其他reactive裡的某個值"></a>watch vuex裡面的state或是其他reactive裡的某個值</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">//假設vuex state中影一個名為msg的值</span><br><span class="line">setup()&#123;</span><br><span class="line">    const message= reactive(&#123;user1:&#x27;&#x27;&#125;)</span><br><span class="line">    watch([()=&gt;message.user1,()=&gt;store.state.msg],()=&gt;&#123;</span><br><span class="line">        //do something</span><br><span class="line"></span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>使用 <code>()=&gt; arrow</code> function去return reactive的值才能watch</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://crazycjh.github.io/andy-tech-note/2023/01/10/vue-watch-multiple-value/" data-id="cld34k8hz00010na86t0q6q3o" data-title="在vue中一次watch多個變數" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/andy-tech-note/2023/01/11/regular-express-basic/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          正規表示式基本使用
+        
+      </div>
+    </a>
+  
+  
+    <a href="/andy-tech-note/2023/01/09/how-to-create-codemirror/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">如何在vue上建立codemirror編輯器</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">分類</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/andy-tech-note/categories/javascript/">javascript</a></li><li class="category-list-item"><a class="category-list-link" href="/andy-tech-note/categories/vue/">vue</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">標籤</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/andy-tech-note/tags/js-regularExpress/" rel="tag">js,regularExpress</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">標籤雲</h3>
+    <div class="widget tagcloud">
+      <a href="/andy-tech-note/tags/js-regularExpress/" style="font-size: 10px;">js,regularExpress</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">彙整</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/andy-tech-note/archives/2023/01/">一月 2023</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/andy-tech-note/2023/01/16/codemirror-set-eventListener/">codemirror 設定(註冊)事件觸發Codemirror.on</a>
+          </li>
+        
+          <li>
+            <a href="/andy-tech-note/2023/01/14/deep-copy-Shallow-copy/">在JS中複製object-深拷貝/淺拷貝</a>
+          </li>
+        
+          <li>
+            <a href="/andy-tech-note/2023/01/14/vue-ref-css-vbind/">在vue中把變數傳進css</a>
+          </li>
+        
+          <li>
+            <a href="/andy-tech-note/2023/01/11/how-to-edit-sourcecode-installed-by-npm-nodemodule/">如何修改NPM下載的程式碼</a>
+          </li>
+        
+          <li>
+            <a href="/andy-tech-note/2023/01/11/regular-express-basic/">正規表示式基本使用</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2023 Andy Chen<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/andy-tech-note/" class="mobile-nav-link">Home</a>
+  
+    <a href="/andy-tech-note/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/andy-tech-note/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/andy-tech-note/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/andy-tech-note/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

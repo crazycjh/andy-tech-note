@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>在JS中複製object-深拷貝/淺拷貝 | Andy的技術筆記、生活紀錄</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="在JS複製object在寫code有時候會需要使用某些變數或是object，但是又不希望直接對其做操作，因為可能在其他地方會繼續使用原始的object，這時候就會宣告一個新的變數去把原先的object assign過去。 123456789const source &#x3D; &amp;#123;name:&amp;#x27;Andy&amp;#x27;,coutry:&amp;#x27;Taiwan&amp;#x27;,phone:&amp;#x27">
+<meta property="og:type" content="article">
+<meta property="og:title" content="在JS中複製object-深拷貝&#x2F;淺拷貝">
+<meta property="og:url" content="http://crazycjh.github.io/andy-tech-note/2023/01/14/deep-copy-Shallow-copy/index.html">
+<meta property="og:site_name" content="Andy的技術筆記、生活紀錄">
+<meta property="og:description" content="在JS複製object在寫code有時候會需要使用某些變數或是object，但是又不希望直接對其做操作，因為可能在其他地方會繼續使用原始的object，這時候就會宣告一個新的變數去把原先的object assign過去。 123456789const source &#x3D; &amp;#123;name:&amp;#x27;Andy&amp;#x27;,coutry:&amp;#x27;Taiwan&amp;#x27;,phone:&amp;#x27">
+<meta property="og:locale" content="zh_TW">
+<meta property="article:published_time" content="2023-01-14T12:01:00.000Z">
+<meta property="article:modified_time" content="2023-01-19T13:07:56.720Z">
+<meta property="article:author" content="Andy Chen">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/andy-tech-note/atom.xml" title="Andy的技術筆記、生活紀錄" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/andy-tech-note/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/andy-tech-note/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/andy-tech-note/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/andy-tech-note/" id="logo">Andy的技術筆記、生活紀錄</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/andy-tech-note/">Home</a>
+        
+          <a class="main-nav-link" href="/andy-tech-note/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/andy-tech-note/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜尋"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="搜尋"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://crazycjh.github.io/andy-tech-note"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-deep-copy-Shallow-copy" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/andy-tech-note/2023/01/14/deep-copy-Shallow-copy/" class="article-date">
+  <time class="dt-published" datetime="2023-01-14T12:01:00.000Z" itemprop="datePublished">2023-01-14</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/andy-tech-note/categories/javascript/">javascript</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      在JS中複製object-深拷貝/淺拷貝
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h3 id="在JS複製object"><a href="#在JS複製object" class="headerlink" title="在JS複製object"></a>在JS複製object</h3><p>在寫code有時候會需要使用某些變數或是object，但是又不希望直接對其做操作，因為可能在其他地方會繼續使用原始的object，<br>這時候就會宣告一個新的變數去把原先的object assign過去。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">const source = &#123;name:&#x27;Andy&#x27;,coutry:&#x27;Taiwan&#x27;,phone:&#x27;0911-111-111&#x27;&#125;</span><br><span class="line">//原始資料</span><br><span class="line"></span><br><span class="line">const destination = source </span><br><span class="line">//新變數</span><br><span class="line">destination.name = &#x27;Rendy&#x27;;</span><br><span class="line"></span><br><span class="line">console.log(destination.name);  //結果: Rendy</span><br><span class="line">console.log(source.name);       //結果: Rendy</span><br></pre></td></tr></table></figure>
+
+<p>會發現，變更 <code>destination</code> 同時也變更 <code>source</code> 裡面的值。<br>這就要提到 call by value 以及 call by refence</p>
+<h3 id="call-by-value-x2F-call-by-object"><a href="#call-by-value-x2F-call-by-object" class="headerlink" title="call by value &#x2F; call by object"></a>call by value &#x2F; call by object</h3><h4 id="什麼是call-by-value"><a href="#什麼是call-by-value" class="headerlink" title="什麼是call by value?"></a>什麼是call by value?</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">let x =1;</span><br><span class="line">let y = x;</span><br><span class="line"></span><br><span class="line">console.log(y); // 結果:1</span><br><span class="line">y=10;</span><br><span class="line">console.log(y); //結果:10</span><br><span class="line">console.log(x); //結果:1</span><br></pre></td></tr></table></figure>
+<p>以一般變數assign來說，是以call by value，也就是說直接把 <code>x</code> 的值傳給 <code>y</code></p>
+<h4 id="什麼又是-call-by-reference"><a href="#什麼又是-call-by-reference" class="headerlink" title="什麼又是 call by reference?"></a>什麼又是 call by reference?</h4><p>在一開始的object assign方法就是 call by reference，意思就是說 <code>source</code> 這個變數在assign給 <code>destination</code> 時，他是以傳遞記憶體位址方式給<code>destination</code>，可以想像 <code>destination</code> 就是儲存一個記憶體位置，當程式要讀取資料時就會透過這個位置去存取這個記憶體位置實際儲存的值。</p>
+<p>所以這樣就可以很明確的瞭解為什麼改變object的值的時候，<code>source</code> <code>destination</code> 裡面的值會被同步更動，因為兩者都是指到同一個記憶體位置。</p>
+<h4 id="要怎麼做才能不更動-source-的值"><a href="#要怎麼做才能不更動-source-的值" class="headerlink" title="要怎麼做才能不更動 source 的值"></a>要怎麼做才能不更動 source 的值</h4><p>不更動的方式有兩種： <em>淺拷貝跟深拷貝</em></p>
+<h4 id="淺拷貝"><a href="#淺拷貝" class="headerlink" title="淺拷貝"></a>淺拷貝</h4><p>字面意思就是比較淺，<br>這時候就會使用Object.assign <a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Global_Objects/Object/assign">MDN介紹</a><br>舉例：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">//Object.assign()</span><br><span class="line">const source = &#123;name:&#x27;Andy&#x27;,coutry:&#x27;Taiwan&#x27;,phone:&#x27;0911-111-111&#x27;,detail:&#123;age:10, job:&#x27;photographer&#x27;&#125;&#125;</span><br><span class="line">//原始資料</span><br><span class="line"></span><br><span class="line">const destination = &#123;&#125; </span><br><span class="line">Object.assign(destination,source);  //把objec assign 給 destination</span><br><span class="line"></span><br><span class="line">destination.name=&#x27;rendy&#x27;;</span><br><span class="line">console.log(destination.name,source.name) //結果 Rendy Andy 互不影響</span><br><span class="line"></span><br><span class="line">destination.detail.age=100;</span><br><span class="line">console.log(destination.detail.age,source.detail.age) //結果: 100 100</span><br></pre></td></tr></table></figure>
+<p>在這裡會發現修改 <code>name</code> 時資料互不影響，但在修改detail.age時又互相影響了，這是因為使用的是淺拷貝，這個copy只有單純複製第一層的資料，第二層以下的都還是以call by referenc，所以當你修改detail.age時兩邊同時都會被修改。</p>
+<h4 id="以深拷貝來解決淺拷貝的問題"><a href="#以深拷貝來解決淺拷貝的問題" class="headerlink" title="以深拷貝來解決淺拷貝的問題"></a>以深拷貝來解決淺拷貝的問題</h4><p>使用 JSON.parse(JSON.stringify())，用這個方法就可以把淺拷貝碰到裡面有多層的問題解決。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">const destination = JSON.parse(JSON.stringify(source));</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>相關參考<br><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Global_Objects/Object/assign">參考1</a><br><a target="_blank" rel="noopener" href="https://jamie-life-coding.site/2021/10/javascript-copy-object/">參考2</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://crazycjh.github.io/andy-tech-note/2023/01/14/deep-copy-Shallow-copy/" data-id="cld34k8i600070na8evp27kkv" data-title="在JS中複製object-深拷貝/淺拷貝" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/andy-tech-note/2023/01/16/codemirror-set-eventListener/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          codemirror 設定(註冊)事件觸發Codemirror.on
+        
+      </div>
+    </a>
+  
+  
+    <a href="/andy-tech-note/2023/01/14/vue-ref-css-vbind/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">在vue中把變數傳進css</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">分類</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/andy-tech-note/categories/javascript/">javascript</a></li><li class="category-list-item"><a class="category-list-link" href="/andy-tech-note/categories/vue/">vue</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">標籤</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/andy-tech-note/tags/js-regularExpress/" rel="tag">js,regularExpress</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">標籤雲</h3>
+    <div class="widget tagcloud">
+      <a href="/andy-tech-note/tags/js-regularExpress/" style="font-size: 10px;">js,regularExpress</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">彙整</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/andy-tech-note/archives/2023/01/">一月 2023</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/andy-tech-note/2023/01/16/codemirror-set-eventListener/">codemirror 設定(註冊)事件觸發Codemirror.on</a>
+          </li>
+        
+          <li>
+            <a href="/andy-tech-note/2023/01/14/deep-copy-Shallow-copy/">在JS中複製object-深拷貝/淺拷貝</a>
+          </li>
+        
+          <li>
+            <a href="/andy-tech-note/2023/01/14/vue-ref-css-vbind/">在vue中把變數傳進css</a>
+          </li>
+        
+          <li>
+            <a href="/andy-tech-note/2023/01/11/how-to-edit-sourcecode-installed-by-npm-nodemodule/">如何修改NPM下載的程式碼</a>
+          </li>
+        
+          <li>
+            <a href="/andy-tech-note/2023/01/11/regular-express-basic/">正規表示式基本使用</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2023 Andy Chen<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/andy-tech-note/" class="mobile-nav-link">Home</a>
+  
+    <a href="/andy-tech-note/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/andy-tech-note/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/andy-tech-note/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/andy-tech-note/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

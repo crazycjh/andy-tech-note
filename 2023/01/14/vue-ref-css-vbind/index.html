@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>在vue中把變數傳進css | Andy的技術筆記、生活紀錄</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="某些時候會希望動態改變css的樣式高度、寬度、顏色…等等的在vue中可以宣告一個ref變數(composition API)，然後把搭丟到vue檔案中的 中，又或者透過inline的方式直接插入到html tag中，舉例如下： 1234setup()&amp;#123;    const mdSize &#x3D; ref(&quot;100px&quot;);&amp;#125; 傳到 &lt;style&gt;1234">
+<meta property="og:type" content="article">
+<meta property="og:title" content="在vue中把變數傳進css">
+<meta property="og:url" content="http://crazycjh.github.io/andy-tech-note/2023/01/14/vue-ref-css-vbind/index.html">
+<meta property="og:site_name" content="Andy的技術筆記、生活紀錄">
+<meta property="og:description" content="某些時候會希望動態改變css的樣式高度、寬度、顏色…等等的在vue中可以宣告一個ref變數(composition API)，然後把搭丟到vue檔案中的 中，又或者透過inline的方式直接插入到html tag中，舉例如下： 1234setup()&amp;#123;    const mdSize &#x3D; ref(&quot;100px&quot;);&amp;#125; 傳到 &lt;style&gt;1234">
+<meta property="og:locale" content="zh_TW">
+<meta property="article:published_time" content="2023-01-14T12:01:00.000Z">
+<meta property="article:modified_time" content="2023-01-19T13:07:56.720Z">
+<meta property="article:author" content="Andy Chen">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/andy-tech-note/atom.xml" title="Andy的技術筆記、生活紀錄" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/andy-tech-note/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/andy-tech-note/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/andy-tech-note/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/andy-tech-note/" id="logo">Andy的技術筆記、生活紀錄</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/andy-tech-note/">Home</a>
+        
+          <a class="main-nav-link" href="/andy-tech-note/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/andy-tech-note/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜尋"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="搜尋"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://crazycjh.github.io/andy-tech-note"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-vue-ref-css-vbind" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/andy-tech-note/2023/01/14/vue-ref-css-vbind/" class="article-date">
+  <time class="dt-published" datetime="2023-01-14T12:01:00.000Z" itemprop="datePublished">2023-01-14</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/andy-tech-note/categories/vue/">vue</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      在vue中把變數傳進css
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>某些時候會希望動態改變css的樣式高度、寬度、顏色…等等的<br>在vue中可以宣告一個ref變數(composition API)，然後把搭丟到vue檔案中的 <style></style>中，又或者透過inline的方式直接插入到html tag中，舉例如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">setup()&#123;</span><br><span class="line">    const mdSize = ref(&quot;100px&quot;);</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="傳到-lt-style-gt"><a href="#傳到-lt-style-gt" class="headerlink" title="傳到 &lt;style&gt;"></a>傳到 <code>&lt;style&gt;</code></h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;div class=&quot;md-size&quot;&gt;&lt;/div&gt; //在這裏class不需要v-bind</span><br><span class="line">&lt;style&gt;</span><br><span class="line">.md-size&#123;</span><br><span class="line">    height:v-bind(mdSize);</span><br><span class="line">&#125;</span><br><span class="line">&lt;/style&gt;    </span><br></pre></td></tr></table></figure>
+
+<h3 id="以傳值的方式丟到inline"><a href="#以傳值的方式丟到inline" class="headerlink" title="以傳值的方式丟到inline"></a>以傳值的方式丟到inline</h3><p>搭配v-bind 也就是縮寫 “:”<br>把mdSize放進去style</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;button :style=&quot;&#123; height: mdSize &#125;&quot; &gt; 按鈕名稱 &lt;/button&gt;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://crazycjh.github.io/andy-tech-note/2023/01/14/vue-ref-css-vbind/" data-id="cld34k8i8000d0na839o763wr" data-title="在vue中把變數傳進css" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/andy-tech-note/2023/01/14/deep-copy-Shallow-copy/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          在JS中複製object-深拷貝/淺拷貝
+        
+      </div>
+    </a>
+  
+  
+    <a href="/andy-tech-note/2023/01/11/how-to-edit-sourcecode-installed-by-npm-nodemodule/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">如何修改NPM下載的程式碼</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">分類</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/andy-tech-note/categories/javascript/">javascript</a></li><li class="category-list-item"><a class="category-list-link" href="/andy-tech-note/categories/vue/">vue</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">標籤</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/andy-tech-note/tags/js-regularExpress/" rel="tag">js,regularExpress</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">標籤雲</h3>
+    <div class="widget tagcloud">
+      <a href="/andy-tech-note/tags/js-regularExpress/" style="font-size: 10px;">js,regularExpress</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">彙整</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/andy-tech-note/archives/2023/01/">一月 2023</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/andy-tech-note/2023/01/16/codemirror-set-eventListener/">codemirror 設定(註冊)事件觸發Codemirror.on</a>
+          </li>
+        
+          <li>
+            <a href="/andy-tech-note/2023/01/14/deep-copy-Shallow-copy/">在JS中複製object-深拷貝/淺拷貝</a>
+          </li>
+        
+          <li>
+            <a href="/andy-tech-note/2023/01/14/vue-ref-css-vbind/">在vue中把變數傳進css</a>
+          </li>
+        
+          <li>
+            <a href="/andy-tech-note/2023/01/11/how-to-edit-sourcecode-installed-by-npm-nodemodule/">如何修改NPM下載的程式碼</a>
+          </li>
+        
+          <li>
+            <a href="/andy-tech-note/2023/01/11/regular-express-basic/">正規表示式基本使用</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2023 Andy Chen<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/andy-tech-note/" class="mobile-nav-link">Home</a>
+  
+    <a href="/andy-tech-note/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/andy-tech-note/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/andy-tech-note/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/andy-tech-note/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

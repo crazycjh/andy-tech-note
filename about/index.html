@@ -4,22 +4,19 @@
   <meta charset="utf-8">
   
   
-  <title>JS中的Async/Sync | Andy的技術筆記、生活紀錄</title>
+  <title>about | Andy的技術筆記、生活紀錄</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="同步與非同步？什麼是同步一般來說JS都是以 同步synchronous 的方式執行程式碼，以圖中左邊來說，由上而下的時間軸順序執行程式碼，每次只做一件事，以同步的字面上來說很像是同時做很多件事，但其實是一次只執行一件事。 什麼是非同步什麼又是 非同步 ，上面提到的一次只能一次做一件，以下圖來看的意思就是，某些時候會有些運算或是網路請求耗時會較長，但我們又不希望整個程式碼因為要等待某個functio">
-<meta property="og:type" content="article">
-<meta property="og:title" content="JS中的Async&#x2F;Sync">
-<meta property="og:url" content="http://crazycjh.github.io/andy-tech-note/2023/01/01/Javascript-async-sync%20copy/index.html">
+  <meta name="description" content="Hi there, 我是俊豪Andy，這裡是我的網頁的技術筆記以及生活紀錄。 技能：Vue.js, Vuex, Vue Router, Tailwind, Bootstrap, JS, React, React Hook 個人履歷：https:&#x2F;&#x2F;www.cakeresume.com&#x2F;s--plOwOEL-iHeTZxwDmIThNQ--&#x2F;jean-hao-chen github : https:">
+<meta property="og:type" content="website">
+<meta property="og:title" content="about">
+<meta property="og:url" content="http://crazycjh.github.io/andy-tech-note/about/index.html">
 <meta property="og:site_name" content="Andy的技術筆記、生活紀錄">
-<meta property="og:description" content="同步與非同步？什麼是同步一般來說JS都是以 同步synchronous 的方式執行程式碼，以圖中左邊來說，由上而下的時間軸順序執行程式碼，每次只做一件事，以同步的字面上來說很像是同時做很多件事，但其實是一次只執行一件事。 什麼是非同步什麼又是 非同步 ，上面提到的一次只能一次做一件，以下圖來看的意思就是，某些時候會有些運算或是網路請求耗時會較長，但我們又不希望整個程式碼因為要等待某個functio">
+<meta property="og:description" content="Hi there, 我是俊豪Andy，這裡是我的網頁的技術筆記以及生活紀錄。 技能：Vue.js, Vuex, Vue Router, Tailwind, Bootstrap, JS, React, React Hook 個人履歷：https:&#x2F;&#x2F;www.cakeresume.com&#x2F;s--plOwOEL-iHeTZxwDmIThNQ--&#x2F;jean-hao-chen github : https:">
 <meta property="og:locale" content="zh_TW">
-<meta property="og:image" content="https://www.freecodecamp.org/news/content/images/2021/09/freeCodeCamp-Cover-2.png">
-<meta property="article:published_time" content="2023-01-01T00:53:18.000Z">
-<meta property="article:modified_time" content="2023-01-19T13:31:20.322Z">
+<meta property="article:published_time" content="2023-01-19T16:45:51.000Z">
+<meta property="article:modified_time" content="2023-01-19T16:46:03.622Z">
 <meta property="article:author" content="Andy Chen">
-<meta property="article:tag" content="js">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://www.freecodecamp.org/news/content/images/2021/09/freeCodeCamp-Cover-2.png">
   
     <link rel="alternate" href="/andy-tech-note/atom.xml" title="Andy的技術筆記、生活紀錄" type="application/atom+xml">
   
@@ -76,16 +73,12 @@
 </header>
 
       <div class="outer">
-        <section id="main"><article id="post-Javascript-async-sync copy" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+        <section id="main"><article id="page-" class="h-entry article article-type-page" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
-    <a href="/andy-tech-note/2023/01/01/Javascript-async-sync%20copy/" class="article-date">
-  <time class="dt-published" datetime="2023-01-01T00:53:18.000Z" itemprop="datePublished">2023-01-01</time>
+    <a href="/andy-tech-note/about/index.html" class="article-date">
+  <time class="dt-published" datetime="2023-01-19T16:45:51.000Z" itemprop="datePublished">2023-01-20</time>
 </a>
     
-  <div class="article-category">
-    <a class="article-category-link" href="/andy-tech-note/categories/javascript/">javascript</a>
-  </div>
-
   </div>
   <div class="article-inner">
     
@@ -94,7 +87,7 @@
         
   
     <h1 class="p-name article-title" itemprop="headline name">
-      JS中的Async/Sync
+      about
     </h1>
   
 
@@ -102,40 +95,25 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <h2 id="同步與非同步？"><a href="#同步與非同步？" class="headerlink" title="同步與非同步？"></a>同步與非同步？</h2><h4 id="什麼是同步"><a href="#什麼是同步" class="headerlink" title="什麼是同步"></a>什麼是同步</h4><p>一般來說JS都是以 <code>同步synchronous</code> 的方式執行程式碼，以圖中左邊來說，由上而下的時間軸順序執行程式碼，每次只做一件事，<br>以<code>同步</code>的字面上來說很像是同時做很多件事，但其實是一次只執行一件事。</p>
-<h4 id="什麼是非同步"><a href="#什麼是非同步" class="headerlink" title="什麼是非同步"></a>什麼是非同步</h4><p>什麼又是 <code>非同步</code> ，上面提到的一次只能一次做一件，以下圖來看的意思就是，某些時候會有些運算或是網路請求耗時會較長，但我們又不希望整個程式碼因為要等待某個function執行完畢才往下繼續執行，這時候就需要非同步。<br>想像一下，你在正瀏覽某個網頁，因為點擊某個按鈕，而這按鈕因為需要做些費時較長的功能，而因為這樣頁面就卡住無法瀏覽，這樣使用者體驗應該會很差吧？</p>
-<ul>
-<li>舉例：JS中有個function <code>setTimeout()</code> 是可以在這裡面寫一個callback function，在設定的倒數時間到之後執行它，那如果現在他是以同步的方式執行，這樣程式碼會卡在那邊等到時間到才能往下繼續執行，那如果是非同步，程式碼會繼續往下執行之外同時在背景還會繼續倒數直到時間到執行設定好的callback function。</li>
-</ul>
-<p><img src="https://www.freecodecamp.org/news/content/images/2021/09/freeCodeCamp-Cover-2.png" alt="async"></p>
+        <p>Hi there, 我是俊豪Andy，這裡是我的網頁的技術筆記以及生活紀錄。</p>
+<p>技能：Vue.js, Vuex, Vue Router, Tailwind, Bootstrap, JS, React, React Hook</p>
+<p>個人履歷：<a target="_blank" rel="noopener" href="https://www.cakeresume.com/s--plOwOEL-iHeTZxwDmIThNQ--/jean-hao-chen">https://www.cakeresume.com/s--plOwOEL-iHeTZxwDmIThNQ--/jean-hao-chen</a></p>
+<p>github : <a target="_blank" rel="noopener" href="https://github.com/crazycjh/MDEditor-vite-vue3">https://github.com/crazycjh/MDEditor-vite-vue3</a></p>
+<p>個人技術筆記：<a href="https://crazycjh.github.io/tech_blog/">https://crazycjh.github.io/tech_blog/</a></p>
+<p>聯絡方式：<a href="mailto:&#x63;&#x72;&#97;&#122;&#x79;&#99;&#106;&#104;&#64;&#103;&#109;&#x61;&#x69;&#108;&#x2e;&#x63;&#x6f;&#x6d;">&#x63;&#x72;&#97;&#122;&#x79;&#99;&#106;&#104;&#64;&#103;&#109;&#x61;&#x69;&#108;&#x2e;&#x63;&#x6f;&#x6d;</a></p>
+<p>電話：0932852913</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://crazycjh.github.io/andy-tech-note/2023/01/01/Javascript-async-sync%20copy/" data-id="cld37aymw0005r7a8c5589cur" data-title="JS中的Async/Sync" class="article-share-link">Share</a>
+      <a data-url="http://crazycjh.github.io/andy-tech-note/about/index.html" data-id="cldymn6900000e1a8h1mj9doa" data-title="about" class="article-share-link">Share</a>
       
       
       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/andy-tech-note/tags/js/" rel="tag">js</a></li></ul>
-
     </footer>
   </div>
   
     
-<nav id="article-nav">
-  
-    <a href="/andy-tech-note/2023/01/09/how-to-create-codemirror/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          如何在vue上建立codemirror編輯器
-        
-      </div>
-    </a>
-  
-  
-</nav>
-
   
 </article>
 
@@ -168,7 +146,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">標籤雲</h3>
     <div class="widget tagcloud">
-      <a href="/andy-tech-note/tags/codemirror/" style="font-size: 10px;">codemirror</a> <a href="/andy-tech-note/tags/js/" style="font-size: 20px;">js</a> <a href="/andy-tech-note/tags/vue/" style="font-size: 10px;">vue</a>
+      <a href="/andy-tech-note/tags/codemirror/" style="font-size: 15px;">codemirror</a> <a href="/andy-tech-note/tags/js/" style="font-size: 20px;">js</a> <a href="/andy-tech-note/tags/vue/" style="font-size: 10px;">vue</a>
     </div>
   </div>
 
@@ -190,6 +168,10 @@
       <ul>
         
           <li>
+            <a href="/andy-tech-note/2023/01/17/codemirror-v5-v6-diff/">codemirror v5 與 v6的差異</a>
+          </li>
+        
+          <li>
             <a href="/andy-tech-note/2023/01/16/codemirror-set-eventListener/">codemirror 設定(註冊)事件觸發Codemirror.on</a>
           </li>
         
@@ -203,10 +185,6 @@
         
           <li>
             <a href="/andy-tech-note/2023/01/10/vue-watch-multiple-value/">在vue中一次watch多個變數</a>
-          </li>
-        
-          <li>
-            <a href="/andy-tech-note/2023/01/09/how-to-create-codemirror/">如何在vue上建立codemirror編輯器</a>
           </li>
         
       </ul>

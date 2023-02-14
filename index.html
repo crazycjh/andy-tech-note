@@ -109,7 +109,57 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://crazycjh.github.io/andy-tech-note/2023/02/13/pseudo-class/" data-id="cle3nhj20000oc3a88kzka7b0" data-title="pseudo-class-css" class="article-share-link">Share</a>
+      <a data-url="http://crazycjh.github.io/andy-tech-note/2023/02/13/pseudo-class/" data-id="cle3tea81000m0wa84zi89qs9" data-title="pseudo-class-css" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-vue-react-mvvm-virtualDom" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/andy-tech-note/2023/02/02/vue-react-mvvm-virtualDom/" class="article-date">
+  <time class="dt-published" datetime="2023-02-02T03:33:40.000Z" itemprop="datePublished">2023-02-02</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/andy-tech-note/2023/02/02/vue-react-mvvm-virtualDom/">vue-react-mvvm-virtualDom的一些筆記</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h3 id="指令式渲染-imperative-redering"><a href="#指令式渲染-imperative-redering" class="headerlink" title="指令式渲染 imperative redering"></a>指令式渲染 imperative redering</h3><h4 id="jquery"><a href="#jquery" class="headerlink" title="jquery"></a>jquery</h4><p>在框架還沒出來時jquery依舊是非常火紅的，而其對於DOM的渲染方式就是透過<br>選擇器 <code>document.querySelector</code> 去選擇HTML裡面的tag，從而去修改他們的值或是<code> addEventListener</code> 加入事件監聽來獲取使用者的行為，進而在js裡面做一些判斷後再把資料丟到頁面讓使用者看到。</p>
+<p>而這些都是指令式渲染，也就是直接透過指令直接對DOM做操作，而當整個程式架構變得很大時，對於這些變數或是事件的管理就會變得相對困難(東一塊西一塊的選擇器，也就是你會看到一堆的querySelector以及addEventListener)，易讀性也會很差，因為沒有一個集中管理的地方。</p>
+<h3 id="宣告式渲染-declarative-rendering"><a href="#宣告式渲染-declarative-rendering" class="headerlink" title="宣告式渲染 declarative rendering"></a>宣告式渲染 declarative rendering</h3><h4 id="Vue-MVVM"><a href="#Vue-MVVM" class="headerlink" title="Vue MVVM"></a>Vue MVVM</h4><p>以例子來說：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=&#x27;app&#x27;&gt;</span><br><span class="line">    &lt;div&gt;&#123;&#123;data&#125;&#125;&lt;/div&gt;</span><br><span class="line">    &lt;inpup v-model=&quot;data&quot; /&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">const app = createApp(&#123;</span><br><span class="line">    data()&#123;</span><br><span class="line">        return &#123;</span><br><span class="line">            data:&#x27;hello world&#x27;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;).mount(&#x27;#app&#x27;)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>透過以上寫法可以把createApp裡面的data的值傳遞到html 裡面大括號 <code>&#123;&#123;&#125;&#125;</code> 框起來的data中顯示在畫面上。<br>在vue中如果有多個地方需要用到data這個變數，只需用大括號及可以讓其值顯示在html，不需要像是jquery透過選擇器的方式去綁定資料，畫面也相對簡潔。</p>
+<h5 id="MVVM-MVC"><a href="#MVVM-MVC" class="headerlink" title="MVVM MVC"></a>MVVM MVC</h5><p>MVVC是由Model &#x2F; View &#x2F; ViewModel組成，早期微軟提出的是把網頁分成model層與view層，也就是把畫面與狀態分離(MVC)，Vue則是加入viewModel，也就是在view與model之間插入viewModel去把model層的資料綁定以及監聽view層的事件。<br><img src="/andy-tech-note/2023/02/02/vue-react-mvvm-virtualDom/mvvm.png" alt="MVVM"></p>
+<h4 id="React-Virtual-DOM"><a href="#React-Virtual-DOM" class="headerlink" title="React Virtual DOM"></a>React Virtual DOM</h4><p>React會先複製一份DOM物件(稱之為Virtual DOM)，而在React中是使用useState去改變想顯示在view上的值，當這些state被改變時他會去修改virtual dom，而後再去與先前的dom做比較，找出差異的地方再去對DOM做渲染，而這個渲染單純只有渲染被修改的，其他沒有變化的部分不會影響，如此一來不會因為要重新渲染整個畫面而造成效能低落。</p>
+<p>應該還有很多細節部分沒提到，未來有碰到更多再來補充更完整。</p>
+<p>參考資料 : <a target="_blank" rel="noopener" href="https://book.vue.tw/CH1/1-1-introduction.html">重新認識 Vue.js | Kuro Hsu </a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://crazycjh.github.io/andy-tech-note/2023/02/02/vue-react-mvvm-virtualDom/" data-id="cle3tea83000t0wa8gdqm4yn9" data-title="vue-react-mvvm-virtualDom的一些筆記" class="article-share-link">Share</a>
       
       
       
@@ -154,7 +204,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://crazycjh.github.io/andy-tech-note/2023/02/01/chatGPT-note/" data-id="cle3nhj1z000ic3a84rcecwbi" data-title="chatGPT-想法" class="article-share-link">Share</a>
+      <a data-url="http://crazycjh.github.io/andy-tech-note/2023/02/01/chatGPT-note/" data-id="cle3tea82000q0wa85obd2k8q" data-title="chatGPT-想法" class="article-share-link">Share</a>
       
       
       
@@ -204,7 +254,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://crazycjh.github.io/andy-tech-note/2023/01/17/codemirror-v5-v6-diff/" data-id="cle3nhj1y000dc3a81meu3car" data-title="codemirror v5 與 v6的差異" class="article-share-link">Share</a>
+      <a data-url="http://crazycjh.github.io/andy-tech-note/2023/01/17/codemirror-v5-v6-diff/" data-id="cle3tea81000j0wa890en3pcz" data-title="codemirror v5 與 v6的差異" class="article-share-link">Share</a>
       
       
       
@@ -259,7 +309,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://crazycjh.github.io/andy-tech-note/2023/01/16/codemirror-set-eventListener/" data-id="cle3nhj1y000cc3a80yz29105" data-title="codemirror 設定(註冊)事件觸發Codemirror.on" class="article-share-link">Share</a>
+      <a data-url="http://crazycjh.github.io/andy-tech-note/2023/01/16/codemirror-set-eventListener/" data-id="cle3tea80000e0wa84pk172e7" data-title="codemirror 設定(註冊)事件觸發Codemirror.on" class="article-share-link">Share</a>
       
       
       
@@ -309,7 +359,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://crazycjh.github.io/andy-tech-note/2023/01/14/vue-ref-css-vbind/" data-id="cle3nhj1w0007c3a8fw64b05r" data-title="在vue中把變數傳進css" class="article-share-link">Share</a>
+      <a data-url="http://crazycjh.github.io/andy-tech-note/2023/01/14/vue-ref-css-vbind/" data-id="cle3tea7z00080wa88u4v7vmq" data-title="在vue中把變數傳進css" class="article-share-link">Share</a>
       
       
       
@@ -369,7 +419,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://crazycjh.github.io/andy-tech-note/2023/01/14/deep-copy-Shallow-copy/" data-id="cle3nhj1z000jc3a80neqatk9" data-title="在JS中複製object-深拷貝/淺拷貝" class="article-share-link">Share</a>
+      <a data-url="http://crazycjh.github.io/andy-tech-note/2023/01/14/deep-copy-Shallow-copy/" data-id="cle3tea80000c0wa81sn6hceo" data-title="在JS中複製object-深拷貝/淺拷貝" class="article-share-link">Share</a>
       
       
       
@@ -414,7 +464,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://crazycjh.github.io/andy-tech-note/2023/01/11/how-to-edit-sourcecode-installed-by-npm-nodemodule/" data-id="cle3nhj1w0008c3a84msi7hsx" data-title="如何修改NPM下載的程式碼" class="article-share-link">Share</a>
+      <a data-url="http://crazycjh.github.io/andy-tech-note/2023/01/11/how-to-edit-sourcecode-installed-by-npm-nodemodule/" data-id="cle3tea7x00060wa848u01krp" data-title="如何修改NPM下載的程式碼" class="article-share-link">Share</a>
       
       
       
@@ -461,7 +511,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://crazycjh.github.io/andy-tech-note/2023/01/10/vue-watch-multiple-value/" data-id="cle3nhj1v0006c3a84q1i5h2t" data-title="在vue中一次watch多個變數" class="article-share-link">Share</a>
+      <a data-url="http://crazycjh.github.io/andy-tech-note/2023/01/10/vue-watch-multiple-value/" data-id="cle3tea7w00030wa856c43zdn" data-title="在vue中一次watch多個變數" class="article-share-link">Share</a>
       
       
       
@@ -519,57 +569,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://crazycjh.github.io/andy-tech-note/2023/01/09/how-to-create-codemirror/" data-id="cle3nhj1s0001c3a8dc7zeb55" data-title="如何在vue上建立codemirror編輯器" class="article-share-link">Share</a>
-      
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/andy-tech-note/tags/js/" rel="tag">js</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-Javascript-async-sync" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/andy-tech-note/2023/01/01/Javascript-async-sync/" class="article-date">
-  <time class="dt-published" datetime="2023-01-01T00:53:18.000Z" itemprop="datePublished">2023-01-01</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/andy-tech-note/categories/javascript/">javascript</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/andy-tech-note/2023/01/01/Javascript-async-sync/">JS中的Async/Sync</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h2 id="同步與非同步？"><a href="#同步與非同步？" class="headerlink" title="同步與非同步？"></a>同步與非同步？</h2><h4 id="什麼是同步"><a href="#什麼是同步" class="headerlink" title="什麼是同步"></a>什麼是同步</h4><p>一般來說JS都是以 <code>同步synchronous</code> 的方式執行程式碼，以圖中左邊來說，由上而下的時間軸順序執行程式碼，每次只做一件事，<br>以<code>同步</code>的字面上來說很像是同時做很多件事，但其實是一次只執行一件事。</p>
-<h4 id="什麼是非同步"><a href="#什麼是非同步" class="headerlink" title="什麼是非同步"></a>什麼是非同步</h4><p>什麼又是 <code>非同步</code> ，上面提到的一次只能一次做一件，以下圖來看的意思就是，某些時候會有些運算或是網路請求耗時會較長，但我們又不希望整個程式碼因為要等待某個function執行完畢才往下繼續執行，這時候就需要非同步。<br>想像一下，你在正瀏覽某個網頁，因為點擊某個按鈕，而這按鈕因為需要做些費時較長的功能，而因為這樣頁面就卡住無法瀏覽，這樣使用者體驗應該會很差吧？</p>
-<ul>
-<li>舉例：JS中有個function <code>setTimeout()</code> 是可以在這裡面寫一個callback function，在設定的倒數時間到之後執行它，那如果現在他是以同步的方式執行，這樣程式碼會卡在那邊等到時間到才能往下繼續執行，那如果是非同步，程式碼會繼續往下執行之外同時在背景還會繼續倒數直到時間到執行設定好的callback function。</li>
-</ul>
-<p><img src="https://www.freecodecamp.org/news/content/images/2021/09/freeCodeCamp-Cover-2.png" alt="async"></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://crazycjh.github.io/andy-tech-note/2023/01/01/Javascript-async-sync/" data-id="cle3nhj1u0003c3a8cgg32jfc" data-title="JS中的Async/Sync" class="article-share-link">Share</a>
+      <a data-url="http://crazycjh.github.io/andy-tech-note/2023/01/09/how-to-create-codemirror/" data-id="cle3tea7u00020wa81o998bsi" data-title="如何在vue上建立codemirror編輯器" class="article-share-link">Share</a>
       
       
       
@@ -584,6 +584,11 @@
 
   
 
+
+  <nav id="page-nav">
+    
+    <span class="page-number current">1</span><a class="page-number" href="/andy-tech-note/page/2/">2</a><a class="extend next" rel="next" href="/andy-tech-note/page/2/">下一頁 &raquo;</a>
+  </nav>
 
 </section>
         
@@ -639,6 +644,10 @@
           </li>
         
           <li>
+            <a href="/andy-tech-note/2023/02/02/vue-react-mvvm-virtualDom/">vue-react-mvvm-virtualDom的一些筆記</a>
+          </li>
+        
+          <li>
             <a href="/andy-tech-note/2023/02/01/chatGPT-note/">chatGPT-想法</a>
           </li>
         
@@ -648,10 +657,6 @@
         
           <li>
             <a href="/andy-tech-note/2023/01/16/codemirror-set-eventListener/">codemirror 設定(註冊)事件觸發Codemirror.on</a>
-          </li>
-        
-          <li>
-            <a href="/andy-tech-note/2023/01/14/vue-ref-css-vbind/">在vue中把變數傳進css</a>
           </li>
         
       </ul>

@@ -4,12 +4,12 @@
   <meta charset="utf-8">
   
   
-  <title>Tag: js | Andy的技術筆記、生活紀錄</title>
+  <title>Andy的技術筆記、生活紀錄</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="把生活中學習到瑣碎的小事記下來，讓想法更加完整。">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Andy的技術筆記、生活紀錄">
-<meta property="og:url" content="http://crazycjh.github.io/andy-tech-note/tags/js/index.html">
+<meta property="og:url" content="http://crazycjh.github.io/andy-tech-note/page/2/index.html">
 <meta property="og:site_name" content="Andy的技術筆記、生活紀錄">
 <meta property="og:description" content="把生活中學習到瑣碎的小事記下來，讓想法更加完整。">
 <meta property="og:locale" content="zh_TW">
@@ -73,95 +73,62 @@
       <div class="outer">
         <section id="main">
   
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/andy-tech-note/archives/2023" class="archive-year">2023</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/andy-tech-note/2023/01/14/deep-copy-Shallow-copy/" class="archive-article-date">
-  <time class="dt-published" datetime="2023-01-14T12:01:00.000Z" itemprop="datePublished">1月 14</time>
+    <article id="post-Javascript-async-sync" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/andy-tech-note/2023/01/01/Javascript-async-sync/" class="article-date">
+  <time class="dt-published" datetime="2023-01-01T00:53:18.000Z" itemprop="datePublished">2023-01-01</time>
 </a>
-      
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/andy-tech-note/categories/javascript/">javascript</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
   
     <h1 itemprop="name">
-      <a class="archive-article-title" href="/andy-tech-note/2023/01/14/deep-copy-Shallow-copy/">在JS中複製object-深拷貝/淺拷貝</a>
+      <a class="p-name article-title" href="/andy-tech-note/2023/01/01/Javascript-async-sync/">JS中的Async/Sync</a>
     </h1>
   
 
-    </header>
-  </div>
-</article>
-  
+      </header>
     
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/andy-tech-note/2023/01/10/vue-watch-multiple-value/" class="archive-article-date">
-  <time class="dt-published" datetime="2023-01-10T10:00:50.000Z" itemprop="datePublished">1月 10</time>
-</a>
+    <div class="e-content article-entry" itemprop="articleBody">
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/andy-tech-note/2023/01/10/vue-watch-multiple-value/">在vue中一次watch多個變數</a>
-    </h1>
-  
+        <h2 id="同步與非同步？"><a href="#同步與非同步？" class="headerlink" title="同步與非同步？"></a>同步與非同步？</h2><h4 id="什麼是同步"><a href="#什麼是同步" class="headerlink" title="什麼是同步"></a>什麼是同步</h4><p>一般來說JS都是以 <code>同步synchronous</code> 的方式執行程式碼，以圖中左邊來說，由上而下的時間軸順序執行程式碼，每次只做一件事，<br>以<code>同步</code>的字面上來說很像是同時做很多件事，但其實是一次只執行一件事。</p>
+<h4 id="什麼是非同步"><a href="#什麼是非同步" class="headerlink" title="什麼是非同步"></a>什麼是非同步</h4><p>什麼又是 <code>非同步</code> ，上面提到的一次只能一次做一件，以下圖來看的意思就是，某些時候會有些運算或是網路請求耗時會較長，但我們又不希望整個程式碼因為要等待某個function執行完畢才往下繼續執行，這時候就需要非同步。<br>想像一下，你在正瀏覽某個網頁，因為點擊某個按鈕，而這按鈕因為需要做些費時較長的功能，而因為這樣頁面就卡住無法瀏覽，這樣使用者體驗應該會很差吧？</p>
+<ul>
+<li>舉例：JS中有個function <code>setTimeout()</code> 是可以在這裡面寫一個callback function，在設定的倒數時間到之後執行它，那如果現在他是以同步的方式執行，這樣程式碼會卡在那邊等到時間到才能往下繼續執行，那如果是非同步，程式碼會繼續往下執行之外同時在背景還會繼續倒數直到時間到執行設定好的callback function。</li>
+</ul>
+<p><img src="https://www.freecodecamp.org/news/content/images/2021/09/freeCodeCamp-Cover-2.png" alt="async"></p>
 
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/andy-tech-note/2023/01/09/how-to-create-codemirror/" class="archive-article-date">
-  <time class="dt-published" datetime="2023-01-09T02:53:18.000Z" itemprop="datePublished">1月 9</time>
-</a>
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/andy-tech-note/2023/01/09/how-to-create-codemirror/">如何在vue上建立codemirror編輯器</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/andy-tech-note/2023/01/01/Javascript-async-sync/" class="archive-article-date">
-  <time class="dt-published" datetime="2023-01-01T00:53:18.000Z" itemprop="datePublished">1月 1</time>
-</a>
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://crazycjh.github.io/andy-tech-note/2023/01/01/Javascript-async-sync/" data-id="cle3tea7y00070wa833a699en" data-title="JS中的Async/Sync" class="article-share-link">Share</a>
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/andy-tech-note/2023/01/01/Javascript-async-sync/">JS中的Async/Sync</a>
-    </h1>
-  
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/andy-tech-note/tags/js/" rel="tag">js</a></li></ul>
 
-    </header>
+    </footer>
   </div>
+  
 </article>
-  
-  
-    </div></section>
+
+
+
   
 
+
+  <nav id="page-nav">
+    
+    <a class="extend prev" rel="prev" href="/andy-tech-note/">&laquo; 上一頁</a><a class="page-number" href="/andy-tech-note/">1</a><span class="page-number current">2</span>
+  </nav>
 
 </section>
         

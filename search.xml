@@ -166,7 +166,7 @@
       </tags>
   </entry>
   <entry>
-    <title>pseudo-class-css</title>
+    <title>偽類-pseudo-class-css</title>
     <url>/andy-tech-note/2023/02/13/pseudo-class/</url>
     <content><![CDATA[<h3 id="情境1"><a href="#情境1" class="headerlink" title="情境1"></a>情境1</h3><p>直接範例解釋</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;ul&gt;</span><br><span class="line">  &lt;li class=&quot;first-li&quot;&gt;1&lt;/li&gt;</span><br><span class="line">  &lt;li&gt;2&lt;/li&gt;</span><br><span class="line">  &lt;li&gt;3&lt;/li&gt;</span><br><span class="line">&lt;/ul&gt;</span><br><span class="line">&lt;ul&gt;</span><br><span class="line">  &lt;li&gt;1&lt;/li&gt;</span><br><span class="line">  &lt;li&gt;2&lt;/li&gt;</span><br><span class="line">  &lt;li&gt;3&lt;/li&gt;</span><br><span class="line">&lt;/ul&gt;  </span><br><span class="line"></span><br><span class="line">  </span><br></pre></td></tr></table></figure>
@@ -179,6 +179,12 @@
 
 <p>這個狀況其實在狀況2是沒有作用的，雖然是div下的第一個p，但是在div下面的第一個element是 div而非 p ，所以不會成功</p>
 ]]></content>
+      <categories>
+        <category>css</category>
+      </categories>
+      <tags>
+        <tag>css</tag>
+      </tags>
   </entry>
   <entry>
     <title>vue-react-mvvm-virtualDom的一些筆記</title>

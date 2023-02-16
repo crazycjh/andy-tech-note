@@ -202,5 +202,24 @@
 <p>應該還有很多細節部分沒提到，未來有碰到更多再來補充更完整。</p>
 <p>參考資料 : <a href="https://book.vue.tw/CH1/1-1-introduction.html">重新認識 Vue.js | Kuro Hsu </a></p>
 ]]></content>
+      <categories>
+        <category>前端框架</category>
+      </categories>
+      <tags>
+        <tag>vue,</tag>
+        <tag>react</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>firebase-auth-readwrite-realtime</title>
+    <url>/andy-tech-note/2023/02/10/firebase-auth-readwrite-realtime/</url>
+    <content><![CDATA[]]></content>
+      <categories>
+        <category>frontend</category>
+      </categories>
+      <tags>
+        <tag>firebase</tag>
+        <tag>frontend</tag>
+      </tags>
   </entry>
 </search>

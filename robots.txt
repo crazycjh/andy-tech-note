@@ -1,0 +1,6 @@
+User-agent:*
+Allow: /
+Allow: /archives/
+Allow: /tags/
+Allow: /categories/
+Sitemap:https://crazycjh.github.io/andy-tech-note/sitemap.xml

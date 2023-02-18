@@ -10,6 +10,15 @@
     <meta name="renderer" content="webkit"/>
     <meta name="force-rendering" content="webkit"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+        <!-- Google Tag Manager -->
+    <script>
+    (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-WJM54CV');
+    </script>
+    <!-- End Google Tag Manager -->
     <script>if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMode)) window.location.href="https://support.dmeng.net/upgrade-your-browser.html?referrer="+encodeURIComponent(window.location.href); </script>
     
     
@@ -79,13 +88,19 @@
     
     <title>
         
-            firebase-auth-readwrite-realtime | Andy的技術筆記、生活紀錄
+            如何使用Google的firebase裡面的驗證功能(login/logout) | Andy的技術筆記、生活紀錄
         
     </title>
     
     
 <meta name="generator" content="Hexo 6.3.0"></head>
 <body class="mdui-drawer-body-left mdui-appbar-with-toolbar mdui-theme-primary-teal mdui-theme-accent-blue">
+  
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WJM54CV"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+
   
   <header class="mdui-appbar mdui-appbar-fixed">
  
@@ -229,7 +244,7 @@
     
     
       <div class="post-header"> 
-  <a class="post-header-title" href="/andy-tech-note/2023/02/16/firebase-auth/">firebase-auth-readwrite-realtime</a>
+  <a class="post-header-title" href="/andy-tech-note/2023/02/16/firebase-auth/">如何使用Google的firebase裡面的驗證功能(login/logout)</a>
   <div class="post-header-meta">
     <span>
       <span class="iconfont icon-calendar"></span>
@@ -237,7 +252,7 @@
     </span>
     <span>
       <span class="iconfont icon-calendar-check"></span>
-      更新於:&nbsp;2023-02-16
+      更新於:&nbsp;2023-02-18
     </span>
     <span>
       <span class="iconfont icon-folder"></span>
@@ -263,10 +278,10 @@
       <button class="mdui-btn mdui-btn-icon mdui-text-color-teal" mdui-menu="{target: '#share_menu', align: 'right'}"><i class="iconfont icon-share"></i></button>
       <ul class="mdui-menu" id="share_menu">
         <li class="mdui-menu-item">
-          <a href="http://service.weibo.com/share/share.php?appkey=&title=firebase-auth-readwrite-realtime&url=http://crazycjh.github.io/andy-tech-note/2023/02/16/firebase-auth/&pic=http://crazycjh.github.io/andy-tech-note/andy-tech-note/null&searchPic=false&style=simple" target="_blank" class="mdui-ripple">Share to Weibo</a>
+          <a href="http://service.weibo.com/share/share.php?appkey=&title=如何使用Google的firebase裡面的驗證功能(login/logout)&url=http://crazycjh.github.io/andy-tech-note/2023/02/16/firebase-auth/&pic=http://crazycjh.github.io/andy-tech-note/andy-tech-note/null&searchPic=false&style=simple" target="_blank" class="mdui-ripple">Share to Weibo</a>
         </li>
         <li class="mdui-menu-item">
-          <a href="https://twitter.com/intent/tweet?text=firebase-auth-readwrite-realtime&url=http://crazycjh.github.io/andy-tech-note/2023/02/16/firebase-auth/&via=Andy Chen" target="_blank" class="mdui-ripple">分享到 Twitter</a>
+          <a href="https://twitter.com/intent/tweet?text=如何使用Google的firebase裡面的驗證功能(login/logout)&url=http://crazycjh.github.io/andy-tech-note/2023/02/16/firebase-auth/&via=Andy Chen" target="_blank" class="mdui-ripple">分享到 Twitter</a>
         </li>
         <li class="mdui-menu-item">
           <a href="https://www.facebook.com/sharer/sharer.php?u=http://crazycjh.github.io/andy-tech-note/2023/02/16/firebase-auth/" target="_blank" class="mdui-ripple">分享到 Facebook</a>
@@ -275,13 +290,13 @@
           <a href="https://plus.google.com/share?url=http://crazycjh.github.io/andy-tech-note/2023/02/16/firebase-auth/" target="_blank" class="mdui-ripple">Share to Google+</a>
         </li>
         <li class="mdui-menu-item">
-          <a href="https://www.linkedin.com/shareArticle?mini=true&url=http://crazycjh.github.io/andy-tech-note/2023/02/16/firebase-auth/&title=firebase-auth-readwrite-realtime" target="_blank" class="mdui-ripple">分享到 LinkedIn</a>
+          <a href="https://www.linkedin.com/shareArticle?mini=true&url=http://crazycjh.github.io/andy-tech-note/2023/02/16/firebase-auth/&title=如何使用Google的firebase裡面的驗證功能(login/logout)" target="_blank" class="mdui-ripple">分享到 LinkedIn</a>
         </li>
         <li class="mdui-menu-item">
-          <a href="http://connect.qq.com/widget/shareqq/index.html?site=Andy的技術筆記、生活紀錄&title=firebase-auth-readwrite-realtime&summary=把生活中學習到瑣碎的小事記下來，讓想法更加完整。&pics=http://crazycjh.github.io/andy-tech-note/andy-tech-note/null&url=http://crazycjh.github.io/andy-tech-note/2023/02/16/firebase-auth/" target="_blank" class="mdui-ripple">Share to QQ</a>
+          <a href="http://connect.qq.com/widget/shareqq/index.html?site=Andy的技術筆記、生活紀錄&title=如何使用Google的firebase裡面的驗證功能(login/logout)&summary=把生活中學習到瑣碎的小事記下來，讓想法更加完整。&pics=http://crazycjh.github.io/andy-tech-note/andy-tech-note/null&url=http://crazycjh.github.io/andy-tech-note/2023/02/16/firebase-auth/" target="_blank" class="mdui-ripple">Share to QQ</a>
         </li>
         <li class="mdui-menu-item">
-          <a href="https://telegram.me/share/url?url=http://crazycjh.github.io/andy-tech-note/2023/02/16/firebase-auth/&text=firebase-auth-readwrite-realtime" target="_blank" class="mdui-ripple">分享到 Telegram</a>
+          <a href="https://telegram.me/share/url?url=http://crazycjh.github.io/andy-tech-note/2023/02/16/firebase-auth/&text=如何使用Google的firebase裡面的驗證功能(login/logout)" target="_blank" class="mdui-ripple">分享到 Telegram</a>
         </li>
       </ul>
     
@@ -305,7 +320,8 @@
 
   
   <div class="mdui-card-content mdui-typo mdui-p-x-4">
-    <h4 id="Firebase-auth-以Email-x2F-password-為例"><a href="#Firebase-auth-以Email-x2F-password-為例" class="headerlink" title="Firebase auth 以Email&#x2F;password 為例"></a>Firebase auth 以Email&#x2F;password 為例</h4><p>可以先到firebase官網看一下的 <a target="_blank" rel="noopener" href="https://firebase.google.com/docs/auth/web/start">Authentication</a> 頁面，<code>Get start </code>中有提供範例code</p>
+    <h4 id="Google-Firebase"><a href="#Google-Firebase" class="headerlink" title="Google Firebase"></a>Google Firebase</h4><p>Google的Firebase是個前端工程師很好用的工具，他可以讓前端工程師省去建立後端資料庫的建立而可以專注在前端的開發，這裡面有身份驗證、realtime資料庫等好用的功能，只要是拿來做開發，而流量不大的話，通常你都不會達到需要付費流量。</p>
+<h4 id="Firebase-auth-以Email-x2F-password-為例"><a href="#Firebase-auth-以Email-x2F-password-為例" class="headerlink" title="Firebase auth 以Email&#x2F;password 為例"></a>Firebase auth 以Email&#x2F;password 為例</h4><p>可以先到firebase官網看一下的 <a target="_blank" rel="noopener" href="https://firebase.google.com/docs/auth/web/start">Authentication</a> 頁面，<code>Get start </code>中有提供範例code</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">import &#123; initializeApp &#125; from &quot;firebase/app&quot;;</span><br><span class="line">import &#123; getAuth &#125; from &quot;firebase/auth&quot;;</span><br><span class="line"></span><br><span class="line">// TODO: Replace the following with your app&#x27;s Firebase project configuration</span><br><span class="line">// See: https://firebase.google.com/docs/web/learn-more#config-object</span><br><span class="line">const firebaseConfig = &#123;</span><br><span class="line">  // ...這裡面呢放上的東西可以參考上面那行網址，</span><br><span class="line">  簡單來說就是你在firebase(https://firebase.google.com/)</span><br><span class="line">  建立新專案時並且建立後會出現的一些資料，按照這些資料填入即可</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">// Initialize Firebase</span><br><span class="line">const app = initializeApp(firebaseConfig);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">// Initialize Firebase Authentication and get a reference to the service</span><br><span class="line">const auth = getAuth(app);</span><br><span class="line">//</span><br></pre></td></tr></table></figure>
 <p>要如何找到firebaseConfig裡面的資料？點到下圖的這個地方，右邊拉到底，新增一個<code>網頁應用程式</code>後就會出現相對應的api key。<br><img src="/andy-tech-note/2023/02/16/firebase-auth/SCR-20230216-t2w.png"><br>而後記得在左側的<code>建構</code>建立一個authication服務，然後在右側sign-in method去新增供應商，選擇電子郵件&#x2F;密碼後在左邊users設定你想要登入的帳號密碼(這是比較陽春的方式，你可以在網路上找一下透過網頁要求建立帳號密碼)<br><img src="/andy-tech-note/2023/02/16/firebase-auth/SCR-20230216-t7l.png"></p>
 <p>而剛剛上面的code，只是把firebase先初始化以及把auth資訊先準備好，接下來要呼叫登入的API。<br><a target="_blank" rel="noopener" href="https://firebase.google.com/docs/auth/web/password-auth">email&#x2F;password登入</a></p>
@@ -346,7 +362,7 @@
     <ul class="mdui-menu" id="toc">
       <li class="mdui-menu-item">
         <a href="/andy-tech-note/2023/02/16/firebase-auth/" id="toc-header" class="mdui-ripple">文章目錄</a>
-        <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#Firebase-auth-%E4%BB%A5Email-x2F-password-%E7%82%BA%E4%BE%8B"><span class="toc-number">1.</span> <span class="toc-text">Firebase auth 以Email&#x2F;password 為例</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E7%99%BB%E5%85%A5"><span class="toc-number">1.1.</span> <span class="toc-text">登入</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%89%B5%E5%BB%BA%E5%B8%B3%E8%99%9F"><span class="toc-number">1.2.</span> <span class="toc-text">創建帳號</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E7%99%BB%E5%87%BA"><span class="toc-number">1.3.</span> <span class="toc-text">登出</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%99%BB%E5%85%A5%E5%BE%8C"><span class="toc-number">2.</span> <span class="toc-text">登入後</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#Google-Firebase"><span class="toc-number">1.</span> <span class="toc-text">Google Firebase</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Firebase-auth-%E4%BB%A5Email-x2F-password-%E7%82%BA%E4%BE%8B"><span class="toc-number">2.</span> <span class="toc-text">Firebase auth 以Email&#x2F;password 為例</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E7%99%BB%E5%85%A5"><span class="toc-number">2.1.</span> <span class="toc-text">登入</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%89%B5%E5%BB%BA%E5%B8%B3%E8%99%9F"><span class="toc-number">2.2.</span> <span class="toc-text">創建帳號</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E7%99%BB%E5%87%BA"><span class="toc-number">2.3.</span> <span class="toc-text">登出</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%99%BB%E5%85%A5%E5%BE%8C"><span class="toc-number">3.</span> <span class="toc-text">登入後</span></a></li></ol>
       </li>
     </ul>
   </div>

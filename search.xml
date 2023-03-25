@@ -1,23 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>JS中的Async/Sync</title>
-    <url>/andy-tech-note/2023/01/01/Javascript-async-sync/</url>
-    <content><![CDATA[<h2 id="同步與非同步？"><a href="#同步與非同步？" class="headerlink" title="同步與非同步？"></a>同步與非同步？</h2><h4 id="什麼是同步"><a href="#什麼是同步" class="headerlink" title="什麼是同步"></a>什麼是同步</h4><p>一般來說JS都是以 <code>同步synchronous</code> 的方式執行程式碼，以圖中左邊來說，由上而下的時間軸順序執行程式碼，每次只做一件事，<br>以<code>同步</code>的字面上來說很像是同時做很多件事，但其實是一次只執行一件事。</p>
-<h4 id="什麼是非同步"><a href="#什麼是非同步" class="headerlink" title="什麼是非同步"></a>什麼是非同步</h4><p>什麼又是 <code>非同步</code> ，上面提到的一次只能一次做一件，以下圖來看的意思就是，某些時候會有些運算或是網路請求耗時會較長，但我們又不希望整個程式碼因為要等待某個function執行完畢才往下繼續執行，這時候就需要非同步。<br>想像一下，你在正瀏覽某個網頁，因為點擊某個按鈕，而這按鈕因為需要做些費時較長的功能，而因為這樣頁面就卡住無法瀏覽，這樣使用者體驗應該會很差吧？</p>
-<ul>
-<li>舉例：JS中有個function <code>setTimeout()</code> 是可以在這裡面寫一個callback function，在設定的倒數時間到之後執行它，那如果現在他是以同步的方式執行，這樣程式碼會卡在那邊等到時間到才能往下繼續執行，那如果是非同步，程式碼會繼續往下執行之外同時在背景還會繼續倒數直到時間到執行設定好的callback function。</li>
-</ul>
-<p><img src="https://www.freecodecamp.org/news/content/images/2021/09/freeCodeCamp-Cover-2.png" alt="async"></p>
-]]></content>
-      <categories>
-        <category>javascript</category>
-      </categories>
-      <tags>
-        <tag>js</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>如何在vue上建立codemirror編輯器</title>
     <url>/andy-tech-note/2023/01/09/how-to-create-codemirror/</url>
     <content><![CDATA[<h3 id="什麼是codemirror"><a href="#什麼是codemirror" class="headerlink" title="什麼是codemirror"></a>什麼是codemirror</h3><p>codemirror是一個可以應用在web頁面的程式碼編輯器。</p>
@@ -43,6 +26,23 @@
       </tags>
   </entry>
   <entry>
+    <title>JS中的Async/Sync</title>
+    <url>/andy-tech-note/2023/01/01/Javascript-async-sync/</url>
+    <content><![CDATA[<h2 id="同步與非同步？"><a href="#同步與非同步？" class="headerlink" title="同步與非同步？"></a>同步與非同步？</h2><h4 id="什麼是同步"><a href="#什麼是同步" class="headerlink" title="什麼是同步"></a>什麼是同步</h4><p>一般來說JS都是以 <code>同步synchronous</code> 的方式執行程式碼，以圖中左邊來說，由上而下的時間軸順序執行程式碼，每次只做一件事，<br>以<code>同步</code>的字面上來說很像是同時做很多件事，但其實是一次只執行一件事。</p>
+<h4 id="什麼是非同步"><a href="#什麼是非同步" class="headerlink" title="什麼是非同步"></a>什麼是非同步</h4><p>什麼又是 <code>非同步</code> ，上面提到的一次只能一次做一件，以下圖來看的意思就是，某些時候會有些運算或是網路請求耗時會較長，但我們又不希望整個程式碼因為要等待某個function執行完畢才往下繼續執行，這時候就需要非同步。<br>想像一下，你在正瀏覽某個網頁，因為點擊某個按鈕，而這按鈕因為需要做些費時較長的功能，而因為這樣頁面就卡住無法瀏覽，這樣使用者體驗應該會很差吧？</p>
+<ul>
+<li>舉例：JS中有個function <code>setTimeout()</code> 是可以在這裡面寫一個callback function，在設定的倒數時間到之後執行它，那如果現在他是以同步的方式執行，這樣程式碼會卡在那邊等到時間到才能往下繼續執行，那如果是非同步，程式碼會繼續往下執行之外同時在背景還會繼續倒數直到時間到執行設定好的callback function。</li>
+</ul>
+<p><img src="https://www.freecodecamp.org/news/content/images/2021/09/freeCodeCamp-Cover-2.png" alt="async"></p>
+]]></content>
+      <categories>
+        <category>javascript</category>
+      </categories>
+      <tags>
+        <tag>js</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>在vue中一次watch多個變數</title>
     <url>/andy-tech-note/2023/01/10/vue-watch-multiple-value/</url>
     <content><![CDATA[<h4 id="在Vue3-amp-Composition下，想一次watch多個變數的實現方法"><a href="#在Vue3-amp-Composition下，想一次watch多個變數的實現方法" class="headerlink" title="在Vue3 &amp; Composition下，想一次watch多個變數的實現方法"></a>在Vue3 &amp; Composition下，想一次watch多個變數的實現方法</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">setup()&#123;</span><br><span class="line">    const message = ref(&#x27;&#x27;);</span><br><span class="line">    const name = ref(&#x27;&#x27;);</span><br><span class="line">    watch([message,name],([newValueMessage,newValueName],[oldValueMessage,oldValueName])=&gt;&#123;</span><br><span class="line">        //do something</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
@@ -54,18 +54,6 @@
       </categories>
       <tags>
         <tag>js</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>如何修改NPM下載的程式碼</title>
-    <url>/andy-tech-note/2023/01/11/how-to-edit-sourcecode-installed-by-npm-nodemodule/</url>
-    <content><![CDATA[<p>嘗試對npm下載的node_modules裡面的套件的code做修改，但是發現不論怎麼改都不會生效。<br>才發現在vite &amp; vue3的環境下，vite把一些預先編譯好的東西放到<code>node_modules/.vite</code>中，<br>所以需要手動刪除這個資料夾去讓編譯器去編譯修改過的程式碼，又或者透過 <code>npm run dev --force</code></p>
-]]></content>
-      <categories>
-        <category>npm</category>
-      </categories>
-      <tags>
-        <tag>npm</tag>
       </tags>
   </entry>
   <entry>
@@ -93,6 +81,18 @@
       </categories>
       <tags>
         <tag>js</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>如何修改NPM下載的程式碼</title>
+    <url>/andy-tech-note/2023/01/11/how-to-edit-sourcecode-installed-by-npm-nodemodule/</url>
+    <content><![CDATA[<p>嘗試對npm下載的node_modules裡面的套件的code做修改，但是發現不論怎麼改都不會生效。<br>才發現在vite &amp; vue3的環境下，vite把一些預先編譯好的東西放到<code>node_modules/.vite</code>中，<br>所以需要手動刪除這個資料夾去讓編譯器去編譯修改過的程式碼，又或者透過 <code>npm run dev --force</code></p>
+]]></content>
+      <categories>
+        <category>npm</category>
+      </categories>
+      <tags>
+        <tag>npm</tag>
       </tags>
   </entry>
   <entry>
@@ -189,6 +189,27 @@
       </tags>
   </entry>
   <entry>
+    <title>偽類-pseudo-class-css</title>
+    <url>/andy-tech-note/2023/02/13/pseudo-class/</url>
+    <content><![CDATA[<h3 id="情境1"><a href="#情境1" class="headerlink" title="情境1"></a>情境1</h3><p>直接範例解釋</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;ul&gt;</span><br><span class="line">  &lt;li class=&quot;first-li&quot;&gt;1&lt;/li&gt;</span><br><span class="line">  &lt;li&gt;2&lt;/li&gt;</span><br><span class="line">  &lt;li&gt;3&lt;/li&gt;</span><br><span class="line">&lt;/ul&gt;</span><br><span class="line">&lt;ul&gt;</span><br><span class="line">  &lt;li&gt;1&lt;/li&gt;</span><br><span class="line">  &lt;li&gt;2&lt;/li&gt;</span><br><span class="line">  &lt;li&gt;3&lt;/li&gt;</span><br><span class="line">&lt;/ul&gt;  </span><br><span class="line"></span><br><span class="line">  </span><br></pre></td></tr></table></figure>
+<p>一般來說如果想對 <code>&lt;li&gt; </code>裡面的字做變色、粗體、斜體，可以透過建立一個class去操作，<br>舉例：想把所有的第一個li的變粗體，這樣需要如下面class寫法，以及需要在html裡面把所有的第一個li都加上class&#x3D;’first-li’</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//css檔案</span><br><span class="line">.first-li &#123;</span><br><span class="line">    font-weight:bold;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//pseudo class </span><br><span class="line">li:first-child &#123;</span><br><span class="line">    font-weight:bold;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">li:last-child&#123;</span><br><span class="line">    font-weight:bold;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">li:nth-child(2)&#123; //全部第二個</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">li:nth-child(even)&#123; //偶數或奇數 odd</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>若是pseudo class則可以寫成上面這樣，還可以有最後一個、指定特定位置、偶數、奇數。</p>
+<hr>
+<h3 id="情境2"><a href="#情境2" class="headerlink" title="情境2"></a>情境2</h3><p>在這裡還可以是以下狀況</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">//狀況1</span><br><span class="line">&lt;div&gt;</span><br><span class="line">    &lt;p&gt;1&lt;/p&gt;</span><br><span class="line">    &lt;div&gt;2&lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line"></span><br><span class="line">//狀況2</span><br><span class="line">&lt;div&gt;</span><br><span class="line">    &lt;div&gt;0&lt;/div&gt;</span><br><span class="line">    &lt;p&gt;1&lt;/p&gt;</span><br><span class="line">    &lt;div&gt;2&lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line"></span><br><span class="line">//css</span><br><span class="line">div p:first-child&#123; // div下的第一個p</span><br><span class="line">    font-weight:bold;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>這個狀況其實在狀況2是沒有作用的，雖然是div下的第一個p，但是在div下面的第一個element是 div而非 p ，所以不會成功</p>
+]]></content>
+      <categories>
+        <category>css</category>
+      </categories>
+      <tags>
+        <tag>css</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>vue-react-mvvm-virtualDom的一些筆記</title>
     <url>/andy-tech-note/2023/02/02/vue-react-mvvm-virtualDom/</url>
     <content><![CDATA[<h3 id="指令式渲染-imperative-redering"><a href="#指令式渲染-imperative-redering" class="headerlink" title="指令式渲染 imperative redering"></a>指令式渲染 imperative redering</h3><h4 id="jquery"><a href="#jquery" class="headerlink" title="jquery"></a>jquery</h4><p>在框架還沒出來時jquery依舊是非常火紅的，而其對於DOM的渲染方式就是透過<br>選擇器 <code>document.querySelector</code> 去選擇HTML裡面的tag，從而去修改他們的值或是<code> addEventListener</code> 加入事件監聽來獲取使用者的行為，進而在js裡面做一些判斷後再把資料丟到頁面讓使用者看到。</p>
@@ -235,27 +256,6 @@
       <tags>
         <tag>firebase</tag>
         <tag>frontend</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>偽類-pseudo-class-css</title>
-    <url>/andy-tech-note/2023/02/13/pseudo-class/</url>
-    <content><![CDATA[<h3 id="情境1"><a href="#情境1" class="headerlink" title="情境1"></a>情境1</h3><p>直接範例解釋</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;ul&gt;</span><br><span class="line">  &lt;li class=&quot;first-li&quot;&gt;1&lt;/li&gt;</span><br><span class="line">  &lt;li&gt;2&lt;/li&gt;</span><br><span class="line">  &lt;li&gt;3&lt;/li&gt;</span><br><span class="line">&lt;/ul&gt;</span><br><span class="line">&lt;ul&gt;</span><br><span class="line">  &lt;li&gt;1&lt;/li&gt;</span><br><span class="line">  &lt;li&gt;2&lt;/li&gt;</span><br><span class="line">  &lt;li&gt;3&lt;/li&gt;</span><br><span class="line">&lt;/ul&gt;  </span><br><span class="line"></span><br><span class="line">  </span><br></pre></td></tr></table></figure>
-<p>一般來說如果想對 <code>&lt;li&gt; </code>裡面的字做變色、粗體、斜體，可以透過建立一個class去操作，<br>舉例：想把所有的第一個li的變粗體，這樣需要如下面class寫法，以及需要在html裡面把所有的第一個li都加上class&#x3D;’first-li’</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//css檔案</span><br><span class="line">.first-li &#123;</span><br><span class="line">    font-weight:bold;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//pseudo class </span><br><span class="line">li:first-child &#123;</span><br><span class="line">    font-weight:bold;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">li:last-child&#123;</span><br><span class="line">    font-weight:bold;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">li:nth-child(2)&#123; //全部第二個</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">li:nth-child(even)&#123; //偶數或奇數 odd</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>若是pseudo class則可以寫成上面這樣，還可以有最後一個、指定特定位置、偶數、奇數。</p>
-<hr>
-<h3 id="情境2"><a href="#情境2" class="headerlink" title="情境2"></a>情境2</h3><p>在這裡還可以是以下狀況</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">//狀況1</span><br><span class="line">&lt;div&gt;</span><br><span class="line">    &lt;p&gt;1&lt;/p&gt;</span><br><span class="line">    &lt;div&gt;2&lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line"></span><br><span class="line">//狀況2</span><br><span class="line">&lt;div&gt;</span><br><span class="line">    &lt;div&gt;0&lt;/div&gt;</span><br><span class="line">    &lt;p&gt;1&lt;/p&gt;</span><br><span class="line">    &lt;div&gt;2&lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line"></span><br><span class="line">//css</span><br><span class="line">div p:first-child&#123; // div下的第一個p</span><br><span class="line">    font-weight:bold;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>這個狀況其實在狀況2是沒有作用的，雖然是div下的第一個p，但是在div下面的第一個element是 div而非 p ，所以不會成功</p>
-]]></content>
-      <categories>
-        <category>css</category>
-      </categories>
-      <tags>
-        <tag>css</tag>
       </tags>
   </entry>
   <entry>

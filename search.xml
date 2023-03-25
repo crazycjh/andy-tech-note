@@ -32,33 +32,6 @@
       </tags>
   </entry>
   <entry>
-    <title>在JS中複製object-深拷貝/淺拷貝</title>
-    <url>/andy-tech-note/2023/01/14/deep-copy-Shallow-copy/</url>
-    <content><![CDATA[<h3 id="在JS複製object"><a href="#在JS複製object" class="headerlink" title="在JS複製object"></a>在JS複製object</h3><p>在寫code有時候會需要使用某些變數或是object，但是又不希望直接對其做操作，因為可能在其他地方會繼續使用原始的object，<br>這時候就會宣告一個新的變數去把原先的object assign過去。</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">const source = &#123;name:&#x27;Andy&#x27;,coutry:&#x27;Taiwan&#x27;,phone:&#x27;0911-111-111&#x27;&#125;</span><br><span class="line">//原始資料</span><br><span class="line"></span><br><span class="line">const destination = source </span><br><span class="line">//新變數</span><br><span class="line">destination.name = &#x27;Rendy&#x27;;</span><br><span class="line"></span><br><span class="line">console.log(destination.name);  //結果: Rendy</span><br><span class="line">console.log(source.name);       //結果: Rendy</span><br></pre></td></tr></table></figure>
-
-<p>會發現，變更 <code>destination</code> 同時也變更 <code>source</code> 裡面的值。<br>這就要提到 call by value 以及 call by reference</p>
-<h3 id="call-by-value-x2F-call-by-object"><a href="#call-by-value-x2F-call-by-object" class="headerlink" title="call by value &#x2F; call by object"></a>call by value &#x2F; call by object</h3><h4 id="什麼是call-by-value"><a href="#什麼是call-by-value" class="headerlink" title="什麼是call by value?"></a>什麼是call by value?</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">let x =1;</span><br><span class="line">let y = x;</span><br><span class="line"></span><br><span class="line">console.log(y); // 結果:1</span><br><span class="line">y=10;</span><br><span class="line">console.log(y); //結果:10</span><br><span class="line">console.log(x); //結果:1</span><br></pre></td></tr></table></figure>
-<p>以一般變數assign來說，是以call by value，也就是說直接把 <code>x</code> 的值傳給 <code>y</code></p>
-<h4 id="什麼又是-call-by-reference"><a href="#什麼又是-call-by-reference" class="headerlink" title="什麼又是 call by reference?"></a>什麼又是 call by reference?</h4><p>在一開始的object assign方法就是 call by reference，意思就是說 <code>source</code> 這個變數在assign給 <code>destination</code> 時，他是以傳遞記憶體位址方式給<code>destination</code>，可以想像 <code>destination</code> 就是儲存一個記憶體位置，當程式要讀取資料時就會透過這個位置去存取這個記憶體位置實際儲存的值。</p>
-<p>所以這樣就可以很明確的瞭解為什麼改變object的值的時候，<code>source</code> <code>destination</code> 裡面的值會被同步更動，因為兩者都是指到同一個記憶體位置。</p>
-<h4 id="要怎麼做才能不更動-source-的值"><a href="#要怎麼做才能不更動-source-的值" class="headerlink" title="要怎麼做才能不更動 source 的值"></a>要怎麼做才能不更動 source 的值</h4><p>不更動的方式有兩種： <em>淺拷貝跟深拷貝</em></p>
-<h4 id="淺拷貝"><a href="#淺拷貝" class="headerlink" title="淺拷貝"></a>淺拷貝</h4><p>字面意思就是比較淺，<br>這時候就會使用Object.assign <a href="https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Global_Objects/Object/assign">MDN介紹</a><br>舉例：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//Object.assign()</span><br><span class="line">const source = &#123;name:&#x27;Andy&#x27;,coutry:&#x27;Taiwan&#x27;,phone:&#x27;0911-111-111&#x27;,detail:&#123;age:10, job:&#x27;photographer&#x27;&#125;&#125;</span><br><span class="line">//原始資料</span><br><span class="line"></span><br><span class="line">const destination = &#123;&#125; </span><br><span class="line">Object.assign(destination,source);  //把objec assign 給 destination</span><br><span class="line"></span><br><span class="line">destination.name=&#x27;rendy&#x27;;</span><br><span class="line">console.log(destination.name,source.name) //結果 Rendy Andy 互不影響</span><br><span class="line"></span><br><span class="line">destination.detail.age=100;</span><br><span class="line">console.log(destination.detail.age,source.detail.age) //結果: 100 100</span><br></pre></td></tr></table></figure>
-<p>在這裡會發現修改 <code>name</code> 時資料互不影響，但在修改detail.age時又互相影響了，這是因為使用的是淺拷貝，這個copy只有單純複製第一層的資料，第二層以下的都還是以call by reference，所以當你修改detail.age時兩邊同時都會被修改。</p>
-<h4 id="以深拷貝來解決淺拷貝的問題"><a href="#以深拷貝來解決淺拷貝的問題" class="headerlink" title="以深拷貝來解決淺拷貝的問題"></a>以深拷貝來解決淺拷貝的問題</h4><p>使用 JSON.parse(JSON.stringify())，用這個方法就可以把淺拷貝碰到裡面有多層的問題解決。</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">const destination = JSON.parse(JSON.stringify(source));</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<h4 id="JSON-stringify-amp-JSON-parse"><a href="#JSON-stringify-amp-JSON-parse" class="headerlink" title="JSON.stringify &amp; JSON.parse"></a>JSON.stringify &amp; JSON.parse</h4><p>以MDN解釋，透過這個function可以把js value轉換成JSON string。<br>而parse可以把JSON字串轉成js value，這樣一來一往就可以把js object深層的值給取出來，而不是取得他的reference</p>
-<p>相關參考<br><a href="https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Global_Objects/Object/assign">參考1</a><br><a href="https://jamie-life-coding.site/2021/10/javascript-copy-object/">參考2</a></p>
-]]></content>
-      <categories>
-        <category>javascript</category>
-      </categories>
-      <tags>
-        <tag>js</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>如何修改NPM下載的程式碼</title>
     <url>/andy-tech-note/2023/01/11/how-to-edit-sourcecode-installed-by-npm-nodemodule/</url>
     <content><![CDATA[<p>嘗試對npm下載的node_modules裡面的套件的code做修改，但是發現不論怎麼改都不會生效。<br>才發現在vite &amp; vue3的環境下，vite把一些預先編譯好的東西放到<code>node_modules/.vite</code>中，<br>所以需要手動刪除這個資料夾去讓編譯器去編譯修改過的程式碼，又或者透過 <code>npm run dev --force</code></p>
@@ -68,29 +41,6 @@
       </categories>
       <tags>
         <tag>npm</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>在Wordpress-使用Elementor建立部落格文章版型</title>
-    <url>/andy-tech-note/2023/02/10/wordpress-elementor/</url>
-    <content><![CDATA[<h4 id="Wordpress版型"><a href="#Wordpress版型" class="headerlink" title="Wordpress版型"></a>Wordpress版型</h4><p>很多人使用wordpress都會希望有自己的喜歡的頁面或版型，網路上找到的版型通常找到某些功能很喜歡，<br>但是某些頁面的設定不是很滿意，這時候可以選擇Elementor這個套件來設定頁面排版等等。</p>
-<h4 id="Elementor的版型功能"><a href="#Elementor的版型功能" class="headerlink" title="Elementor的版型功能"></a>Elementor的版型功能</h4><p>安裝elementor之後，會有一個版型區，在這裡面可以透過elementor建立各種版型。<br>版型的意思就是，你可以在任何地方去套用這個版型，文章、頁面、header、footer都可以。</p>
-<h4 id="建立部落格文章版型"><a href="#建立部落格文章版型" class="headerlink" title="建立部落格文章版型"></a>建立部落格文章版型</h4><p>這裡以建立文章版型為例，以小弟我來說，我希望頁面單純只有文章以及最底部出現其他更多文章的選項，<br>讓讀者讀完文章後可以選擇其他文章來看，把觀眾留在網站。</p>
-<p>使用者也可以加入圖庫、文章資訊、作者資料…等等</p>
-<h6 id="建立文章版型"><a href="#建立文章版型" class="headerlink" title="建立文章版型"></a>建立文章版型</h6><p>點擊Elementor版型後，左上方有個新增按鈕。<br><img src="/andy-tech-note/2023/02/10/wordpress-elementor/SCR-20230227-v9y.png"></p>
-<p>點擊後會有下拉式選單可以讓選擇你要建立什麼版型，這裡是要建立一個文章版型以套用到所有的文章，<br>選擇 <code>single post</code><br><img src="/andy-tech-note/2023/02/10/wordpress-elementor/SCR-20230227-vb5.png"></p>
-<p>設定好之後，會進入編輯區，紅色的部分就是版型設定的區域，header與footer是我在別的版型設定過，<br>在這裡只是顯示讓使用者可以更明白知道你的文章最終會長什麼樣子。<br><img src="/andy-tech-note/2023/02/10/wordpress-elementor/SCR-20230227-vbg.png"></p>
-<p>因為要建立文章版型，這裡一定要讓你的文章內容呈現在這裡，所以把post content以及post title拖曳到右側的格子中<br><img src="/andy-tech-note/2023/02/10/wordpress-elementor/SCR-20230227-vc1.png"></p>
-<p>這樣初步就完成了，但是這樣子只會呈現文章內文，還沒有<code>更多文章列表</code>。<br><img src="/andy-tech-note/2023/02/10/wordpress-elementor/SCR-20230227-vhr.png"></p>
-<p>接下來就是去找到 <code>posts</code> 拖曳到文章內文的下方就完成了。<br><img src="/andy-tech-note/2023/02/10/wordpress-elementor/SCR-20230227-vhi.png"></p>
-<h4 id="最重要的一步-設定套用範圍"><a href="#最重要的一步-設定套用範圍" class="headerlink" title="最重要的一步 - 設定套用範圍"></a>最重要的一步 - 設定套用範圍</h4><p>因為我主要希望所有文章的版型都是一樣的，所以在設定上如下圖<br>在畫面中圈選的地方點擊下去，會有一個 <code>Display condition</code>，這也就是要顯示在哪裡的設定<br><img src="/andy-tech-note/2023/02/10/wordpress-elementor/SCR-20230227-wlz.png"></p>
-<p>這裡我選擇所有文章，如果有不同需求可以在設定時看一下詳細設定。<br><img src="/andy-tech-note/2023/02/10/wordpress-elementor/SCR-20230227-wlu.png"></p>
-]]></content>
-      <categories>
-        <category>wordpress</category>
-      </categories>
-      <tags>
-        <tag>wordpress</tag>
       </tags>
   </entry>
   <entry>
@@ -119,14 +69,63 @@
       </tags>
   </entry>
   <entry>
-    <title>codemirror v5 與 v6的差異</title>
-    <url>/andy-tech-note/2023/01/17/codemirror-v5-v6-diff/</url>
-    <content><![CDATA[<h3 id="Codemirror-v5"><a href="#Codemirror-v5" class="headerlink" title="Codemirror v5"></a>Codemirror v5</h3><p>版本5 -&gt; 6的資料夾結構變動很大</p>
-<h4 id="v5"><a href="#v5" class="headerlink" title="v5"></a><a href="https://codemirror.net/5/index.html">v5</a></h4><p>v5的所有套件在npm install <code>codemirror</code>時所有功能全部都會幫你下載，所以在node_modules裡面可以找到codemirror資料夾，裡面所有功能都會放在裡面。</p>
-<h4 id="v6"><a href="#v6" class="headerlink" title="v6"></a><a href="https://codemirror.net/">v6</a></h4><p>v6在npm install後，<code>codemirror</code> 的資料夾內容不多，而如果需要使用特定功能需要下指令<br>如下：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">npm install @codemirror/search </span><br></pre></td></tr></table></figure>
-<p>如果需要serch功能，需要先install<br>安裝的功能相關檔案會出現在 @codemirror 資料夾中。</p>
-<p>在查相關資料時要注意是使用v5還是v6版本，否則會發現一直找不到檔案的鬼故事。</p>
+    <title>在JS中複製object-深拷貝/淺拷貝</title>
+    <url>/andy-tech-note/2023/01/14/deep-copy-Shallow-copy/</url>
+    <content><![CDATA[<h3 id="在JS複製object"><a href="#在JS複製object" class="headerlink" title="在JS複製object"></a>在JS複製object</h3><p>在寫code有時候會需要使用某些變數或是object，但是又不希望直接對其做操作，因為可能在其他地方會繼續使用原始的object，<br>這時候就會宣告一個新的變數去把原先的object assign過去。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">const source = &#123;name:&#x27;Andy&#x27;,coutry:&#x27;Taiwan&#x27;,phone:&#x27;0911-111-111&#x27;&#125;</span><br><span class="line">//原始資料</span><br><span class="line"></span><br><span class="line">const destination = source </span><br><span class="line">//新變數</span><br><span class="line">destination.name = &#x27;Rendy&#x27;;</span><br><span class="line"></span><br><span class="line">console.log(destination.name);  //結果: Rendy</span><br><span class="line">console.log(source.name);       //結果: Rendy</span><br></pre></td></tr></table></figure>
+
+<p>會發現，變更 <code>destination</code> 同時也變更 <code>source</code> 裡面的值。<br>這就要提到 call by value 以及 call by reference</p>
+<h3 id="call-by-value-x2F-call-by-object"><a href="#call-by-value-x2F-call-by-object" class="headerlink" title="call by value &#x2F; call by object"></a>call by value &#x2F; call by object</h3><h4 id="什麼是call-by-value"><a href="#什麼是call-by-value" class="headerlink" title="什麼是call by value?"></a>什麼是call by value?</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">let x =1;</span><br><span class="line">let y = x;</span><br><span class="line"></span><br><span class="line">console.log(y); // 結果:1</span><br><span class="line">y=10;</span><br><span class="line">console.log(y); //結果:10</span><br><span class="line">console.log(x); //結果:1</span><br></pre></td></tr></table></figure>
+<p>以一般變數assign來說，是以call by value，也就是說直接把 <code>x</code> 的值傳給 <code>y</code></p>
+<h4 id="什麼又是-call-by-reference"><a href="#什麼又是-call-by-reference" class="headerlink" title="什麼又是 call by reference?"></a>什麼又是 call by reference?</h4><p>在一開始的object assign方法就是 call by reference，意思就是說 <code>source</code> 這個變數在assign給 <code>destination</code> 時，他是以傳遞記憶體位址方式給<code>destination</code>，可以想像 <code>destination</code> 就是儲存一個記憶體位置，當程式要讀取資料時就會透過這個位置去存取這個記憶體位置實際儲存的值。</p>
+<p>所以這樣就可以很明確的瞭解為什麼改變object的值的時候，<code>source</code> <code>destination</code> 裡面的值會被同步更動，因為兩者都是指到同一個記憶體位置。</p>
+<h4 id="要怎麼做才能不更動-source-的值"><a href="#要怎麼做才能不更動-source-的值" class="headerlink" title="要怎麼做才能不更動 source 的值"></a>要怎麼做才能不更動 source 的值</h4><p>不更動的方式有兩種： <em>淺拷貝跟深拷貝</em></p>
+<h4 id="淺拷貝"><a href="#淺拷貝" class="headerlink" title="淺拷貝"></a>淺拷貝</h4><p>字面意思就是比較淺，<br>這時候就會使用Object.assign <a href="https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Global_Objects/Object/assign">MDN介紹</a><br>舉例：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//Object.assign()</span><br><span class="line">const source = &#123;name:&#x27;Andy&#x27;,coutry:&#x27;Taiwan&#x27;,phone:&#x27;0911-111-111&#x27;,detail:&#123;age:10, job:&#x27;photographer&#x27;&#125;&#125;</span><br><span class="line">//原始資料</span><br><span class="line"></span><br><span class="line">const destination = &#123;&#125; </span><br><span class="line">Object.assign(destination,source);  //把objec assign 給 destination</span><br><span class="line"></span><br><span class="line">destination.name=&#x27;rendy&#x27;;</span><br><span class="line">console.log(destination.name,source.name) //結果 Rendy Andy 互不影響</span><br><span class="line"></span><br><span class="line">destination.detail.age=100;</span><br><span class="line">console.log(destination.detail.age,source.detail.age) //結果: 100 100</span><br></pre></td></tr></table></figure>
+<p>在這裡會發現修改 <code>name</code> 時資料互不影響，但在修改detail.age時又互相影響了，這是因為使用的是淺拷貝，這個copy只有單純複製第一層的資料，第二層以下的都還是以call by reference，所以當你修改detail.age時兩邊同時都會被修改。</p>
+<h4 id="以深拷貝來解決淺拷貝的問題"><a href="#以深拷貝來解決淺拷貝的問題" class="headerlink" title="以深拷貝來解決淺拷貝的問題"></a>以深拷貝來解決淺拷貝的問題</h4><p>使用 JSON.parse(JSON.stringify())，用這個方法就可以把淺拷貝碰到裡面有多層的問題解決。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">const destination = JSON.parse(JSON.stringify(source));</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h4 id="JSON-stringify-amp-JSON-parse"><a href="#JSON-stringify-amp-JSON-parse" class="headerlink" title="JSON.stringify &amp; JSON.parse"></a>JSON.stringify &amp; JSON.parse</h4><p>以MDN解釋，透過這個function可以把js value轉換成JSON string。<br>而parse可以把JSON字串轉成js value，這樣一來一往就可以把js object深層的值給取出來，而不是取得他的reference</p>
+<p>相關參考<br><a href="https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Global_Objects/Object/assign">參考1</a><br><a href="https://jamie-life-coding.site/2021/10/javascript-copy-object/">參考2</a></p>
+]]></content>
+      <categories>
+        <category>javascript</category>
+      </categories>
+      <tags>
+        <tag>js</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>在vue中把變數傳進css</title>
+    <url>/andy-tech-note/2023/01/14/vue-ref-css-vbind/</url>
+    <content><![CDATA[<p>某些時候會希望動態改變css的樣式高度、寬度、顏色…等等的<br>在vue中可以宣告一個ref變數(composition API)，然後把搭丟到vue檔案中的 <style></style>中，又或者透過inline的方式直接插入到html tag中，舉例如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">setup()&#123;</span><br><span class="line">    const mdSize = ref(&quot;100px&quot;);</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="傳到-lt-style-gt"><a href="#傳到-lt-style-gt" class="headerlink" title="傳到 &lt;style&gt;"></a>傳到 <code>&lt;style&gt;</code></h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;div class=&quot;md-size&quot;&gt;&lt;/div&gt; //在這裏class不需要v-bind</span><br><span class="line">&lt;style&gt;</span><br><span class="line">.md-size&#123;</span><br><span class="line">    height:v-bind(mdSize);</span><br><span class="line">&#125;</span><br><span class="line">&lt;/style&gt;    </span><br></pre></td></tr></table></figure>
+
+<h3 id="以傳值的方式丟到inline"><a href="#以傳值的方式丟到inline" class="headerlink" title="以傳值的方式丟到inline"></a>以傳值的方式丟到inline</h3><p>搭配v-bind 也就是縮寫 “:”<br>把mdSize放進去style</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;button :style=&quot;&#123; height: mdSize &#125;&quot; &gt; 按鈕名稱 &lt;/button&gt;</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>vue</category>
+      </categories>
+      <tags>
+        <tag>vue</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>codemirror 設定(註冊)事件觸發Codemirror.on</title>
+    <url>/andy-tech-note/2023/01/16/codemirror-set-eventListener/</url>
+    <content><![CDATA[<h3 id="codemirror"><a href="#codemirror" class="headerlink" title="codemirror"></a>codemirror</h3><p>什麼是codemirror，它是一款可以實現在前端網頁上的編輯器。<br>如同現在網路上看到的文字編輯器一樣，但你可以去設定當使用者做哪些操作時codemirror做哪些對應的行為。<br><a href="https://codemirror.net/5/">CodeMirror v5</a></p>
+<h3 id="如何在codemirror編輯器設定事件觸發"><a href="#如何在codemirror編輯器設定事件觸發" class="headerlink" title="如何在codemirror編輯器設定事件觸發"></a>如何在codemirror編輯器設定事件觸發</h3><p><a href="https://codemirror.net/5/doc/manual.html#events">Event列表</a></p>
+<p>使用 const editor &#x3D; CodeMirror.fromTextArea()建立編輯器instance後<br>在透過這個instance去呼叫 <code>on</code> 這個function</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">editor.on(&quot;change&quot;,(cm,changeObj)=&gt;&#123;                  </span><br><span class="line">    //這個意思是當editor文字有改變時就執行callback function</span><br><span class="line">    </span><br><span class="line">    //do something，這裡也可以加入其他CodeMirror的function執行</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>要怎麼使用on呢？ <a href="https://codemirror.net/5/doc/manual.html#on">官方介紹</a></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cm.on(type: string, func: (...args))</span><br></pre></td></tr></table></figure>
+
+<p>舉例：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//建議以下function可以在頁面建立一併執行(如果是馬上要用到)，on的功能可以看成註冊的概念，把這個功能註冊給editor，條件有達到就會執行</span><br><span class="line">editor.on(&quot;change&quot;,(cm,changeObj)=&gt;&#123;                  </span><br><span class="line">    console.log(changeObj.ch);</span><br><span class="line">    console.log(changeObj.line); </span><br><span class="line">    //在change中會有ch(第幾個位元) line第幾行</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>這裡的cm是指codemirror，在官方頁面中有提到，不管是看到codemirror(簡寫cm)或是doc，在使用上都可以用前面建立好的editor instance(端看使用者怎麼命名)</p>
+<p>on裡面第一的參數 <code>type</code> 也就是 cursorActivity  或者 change 之類的事件，後面callback function裡面的參數，在每個event中都會清楚告訴你有什麼參數可以用。<br>在<code>change</code>中可以使用cm instance以及獲取改變的文字及其相關資訊。</p>
 ]]></content>
       <categories>
         <category>codemirror</category>
@@ -150,6 +149,46 @@
       </tags>
   </entry>
   <entry>
+    <title>在Wordpress-使用Elementor建立部落格文章版型</title>
+    <url>/andy-tech-note/2023/02/10/wordpress-elementor/</url>
+    <content><![CDATA[<h4 id="Wordpress版型"><a href="#Wordpress版型" class="headerlink" title="Wordpress版型"></a>Wordpress版型</h4><p>很多人使用wordpress都會希望有自己的喜歡的頁面或版型，網路上找到的版型通常找到某些功能很喜歡，<br>但是某些頁面的設定不是很滿意，這時候可以選擇Elementor這個套件來設定頁面排版等等。</p>
+<h4 id="Elementor的版型功能"><a href="#Elementor的版型功能" class="headerlink" title="Elementor的版型功能"></a>Elementor的版型功能</h4><p>安裝elementor之後，會有一個版型區，在這裡面可以透過elementor建立各種版型。<br>版型的意思就是，你可以在任何地方去套用這個版型，文章、頁面、header、footer都可以。</p>
+<h4 id="建立部落格文章版型"><a href="#建立部落格文章版型" class="headerlink" title="建立部落格文章版型"></a>建立部落格文章版型</h4><p>這裡以建立文章版型為例，以小弟我來說，我希望頁面單純只有文章以及最底部出現其他更多文章的選項，<br>讓讀者讀完文章後可以選擇其他文章來看，把觀眾留在網站。</p>
+<p>使用者也可以加入圖庫、文章資訊、作者資料…等等</p>
+<h6 id="建立文章版型"><a href="#建立文章版型" class="headerlink" title="建立文章版型"></a>建立文章版型</h6><p>點擊Elementor版型後，左上方有個新增按鈕。<br><img src="/andy-tech-note/2023/02/10/wordpress-elementor/SCR-20230227-v9y.png"></p>
+<p>點擊後會有下拉式選單可以讓選擇你要建立什麼版型，這裡是要建立一個文章版型以套用到所有的文章，<br>選擇 <code>single post</code><br><img src="/andy-tech-note/2023/02/10/wordpress-elementor/SCR-20230227-vb5.png"></p>
+<p>設定好之後，會進入編輯區，紅色的部分就是版型設定的區域，header與footer是我在別的版型設定過，<br>在這裡只是顯示讓使用者可以更明白知道你的文章最終會長什麼樣子。<br><img src="/andy-tech-note/2023/02/10/wordpress-elementor/SCR-20230227-vbg.png"></p>
+<p>因為要建立文章版型，這裡一定要讓你的文章內容呈現在這裡，所以把post content以及post title拖曳到右側的格子中<br><img src="/andy-tech-note/2023/02/10/wordpress-elementor/SCR-20230227-vc1.png"></p>
+<p>這樣初步就完成了，但是這樣子只會呈現文章內文，還沒有<code>更多文章列表</code>。<br><img src="/andy-tech-note/2023/02/10/wordpress-elementor/SCR-20230227-vhr.png"></p>
+<p>接下來就是去找到 <code>posts</code> 拖曳到文章內文的下方就完成了。<br><img src="/andy-tech-note/2023/02/10/wordpress-elementor/SCR-20230227-vhi.png"></p>
+<h4 id="最重要的一步-設定套用範圍"><a href="#最重要的一步-設定套用範圍" class="headerlink" title="最重要的一步 - 設定套用範圍"></a>最重要的一步 - 設定套用範圍</h4><p>因為我主要希望所有文章的版型都是一樣的，所以在設定上如下圖<br>在畫面中圈選的地方點擊下去，會有一個 <code>Display condition</code>，這也就是要顯示在哪裡的設定<br><img src="/andy-tech-note/2023/02/10/wordpress-elementor/SCR-20230227-wlz.png"></p>
+<p>這裡我選擇所有文章，如果有不同需求可以在設定時看一下詳細設定。<br><img src="/andy-tech-note/2023/02/10/wordpress-elementor/SCR-20230227-wlu.png"></p>
+]]></content>
+      <categories>
+        <category>wordpress</category>
+      </categories>
+      <tags>
+        <tag>wordpress</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>codemirror v5 與 v6的差異</title>
+    <url>/andy-tech-note/2023/01/17/codemirror-v5-v6-diff/</url>
+    <content><![CDATA[<h3 id="Codemirror-v5"><a href="#Codemirror-v5" class="headerlink" title="Codemirror v5"></a>Codemirror v5</h3><p>版本5 -&gt; 6的資料夾結構變動很大</p>
+<h4 id="v5"><a href="#v5" class="headerlink" title="v5"></a><a href="https://codemirror.net/5/index.html">v5</a></h4><p>v5的所有套件在npm install <code>codemirror</code>時所有功能全部都會幫你下載，所以在node_modules裡面可以找到codemirror資料夾，裡面所有功能都會放在裡面。</p>
+<h4 id="v6"><a href="#v6" class="headerlink" title="v6"></a><a href="https://codemirror.net/">v6</a></h4><p>v6在npm install後，<code>codemirror</code> 的資料夾內容不多，而如果需要使用特定功能需要下指令<br>如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">npm install @codemirror/search </span><br></pre></td></tr></table></figure>
+<p>如果需要serch功能，需要先install<br>安裝的功能相關檔案會出現在 @codemirror 資料夾中。</p>
+<p>在查相關資料時要注意是使用v5還是v6版本，否則會發現一直找不到檔案的鬼故事。</p>
+]]></content>
+      <categories>
+        <category>codemirror</category>
+      </categories>
+      <tags>
+        <tag>codemirror</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>偽類-pseudo-class-css</title>
     <url>/andy-tech-note/2023/02/13/pseudo-class/</url>
     <content><![CDATA[<h3 id="情境1"><a href="#情境1" class="headerlink" title="情境1"></a>情境1</h3><p>直接範例解釋</p>
@@ -168,30 +207,6 @@
       </categories>
       <tags>
         <tag>css</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>vue-react-mvvm-virtualDom的一些筆記</title>
-    <url>/andy-tech-note/2023/02/02/vue-react-mvvm-virtualDom/</url>
-    <content><![CDATA[<h3 id="指令式渲染-imperative-redering"><a href="#指令式渲染-imperative-redering" class="headerlink" title="指令式渲染 imperative redering"></a>指令式渲染 imperative redering</h3><h4 id="jquery"><a href="#jquery" class="headerlink" title="jquery"></a>jquery</h4><p>在框架還沒出來時jquery依舊是非常火紅的，而其對於DOM的渲染方式就是透過<br>選擇器 <code>document.querySelector</code> 去選擇HTML裡面的tag，從而去修改他們的值或是<code> addEventListener</code> 加入事件監聽來獲取使用者的行為，進而在js裡面做一些判斷後再把資料丟到頁面讓使用者看到。</p>
-<p>而這些都是指令式渲染，也就是直接透過指令直接對DOM做操作，而當整個程式架構變得很大時，對於這些變數或是事件的管理就會變得相對困難(東一塊西一塊的選擇器，也就是你會看到一堆的querySelector以及addEventListener)，易讀性也會很差，因為沒有一個集中管理的地方。</p>
-<h3 id="宣告式渲染-declarative-rendering"><a href="#宣告式渲染-declarative-rendering" class="headerlink" title="宣告式渲染 declarative rendering"></a>宣告式渲染 declarative rendering</h3><h4 id="Vue-MVVM"><a href="#Vue-MVVM" class="headerlink" title="Vue MVVM"></a>Vue MVVM</h4><p>以例子來說：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;div id=&#x27;app&#x27;&gt;</span><br><span class="line">    &lt;div&gt;&#123;&#123;data&#125;&#125;&lt;/div&gt;</span><br><span class="line">    &lt;inpup v-model=&quot;data&quot; /&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">const app = createApp(&#123;</span><br><span class="line">    data()&#123;</span><br><span class="line">        return &#123;</span><br><span class="line">            data:&#x27;hello world&#x27;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;).mount(&#x27;#app&#x27;)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p>透過以上寫法可以把createApp裡面的data的值傳遞到html 裡面大括號 <code>&#123;&#123;&#125;&#125;</code> 框起來的data中顯示在畫面上。<br>在vue中如果有多個地方需要用到data這個變數，只需用大括號及可以讓其值顯示在html，不需要像是jquery透過選擇器的方式去綁定資料，畫面也相對簡潔。</p>
-<h5 id="MVVM-MVC"><a href="#MVVM-MVC" class="headerlink" title="MVVM MVC"></a>MVVM MVC</h5><p>MVVC是由Model &#x2F; View &#x2F; ViewModel組成，早期微軟提出的是把網頁分成model層與view層，也就是把畫面與狀態分離(MVC)，Vue則是加入viewModel，也就是在view與model之間插入viewModel去把model層的資料綁定以及監聽view層的事件。<br><img src="/andy-tech-note/2023/02/02/vue-react-mvvm-virtualDom/mvvm.png" alt="MVVM"></p>
-<h4 id="React-Virtual-DOM"><a href="#React-Virtual-DOM" class="headerlink" title="React Virtual DOM"></a>React Virtual DOM</h4><p>React會先複製一份DOM物件(稱之為Virtual DOM)，而在React中是使用useState去改變想顯示在view上的值，當這些state被改變時他會去修改virtual dom，而後再去與先前的dom做比較，找出差異的地方再去對DOM做渲染，而這個渲染單純只有渲染被修改的，其他沒有變化的部分不會影響，如此一來不會因為要重新渲染整個畫面而造成效能低落。</p>
-<p>應該還有很多細節部分沒提到，未來有碰到更多再來補充更完整。</p>
-<p>參考資料 : <a href="https://book.vue.tw/CH1/1-1-introduction.html">重新認識 Vue.js | Kuro Hsu </a></p>
-]]></content>
-      <categories>
-        <category>前端框架</category>
-      </categories>
-      <tags>
-        <tag>vue,</tag>
-        <tag>react</tag>
       </tags>
   </entry>
   <entry>
@@ -220,42 +235,70 @@
       </tags>
   </entry>
   <entry>
-    <title>codemirror 設定(註冊)事件觸發Codemirror.on</title>
-    <url>/andy-tech-note/2023/01/16/codemirror-set-eventListener/</url>
-    <content><![CDATA[<h3 id="codemirror"><a href="#codemirror" class="headerlink" title="codemirror"></a>codemirror</h3><p>什麼是codemirror，它是一款可以實現在前端網頁上的編輯器。<br>如同現在網路上看到的文字編輯器一樣，但你可以去設定當使用者做哪些操作時codemirror做哪些對應的行為。<br><a href="https://codemirror.net/5/">CodeMirror v5</a></p>
-<h3 id="如何在codemirror編輯器設定事件觸發"><a href="#如何在codemirror編輯器設定事件觸發" class="headerlink" title="如何在codemirror編輯器設定事件觸發"></a>如何在codemirror編輯器設定事件觸發</h3><p><a href="https://codemirror.net/5/doc/manual.html#events">Event列表</a></p>
-<p>使用 const editor &#x3D; CodeMirror.fromTextArea()建立編輯器instance後<br>在透過這個instance去呼叫 <code>on</code> 這個function</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">editor.on(&quot;change&quot;,(cm,changeObj)=&gt;&#123;                  </span><br><span class="line">    //這個意思是當editor文字有改變時就執行callback function</span><br><span class="line">    </span><br><span class="line">    //do something，這裡也可以加入其他CodeMirror的function執行</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-<p>要怎麼使用on呢？ <a href="https://codemirror.net/5/doc/manual.html#on">官方介紹</a></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cm.on(type: string, func: (...args))</span><br></pre></td></tr></table></figure>
+    <title>js-array-map-filter-reduce</title>
+    <url>/andy-tech-note/2023/02/28/js-array-map-filter-reduce/</url>
+    <content><![CDATA[<h4 id="JS中的array工具"><a href="#JS中的array工具" class="headerlink" title="JS中的array工具"></a>JS中的array工具</h4><p>在JS中有幾個對array陣列做些處理的函示 map, filter, reduce。</p>
+<h4 id="map"><a href="#map" class="headerlink" title="map"></a>map</h4><p>map最終會回傳一個array，也就是array進&#x2F;array出。<br>return 的Array長度也是原始array的長度。<br>所以即便在下面看到的callback function跳過某一次的return，map依舊會回傳一樣長度的array，只是在跳過的那次會是undefined<br>例子：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">const arr = [2,4,6]</span><br><span class="line">const re = arr.map((x)=&gt;x*2) // re =&gt;[4,8,12]</span><br></pre></td></tr></table></figure>
 
-<p>舉例：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//建議以下function可以在頁面建立一併執行(如果是馬上要用到)，on的功能可以看成註冊的概念，把這個功能註冊給editor，條件有達到就會執行</span><br><span class="line">editor.on(&quot;change&quot;,(cm,changeObj)=&gt;&#123;                  </span><br><span class="line">    console.log(changeObj.ch);</span><br><span class="line">    console.log(changeObj.line); </span><br><span class="line">    //在change中會有ch(第幾個位元) line第幾行</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-<p>這裡的cm是指codemirror，在官方頁面中有提到，不管是看到codemirror(簡寫cm)或是doc，在使用上都可以用前面建立好的editor instance(端看使用者怎麼命名)</p>
-<p>on裡面第一的參數 <code>type</code> 也就是 cursorActivity  或者 change 之類的事件，後面callback function裡面的參數，在每個event中都會清楚告訴你有什麼參數可以用。<br>在<code>change</code>中可以使用cm instance以及獲取改變的文字及其相關資訊。</p>
+<h4 id="filter"><a href="#filter" class="headerlink" title="filter"></a>filter</h4><p>這是一個可以篩選array的資料，return的結果是依照條件來回傳</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">const arr = [2,4,6]</span><br><span class="line">const re = arr.filter((x)=&gt;x&gt;2) // re =&gt;[4,6]</span><br></pre></td></tr></table></figure>
+
+
+<h4 id="reduce"><a href="#reduce" class="headerlink" title="reduce"></a>reduce</h4>]]></content>
+  </entry>
+  <entry>
+    <title>vue-react-mvvm-virtualDom的一些筆記</title>
+    <url>/andy-tech-note/2023/02/02/vue-react-mvvm-virtualDom/</url>
+    <content><![CDATA[<h3 id="指令式渲染-imperative-redering"><a href="#指令式渲染-imperative-redering" class="headerlink" title="指令式渲染 imperative redering"></a>指令式渲染 imperative redering</h3><h4 id="jquery"><a href="#jquery" class="headerlink" title="jquery"></a>jquery</h4><p>在框架還沒出來時jquery依舊是非常火紅的，而其對於DOM的渲染方式就是透過<br>選擇器 <code>document.querySelector</code> 去選擇HTML裡面的tag，從而去修改他們的值或是<code> addEventListener</code> 加入事件監聽來獲取使用者的行為，進而在js裡面做一些判斷後再把資料丟到頁面讓使用者看到。</p>
+<p>而這些都是指令式渲染，也就是直接透過指令直接對DOM做操作，而當整個程式架構變得很大時，對於這些變數或是事件的管理就會變得相對困難(東一塊西一塊的選擇器，也就是你會看到一堆的querySelector以及addEventListener)，易讀性也會很差，因為沒有一個集中管理的地方。</p>
+<h3 id="宣告式渲染-declarative-rendering"><a href="#宣告式渲染-declarative-rendering" class="headerlink" title="宣告式渲染 declarative rendering"></a>宣告式渲染 declarative rendering</h3><h4 id="Vue-MVVM"><a href="#Vue-MVVM" class="headerlink" title="Vue MVVM"></a>Vue MVVM</h4><p>以例子來說：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;div id=&#x27;app&#x27;&gt;</span><br><span class="line">    &lt;div&gt;&#123;&#123;data&#125;&#125;&lt;/div&gt;</span><br><span class="line">    &lt;inpup v-model=&quot;data&quot; /&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">const app = createApp(&#123;</span><br><span class="line">    data()&#123;</span><br><span class="line">        return &#123;</span><br><span class="line">            data:&#x27;hello world&#x27;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;).mount(&#x27;#app&#x27;)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>透過以上寫法可以把createApp裡面的data的值傳遞到html 裡面大括號 <code>&#123;&#123;&#125;&#125;</code> 框起來的data中顯示在畫面上。<br>在vue中如果有多個地方需要用到data這個變數，只需用大括號及可以讓其值顯示在html，不需要像是jquery透過選擇器的方式去綁定資料，畫面也相對簡潔。</p>
+<h5 id="MVVM-MVC"><a href="#MVVM-MVC" class="headerlink" title="MVVM MVC"></a>MVVM MVC</h5><p>MVVC是由Model &#x2F; View &#x2F; ViewModel組成，早期微軟提出的是把網頁分成model層與view層，也就是把畫面與狀態分離(MVC)，Vue則是加入viewModel，也就是在view與model之間插入viewModel去把model層的資料綁定以及監聽view層的事件。<br><img src="/andy-tech-note/2023/02/02/vue-react-mvvm-virtualDom/mvvm.png" alt="MVVM"></p>
+<h4 id="React-Virtual-DOM"><a href="#React-Virtual-DOM" class="headerlink" title="React Virtual DOM"></a>React Virtual DOM</h4><p>React會先複製一份DOM物件(稱之為Virtual DOM)，而在React中是使用useState去改變想顯示在view上的值，當這些state被改變時他會去修改virtual dom，而後再去與先前的dom做比較，找出差異的地方再去對DOM做渲染，而這個渲染單純只有渲染被修改的，其他沒有變化的部分不會影響，如此一來不會因為要重新渲染整個畫面而造成效能低落。</p>
+<p>應該還有很多細節部分沒提到，未來有碰到更多再來補充更完整。</p>
+<p>參考資料 : <a href="https://book.vue.tw/CH1/1-1-introduction.html">重新認識 Vue.js | Kuro Hsu </a></p>
 ]]></content>
       <categories>
-        <category>codemirror</category>
+        <category>前端框架</category>
       </categories>
       <tags>
-        <tag>codemirror</tag>
+        <tag>vue,</tag>
+        <tag>react</tag>
       </tags>
   </entry>
   <entry>
-    <title>在vue中把變數傳進css</title>
-    <url>/andy-tech-note/2023/01/14/vue-ref-css-vbind/</url>
-    <content><![CDATA[<p>某些時候會希望動態改變css的樣式高度、寬度、顏色…等等的<br>在vue中可以宣告一個ref變數(composition API)，然後把搭丟到vue檔案中的 <style></style>中，又或者透過inline的方式直接插入到html tag中，舉例如下：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">setup()&#123;</span><br><span class="line">    const mdSize = ref(&quot;100px&quot;);</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="傳到-lt-style-gt"><a href="#傳到-lt-style-gt" class="headerlink" title="傳到 &lt;style&gt;"></a>傳到 <code>&lt;style&gt;</code></h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;div class=&quot;md-size&quot;&gt;&lt;/div&gt; //在這裏class不需要v-bind</span><br><span class="line">&lt;style&gt;</span><br><span class="line">.md-size&#123;</span><br><span class="line">    height:v-bind(mdSize);</span><br><span class="line">&#125;</span><br><span class="line">&lt;/style&gt;    </span><br></pre></td></tr></table></figure>
-
-<h3 id="以傳值的方式丟到inline"><a href="#以傳值的方式丟到inline" class="headerlink" title="以傳值的方式丟到inline"></a>以傳值的方式丟到inline</h3><p>搭配v-bind 也就是縮寫 “:”<br>把mdSize放進去style</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;button :style=&quot;&#123; height: mdSize &#125;&quot; &gt; 按鈕名稱 &lt;/button&gt;</span><br></pre></td></tr></table></figure>
+    <title>JS中的var/let/const</title>
+    <url>/andy-tech-note/2023/03/19/js-var-let-const/</url>
+    <content><![CDATA[<p>var屬於function scope<br>let&#x2F;const都屬於block scope</p>
+<p>如果使用let可以避免變數宣告以及使用上的問題，不容易混用到不同scope的變數造成污染</p>
 ]]></content>
-      <categories>
-        <category>vue</category>
-      </categories>
-      <tags>
-        <tag>vue</tag>
-      </tags>
+  </entry>
+  <entry>
+    <title>vue-dynamic-class</title>
+    <url>/andy-tech-note/2023/03/06/vue-dynamic-class/</url>
+    <content><![CDATA[]]></content>
+  </entry>
+  <entry>
+    <title>promise-async</title>
+    <url>/andy-tech-note/2023/03/23/promise-async/</url>
+    <content><![CDATA[<h4 id="promise之前"><a href="#promise之前" class="headerlink" title="promise之前"></a>promise之前</h4><p>promise這個方法是ES6時推出的，這個主要可以用來解決非同步中XMLHttpRequest<br>在做非同步請求時使用callback時所產生的callback hell。<br>之所以會產生callback hell是因為，當多個非同步請求有前後相關性時就會發生，所謂的前後相關性就是C request 需要等到<br>B request的結果才能發出請求，B又要等到A的結果才能發出，這樣就會變成巢狀的結構。</p>
+<h5 id="示意："><a href="#示意：" class="headerlink" title="示意："></a>示意：</h5><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">callback(()=&gt;&#123;</span><br><span class="line">    //在此發出A request</span><br><span class="line">    callback(()=&gt;&#123;</span><br><span class="line">        //在此發出B request    </span><br><span class="line">        callback(()=&gt;&#123;</span><br><span class="line">        //在此發出C request    </span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>如上面所示當如果有個</p>
+]]></content>
+  </entry>
+  <entry>
+    <title>CSS的Box-model</title>
+    <url>/andy-tech-note/2023/03/25/box-model/</url>
+    <content><![CDATA[<h4 id="什麼是Box-model"><a href="#什麼是Box-model" class="headerlink" title="什麼是Box model"></a>什麼是Box model</h4><p>在網頁中每個element都被看作一個box，每個box可以有內容content、邊界border、內外空間。<br>所以box會有padding &#x2F; marging&#x2F; border&#x2F; content</p>
+<h4 id="Padding"><a href="#Padding" class="headerlink" title="Padding"></a>Padding</h4><p>padding是content與border的距離</p>
+<h4 id="Margin"><a href="#Margin" class="headerlink" title="Margin"></a>Margin</h4><p>margin是物件與其他物件的距離，可以使用margin來產生空白與其他element產生一段距離</p>
+<p><img src="https://developer.mozilla.org/en-US/docs/Learn/CSS/Building_blocks/The_box_model/box-model.png" alt="來源MDN"></p>
+<h4 id="Width-x2F-Height"><a href="#Width-x2F-Height" class="headerlink" title="Width&#x2F;Height"></a>Width&#x2F;Height</h4><p>在box中可以設定寬度與高度(width &amp; Height)，現在的CSS寬度是指content的寬度，所以在製作layout時要注意寬度要再加上border+padding+margin才是最終寬度或是高度。<br><img src="https://developer.mozilla.org/en-US/docs/Learn/CSS/Building_blocks/The_box_model/standard-box-model.png" alt="設定高寬"></p>
+]]></content>
   </entry>
 </search>

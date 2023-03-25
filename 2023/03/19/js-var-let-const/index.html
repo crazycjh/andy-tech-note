@@ -87,8 +87,8 @@
     
     
     <title>
-          
-            Andy的技術筆記、生活紀錄
+        
+            JS中的var/let/const | Andy的技術筆記、生活紀錄
         
     </title>
     
@@ -239,83 +239,118 @@
 </aside>
   
   <main id="main-contain" class="mdui-container mdui-m-t-5">
+    <article id="article" class="mdui-card mdui-p-b-2 mdui-m-b-5">
+  <header class="mdui-card-media">
+    
+    
+      <div class="post-header"> 
+  <a class="post-header-title" href="/andy-tech-note/2023/03/19/js-var-let-const/">JS中的var/let/const</a>
+  <div class="post-header-meta">
+    <span>
+      <span class="iconfont icon-calendar"></span>
+      發佈於:&nbsp;2023-03-19
+    </span>
+    <span>
+      <span class="iconfont icon-calendar-check"></span>
+      更新於:&nbsp;2023-03-19
+    </span>
+    <span>
+      <span class="iconfont icon-folder"></span>
+      分類於:&nbsp;
+    </span>
+    
+      <span>
+        <span class="iconfont icon-eye"></span>
+        閱讀次數:&nbsp;
+        <span id="busuanzi_container_page_pv"><span id="busuanzi_value_page_pv"></span></span>
+      </span>
+    
+  </div>
+</div>   
     
 
-<div class="mdui-card mdui-p-a-4 mdui-m-b-5">
-    <div class="page-describe">
-        目前共計 18 篇日誌。
-    </div>
-    <div class="posts-collapse">
+
+
+    
+    
+    <div class="mdui-card-menu">
+    
+      <button class="mdui-btn mdui-btn-icon mdui-text-color-teal" mdui-menu="{target: '#share_menu', align: 'right'}"><i class="iconfont icon-share"></i></button>
+      <ul class="mdui-menu" id="share_menu">
+        <li class="mdui-menu-item">
+          <a href="http://service.weibo.com/share/share.php?appkey=&title=JS中的var/let/const&url=http://crazycjh.github.io/andy-tech-note/2023/03/19/js-var-let-const/&pic=http://crazycjh.github.io/andy-tech-note/andy-tech-note/null&searchPic=false&style=simple" target="_blank" class="mdui-ripple">分享到 Weibo</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://twitter.com/intent/tweet?text=JS中的var/let/const&url=http://crazycjh.github.io/andy-tech-note/2023/03/19/js-var-let-const/&via=Andy Chen" target="_blank" class="mdui-ripple">分享到 Twitter</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://www.facebook.com/sharer/sharer.php?u=http://crazycjh.github.io/andy-tech-note/2023/03/19/js-var-let-const/" target="_blank" class="mdui-ripple">分享到 Facebook</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://plus.google.com/share?url=http://crazycjh.github.io/andy-tech-note/2023/03/19/js-var-let-const/" target="_blank" class="mdui-ripple">分享到 Google+</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://www.linkedin.com/shareArticle?mini=true&url=http://crazycjh.github.io/andy-tech-note/2023/03/19/js-var-let-const/&title=JS中的var/let/const" target="_blank" class="mdui-ripple">分享到 LinkedIn</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="http://connect.qq.com/widget/shareqq/index.html?site=Andy的技術筆記、生活紀錄&title=JS中的var/let/const&summary=把生活中學習到瑣碎的小事記下來，讓想法更加完整。&pics=http://crazycjh.github.io/andy-tech-note/andy-tech-note/null&url=http://crazycjh.github.io/andy-tech-note/2023/03/19/js-var-let-const/" target="_blank" class="mdui-ripple">分享到 QQ</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://telegram.me/share/url?url=http://crazycjh.github.io/andy-tech-note/2023/03/19/js-var-let-const/&text=JS中的var/let/const" target="_blank" class="mdui-ripple">分享到 Telegram</a>
+        </li>
+      </ul>
+    
+  </div>
+  </header>
+  
+  
+  
+  
+  
+  <div class="mdui-card-content mdui-typo mdui-p-x-4">
+    <p>var屬於function scope<br>let&#x2F;const都屬於block scope</p>
+<p>如果使用let可以避免變數宣告以及使用上的問題，不容易混用到不同scope的變數造成污染</p>
+
+  </div>
+  <!--文末结束语-->
+  
+    <div style="text-align:center;color: #ccc;font-size:16px;"> --- 到底拉 The End --- </div>
+  
+  <!--页脚广告-->
+  
+  <div class="mdui-divider"></div>
+  
+  <nav>
+    
+      <a rel="prev" class="post-nav-item mdui-float-left" href="/andy-tech-note/2023/03/23/promise-async/">
+        <i class="iconfont icon-angle-left"></i>
+        <span>promise-async</span>
+      </a>
+    
+    
+      <a rel="next" class="post-nav-item mdui-float-right" href="/andy-tech-note/2023/03/06/vue-dynamic-class/">
+        <span>vue-dynamic-class</span>
+        <i class="iconfont icon-angle-right"></i>
+      </a>
+    
+  </nav>
+</article>
+
+
+
+
+  <div class="toc-button"  style="z-index: 100;">
+    <button class="mdui-fab mdui-ripple mdui-color-teal" mdui-menu="{target: '#toc'}"><i class="iconfont icon-list"></i></button>
+    <ul class="mdui-menu" id="toc">
+      <li class="mdui-menu-item">
+        <a href="/andy-tech-note/2023/03/19/js-var-let-const/" id="toc-header" class="mdui-ripple">文章目錄</a>
         
-            
-            
-                <div class="collection-title">
-                    <a href="/andy-tech-note/archives/2023"><h2>2023<small>Archives</small></h2></a>
-                </div>
-                
-            
+      </li>
+    </ul>
+  </div>
 
-            <div class="collection-item">
-                <h3><a href="/andy-tech-note/2023/02/28/js-array-map-filter-reduce/">js-array-map-filter-reduce</a></h3>
-                <time itemprop="dateCreated" datetime=2023-02-28 >
-                    2023.02.28
-                </time>
-            </div>
-        
-            
-            
-
-            <div class="collection-item">
-                <h3><a href="/andy-tech-note/2023/02/16/firebase-auth/">如何使用Google的firebase裡面的驗證功能(login/logout)</a></h3>
-                <time itemprop="dateCreated" datetime=2023-02-16 >
-                    2023.02.16
-                </time>
-            </div>
-        
-            
-            
-
-            <div class="collection-item">
-                <h3><a href="/andy-tech-note/2023/02/13/pseudo-class/">偽類-pseudo-class-css</a></h3>
-                <time itemprop="dateCreated" datetime=2023-02-13 >
-                    2023.02.13
-                </time>
-            </div>
-        
-            
-            
-
-            <div class="collection-item">
-                <h3><a href="/andy-tech-note/2023/02/10/wordpress-elementor/">在Wordpress-使用Elementor建立部落格文章版型</a></h3>
-                <time itemprop="dateCreated" datetime=2023-02-10 >
-                    2023.02.10
-                </time>
-            </div>
-        
-            
-            
-
-            <div class="collection-item">
-                <h3><a href="/andy-tech-note/2023/02/02/vue-react-mvvm-virtualDom/">vue-react-mvvm-virtualDom的一些筆記</a></h3>
-                <time itemprop="dateCreated" datetime=2023-02-02 >
-                    2023.02.02
-                </time>
-            </div>
-        
-            
-            
-
-            <div class="collection-item">
-                <h3><a href="/andy-tech-note/2023/02/01/chatGPT-note/">chatGPT-想法</a></h3>
-                <time itemprop="dateCreated" datetime=2023-02-01 >
-                    2023.02.01
-                </time>
-            </div>
-        
-    </div>
-</div>
-
-
+<!-- andy mark it down 這個comment目前用不到，而且這些似乎是中國論談帳號 -->
+<!--  -->
   </main>
   <footer id="footer" class="mdui-text-center mdui-m-t-5 mdui-p-b-2 mdui-p-t-4 mdui-color-theme">
   <div class="mdui-container">
@@ -362,6 +397,12 @@
 
 
 
+
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@8.4.8/dist/mermaid.min.js"></script>
+    <script>mermaid.initialize({
+        startOnLoad: true,
+        theme: "default"
+    });</script>
 
 
 

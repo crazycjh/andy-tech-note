@@ -87,8 +87,8 @@
     
     
     <title>
-          
-            Andy的技術筆記、生活紀錄
+        
+            js-array-map-filter-reduce | Andy的技術筆記、生活紀錄
         
     </title>
     
@@ -239,83 +239,124 @@
 </aside>
   
   <main id="main-contain" class="mdui-container mdui-m-t-5">
+    <article id="article" class="mdui-card mdui-p-b-2 mdui-m-b-5">
+  <header class="mdui-card-media">
+    
+    
+      <div class="post-header"> 
+  <a class="post-header-title" href="/andy-tech-note/2023/02/28/js-array-map-filter-reduce/">js-array-map-filter-reduce</a>
+  <div class="post-header-meta">
+    <span>
+      <span class="iconfont icon-calendar"></span>
+      發佈於:&nbsp;2023-02-28
+    </span>
+    <span>
+      <span class="iconfont icon-calendar-check"></span>
+      更新於:&nbsp;2023-03-01
+    </span>
+    <span>
+      <span class="iconfont icon-folder"></span>
+      分類於:&nbsp;
+    </span>
+    
+      <span>
+        <span class="iconfont icon-eye"></span>
+        閱讀次數:&nbsp;
+        <span id="busuanzi_container_page_pv"><span id="busuanzi_value_page_pv"></span></span>
+      </span>
+    
+  </div>
+</div>   
     
 
-<div class="mdui-card mdui-p-a-4 mdui-m-b-5">
-    <div class="page-describe">
-        目前共計 18 篇日誌。
-    </div>
-    <div class="posts-collapse">
-        
-            
-            
-                <div class="collection-title">
-                    <a href="/andy-tech-note/archives/2023"><h2>2023<small>Archives</small></h2></a>
-                </div>
-                
-            
-
-            <div class="collection-item">
-                <h3><a href="/andy-tech-note/2023/02/28/js-array-map-filter-reduce/">js-array-map-filter-reduce</a></h3>
-                <time itemprop="dateCreated" datetime=2023-02-28 >
-                    2023.02.28
-                </time>
-            </div>
-        
-            
-            
-
-            <div class="collection-item">
-                <h3><a href="/andy-tech-note/2023/02/16/firebase-auth/">如何使用Google的firebase裡面的驗證功能(login/logout)</a></h3>
-                <time itemprop="dateCreated" datetime=2023-02-16 >
-                    2023.02.16
-                </time>
-            </div>
-        
-            
-            
-
-            <div class="collection-item">
-                <h3><a href="/andy-tech-note/2023/02/13/pseudo-class/">偽類-pseudo-class-css</a></h3>
-                <time itemprop="dateCreated" datetime=2023-02-13 >
-                    2023.02.13
-                </time>
-            </div>
-        
-            
-            
-
-            <div class="collection-item">
-                <h3><a href="/andy-tech-note/2023/02/10/wordpress-elementor/">在Wordpress-使用Elementor建立部落格文章版型</a></h3>
-                <time itemprop="dateCreated" datetime=2023-02-10 >
-                    2023.02.10
-                </time>
-            </div>
-        
-            
-            
-
-            <div class="collection-item">
-                <h3><a href="/andy-tech-note/2023/02/02/vue-react-mvvm-virtualDom/">vue-react-mvvm-virtualDom的一些筆記</a></h3>
-                <time itemprop="dateCreated" datetime=2023-02-02 >
-                    2023.02.02
-                </time>
-            </div>
-        
-            
-            
-
-            <div class="collection-item">
-                <h3><a href="/andy-tech-note/2023/02/01/chatGPT-note/">chatGPT-想法</a></h3>
-                <time itemprop="dateCreated" datetime=2023-02-01 >
-                    2023.02.01
-                </time>
-            </div>
-        
-    </div>
-</div>
 
 
+    
+    
+    <div class="mdui-card-menu">
+    
+      <button class="mdui-btn mdui-btn-icon mdui-text-color-teal" mdui-menu="{target: '#share_menu', align: 'right'}"><i class="iconfont icon-share"></i></button>
+      <ul class="mdui-menu" id="share_menu">
+        <li class="mdui-menu-item">
+          <a href="http://service.weibo.com/share/share.php?appkey=&title=js-array-map-filter-reduce&url=http://crazycjh.github.io/andy-tech-note/2023/02/28/js-array-map-filter-reduce/&pic=http://crazycjh.github.io/andy-tech-note/andy-tech-note/null&searchPic=false&style=simple" target="_blank" class="mdui-ripple">分享到 Weibo</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://twitter.com/intent/tweet?text=js-array-map-filter-reduce&url=http://crazycjh.github.io/andy-tech-note/2023/02/28/js-array-map-filter-reduce/&via=Andy Chen" target="_blank" class="mdui-ripple">分享到 Twitter</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://www.facebook.com/sharer/sharer.php?u=http://crazycjh.github.io/andy-tech-note/2023/02/28/js-array-map-filter-reduce/" target="_blank" class="mdui-ripple">分享到 Facebook</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://plus.google.com/share?url=http://crazycjh.github.io/andy-tech-note/2023/02/28/js-array-map-filter-reduce/" target="_blank" class="mdui-ripple">分享到 Google+</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://www.linkedin.com/shareArticle?mini=true&url=http://crazycjh.github.io/andy-tech-note/2023/02/28/js-array-map-filter-reduce/&title=js-array-map-filter-reduce" target="_blank" class="mdui-ripple">分享到 LinkedIn</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="http://connect.qq.com/widget/shareqq/index.html?site=Andy的技術筆記、生活紀錄&title=js-array-map-filter-reduce&summary=把生活中學習到瑣碎的小事記下來，讓想法更加完整。&pics=http://crazycjh.github.io/andy-tech-note/andy-tech-note/null&url=http://crazycjh.github.io/andy-tech-note/2023/02/28/js-array-map-filter-reduce/" target="_blank" class="mdui-ripple">分享到 QQ</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://telegram.me/share/url?url=http://crazycjh.github.io/andy-tech-note/2023/02/28/js-array-map-filter-reduce/&text=js-array-map-filter-reduce" target="_blank" class="mdui-ripple">分享到 Telegram</a>
+        </li>
+      </ul>
+    
+  </div>
+  </header>
+  
+  
+  
+  
+  
+  <div class="mdui-card-content mdui-typo mdui-p-x-4">
+    <h4 id="JS中的array工具"><a href="#JS中的array工具" class="headerlink" title="JS中的array工具"></a>JS中的array工具</h4><p>在JS中有幾個對array陣列做些處理的函示 map, filter, reduce。</p>
+<h4 id="map"><a href="#map" class="headerlink" title="map"></a>map</h4><p>map最終會回傳一個array，也就是array進&#x2F;array出。<br>return 的Array長度也是原始array的長度。<br>所以即便在下面看到的callback function跳過某一次的return，map依舊會回傳一樣長度的array，只是在跳過的那次會是undefined<br>例子：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">const arr = [2,4,6]</span><br><span class="line">const re = arr.map((x)=&gt;x*2) // re =&gt;[4,8,12]</span><br></pre></td></tr></table></figure>
+
+<h4 id="filter"><a href="#filter" class="headerlink" title="filter"></a>filter</h4><p>這是一個可以篩選array的資料，return的結果是依照條件來回傳</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">const arr = [2,4,6]</span><br><span class="line">const re = arr.filter((x)=&gt;x&gt;2) // re =&gt;[4,6]</span><br></pre></td></tr></table></figure>
+
+
+<h4 id="reduce"><a href="#reduce" class="headerlink" title="reduce"></a>reduce</h4>
+  </div>
+  <!--文末结束语-->
+  
+    <div style="text-align:center;color: #ccc;font-size:16px;"> --- 到底拉 The End --- </div>
+  
+  <!--页脚广告-->
+  
+  <div class="mdui-divider"></div>
+  
+  <nav>
+    
+      <a rel="prev" class="post-nav-item mdui-float-left" href="/andy-tech-note/2023/03/06/vue-dynamic-class/">
+        <i class="iconfont icon-angle-left"></i>
+        <span>vue-dynamic-class</span>
+      </a>
+    
+    
+      <a rel="next" class="post-nav-item mdui-float-right" href="/andy-tech-note/2023/02/16/firebase-auth/">
+        <span>如何使用Google的firebase裡面的驗證功能(login/logout)</span>
+        <i class="iconfont icon-angle-right"></i>
+      </a>
+    
+  </nav>
+</article>
+
+
+
+
+  <div class="toc-button"  style="z-index: 100;">
+    <button class="mdui-fab mdui-ripple mdui-color-teal" mdui-menu="{target: '#toc'}"><i class="iconfont icon-list"></i></button>
+    <ul class="mdui-menu" id="toc">
+      <li class="mdui-menu-item">
+        <a href="/andy-tech-note/2023/02/28/js-array-map-filter-reduce/" id="toc-header" class="mdui-ripple">文章目錄</a>
+        <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#JS%E4%B8%AD%E7%9A%84array%E5%B7%A5%E5%85%B7"><span class="toc-number">1.</span> <span class="toc-text">JS中的array工具</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#map"><span class="toc-number">2.</span> <span class="toc-text">map</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#filter"><span class="toc-number">3.</span> <span class="toc-text">filter</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#reduce"><span class="toc-number">4.</span> <span class="toc-text">reduce</span></a></li></ol>
+      </li>
+    </ul>
+  </div>
+
+<!-- andy mark it down 這個comment目前用不到，而且這些似乎是中國論談帳號 -->
+<!--  -->
   </main>
   <footer id="footer" class="mdui-text-center mdui-m-t-5 mdui-p-b-2 mdui-p-t-4 mdui-color-theme">
   <div class="mdui-container">
@@ -362,6 +403,12 @@
 
 
 
+
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@8.4.8/dist/mermaid.min.js"></script>
+    <script>mermaid.initialize({
+        startOnLoad: true,
+        theme: "default"
+    });</script>
 
 
 

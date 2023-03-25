@@ -267,5 +267,8 @@
 <p><img src="https://developer.mozilla.org/en-US/docs/Learn/CSS/Building_blocks/The_box_model/box-model.png" alt="來源MDN"></p>
 <h4 id="Width-x2F-Height"><a href="#Width-x2F-Height" class="headerlink" title="Width&#x2F;Height"></a>Width&#x2F;Height</h4><p>在box中可以設定寬度與高度(width &amp; Height)，現在的CSS寬度是指content的寬度，所以在製作layout時要注意寬度要再加上border+padding+margin才是最終寬度或是高度。<br><img src="https://developer.mozilla.org/en-US/docs/Learn/CSS/Building_blocks/The_box_model/standard-box-model.png" alt="設定高寬"></p>
 ]]></content>
+      <tags>
+        <tag>CSS</tag>
+      </tags>
   </entry>
 </search>

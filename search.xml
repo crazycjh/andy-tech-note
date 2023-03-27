@@ -113,28 +113,6 @@
       </tags>
   </entry>
   <entry>
-    <title>codemirror 設定(註冊)事件觸發Codemirror.on</title>
-    <url>/andy-tech-note/2023/01/16/codemirror-set-eventListener/</url>
-    <content><![CDATA[<h3 id="codemirror"><a href="#codemirror" class="headerlink" title="codemirror"></a>codemirror</h3><p>什麼是codemirror，它是一款可以實現在前端網頁上的編輯器。<br>如同現在網路上看到的文字編輯器一樣，但你可以去設定當使用者做哪些操作時codemirror做哪些對應的行為。<br><a href="https://codemirror.net/5/">CodeMirror v5</a></p>
-<h3 id="如何在codemirror編輯器設定事件觸發"><a href="#如何在codemirror編輯器設定事件觸發" class="headerlink" title="如何在codemirror編輯器設定事件觸發"></a>如何在codemirror編輯器設定事件觸發</h3><p><a href="https://codemirror.net/5/doc/manual.html#events">Event列表</a></p>
-<p>使用 const editor &#x3D; CodeMirror.fromTextArea()建立編輯器instance後<br>在透過這個instance去呼叫 <code>on</code> 這個function</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">editor.on(&quot;change&quot;,(cm,changeObj)=&gt;&#123;                  </span><br><span class="line">    //這個意思是當editor文字有改變時就執行callback function</span><br><span class="line">    </span><br><span class="line">    //do something，這裡也可以加入其他CodeMirror的function執行</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-<p>要怎麼使用on呢？ <a href="https://codemirror.net/5/doc/manual.html#on">官方介紹</a></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cm.on(type: string, func: (...args))</span><br></pre></td></tr></table></figure>
-
-<p>舉例：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//建議以下function可以在頁面建立一併執行(如果是馬上要用到)，on的功能可以看成註冊的概念，把這個功能註冊給editor，條件有達到就會執行</span><br><span class="line">editor.on(&quot;change&quot;,(cm,changeObj)=&gt;&#123;                  </span><br><span class="line">    console.log(changeObj.ch);</span><br><span class="line">    console.log(changeObj.line); </span><br><span class="line">    //在change中會有ch(第幾個位元) line第幾行</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-<p>這裡的cm是指codemirror，在官方頁面中有提到，不管是看到codemirror(簡寫cm)或是doc，在使用上都可以用前面建立好的editor instance(端看使用者怎麼命名)</p>
-<p>on裡面第一的參數 <code>type</code> 也就是 cursorActivity  或者 change 之類的事件，後面callback function裡面的參數，在每個event中都會清楚告訴你有什麼參數可以用。<br>在<code>change</code>中可以使用cm instance以及獲取改變的文字及其相關資訊。</p>
-]]></content>
-      <categories>
-        <category>codemirror</category>
-      </categories>
-      <tags>
-        <tag>codemirror</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>codemirror v5 與 v6的差異</title>
     <url>/andy-tech-note/2023/01/17/codemirror-v5-v6-diff/</url>
     <content><![CDATA[<h3 id="Codemirror-v5"><a href="#Codemirror-v5" class="headerlink" title="Codemirror v5"></a>Codemirror v5</h3><p>版本5 -&gt; 6的資料夾結構變動很大</p>
@@ -186,6 +164,28 @@
       </categories>
       <tags>
         <tag>chatGPT</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>codemirror 設定(註冊)事件觸發Codemirror.on</title>
+    <url>/andy-tech-note/2023/01/16/codemirror-set-eventListener/</url>
+    <content><![CDATA[<h3 id="codemirror"><a href="#codemirror" class="headerlink" title="codemirror"></a>codemirror</h3><p>什麼是codemirror，它是一款可以實現在前端網頁上的編輯器。<br>如同現在網路上看到的文字編輯器一樣，但你可以去設定當使用者做哪些操作時codemirror做哪些對應的行為。<br><a href="https://codemirror.net/5/">CodeMirror v5</a></p>
+<h3 id="如何在codemirror編輯器設定事件觸發"><a href="#如何在codemirror編輯器設定事件觸發" class="headerlink" title="如何在codemirror編輯器設定事件觸發"></a>如何在codemirror編輯器設定事件觸發</h3><p><a href="https://codemirror.net/5/doc/manual.html#events">Event列表</a></p>
+<p>使用 const editor &#x3D; CodeMirror.fromTextArea()建立編輯器instance後<br>在透過這個instance去呼叫 <code>on</code> 這個function</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">editor.on(&quot;change&quot;,(cm,changeObj)=&gt;&#123;                  </span><br><span class="line">    //這個意思是當editor文字有改變時就執行callback function</span><br><span class="line">    </span><br><span class="line">    //do something，這裡也可以加入其他CodeMirror的function執行</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>要怎麼使用on呢？ <a href="https://codemirror.net/5/doc/manual.html#on">官方介紹</a></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cm.on(type: string, func: (...args))</span><br></pre></td></tr></table></figure>
+
+<p>舉例：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//建議以下function可以在頁面建立一併執行(如果是馬上要用到)，on的功能可以看成註冊的概念，把這個功能註冊給editor，條件有達到就會執行</span><br><span class="line">editor.on(&quot;change&quot;,(cm,changeObj)=&gt;&#123;                  </span><br><span class="line">    console.log(changeObj.ch);</span><br><span class="line">    console.log(changeObj.line); </span><br><span class="line">    //在change中會有ch(第幾個位元) line第幾行</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>這裡的cm是指codemirror，在官方頁面中有提到，不管是看到codemirror(簡寫cm)或是doc，在使用上都可以用前面建立好的editor instance(端看使用者怎麼命名)</p>
+<p>on裡面第一的參數 <code>type</code> 也就是 cursorActivity  或者 change 之類的事件，後面callback function裡面的參數，在每個event中都會清楚告訴你有什麼參數可以用。<br>在<code>change</code>中可以使用cm instance以及獲取改變的文字及其相關資訊。</p>
+]]></content>
+      <categories>
+        <category>codemirror</category>
+      </categories>
+      <tags>
+        <tag>codemirror</tag>
       </tags>
   </entry>
   <entry>
@@ -280,6 +280,20 @@
     <content><![CDATA[<h3 id="這是關於長度單位"><a href="#這是關於長度單位" class="headerlink" title="這是關於長度單位"></a>這是關於長度單位</h3><h4 id="px"><a href="#px" class="headerlink" title="px"></a>px</h4><p>是一個絕對長度的單位，是以螢幕pixel為基準。</p>
 <h4 id="em"><a href="#em" class="headerlink" title="em"></a>em</h4><p>是一個相對長度單位，是依照當下所在的element其parent element的大小來當作倍數計算，舉例如果是把em設定在font-size，如果當下font-size是以10px，而在child 設定的font-size是設定<code>1ex</code> &#x3D;&gt;也就是 <code>10px</code> ，若是<code>2ex</code> &#x3D;&gt;<code>20px</code></p>
 <h4 id="rem"><a href="#rem" class="headerlink" title="rem"></a>rem</h4><p>這也是相對長度單位，但是以root的大小當作依據來算倍數，所以若是root size設定為<code>12px</code>，而當下的size設定為<code>3rem</code> &#x3D;&gt; <code>36px</code></p>
+]]></content>
+      <categories>
+        <category>frontend</category>
+      </categories>
+      <tags>
+        <tag>css</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>CSS中的inline、block以及inline block</title>
+    <url>/andy-tech-note/2023/03/27/inline-block/</url>
+    <content><![CDATA[<h4 id="block-element"><a href="#block-element" class="headerlink" title="block element"></a>block element</h4><p>這個element是會佔用整個整行的空間(也就是滿版)，即便你的資料沒有這麼多。<br>舉例：<code>&lt;div&gt;</code> <code>&lt;h1&gt;</code> <code>&lt;p&gt;</code><br>不過可以透過設定寬度高度去控制樣式。</p>
+<h4 id="inline-element"><a href="#inline-element" class="headerlink" title="inline element"></a>inline element</h4><p>依照inline element的內容去調整整個element的寬度，<br>舉例：<code>&lt;a&gt; &lt;br&gt; &lt;input&gt;</code><br>但是無法修改寬度與高度，即便加入margin與padding。</p>
+<h4 id="inline-block"><a href="#inline-block" class="headerlink" title="inline-block"></a>inline-block</h4><p>可以在display中設定inline-block<br><code>display:inline-block;</code><br>這樣就可以讓block不佔用滿版，但還可以控制其寬度與高度。</p>
 ]]></content>
       <categories>
         <category>frontend</category>

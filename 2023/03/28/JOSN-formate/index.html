@@ -278,7 +278,7 @@
       <button class="mdui-btn mdui-btn-icon mdui-text-color-teal" mdui-menu="{target: '#share_menu', align: 'right'}"><i class="iconfont icon-share"></i></button>
       <ul class="mdui-menu" id="share_menu">
         <li class="mdui-menu-item">
-          <a href="http://service.weibo.com/share/share.php?appkey=&title=Javascript中的JSON格式&url=http://crazycjh.github.io/andy-tech-note/2023/03/28/JOSN-formate/&pic=http://crazycjh.github.io/andy-tech-note/andy-tech-note/null&searchPic=false&style=simple" target="_blank" class="mdui-ripple">分享到 Weibo</a>
+          <a href="http://service.weibo.com/share/share.php?appkey=&title=Javascript中的JSON格式&url=http://crazycjh.github.io/andy-tech-note/2023/03/28/JOSN-formate/&pic=http://crazycjh.github.io/andy-tech-note/andy-tech-note/null&searchPic=false&style=simple" target="_blank" class="mdui-ripple">Share to Weibo</a>
         </li>
         <li class="mdui-menu-item">
           <a href="https://twitter.com/intent/tweet?text=Javascript中的JSON格式&url=http://crazycjh.github.io/andy-tech-note/2023/03/28/JOSN-formate/&via=Andy Chen" target="_blank" class="mdui-ripple">分享到 Twitter</a>
@@ -287,13 +287,13 @@
           <a href="https://www.facebook.com/sharer/sharer.php?u=http://crazycjh.github.io/andy-tech-note/2023/03/28/JOSN-formate/" target="_blank" class="mdui-ripple">分享到 Facebook</a>
         </li>
         <li class="mdui-menu-item">
-          <a href="https://plus.google.com/share?url=http://crazycjh.github.io/andy-tech-note/2023/03/28/JOSN-formate/" target="_blank" class="mdui-ripple">分享到 Google+</a>
+          <a href="https://plus.google.com/share?url=http://crazycjh.github.io/andy-tech-note/2023/03/28/JOSN-formate/" target="_blank" class="mdui-ripple">Share to Google+</a>
         </li>
         <li class="mdui-menu-item">
           <a href="https://www.linkedin.com/shareArticle?mini=true&url=http://crazycjh.github.io/andy-tech-note/2023/03/28/JOSN-formate/&title=Javascript中的JSON格式" target="_blank" class="mdui-ripple">分享到 LinkedIn</a>
         </li>
         <li class="mdui-menu-item">
-          <a href="http://connect.qq.com/widget/shareqq/index.html?site=Andy的技術筆記、生活紀錄&title=Javascript中的JSON格式&summary=把生活中學習到瑣碎的小事記下來，讓想法更加完整。&pics=http://crazycjh.github.io/andy-tech-note/andy-tech-note/null&url=http://crazycjh.github.io/andy-tech-note/2023/03/28/JOSN-formate/" target="_blank" class="mdui-ripple">分享到 QQ</a>
+          <a href="http://connect.qq.com/widget/shareqq/index.html?site=Andy的技術筆記、生活紀錄&title=Javascript中的JSON格式&summary=把生活中學習到瑣碎的小事記下來，讓想法更加完整。&pics=http://crazycjh.github.io/andy-tech-note/andy-tech-note/null&url=http://crazycjh.github.io/andy-tech-note/2023/03/28/JOSN-formate/" target="_blank" class="mdui-ripple">Share to QQ</a>
         </li>
         <li class="mdui-menu-item">
           <a href="https://telegram.me/share/url?url=http://crazycjh.github.io/andy-tech-note/2023/03/28/JOSN-formate/&text=Javascript中的JSON格式" target="_blank" class="mdui-ripple">分享到 Telegram</a>
@@ -322,7 +322,8 @@
   <div class="mdui-card-content mdui-typo mdui-p-x-4">
     <h3 id="什麼是JSON"><a href="#什麼是JSON" class="headerlink" title="什麼是JSON"></a>什麼是JSON</h3><p>JSON(JavaScript Object Notation)是一種數據交換格式，不論是用在前後端透過RESTful API傳遞資料、function之間使用，都是很方便的，而要把資料轉換成JSON格式則是透過 <code>JSON.strinify(data)</code>，把<code>data</code>轉換成JSON格式。<br>他是以一對大括號以及裡面的東西，這些東西則是以Key與Value組成的KEY-Value Pair(其實與object的格式是一樣的)，不過JSON是字符串，而object則是物件(廢話)，用typeof可以看到JSON字符串是string。</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#x27;&#123;</span><br><span class="line">    &quot;name&quot;:&quot;Andy&quot;,</span><br><span class="line">    &quot;age&quot;:10,</span><br><span class="line">    &quot;skill&quot;:[JS,CSS,HTML,Vue,React]</span><br><span class="line">&#125;&#x27;</span><br></pre></td></tr></table></figure>
-<p>JSON格式被很廣泛的使用在網路數據交換，如前端向後端發送請求取得資料也是以JSON格式傳送(近年)。</p>
+
+
 <h4 id="JSON-stringify-data"><a href="#JSON-stringify-data" class="headerlink" title="JSON.stringify(data)"></a>JSON.stringify(data)</h4><p>把object轉換成JSON的格式的function</p>
 <h4 id="JSON-parse-jsonString"><a href="#JSON-parse-jsonString" class="headerlink" title="JSON.parse(jsonString)"></a>JSON.parse(jsonString)</h4><p>接收到JSON格式的字串時需要透過JSON.parse去轉譯才能變成數值或是object</p>
 

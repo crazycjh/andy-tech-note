@@ -214,21 +214,7 @@
   </url>
   
   <url>
-    <loc>http://crazycjh.github.io/andy-tech-note/tags/vue/</loc>
-    <lastmod>2023-03-28</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>http://crazycjh.github.io/andy-tech-note/tags/codemirror/</loc>
-    <lastmod>2023-03-28</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>http://crazycjh.github.io/andy-tech-note/tags/css/</loc>
     <lastmod>2023-03-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -242,14 +228,21 @@
   </url>
   
   <url>
-    <loc>http://crazycjh.github.io/andy-tech-note/tags/firebase/</loc>
+    <loc>http://crazycjh.github.io/andy-tech-note/tags/vue/</loc>
     <lastmod>2023-03-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>http://crazycjh.github.io/andy-tech-note/tags/frontend/</loc>
+    <loc>http://crazycjh.github.io/andy-tech-note/tags/chatGPT/</loc>
+    <lastmod>2023-03-28</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://crazycjh.github.io/andy-tech-note/tags/css/</loc>
     <lastmod>2023-03-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -270,14 +263,21 @@
   </url>
   
   <url>
-    <loc>http://crazycjh.github.io/andy-tech-note/tags/CSS/</loc>
+    <loc>http://crazycjh.github.io/andy-tech-note/tags/firebase/</loc>
     <lastmod>2023-03-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>http://crazycjh.github.io/andy-tech-note/tags/chatGPT/</loc>
+    <loc>http://crazycjh.github.io/andy-tech-note/tags/frontend/</loc>
+    <lastmod>2023-03-28</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://crazycjh.github.io/andy-tech-note/tags/CSS/</loc>
     <lastmod>2023-03-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -314,21 +314,7 @@
   </url>
   
   <url>
-    <loc>http://crazycjh.github.io/andy-tech-note/categories/vue/</loc>
-    <lastmod>2023-03-28</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>http://crazycjh.github.io/andy-tech-note/categories/codemirror/</loc>
-    <lastmod>2023-03-28</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>http://crazycjh.github.io/andy-tech-note/categories/css/</loc>
     <lastmod>2023-03-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -342,7 +328,21 @@
   </url>
   
   <url>
-    <loc>http://crazycjh.github.io/andy-tech-note/categories/frontend/</loc>
+    <loc>http://crazycjh.github.io/andy-tech-note/categories/vue/</loc>
+    <lastmod>2023-03-28</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://crazycjh.github.io/andy-tech-note/categories/%E8%BB%9F%E9%AB%94%E9%9B%9C%E8%A8%98/</loc>
+    <lastmod>2023-03-28</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://crazycjh.github.io/andy-tech-note/categories/css/</loc>
     <lastmod>2023-03-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -356,7 +356,7 @@
   </url>
   
   <url>
-    <loc>http://crazycjh.github.io/andy-tech-note/categories/%E8%BB%9F%E9%AB%94%E9%9B%9C%E8%A8%98/</loc>
+    <loc>http://crazycjh.github.io/andy-tech-note/categories/frontend/</loc>
     <lastmod>2023-03-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>

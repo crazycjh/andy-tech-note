@@ -278,7 +278,7 @@
       <button class="mdui-btn mdui-btn-icon mdui-text-color-teal" mdui-menu="{target: '#share_menu', align: 'right'}"><i class="iconfont icon-share"></i></button>
       <ul class="mdui-menu" id="share_menu">
         <li class="mdui-menu-item">
-          <a href="http://service.weibo.com/share/share.php?appkey=&title=Javascript中的JSON格式&url=http://crazycjh.github.io/andy-tech-note/2023/03/28/JOSN-formate/&pic=http://crazycjh.github.io/andy-tech-note/andy-tech-note/null&searchPic=false&style=simple" target="_blank" class="mdui-ripple">Share to Weibo</a>
+          <a href="http://service.weibo.com/share/share.php?appkey=&title=Javascript中的JSON格式&url=http://crazycjh.github.io/andy-tech-note/2023/03/28/JOSN-formate/&pic=http://crazycjh.github.io/andy-tech-note/andy-tech-note/null&searchPic=false&style=simple" target="_blank" class="mdui-ripple">分享到 Weibo</a>
         </li>
         <li class="mdui-menu-item">
           <a href="https://twitter.com/intent/tweet?text=Javascript中的JSON格式&url=http://crazycjh.github.io/andy-tech-note/2023/03/28/JOSN-formate/&via=Andy Chen" target="_blank" class="mdui-ripple">分享到 Twitter</a>
@@ -287,13 +287,13 @@
           <a href="https://www.facebook.com/sharer/sharer.php?u=http://crazycjh.github.io/andy-tech-note/2023/03/28/JOSN-formate/" target="_blank" class="mdui-ripple">分享到 Facebook</a>
         </li>
         <li class="mdui-menu-item">
-          <a href="https://plus.google.com/share?url=http://crazycjh.github.io/andy-tech-note/2023/03/28/JOSN-formate/" target="_blank" class="mdui-ripple">Share to Google+</a>
+          <a href="https://plus.google.com/share?url=http://crazycjh.github.io/andy-tech-note/2023/03/28/JOSN-formate/" target="_blank" class="mdui-ripple">分享到 Google+</a>
         </li>
         <li class="mdui-menu-item">
           <a href="https://www.linkedin.com/shareArticle?mini=true&url=http://crazycjh.github.io/andy-tech-note/2023/03/28/JOSN-formate/&title=Javascript中的JSON格式" target="_blank" class="mdui-ripple">分享到 LinkedIn</a>
         </li>
         <li class="mdui-menu-item">
-          <a href="http://connect.qq.com/widget/shareqq/index.html?site=Andy的技術筆記、生活紀錄&title=Javascript中的JSON格式&summary=把生活中學習到瑣碎的小事記下來，讓想法更加完整。&pics=http://crazycjh.github.io/andy-tech-note/andy-tech-note/null&url=http://crazycjh.github.io/andy-tech-note/2023/03/28/JOSN-formate/" target="_blank" class="mdui-ripple">Share to QQ</a>
+          <a href="http://connect.qq.com/widget/shareqq/index.html?site=Andy的技術筆記、生活紀錄&title=Javascript中的JSON格式&summary=把生活中學習到瑣碎的小事記下來，讓想法更加完整。&pics=http://crazycjh.github.io/andy-tech-note/andy-tech-note/null&url=http://crazycjh.github.io/andy-tech-note/2023/03/28/JOSN-formate/" target="_blank" class="mdui-ripple">分享到 QQ</a>
         </li>
         <li class="mdui-menu-item">
           <a href="https://telegram.me/share/url?url=http://crazycjh.github.io/andy-tech-note/2023/03/28/JOSN-formate/&text=Javascript中的JSON格式" target="_blank" class="mdui-ripple">分享到 Telegram</a>
@@ -325,8 +325,10 @@
 
 
 <h4 id="JSON-stringify-data"><a href="#JSON-stringify-data" class="headerlink" title="JSON.stringify(data)"></a>JSON.stringify(data)</h4><p>把object轉換成JSON的格式的function</p>
-<h4 id="JSON-parse-jsonString"><a href="#JSON-parse-jsonString" class="headerlink" title="JSON.parse(jsonString)"></a>JSON.parse(jsonString)</h4><p>接收到JSON格式的字串時需要透過JSON.parse去轉譯才能變成數值或是object</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">let obj = &#123;name: &quot;John&quot;, age: 30&#125;;</span><br><span class="line">let jsonStr = JSON.stringify(obj);</span><br></pre></td></tr></table></figure>
 
+<h4 id="JSON-parse-jsonString"><a href="#JSON-parse-jsonString" class="headerlink" title="JSON.parse(jsonString)"></a>JSON.parse(jsonString)</h4><p>接收到JSON格式的字串時需要透過JSON.parse去轉譯才能變成數值或是object</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">//延續上面的變數</span><br><span class="line">let obj = JSON.parse(jsonStr)</span><br></pre></td></tr></table></figure>
   </div>
   <!--文末结束语-->
   

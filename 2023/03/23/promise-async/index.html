@@ -256,7 +256,7 @@
     </span>
     <span>
       <span class="iconfont icon-folder"></span>
-      分類於:&nbsp;
+      分類於:&nbsp;<a class="category-link" href="/andy-tech-note/categories/Frontend/">Frontend</a>
     </span>
     
       <span>
@@ -306,6 +306,22 @@
   
   
   
+  <div class="post-tags">
+    
+      <i class="iconfont icon-tag">
+        <a rel="tag" href = /andy-tech-note/tags/Javascript/ >Javascript</a>
+      </i>
+    
+      <i class="iconfont icon-tag">
+        <a rel="tag" href = /andy-tech-note/tags/async/ >async</a>
+      </i>
+    
+      <i class="iconfont icon-tag">
+        <a rel="tag" href = /andy-tech-note/tags/promise/ >promise</a>
+      </i>
+    
+  </div>
+
   
   <div class="mdui-card-content mdui-typo mdui-p-x-4">
     <h4 id="promise是幹嘛的？"><a href="#promise是幹嘛的？" class="headerlink" title="promise是幹嘛的？"></a>promise是幹嘛的？</h4><p>promise這個方法是ES6時推出的，這個主要可以用來解決非同步中XMLHttpRequest的問題<br>promise不需要監測Event(也就是js中的addEventListener())，而且會在資料回傳時執行callback function，<br>以及處理在做非同步請求時使用callback時所產生的callback hell。<br>之所以會產生callback hell是因為，當多個非同步請求有前後相關性時就會發生，所謂的前後相關性就是<code>C request</code> 需要等到<br><code>B request</code>的結果才能發出請求，B又要等到<code>A request</code>的結果才能發出，這樣就會變成巢狀的結構，會變得非常難以閱讀。</p>

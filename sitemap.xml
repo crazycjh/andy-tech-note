@@ -216,6 +216,13 @@
   </url>
   
   <url>
+    <loc>http://crazycjh.github.io/andy-tech-note/tags/npm/</loc>
+    <lastmod>2023-03-29</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>http://crazycjh.github.io/andy-tech-note/tags/vue/</loc>
     <lastmod>2023-03-29</lastmod>
     <changefreq>weekly</changefreq>
@@ -230,14 +237,14 @@
   </url>
   
   <url>
-    <loc>http://crazycjh.github.io/andy-tech-note/tags/npm/</loc>
+    <loc>http://crazycjh.github.io/andy-tech-note/tags/wordpress/</loc>
     <lastmod>2023-03-29</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>http://crazycjh.github.io/andy-tech-note/tags/wordpress/</loc>
+    <loc>http://crazycjh.github.io/andy-tech-note/tags/chatGPT/</loc>
     <lastmod>2023-03-29</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -259,13 +266,6 @@
   
   <url>
     <loc>http://crazycjh.github.io/andy-tech-note/tags/react/</loc>
-    <lastmod>2023-03-29</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>http://crazycjh.github.io/andy-tech-note/tags/chatGPT/</loc>
     <lastmod>2023-03-29</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -316,6 +316,13 @@
   </url>
   
   <url>
+    <loc>http://crazycjh.github.io/andy-tech-note/categories/npm/</loc>
+    <lastmod>2023-03-29</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>http://crazycjh.github.io/andy-tech-note/categories/vue/</loc>
     <lastmod>2023-03-29</lastmod>
     <changefreq>weekly</changefreq>
@@ -330,14 +337,14 @@
   </url>
   
   <url>
-    <loc>http://crazycjh.github.io/andy-tech-note/categories/npm/</loc>
+    <loc>http://crazycjh.github.io/andy-tech-note/categories/wordpress/</loc>
     <lastmod>2023-03-29</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>http://crazycjh.github.io/andy-tech-note/categories/wordpress/</loc>
+    <loc>http://crazycjh.github.io/andy-tech-note/categories/%E8%BB%9F%E9%AB%94%E9%9B%9C%E8%A8%98/</loc>
     <lastmod>2023-03-29</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -352,13 +359,6 @@
   
   <url>
     <loc>http://crazycjh.github.io/andy-tech-note/categories/%E5%89%8D%E7%AB%AF%E6%A1%86%E6%9E%B6/</loc>
-    <lastmod>2023-03-29</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>http://crazycjh.github.io/andy-tech-note/categories/%E8%BB%9F%E9%AB%94%E9%9B%9C%E8%A8%98/</loc>
     <lastmod>2023-03-29</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>

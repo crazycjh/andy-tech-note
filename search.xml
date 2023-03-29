@@ -15,15 +15,62 @@
       </tags>
   </entry>
   <entry>
-    <title>如何修改NPM下載的程式碼</title>
-    <url>/andy-tech-note/2023/01/11/how-to-edit-sourcecode-installed-by-npm-nodemodule/</url>
-    <content><![CDATA[<p>嘗試對npm下載的node_modules裡面的套件的code做修改，但是發現不論怎麼改都不會生效。<br>才發現在vite &amp; vue3的環境下，vite把一些預先編譯好的東西放到<code>node_modules/.vite</code>中，<br>所以需要手動刪除這個資料夾去讓編譯器去編譯修改過的程式碼，又或者透過 <code>npm run dev --force</code></p>
+    <title>如何在vue上建立codemirror編輯器</title>
+    <url>/andy-tech-note/2023/01/09/how-to-create-codemirror/</url>
+    <content><![CDATA[<h3 id="什麼是codemirror"><a href="#什麼是codemirror" class="headerlink" title="什麼是codemirror"></a>什麼是codemirror</h3><p>codemirror是一個可以應用在web頁面的程式碼編輯器。</p>
+<h3 id="如何使用？"><a href="#如何使用？" class="headerlink" title="如何使用？"></a>如何使用？</h3><p>前一陣子為了寫一個markdown編輯器尋尋覓覓的網路上搜尋資料，找到codemirror，後來在vue上實現它。<br><code>codemirror</code> 目前最新版為 v6。<br>但目前使用的是v5<br>v5官方文件 <a href="https://codemirror.net/5/">codemirror v5</a></p>
+<h3 id="把editor放到web上"><a href="#把editor放到web上" class="headerlink" title="把editor放到web上"></a>把editor放到web上</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">var myCodeMirror = CodeMirror(document.body, &#123;</span><br><span class="line">  value: &quot;function myScript()&#123;return 100;&#125;\n&quot;,</span><br><span class="line">  mode:  &quot;javascript&quot;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>CodeMirror第一個參數，是要把editor掛的地方，在範例是選擇對body做掛載，而我是選擇用另一個方法，在html建立一個textarea，把editor建立在這上面。</p>
+<p><a href="https://codemirror.net/5/doc/manual.html#fromTextArea">參考</a></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">var myCodeMirror = CodeMirror.fromTextArea(myTextArea);</span><br></pre></td></tr></table></figure>
+<p>要怎麼使用myTextArea這個參數，可以 <em>document.getElementById(‘idName’)</em> 的方式去對textarea與codemirror做連結，所以在textarea的tag中要記得先建立好相對應的id。</p>
+<p>不管是body或是textarea，第二個參數都是configuration，他們是以json格式的方式儲存設定，裡面可以設定theme,mode,keyMap,extraKeys,configureMouse…等等的東西。<a href="https://codemirror.net/5/doc/manual.html#config">configuration</a></p>
+<h4 id="Event"><a href="#Event" class="headerlink" title="Event"></a>Event</h4><p><a href="https://codemirror.net/5/doc/manual.html#events">Event</a></p>
+<p>在上面建立好codemirror後，就可以對編輯器的一些事件作設定，他可以有編輯器內文字變化(change),focus,scroll等等，詳細的可以網路上查更多資訊，<a href="https://codemirror.net/5/doc/manual.html#events">官方資料</a></p>
+<p>使用方法：以上面建立好的codemirror物件(?)， <code>myCodeMirror.on(&#39;change&#39;,()=&gt;&#123;&#125;)</code><br>這裡除了on之外還可以off，也就是可以把事件關閉。<br>在這裡帶的callback function的參數可以參考<a href="https://codemirror.net/5/doc/manual.html#events">event</a>，依照每個不同的事件都有對應的參數，以change為例，他的第二個參數中有 <code>&#123;from, to, text, removed, origin&#125;</code> ，可以看到起始位置、最後位置、移除什麼字元、是移除還是新增。</p>
+<h4 id="取editor裡面的text-x2F-set-text-API-constructor-連結"><a href="#取editor裡面的text-x2F-set-text-API-constructor-連結" class="headerlink" title="取editor裡面的text&#x2F;set text API constructor 連結"></a>取editor裡面的text&#x2F;set text <em>API constructor</em> <a href="https://codemirror.net/5/doc/manual.html#api_constructor">連結</a></h4><p><code>myCodeMirror.getValue()</code><br><code>myCodeMirror.setValue(&#39;字串&#39;)</code></p>
+<h4 id="instance-x2F-doc"><a href="#instance-x2F-doc" class="headerlink" title="instance&#x2F; doc"></a>instance&#x2F; doc</h4><p>在文件中config或是api中會看到cm(應該就是codemirror這個instance)與doc，我的理解是instance是指整個編輯器，而doc是指編輯器中這個文字document，所以以文件中寫的<code>doc.getValue()</code> ，照理說要這樣寫，<code>myCodeMirror.doc.getValue()</code>(實測也是沒問題的)。</p>
+<p>不過在文件中有提到 <em>Methods prefixed with doc. can, unless otherwise specified, be called both on CodeMirror (editor) instances and CodeMirror.Doc instances. Methods prefixed with cm. are only available on CodeMirror instances.</em><br>所以可以直接以 <code>CodeMirror instance 取代 CodeMirror.Doc instance，不過兩者都可以使用</code> </p>
 ]]></content>
       <categories>
-        <category>npm</category>
+        <category>javascript</category>
       </categories>
       <tags>
-        <tag>npm</tag>
+        <tag>js</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>JS中的Async/Sync</title>
+    <url>/andy-tech-note/2023/01/01/Javascript-async-sync/</url>
+    <content><![CDATA[<h2 id="同步與非同步？"><a href="#同步與非同步？" class="headerlink" title="同步與非同步？"></a>同步與非同步？</h2><h4 id="什麼是同步"><a href="#什麼是同步" class="headerlink" title="什麼是同步"></a>什麼是同步</h4><p>一般來說JS都是以 <code>同步synchronous</code> 的方式執行程式碼，以圖中左邊來說，由上而下的時間軸順序執行程式碼，每次只做一件事，<br>以<code>同步</code>的字面上來說很像是同時做很多件事，但其實是一次只執行一件事。</p>
+<h4 id="什麼是非同步"><a href="#什麼是非同步" class="headerlink" title="什麼是非同步"></a>什麼是非同步</h4><p>什麼又是 <code>非同步</code> ，上面提到的一次只能一次做一件，以下圖來看的意思就是，某些時候會有些運算或是網路請求耗時會較長，但我們又不希望整個程式碼因為要等待某個function執行完畢才往下繼續執行，這時候就需要非同步。<br>想像一下，你在正瀏覽某個網頁，因為點擊某個按鈕，而這按鈕因為需要做些費時較長的功能，而因為這樣頁面就卡住無法瀏覽，這樣使用者體驗應該會很差吧？</p>
+<ul>
+<li>舉例：JS中有個function <code>setTimeout()</code> 是可以在這裡面寫一個callback function，在設定的倒數時間到之後執行它，那如果現在他是以同步的方式執行，這樣程式碼會卡在那邊等到時間到才能往下繼續執行，那如果是非同步，程式碼會繼續往下執行之外同時在背景還會繼續倒數直到時間到執行設定好的callback function。</li>
+</ul>
+<p><img src="https://www.freecodecamp.org/news/content/images/2021/09/freeCodeCamp-Cover-2.png" alt="async"></p>
+]]></content>
+      <categories>
+        <category>javascript</category>
+      </categories>
+      <tags>
+        <tag>js</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>在vue中把變數傳進css</title>
+    <url>/andy-tech-note/2023/01/14/vue-ref-css-vbind/</url>
+    <content><![CDATA[<p>某些時候會希望動態改變css的樣式高度、寬度、顏色…等等的<br>在vue中可以宣告一個ref變數(composition API)，然後把搭丟到vue檔案中的 <style></style>中，又或者透過inline的方式直接插入到html tag中，舉例如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">setup()&#123;</span><br><span class="line">    const mdSize = ref(&quot;100px&quot;);</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="傳到-lt-style-gt"><a href="#傳到-lt-style-gt" class="headerlink" title="傳到 &lt;style&gt;"></a>傳到 <code>&lt;style&gt;</code></h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;div class=&quot;md-size&quot;&gt;&lt;/div&gt; //在這裏class不需要v-bind</span><br><span class="line">&lt;style&gt;</span><br><span class="line">.md-size&#123;</span><br><span class="line">    height:v-bind(mdSize);</span><br><span class="line">&#125;</span><br><span class="line">&lt;/style&gt;    </span><br></pre></td></tr></table></figure>
+
+<h3 id="以傳值的方式丟到inline"><a href="#以傳值的方式丟到inline" class="headerlink" title="以傳值的方式丟到inline"></a>以傳值的方式丟到inline</h3><p>搭配v-bind 也就是縮寫 “:”<br>把mdSize放進去style</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;button :style=&quot;&#123; height: mdSize &#125;&quot; &gt; 按鈕名稱 &lt;/button&gt;</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>vue</category>
+      </categories>
+      <tags>
+        <tag>vue</tag>
       </tags>
   </entry>
   <entry>
@@ -54,20 +101,20 @@
       </tags>
   </entry>
   <entry>
-    <title>在vue中把變數傳進css</title>
-    <url>/andy-tech-note/2023/01/14/vue-ref-css-vbind/</url>
-    <content><![CDATA[<p>某些時候會希望動態改變css的樣式高度、寬度、顏色…等等的<br>在vue中可以宣告一個ref變數(composition API)，然後把搭丟到vue檔案中的 <style></style>中，又或者透過inline的方式直接插入到html tag中，舉例如下：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">setup()&#123;</span><br><span class="line">    const mdSize = ref(&quot;100px&quot;);</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="傳到-lt-style-gt"><a href="#傳到-lt-style-gt" class="headerlink" title="傳到 &lt;style&gt;"></a>傳到 <code>&lt;style&gt;</code></h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;div class=&quot;md-size&quot;&gt;&lt;/div&gt; //在這裏class不需要v-bind</span><br><span class="line">&lt;style&gt;</span><br><span class="line">.md-size&#123;</span><br><span class="line">    height:v-bind(mdSize);</span><br><span class="line">&#125;</span><br><span class="line">&lt;/style&gt;    </span><br></pre></td></tr></table></figure>
-
-<h3 id="以傳值的方式丟到inline"><a href="#以傳值的方式丟到inline" class="headerlink" title="以傳值的方式丟到inline"></a>以傳值的方式丟到inline</h3><p>搭配v-bind 也就是縮寫 “:”<br>把mdSize放進去style</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;button :style=&quot;&#123; height: mdSize &#125;&quot; &gt; 按鈕名稱 &lt;/button&gt;</span><br></pre></td></tr></table></figure>
+    <title>codemirror v5 與 v6的差異</title>
+    <url>/andy-tech-note/2023/01/17/codemirror-v5-v6-diff/</url>
+    <content><![CDATA[<h3 id="Codemirror-v5"><a href="#Codemirror-v5" class="headerlink" title="Codemirror v5"></a>Codemirror v5</h3><p>版本5 -&gt; 6的資料夾結構變動很大</p>
+<h4 id="v5"><a href="#v5" class="headerlink" title="v5"></a><a href="https://codemirror.net/5/index.html">v5</a></h4><p>v5的所有套件在npm install <code>codemirror</code>時所有功能全部都會幫你下載，所以在node_modules裡面可以找到codemirror資料夾，裡面所有功能都會放在裡面。</p>
+<h4 id="v6"><a href="#v6" class="headerlink" title="v6"></a><a href="https://codemirror.net/">v6</a></h4><p>v6在npm install後，<code>codemirror</code> 的資料夾內容不多，而如果需要使用特定功能需要下指令<br>如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">npm install @codemirror/search </span><br></pre></td></tr></table></figure>
+<p>如果需要serch功能，需要先install<br>安裝的功能相關檔案會出現在 @codemirror 資料夾中。</p>
+<p>在查相關資料時要注意是使用v5還是v6版本，否則會發現一直找不到檔案的鬼故事。</p>
 ]]></content>
       <categories>
-        <category>vue</category>
+        <category>codemirror</category>
       </categories>
       <tags>
-        <tag>vue</tag>
+        <tag>codemirror</tag>
       </tags>
   </entry>
   <entry>
@@ -93,37 +140,15 @@
       </tags>
   </entry>
   <entry>
-    <title>JS中的Async/Sync</title>
-    <url>/andy-tech-note/2023/01/01/Javascript-async-sync/</url>
-    <content><![CDATA[<h2 id="同步與非同步？"><a href="#同步與非同步？" class="headerlink" title="同步與非同步？"></a>同步與非同步？</h2><h4 id="什麼是同步"><a href="#什麼是同步" class="headerlink" title="什麼是同步"></a>什麼是同步</h4><p>一般來說JS都是以 <code>同步synchronous</code> 的方式執行程式碼，以圖中左邊來說，由上而下的時間軸順序執行程式碼，每次只做一件事，<br>以<code>同步</code>的字面上來說很像是同時做很多件事，但其實是一次只執行一件事。</p>
-<h4 id="什麼是非同步"><a href="#什麼是非同步" class="headerlink" title="什麼是非同步"></a>什麼是非同步</h4><p>什麼又是 <code>非同步</code> ，上面提到的一次只能一次做一件，以下圖來看的意思就是，某些時候會有些運算或是網路請求耗時會較長，但我們又不希望整個程式碼因為要等待某個function執行完畢才往下繼續執行，這時候就需要非同步。<br>想像一下，你在正瀏覽某個網頁，因為點擊某個按鈕，而這按鈕因為需要做些費時較長的功能，而因為這樣頁面就卡住無法瀏覽，這樣使用者體驗應該會很差吧？</p>
-<ul>
-<li>舉例：JS中有個function <code>setTimeout()</code> 是可以在這裡面寫一個callback function，在設定的倒數時間到之後執行它，那如果現在他是以同步的方式執行，這樣程式碼會卡在那邊等到時間到才能往下繼續執行，那如果是非同步，程式碼會繼續往下執行之外同時在背景還會繼續倒數直到時間到執行設定好的callback function。</li>
-</ul>
-<p><img src="https://www.freecodecamp.org/news/content/images/2021/09/freeCodeCamp-Cover-2.png" alt="async"></p>
+    <title>如何修改NPM下載的程式碼</title>
+    <url>/andy-tech-note/2023/01/11/how-to-edit-sourcecode-installed-by-npm-nodemodule/</url>
+    <content><![CDATA[<p>嘗試對npm下載的node_modules裡面的套件的code做修改，但是發現不論怎麼改都不會生效。<br>才發現在vite &amp; vue3的環境下，vite把一些預先編譯好的東西放到<code>node_modules/.vite</code>中，<br>所以需要手動刪除這個資料夾去讓編譯器去編譯修改過的程式碼，又或者透過 <code>npm run dev --force</code></p>
 ]]></content>
       <categories>
-        <category>javascript</category>
+        <category>npm</category>
       </categories>
       <tags>
-        <tag>js</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>codemirror v5 與 v6的差異</title>
-    <url>/andy-tech-note/2023/01/17/codemirror-v5-v6-diff/</url>
-    <content><![CDATA[<h3 id="Codemirror-v5"><a href="#Codemirror-v5" class="headerlink" title="Codemirror v5"></a>Codemirror v5</h3><p>版本5 -&gt; 6的資料夾結構變動很大</p>
-<h4 id="v5"><a href="#v5" class="headerlink" title="v5"></a><a href="https://codemirror.net/5/index.html">v5</a></h4><p>v5的所有套件在npm install <code>codemirror</code>時所有功能全部都會幫你下載，所以在node_modules裡面可以找到codemirror資料夾，裡面所有功能都會放在裡面。</p>
-<h4 id="v6"><a href="#v6" class="headerlink" title="v6"></a><a href="https://codemirror.net/">v6</a></h4><p>v6在npm install後，<code>codemirror</code> 的資料夾內容不多，而如果需要使用特定功能需要下指令<br>如下：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">npm install @codemirror/search </span><br></pre></td></tr></table></figure>
-<p>如果需要serch功能，需要先install<br>安裝的功能相關檔案會出現在 @codemirror 資料夾中。</p>
-<p>在查相關資料時要注意是使用v5還是v6版本，否則會發現一直找不到檔案的鬼故事。</p>
-]]></content>
-      <categories>
-        <category>codemirror</category>
-      </categories>
-      <tags>
-        <tag>codemirror</tag>
+        <tag>npm</tag>
       </tags>
   </entry>
   <entry>
@@ -147,20 +172,6 @@
       </categories>
       <tags>
         <tag>wordpress</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>chatGPT-想法</title>
-    <url>/andy-tech-note/2023/02/01/chatGPT-note/</url>
-    <content><![CDATA[<h3 id="關於chatGPT想法"><a href="#關於chatGPT想法" class="headerlink" title="關於chatGPT想法"></a>關於chatGPT想法</h3><p>網路上有很多人認為chatGPT會造成很多人依賴chatGPT取得資訊，讓人變得更懶。<br>不過我倒不這麼認為，先前在免費時使用過chatGPT，透過他詢問一下關於寫side project的問題，<br>在這過程成會發現如果你對於你的問題沒有具備相應的背景知識時，AI回答給你的答案你根本無從判斷是否有誤，曾經得到的答案發現大方向沒錯，但是小細節是有瑕疵的。</p>
-<p>所以個人認為他可以是輔助人類而非取代人類，至少在寫程式的部分，碰到問題時可以詢問他，有時候他會告訴你某個大方向，而這個方向可能是你在思考時盲點，可以再透過這個方向去找到你需要的答案，這樣可以避免在某個死胡同打轉。</p>
-<h3 id="收費"><a href="#收費" class="headerlink" title="收費"></a>收費</h3><p>2023年2月開始需要收費囉，一個月20美金，以小弟在線上詢問一些問題，而這些問題可能在google可以輕鬆找到，但是有這些問題是有前後關聯的，在google上並不是這麼容易精確的搜尋到答案，chatGPT反而可以接續著前一個問題回答你下一個問題，讓你的思緒更加完整。<br>以一個軟體工程師來說20美元一個月完全值得投資，問幾個問題可以節省更多時間去做別的事，畢竟軟體工程師就是極致懶，可以讓程式完成的事就不想手動完成，當然拉，在這問問題過程中還是要有學到東西才比較好ＸＤ。</p>
-]]></content>
-      <categories>
-        <category>軟體雜記</category>
-      </categories>
-      <tags>
-        <tag>chatGPT</tag>
       </tags>
   </entry>
   <entry>
@@ -209,28 +220,17 @@
       </tags>
   </entry>
   <entry>
-    <title>如何在vue上建立codemirror編輯器</title>
-    <url>/andy-tech-note/2023/01/09/how-to-create-codemirror/</url>
-    <content><![CDATA[<h3 id="什麼是codemirror"><a href="#什麼是codemirror" class="headerlink" title="什麼是codemirror"></a>什麼是codemirror</h3><p>codemirror是一個可以應用在web頁面的程式碼編輯器。</p>
-<h3 id="如何使用？"><a href="#如何使用？" class="headerlink" title="如何使用？"></a>如何使用？</h3><p>前一陣子為了寫一個markdown編輯器尋尋覓覓的網路上搜尋資料，找到codemirror，後來在vue上實現它。<br><code>codemirror</code> 目前最新版為 v6。<br>但目前使用的是v5<br>v5官方文件 <a href="https://codemirror.net/5/">codemirror v5</a></p>
-<h3 id="把editor放到web上"><a href="#把editor放到web上" class="headerlink" title="把editor放到web上"></a>把editor放到web上</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">var myCodeMirror = CodeMirror(document.body, &#123;</span><br><span class="line">  value: &quot;function myScript()&#123;return 100;&#125;\n&quot;,</span><br><span class="line">  mode:  &quot;javascript&quot;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-<p>CodeMirror第一個參數，是要把editor掛的地方，在範例是選擇對body做掛載，而我是選擇用另一個方法，在html建立一個textarea，把editor建立在這上面。</p>
-<p><a href="https://codemirror.net/5/doc/manual.html#fromTextArea">參考</a></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">var myCodeMirror = CodeMirror.fromTextArea(myTextArea);</span><br></pre></td></tr></table></figure>
-<p>要怎麼使用myTextArea這個參數，可以 <em>document.getElementById(‘idName’)</em> 的方式去對textarea與codemirror做連結，所以在textarea的tag中要記得先建立好相對應的id。</p>
-<p>不管是body或是textarea，第二個參數都是configuration，他們是以json格式的方式儲存設定，裡面可以設定theme,mode,keyMap,extraKeys,configureMouse…等等的東西。<a href="https://codemirror.net/5/doc/manual.html#config">configuration</a></p>
-<h4 id="Event"><a href="#Event" class="headerlink" title="Event"></a>Event</h4><p><a href="https://codemirror.net/5/doc/manual.html#events">Event</a></p>
-<p>在上面建立好codemirror後，就可以對編輯器的一些事件作設定，他可以有編輯器內文字變化(change),focus,scroll等等，詳細的可以網路上查更多資訊，<a href="https://codemirror.net/5/doc/manual.html#events">官方資料</a></p>
-<p>使用方法：以上面建立好的codemirror物件(?)， <code>myCodeMirror.on(&#39;change&#39;,()=&gt;&#123;&#125;)</code><br>這裡除了on之外還可以off，也就是可以把事件關閉。<br>在這裡帶的callback function的參數可以參考<a href="https://codemirror.net/5/doc/manual.html#events">event</a>，依照每個不同的事件都有對應的參數，以change為例，他的第二個參數中有 <code>&#123;from, to, text, removed, origin&#125;</code> ，可以看到起始位置、最後位置、移除什麼字元、是移除還是新增。</p>
-<h4 id="取editor裡面的text-x2F-set-text-API-constructor-連結"><a href="#取editor裡面的text-x2F-set-text-API-constructor-連結" class="headerlink" title="取editor裡面的text&#x2F;set text API constructor 連結"></a>取editor裡面的text&#x2F;set text <em>API constructor</em> <a href="https://codemirror.net/5/doc/manual.html#api_constructor">連結</a></h4><p><code>myCodeMirror.getValue()</code><br><code>myCodeMirror.setValue(&#39;字串&#39;)</code></p>
-<h4 id="instance-x2F-doc"><a href="#instance-x2F-doc" class="headerlink" title="instance&#x2F; doc"></a>instance&#x2F; doc</h4><p>在文件中config或是api中會看到cm(應該就是codemirror這個instance)與doc，我的理解是instance是指整個編輯器，而doc是指編輯器中這個文字document，所以以文件中寫的<code>doc.getValue()</code> ，照理說要這樣寫，<code>myCodeMirror.doc.getValue()</code>(實測也是沒問題的)。</p>
-<p>不過在文件中有提到 <em>Methods prefixed with doc. can, unless otherwise specified, be called both on CodeMirror (editor) instances and CodeMirror.Doc instances. Methods prefixed with cm. are only available on CodeMirror instances.</em><br>所以可以直接以 <code>CodeMirror instance 取代 CodeMirror.Doc instance，不過兩者都可以使用</code> </p>
+    <title>chatGPT-想法</title>
+    <url>/andy-tech-note/2023/02/01/chatGPT-note/</url>
+    <content><![CDATA[<h3 id="關於chatGPT想法"><a href="#關於chatGPT想法" class="headerlink" title="關於chatGPT想法"></a>關於chatGPT想法</h3><p>網路上有很多人認為chatGPT會造成很多人依賴chatGPT取得資訊，讓人變得更懶。<br>不過我倒不這麼認為，先前在免費時使用過chatGPT，透過他詢問一下關於寫side project的問題，<br>在這過程成會發現如果你對於你的問題沒有具備相應的背景知識時，AI回答給你的答案你根本無從判斷是否有誤，曾經得到的答案發現大方向沒錯，但是小細節是有瑕疵的。</p>
+<p>所以個人認為他可以是輔助人類而非取代人類，至少在寫程式的部分，碰到問題時可以詢問他，有時候他會告訴你某個大方向，而這個方向可能是你在思考時盲點，可以再透過這個方向去找到你需要的答案，這樣可以避免在某個死胡同打轉。</p>
+<h3 id="收費"><a href="#收費" class="headerlink" title="收費"></a>收費</h3><p>2023年2月開始需要收費囉，一個月20美金，以小弟在線上詢問一些問題，而這些問題可能在google可以輕鬆找到，但是有這些問題是有前後關聯的，在google上並不是這麼容易精確的搜尋到答案，chatGPT反而可以接續著前一個問題回答你下一個問題，讓你的思緒更加完整。<br>以一個軟體工程師來說20美元一個月完全值得投資，問幾個問題可以節省更多時間去做別的事，畢竟軟體工程師就是極致懶，可以讓程式完成的事就不想手動完成，當然拉，在這問問題過程中還是要有學到東西才比較好ＸＤ。</p>
 ]]></content>
       <categories>
-        <category>javascript</category>
+        <category>軟體雜記</category>
       </categories>
       <tags>
-        <tag>js</tag>
+        <tag>chatGPT</tag>
       </tags>
   </entry>
   <entry>
@@ -259,6 +259,26 @@
       </tags>
   </entry>
   <entry>
+    <title>promise-async</title>
+    <url>/andy-tech-note/2023/03/23/promise-async/</url>
+    <content><![CDATA[<h4 id="promise是幹嘛的？"><a href="#promise是幹嘛的？" class="headerlink" title="promise是幹嘛的？"></a>promise是幹嘛的？</h4><p>promise這個方法是ES6時推出的，這個主要可以用來解決非同步中XMLHttpRequest的問題<br>promise不需要監測Event(也就是js中的addEventListener())，而且會在資料回傳時執行callback function，<br>以及處理在做非同步請求時使用callback時所產生的callback hell。<br>之所以會產生callback hell是因為，當多個非同步請求有前後相關性時就會發生，所謂的前後相關性就是<code>C request</code> 需要等到<br><code>B request</code>的結果才能發出請求，B又要等到<code>A request</code>的結果才能發出，這樣就會變成巢狀的結構，會變得非常難以閱讀。</p>
+<h5 id="示意："><a href="#示意：" class="headerlink" title="示意："></a>示意：</h5><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">callback(()=&gt;&#123;</span><br><span class="line">    //在此發出A request</span><br><span class="line">    callback(()=&gt;&#123;</span><br><span class="line">        //在此發出B request    </span><br><span class="line">        callback(()=&gt;&#123;</span><br><span class="line">        //在此發出C request    </span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p><img src="https://res.cloudinary.com/practicaldev/image/fetch/s--c0aEZX7m--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/b8euo2n7twvgh3dbuatd.jpeg" alt="callback hell"></p>
+<h4 id="Promise有什麼？"><a href="#Promise有什麼？" class="headerlink" title="Promise有什麼？"></a>Promise有什麼？</h4><p>如前面提到promise是用來處理異步事件，promise會有三個狀態</p>
+<ul>
+<li>pending : 等待，還沒接到對方的資料回傳，等待中也就是Not Available</li>
+<li>fulfilled : 成功，也就是有資料成功回傳一個值，在這情況下會進入 <code>.then</code></li>
+<li>rejected : 失敗，對方(可能是server)回傳一個錯誤 會進入<code>catch</code>處理錯誤。</li>
+</ul>
+<p><code>舉例</code></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">const getCountryData = (country)=&gt;&#123;</span><br><span class="line">    fetch(`https://restcountries.com/v2/name/$&#123;country&#125;`).then((res)=&gt;&#123;</span><br><span class="line">        return res.json();</span><br><span class="line">    &#125;).then((data)=&gt;&#123;</span><br><span class="line">        console.log(data);</span><br><span class="line">    &#125;).catch(()=&gt;&#123;</span><br><span class="line">        console.log(&#x27;error&#x27;);</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">getCountryData(&#x27;taiwan&#x27;);</span><br></pre></td></tr></table></figure>
+<p>上述例子使用fetch去執行異步向某個server發出資料請求，並在<code>then裡面等待回傳資料</code>，若是<code>回傳錯誤會由catch處理錯誤</code>。<br><code>fetch</code>是一個可以回傳<code>promise</code>的function，而在then裡面經常需要處理資料，而資料經常是JSON格式，若要轉譯JSON格式則必須使用json()這個function，但因為它也是回傳promise，所以必須再透過then處理。</p>
+<h5 id="如何解決callback-hell"><a href="#如何解決callback-hell" class="headerlink" title="如何解決callback hell?"></a>如何解決callback hell?</h5><p>如果會有前後相依的fetch要做，也就是需要等到前一個fetch取得資料後才執行，可以如下，在<code>then</code>裡面 <code>return fetch</code>，如此就可以在後面的then繼續處理第二個fetch的值。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">const getCountryData = (country)=&gt;&#123;</span><br><span class="line">    fetch(`https://restcountries.com/v2/name/$&#123;country&#125;`).then((res)=&gt;&#123;</span><br><span class="line">        return res.json();</span><br><span class="line">    &#125;).then((data)=&gt;&#123;</span><br><span class="line">        console.log(data);</span><br><span class="line">        return fetch(`https://restcountries.com/v2/name/china`)</span><br><span class="line">    &#125;).then((res)=&gt;&#123;</span><br><span class="line">        return res.json()</span><br><span class="line">    &#125;).then((data)=&gt;&#123;</span><br><span class="line">        console.log(data);</span><br><span class="line">    &#125;).catch(()=&gt;&#123;</span><br><span class="line">        console.log(&#x27;error&#x27;);</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">getCountryData(&#x27;Taiwan&#x27;);</span><br></pre></td></tr></table></figure>
+<p>不過此法雖然解決callback hell，但是then也變得很長，接下來又有<code>async/await</code>來讓其進化</p>
+]]></content>
+  </entry>
+  <entry>
     <title>CSS的Box-model</title>
     <url>/andy-tech-note/2023/03/25/box-model/</url>
     <content><![CDATA[<h4 id="什麼是Box-model"><a href="#什麼是Box-model" class="headerlink" title="什麼是Box model"></a>什麼是Box model</h4><p>在網頁中每個element都被看作一個box，每個box可以有內容content、邊界border、內外空間。<br>所以box會有padding &#x2F; marging&#x2F; border&#x2F; content</p>
@@ -272,6 +292,20 @@
       </categories>
       <tags>
         <tag>CSS</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>CSS中的px-em-rem</title>
+    <url>/andy-tech-note/2023/03/25/px-em-rem/</url>
+    <content><![CDATA[<h3 id="這是關於長度單位"><a href="#這是關於長度單位" class="headerlink" title="這是關於長度單位"></a>這是關於長度單位</h3><h4 id="px"><a href="#px" class="headerlink" title="px"></a>px</h4><p>是一個絕對長度的單位，是以螢幕pixel為基準。</p>
+<h4 id="em"><a href="#em" class="headerlink" title="em"></a>em</h4><p>是一個相對長度單位，是依照當下所在的element其parent element的大小來當作倍數計算，舉例如果是把em設定在font-size，如果當下font-size是以10px，而在child 設定的font-size是設定<code>1ex</code> &#x3D;&gt;也就是 <code>10px</code> ，若是<code>2ex</code> &#x3D;&gt;<code>20px</code></p>
+<h4 id="rem"><a href="#rem" class="headerlink" title="rem"></a>rem</h4><p>這也是相對長度單位，但是以root的大小當作依據來算倍數，所以若是root size設定為<code>12px</code>，而當下的size設定為<code>3rem</code> &#x3D;&gt; <code>36px</code></p>
+]]></content>
+      <categories>
+        <category>frontend</category>
+      </categories>
+      <tags>
+        <tag>css</tag>
       </tags>
   </entry>
   <entry>
@@ -308,20 +342,6 @@
       <tags>
         <tag>JSON</tag>
         <tag>Javascript</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>CSS中的px-em-rem</title>
-    <url>/andy-tech-note/2023/03/25/px-em-rem/</url>
-    <content><![CDATA[<h3 id="這是關於長度單位"><a href="#這是關於長度單位" class="headerlink" title="這是關於長度單位"></a>這是關於長度單位</h3><h4 id="px"><a href="#px" class="headerlink" title="px"></a>px</h4><p>是一個絕對長度的單位，是以螢幕pixel為基準。</p>
-<h4 id="em"><a href="#em" class="headerlink" title="em"></a>em</h4><p>是一個相對長度單位，是依照當下所在的element其parent element的大小來當作倍數計算，舉例如果是把em設定在font-size，如果當下font-size是以10px，而在child 設定的font-size是設定<code>1ex</code> &#x3D;&gt;也就是 <code>10px</code> ，若是<code>2ex</code> &#x3D;&gt;<code>20px</code></p>
-<h4 id="rem"><a href="#rem" class="headerlink" title="rem"></a>rem</h4><p>這也是相對長度單位，但是以root的大小當作依據來算倍數，所以若是root size設定為<code>12px</code>，而當下的size設定為<code>3rem</code> &#x3D;&gt; <code>36px</code></p>
-]]></content>
-      <categories>
-        <category>frontend</category>
-      </categories>
-      <tags>
-        <tag>css</tag>
       </tags>
   </entry>
 </search>

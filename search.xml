@@ -192,6 +192,27 @@
       </tags>
   </entry>
   <entry>
+    <title>CSS中的偽類-pseudo-class</title>
+    <url>/andy-tech-note/2023/02/13/pseudo-class/</url>
+    <content><![CDATA[<h3 id="情境1"><a href="#情境1" class="headerlink" title="情境1"></a>情境1</h3><p>直接範例解釋</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;ul&gt;</span><br><span class="line">  &lt;li class=&quot;first-li&quot;&gt;1&lt;/li&gt;</span><br><span class="line">  &lt;li&gt;2&lt;/li&gt;</span><br><span class="line">  &lt;li&gt;3&lt;/li&gt;</span><br><span class="line">&lt;/ul&gt;</span><br><span class="line">&lt;ul&gt;</span><br><span class="line">  &lt;li&gt;1&lt;/li&gt;</span><br><span class="line">  &lt;li&gt;2&lt;/li&gt;</span><br><span class="line">  &lt;li&gt;3&lt;/li&gt;</span><br><span class="line">&lt;/ul&gt;  </span><br><span class="line"></span><br><span class="line">  </span><br></pre></td></tr></table></figure>
+<p>一般來說如果想對 <code>&lt;li&gt; </code>裡面的字做變色、粗體、斜體，可以透過建立一個class去操作，<br>舉例：想把所有的第一個li的變粗體，這樣需要如下面class寫法，以及需要在html裡面把所有的第一個li都加上class&#x3D;’first-li’</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//css檔案</span><br><span class="line">.first-li &#123;</span><br><span class="line">    font-weight:bold;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//pseudo class </span><br><span class="line">li:first-child &#123;</span><br><span class="line">    font-weight:bold;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">li:last-child&#123;</span><br><span class="line">    font-weight:bold;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">li:nth-child(2)&#123; //全部第二個</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">li:nth-child(even)&#123; //偶數或奇數 odd</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>若是pseudo class則可以寫成上面這樣，還可以有最後一個、指定特定位置、偶數、奇數。</p>
+<hr>
+<h3 id="情境2"><a href="#情境2" class="headerlink" title="情境2"></a>情境2</h3><p>在這裡還可以是以下狀況</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">//狀況1</span><br><span class="line">&lt;div&gt;</span><br><span class="line">    &lt;p&gt;1&lt;/p&gt;</span><br><span class="line">    &lt;div&gt;2&lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line"></span><br><span class="line">//狀況2</span><br><span class="line">&lt;div&gt;</span><br><span class="line">    &lt;div&gt;0&lt;/div&gt;</span><br><span class="line">    &lt;p&gt;1&lt;/p&gt;</span><br><span class="line">    &lt;div&gt;2&lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line"></span><br><span class="line">//css</span><br><span class="line">div p:first-child&#123; // div下的第一個p</span><br><span class="line">    font-weight:bold;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>這個狀況其實在狀況2是沒有作用的，雖然是div下的第一個p，但是在div下面的第一個element是 div而非 p ，所以不會成功</p>
+]]></content>
+      <categories>
+        <category>CSS</category>
+      </categories>
+      <tags>
+        <tag>CSS</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>vue-react-mvvm-virtualDom的一些筆記</title>
     <url>/andy-tech-note/2023/02/02/vue-react-mvvm-virtualDom/</url>
     <content><![CDATA[<h3 id="指令式渲染-imperative-redering"><a href="#指令式渲染-imperative-redering" class="headerlink" title="指令式渲染 imperative redering"></a>指令式渲染 imperative redering</h3><h4 id="jquery"><a href="#jquery" class="headerlink" title="jquery"></a>jquery</h4><p>在框架還沒出來時jquery依舊是非常火紅的，而其對於DOM的渲染方式就是透過<br>選擇器 <code>document.querySelector</code> 去選擇HTML裡面的tag，從而去修改他們的值或是<code> addEventListener</code> 加入事件監聽來獲取使用者的行為，進而在js裡面做一些判斷後再把資料丟到頁面讓使用者看到。</p>
@@ -298,27 +319,6 @@
       </tags>
   </entry>
   <entry>
-    <title>CSS中的偽類-pseudo-class</title>
-    <url>/andy-tech-note/2023/02/13/pseudo-class/</url>
-    <content><![CDATA[<h3 id="情境1"><a href="#情境1" class="headerlink" title="情境1"></a>情境1</h3><p>直接範例解釋</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;ul&gt;</span><br><span class="line">  &lt;li class=&quot;first-li&quot;&gt;1&lt;/li&gt;</span><br><span class="line">  &lt;li&gt;2&lt;/li&gt;</span><br><span class="line">  &lt;li&gt;3&lt;/li&gt;</span><br><span class="line">&lt;/ul&gt;</span><br><span class="line">&lt;ul&gt;</span><br><span class="line">  &lt;li&gt;1&lt;/li&gt;</span><br><span class="line">  &lt;li&gt;2&lt;/li&gt;</span><br><span class="line">  &lt;li&gt;3&lt;/li&gt;</span><br><span class="line">&lt;/ul&gt;  </span><br><span class="line"></span><br><span class="line">  </span><br></pre></td></tr></table></figure>
-<p>一般來說如果想對 <code>&lt;li&gt; </code>裡面的字做變色、粗體、斜體，可以透過建立一個class去操作，<br>舉例：想把所有的第一個li的變粗體，這樣需要如下面class寫法，以及需要在html裡面把所有的第一個li都加上class&#x3D;’first-li’</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//css檔案</span><br><span class="line">.first-li &#123;</span><br><span class="line">    font-weight:bold;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//pseudo class </span><br><span class="line">li:first-child &#123;</span><br><span class="line">    font-weight:bold;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">li:last-child&#123;</span><br><span class="line">    font-weight:bold;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">li:nth-child(2)&#123; //全部第二個</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">li:nth-child(even)&#123; //偶數或奇數 odd</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>若是pseudo class則可以寫成上面這樣，還可以有最後一個、指定特定位置、偶數、奇數。</p>
-<hr>
-<h3 id="情境2"><a href="#情境2" class="headerlink" title="情境2"></a>情境2</h3><p>在這裡還可以是以下狀況</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">//狀況1</span><br><span class="line">&lt;div&gt;</span><br><span class="line">    &lt;p&gt;1&lt;/p&gt;</span><br><span class="line">    &lt;div&gt;2&lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line"></span><br><span class="line">//狀況2</span><br><span class="line">&lt;div&gt;</span><br><span class="line">    &lt;div&gt;0&lt;/div&gt;</span><br><span class="line">    &lt;p&gt;1&lt;/p&gt;</span><br><span class="line">    &lt;div&gt;2&lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line"></span><br><span class="line">//css</span><br><span class="line">div p:first-child&#123; // div下的第一個p</span><br><span class="line">    font-weight:bold;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>這個狀況其實在狀況2是沒有作用的，雖然是div下的第一個p，但是在div下面的第一個element是 div而非 p ，所以不會成功</p>
-]]></content>
-      <categories>
-        <category>CSS</category>
-      </categories>
-      <tags>
-        <tag>CSS</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>CSS中的inline、block以及inline block</title>
     <url>/andy-tech-note/2023/03/27/inline-block/</url>
     <content><![CDATA[<h3 id="element樣式"><a href="#element樣式" class="headerlink" title="element樣式"></a>element樣式</h3><h4 id="block-element"><a href="#block-element" class="headerlink" title="block element"></a>block element</h4><p>這個element是會佔用整個整行的空間(也就是滿版)，即便你的資料沒有這麼多。<br>舉例：<code>&lt;div&gt;</code> <code>&lt;h1&gt;</code> <code>&lt;p&gt;</code><br>不過可以透過設定寬度高度去控制樣式。</p>
@@ -377,10 +377,11 @@
     <url>/andy-tech-note/2024/01/20/nextTick-in-Vue3/</url>
     <content><![CDATA[<h4 id="什麼是nextTick-？"><a href="#什麼是nextTick-？" class="headerlink" title="什麼是nextTick()？"></a>什麼是nextTick()？</h4><h6 id="官方定義"><a href="#官方定義" class="headerlink" title="官方定義"></a>官方定義</h6><p><code>在下次 DOM 更新循环结束之后执行延迟回调。在修改数据之后立即使用这个方法，获取更新后的 DOM</code></p>
 <h4 id="實際應用場景"><a href="#實際應用場景" class="headerlink" title="實際應用場景"></a>實際應用場景</h4><p>版主在Vue3的 project中有一個<code>child componet</code> 跟 <code>parent component</code>，在child component中有使用 <code>Primevue</code>的 <code>Checkbox</code>，而我希望在勾選Checkbox時可以觸發emit，所以使用watch監聽Checkbox 綁定的一個<code>ref</code>的變數，所以在watch監聽該變數，當有變化就發出emit，而parent收到emit的會依照回傳的值做一些array的過濾，在這裡因為過濾會花點時間。</p>
-<p>於此同時Checkbox不會馬上被改變打勾或是非打勾的狀態，所以我認為是parent中的filter造成DOM的延遲更新，所以就使用nextTick()，先讓Checkbox可以先被渲染，在執行emit。</p>
+<p>於此同時Checkbox不會馬上被改變打勾或是非打勾的狀態，需要等到parent計算完才會被更新DOM，所以我認為是parent中的filter造成DOM的延遲更新，所以就使用nextTick()，先讓Checkbox可以先被渲染，再執行emit。</p>
 <p>程式碼如下</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">watch(destination, () =&gt; &#123;</span><br><span class="line">    nextTick(()=&gt; &#123;</span><br><span class="line">        emit(&#x27;filterCondiction&#x27;, &#123;date: [&#123;index: &#x27;1&#x27;, date: &quot;20240201&quot;&#125;], location: [&#123;index: props.airport.location.split(&#x27; &#x27;)[1], destination: destination.value&#125;]&#125;);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
 <p>請忽略傳遞的參數ＸＤ</p>
+<p>在這裡會看到emit會在DOM完成更新後才執行，這樣就不會有覺得為什麼點擊Chenckbox後卻沒有馬上被打勾的問題。</p>
 ]]></content>
       <tags>
         <tag>Vue</tag>

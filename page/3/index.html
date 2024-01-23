@@ -81,6 +81,62 @@
 
 
 
+    
+        <script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        
+            load: ['[tex]/mhchem'],
+        
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        
+            packages: {'[+]': ['mhchem']},
+        
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
           
 
 
@@ -240,96 +296,66 @@
   
   <main id="main-contain" class="mdui-container mdui-m-t-5">
     
+    <article class="mdui-card mdui-m-b-5 mdui-hoverable">    
+      
+      
+        <div class="post-header"> 
+  <a class="post-header-title" href="/andy-tech-note/2023/01/01/Javascript-async-sync/">JS中的Async/Sync</a>
+  <div class="post-header-meta">
+    <span>
+      <span class="iconfont icon-calendar"></span>
+      發佈於:&nbsp;2023-01-01
+    </span>
+    <span>
+      <span class="iconfont icon-calendar-check"></span>
+      更新於:&nbsp;2024-01-23
+    </span>
+    <span>
+      <span class="iconfont icon-folder"></span>
+      分類於:&nbsp;<a class="category-link" href="/andy-tech-note/categories/javascript/">javascript</a>
+    </span>
     
+  </div>
+</div>   
     
 
 
-<div class="mdui-card mdui-p-a-4 mdui-m-b-5">
-    <div class="posts-collapse">
-        <div class="collection-title">
-            <h2>Frontend<small>分類</small></h2>
+
+      
+      
+  <div class="post-tags">
+    
+      <i class="iconfont icon-tag">
+        <a rel="tag" href = /andy-tech-note/tags/async/ >async</a>
+      </i>
+    
+      <i class="iconfont icon-tag">
+        <a rel="tag" href = /andy-tech-note/tags/Javascriptj/ >Javascriptj</a>
+      </i>
+    
+  </div>
+
+      
+      <div id="achieve-abstract" class="mdui-card-content mdui-p-x-4">
+        <div class="post-abstract mdui-typo ">
+          
+            <h2 id="同步與非同步？"><a href="#同步與非同步？" class="headerlink" title="同步與非同步？"></a>同步與非同步？</h2><h4 id="什麼是同步"><a href="#什麼是同步" class="headerlink" title="什麼是同步"></a>什麼是同步</h4><p>一般來說JS都是以 <code>同步synchronous</code> 的方式執行程式碼，以圖中左邊來說，由上而下的時間軸順序執行程式碼，每次只做一件事，<br>以<code>同步</code>的字面上來說很像是同時做很多件事，但其實是一次只執行一件事。...
+          
         </div>
         
-            <div class="collection-item">
-                <h3><a href="/andy-tech-note/2024/01/23/Javascript-%E5%B0%8Dobject-key-value-%E5%81%9A-filter/">Javascript - 對object(key value)做 filter</a></h3>
-                <time itemprop="dateCreated" datetime=2024-01-23 >
-                    2024.01.23
-                </time>
-            </div>
-        
-            <div class="collection-item">
-                <h3><a href="/andy-tech-note/2023/03/29/how-to-create-promise/">在Javacript建立promise</a></h3>
-                <time itemprop="dateCreated" datetime=2023-03-29 >
-                    2023.03.29
-                </time>
-            </div>
-        
-            <div class="collection-item">
-                <h3><a href="/andy-tech-note/2023/03/28/JOSN-formate/">Javascript中的JSON格式</a></h3>
-                <time itemprop="dateCreated" datetime=2023-03-28 >
-                    2023.03.28
-                </time>
-            </div>
-        
-            <div class="collection-item">
-                <h3><a href="/andy-tech-note/2023/03/27/inline-block/">CSS中的inline、block以及inline block</a></h3>
-                <time itemprop="dateCreated" datetime=2023-03-27 >
-                    2023.03.27
-                </time>
-            </div>
-        
-            <div class="collection-item">
-                <h3><a href="/andy-tech-note/2023/03/25/px-em-rem/">CSS中的px-em-rem</a></h3>
-                <time itemprop="dateCreated" datetime=2023-03-25 >
-                    2023.03.25
-                </time>
-            </div>
-        
-            <div class="collection-item">
-                <h3><a href="/andy-tech-note/2023/03/25/box-model/">CSS的Box-model</a></h3>
-                <time itemprop="dateCreated" datetime=2023-03-25 >
-                    2023.03.25
-                </time>
-            </div>
-        
-            <div class="collection-item">
-                <h3><a href="/andy-tech-note/2023/03/23/promise-async/">Javascript中的promise - 處理異步</a></h3>
-                <time itemprop="dateCreated" datetime=2023-03-23 >
-                    2023.03.23
-                </time>
-            </div>
-        
-            <div class="collection-item">
-                <h3><a href="/andy-tech-note/2023/02/16/firebase-auth/">如何使用Google的firebase裡面的驗證功能(login/logout)</a></h3>
-                <time itemprop="dateCreated" datetime=2023-02-16 >
-                    2023.02.16
-                </time>
-            </div>
-        
-            <div class="collection-item">
-                <h3><a href="/andy-tech-note/2023/02/02/vue-react-mvvm-virtualDom/">vue-react-mvvm-virtualDom的一些筆記</a></h3>
-                <time itemprop="dateCreated" datetime=2023-02-02 >
-                    2023.02.02
-                </time>
-            </div>
-        
-            <div class="collection-item">
-                <h3><a href="/andy-tech-note/2023/01/17/codemirror-v5-v6-diff/">codemirror v5 與 v6的差異</a></h3>
-                <time itemprop="dateCreated" datetime=2023-01-17 >
-                    2023.01.17
-                </time>
-            </div>
-        
-    </div>
-</div>
+        <div style="text-align:center;">
+          <a class="post-readmore mdui-btn mdui-ripple mdui-btn-raised" href="/andy-tech-note/2023/01/01/Javascript-async-sync/">閱讀更多</a>
+        </div>
+      </div>
+    </article>
+
 
 
   <nav style="text-align: center;">
     <div class="pagination">
-      <span class="page-number current">1</span><a class="page-number" href="/andy-tech-note/categories/Frontend/page/2/">2</a><a class="extend next" rel="next" href="/andy-tech-note/categories/Frontend/page/2/"><i class="iconfont icon-angle-right"></i></a>
+      <a class="extend prev" rel="prev" href="/andy-tech-note/page/2/"><i class="iconfont icon-angle-left"></i></a><a class="page-number" href="/andy-tech-note/">1</a><a class="page-number" href="/andy-tech-note/page/2/">2</a><span class="page-number current">3</span>
     </div>
   </nav>
-
 
   </main>
   <footer id="footer" class="mdui-text-center mdui-m-t-5 mdui-p-b-2 mdui-p-t-4 mdui-color-theme">

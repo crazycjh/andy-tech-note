@@ -246,7 +246,7 @@
         <div class="sidebar-overview">
             <div class="sidebar-avatar">
                 
-                    <img src="/andy-tech-note/icons/avatar.gif"/>
+                    <img src="/andy-tech-note/icons/avatar.jpg"/>
                 
             </div>
             <div class="sidebar-author-name">Andy Chen</div>
@@ -376,11 +376,11 @@
   <div class="post-tags">
     
       <i class="iconfont icon-tag">
-        <a rel="tag" href = /andy-tech-note/tags/Javascript/ >Javascript</a>
+        <a rel="tag" href = /andy-tech-note/tags/async/ >async</a>
       </i>
     
       <i class="iconfont icon-tag">
-        <a rel="tag" href = /andy-tech-note/tags/async/ >async</a>
+        <a rel="tag" href = /andy-tech-note/tags/Javascript/ >Javascript</a>
       </i>
     
       <i class="iconfont icon-tag">
@@ -760,7 +760,7 @@
       
       
         <div class="post-header"> 
-  <a class="post-header-title" href="/andy-tech-note/2023/01/14/deep-copy-Shallow-copy/">在JS中複製object-深拷貝/淺拷貝</a>
+  <a class="post-header-title" href="/andy-tech-note/2023/01/14/vue-ref-css-vbind/">在vue中把變數傳進css</a>
   <div class="post-header-meta">
     <span>
       <span class="iconfont icon-calendar"></span>
@@ -789,19 +789,23 @@
         <a rel="tag" href = /andy-tech-note/tags/Javascript/ >Javascript</a>
       </i>
     
+      <i class="iconfont icon-tag">
+        <a rel="tag" href = /andy-tech-note/tags/Vue/ >Vue</a>
+      </i>
+    
   </div>
 
       
       <div id="achieve-abstract" class="mdui-card-content mdui-p-x-4">
         <div class="post-abstract mdui-typo ">
           
-            <h3 id="在JS複製object"><a href="#在JS複製object" class="headerlink" title="在JS複製object"></a>在JS複製object</h3><p>在寫code有時候會需要使用某些變數或是object，但是又不希望直接對其做操作，因為可能在其他地方會繼續使用原始的object，<br>這時候就會宣告一個新的變數去把原先的object assign過去。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">const source = &#123;name:&#x27;Andy&#x27;,coutry:&#x27;Taiwan&#x27;,phone:&#x27;0911-111-111&#x27;&#125;</span><br><span class="line">//原始資料</span><br><span class="line"></span><br><span class="line">const destination = source </span><br><span class="line">//新變數</span><br><span class="line">destination.name = &#x27;Rendy&#x27;;</span><br><span class="line"></span><br><span class="line">console.log(destination.name);  //結果: Rendy</span><br><span class="line">console.log(source.name);       //結果: Rendy</span><br></pre></td></tr></table></figure>
+            <p>某些時候會希望動態改變css的樣式高度、寬度、顏色…等等的<br>在vue中可以宣告一個ref變數(composition API)，然後把搭丟到vue檔案中的 <style></style>中，又或者透過inline的方式直接插入到html tag中，舉例如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">setup()&#123;</span><br><span class="line">    const mdSize = ref(&quot;100px&quot;);</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
           
         </div>
         
         <div style="text-align:center;">
-          <a class="post-readmore mdui-btn mdui-ripple mdui-btn-raised" href="/andy-tech-note/2023/01/14/deep-copy-Shallow-copy/">閱讀更多</a>
+          <a class="post-readmore mdui-btn mdui-ripple mdui-btn-raised" href="/andy-tech-note/2023/01/14/vue-ref-css-vbind/">閱讀更多</a>
         </div>
       </div>
     </article>

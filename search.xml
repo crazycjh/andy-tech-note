@@ -1,6 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>JS中的Async/Sync</title>
+    <url>/andy-tech-note/2023/01/01/Javascript-async-sync/</url>
+    <content><![CDATA[<h2 id="同步與非同步？"><a href="#同步與非同步？" class="headerlink" title="同步與非同步？"></a>同步與非同步？</h2><h4 id="什麼是同步"><a href="#什麼是同步" class="headerlink" title="什麼是同步"></a>什麼是同步</h4><p>一般來說JS都是以 <code>同步synchronous</code> 的方式執行程式碼，以圖中左邊來說，由上而下的時間軸順序執行程式碼，每次只做一件事，<br>以<code>同步</code>的字面上來說很像是同時做很多件事，但其實是一次只執行一件事。</p>
+<h4 id="什麼是非同步"><a href="#什麼是非同步" class="headerlink" title="什麼是非同步"></a>什麼是非同步</h4><p>什麼又是 <code>非同步</code> ，上面提到的一次只能一次做一件，以下圖來看的意思就是，某些時候會有些運算或是網路請求耗時會較長，但我們又不希望整個程式碼因為要等待某個function執行完畢才往下繼續執行，這時候就需要非同步。<br>想像一下，你在正瀏覽某個網頁，因為點擊某個按鈕，而這按鈕因為需要做些費時較長的功能，而因為這樣頁面就卡住無法瀏覽，這樣使用者體驗應該會很差吧？</p>
+<ul>
+<li>舉例：JS中有個function <code>setTimeout()</code> 是可以在這裡面寫一個callback function，在設定的倒數時間到之後執行它，那如果現在他是以同步的方式執行，這樣程式碼會卡在那邊等到時間到才能往下繼續執行，那如果是非同步，程式碼會繼續往下執行之外同時在背景還會繼續倒數直到時間到執行設定好的callback function。</li>
+</ul>
+<p><img src="https://www.freecodecamp.org/news/content/images/2021/09/freeCodeCamp-Cover-2.png" alt="async"></p>
+]]></content>
+      <categories>
+        <category>javascript</category>
+      </categories>
+      <tags>
+        <tag>async</tag>
+        <tag>Javascriptj</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>如何在vue上建立codemirror編輯器</title>
     <url>/andy-tech-note/2023/01/09/how-to-create-codemirror/</url>
     <content><![CDATA[<h3 id="什麼是codemirror"><a href="#什麼是codemirror" class="headerlink" title="什麼是codemirror"></a>什麼是codemirror</h3><p>codemirror是一個可以應用在web頁面的程式碼編輯器。</p>
@@ -38,6 +56,33 @@
       <tags>
         <tag>Javascript</tag>
         <tag>Vue</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>在JS中複製object-深拷貝/淺拷貝</title>
+    <url>/andy-tech-note/2023/01/14/deep-copy-Shallow-copy/</url>
+    <content><![CDATA[<h3 id="在JS複製object"><a href="#在JS複製object" class="headerlink" title="在JS複製object"></a>在JS複製object</h3><p>在寫code有時候會需要使用某些變數或是object，但是又不希望直接對其做操作，因為可能在其他地方會繼續使用原始的object，<br>這時候就會宣告一個新的變數去把原先的object assign過去。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">const source = &#123;name:&#x27;Andy&#x27;,coutry:&#x27;Taiwan&#x27;,phone:&#x27;0911-111-111&#x27;&#125;</span><br><span class="line">//原始資料</span><br><span class="line"></span><br><span class="line">const destination = source </span><br><span class="line">//新變數</span><br><span class="line">destination.name = &#x27;Rendy&#x27;;</span><br><span class="line"></span><br><span class="line">console.log(destination.name);  //結果: Rendy</span><br><span class="line">console.log(source.name);       //結果: Rendy</span><br></pre></td></tr></table></figure>
+
+<p>會發現，變更 <code>destination</code> 同時也變更 <code>source</code> 裡面的值。<br>這就要提到 call by value 以及 call by reference</p>
+<h3 id="call-by-value-x2F-call-by-object"><a href="#call-by-value-x2F-call-by-object" class="headerlink" title="call by value &#x2F; call by object"></a>call by value &#x2F; call by object</h3><h4 id="什麼是call-by-value"><a href="#什麼是call-by-value" class="headerlink" title="什麼是call by value?"></a>什麼是call by value?</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">let x =1;</span><br><span class="line">let y = x;</span><br><span class="line"></span><br><span class="line">console.log(y); // 結果:1</span><br><span class="line">y=10;</span><br><span class="line">console.log(y); //結果:10</span><br><span class="line">console.log(x); //結果:1</span><br></pre></td></tr></table></figure>
+<p>以一般變數assign來說，是以call by value，也就是說直接把 <code>x</code> 的值傳給 <code>y</code></p>
+<h4 id="什麼又是-call-by-reference"><a href="#什麼又是-call-by-reference" class="headerlink" title="什麼又是 call by reference?"></a>什麼又是 call by reference?</h4><p>在一開始的object assign方法就是 call by reference，意思就是說 <code>source</code> 這個變數在assign給 <code>destination</code> 時，他是以傳遞記憶體位址方式給<code>destination</code>，可以想像 <code>destination</code> 就是儲存一個記憶體位置，當程式要讀取資料時就會透過這個位置去存取這個記憶體位置實際儲存的值。</p>
+<p>所以這樣就可以很明確的瞭解為什麼改變object的值的時候，<code>source</code> <code>destination</code> 裡面的值會被同步更動，因為兩者都是指到同一個記憶體位置。</p>
+<h4 id="要怎麼做才能不更動-source-的值"><a href="#要怎麼做才能不更動-source-的值" class="headerlink" title="要怎麼做才能不更動 source 的值"></a>要怎麼做才能不更動 source 的值</h4><p>不更動的方式有兩種： <em>淺拷貝跟深拷貝</em></p>
+<h4 id="淺拷貝"><a href="#淺拷貝" class="headerlink" title="淺拷貝"></a>淺拷貝</h4><p>字面意思就是比較淺，<br>這時候就會使用Object.assign <a href="https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Global_Objects/Object/assign">MDN介紹</a><br>舉例：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//Object.assign()</span><br><span class="line">const source = &#123;name:&#x27;Andy&#x27;,coutry:&#x27;Taiwan&#x27;,phone:&#x27;0911-111-111&#x27;,detail:&#123;age:10, job:&#x27;photographer&#x27;&#125;&#125;</span><br><span class="line">//原始資料</span><br><span class="line"></span><br><span class="line">const destination = &#123;&#125; </span><br><span class="line">Object.assign(destination,source);  //把objec assign 給 destination</span><br><span class="line"></span><br><span class="line">destination.name=&#x27;rendy&#x27;;</span><br><span class="line">console.log(destination.name,source.name) //結果 Rendy Andy 互不影響</span><br><span class="line"></span><br><span class="line">destination.detail.age=100;</span><br><span class="line">console.log(destination.detail.age,source.detail.age) //結果: 100 100</span><br></pre></td></tr></table></figure>
+<p>在這裡會發現修改 <code>name</code> 時資料互不影響，但在修改detail.age時又互相影響了，這是因為使用的是淺拷貝，這個copy只有單純複製第一層的資料，第二層以下的都還是以call by reference，所以當你修改detail.age時兩邊同時都會被修改。</p>
+<h4 id="以深拷貝來解決淺拷貝的問題"><a href="#以深拷貝來解決淺拷貝的問題" class="headerlink" title="以深拷貝來解決淺拷貝的問題"></a>以深拷貝來解決淺拷貝的問題</h4><p>使用 JSON.parse(JSON.stringify())，用這個方法就可以把淺拷貝碰到裡面有多層的問題解決。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">const destination = JSON.parse(JSON.stringify(source));</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h4 id="JSON-stringify-amp-JSON-parse"><a href="#JSON-stringify-amp-JSON-parse" class="headerlink" title="JSON.stringify &amp; JSON.parse"></a>JSON.stringify &amp; JSON.parse</h4><p>以MDN解釋，透過這個function可以把js value轉換成JSON string。<br>而parse可以把JSON字串轉成js value，這樣一來一往就可以把js object深層的值給取出來，而不是取得他的reference</p>
+<p>相關參考<br><a href="https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Global_Objects/Object/assign">參考1</a><br><a href="https://jamie-life-coding.site/2021/10/javascript-copy-object/">參考2</a></p>
+]]></content>
+      <categories>
+        <category>Frontend</category>
+      </categories>
+      <tags>
+        <tag>Javascript</tag>
       </tags>
   </entry>
   <entry>
@@ -93,33 +138,6 @@
       </tags>
   </entry>
   <entry>
-    <title>在JS中複製object-深拷貝/淺拷貝</title>
-    <url>/andy-tech-note/2023/01/14/deep-copy-Shallow-copy/</url>
-    <content><![CDATA[<h3 id="在JS複製object"><a href="#在JS複製object" class="headerlink" title="在JS複製object"></a>在JS複製object</h3><p>在寫code有時候會需要使用某些變數或是object，但是又不希望直接對其做操作，因為可能在其他地方會繼續使用原始的object，<br>這時候就會宣告一個新的變數去把原先的object assign過去。</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">const source = &#123;name:&#x27;Andy&#x27;,coutry:&#x27;Taiwan&#x27;,phone:&#x27;0911-111-111&#x27;&#125;</span><br><span class="line">//原始資料</span><br><span class="line"></span><br><span class="line">const destination = source </span><br><span class="line">//新變數</span><br><span class="line">destination.name = &#x27;Rendy&#x27;;</span><br><span class="line"></span><br><span class="line">console.log(destination.name);  //結果: Rendy</span><br><span class="line">console.log(source.name);       //結果: Rendy</span><br></pre></td></tr></table></figure>
-
-<p>會發現，變更 <code>destination</code> 同時也變更 <code>source</code> 裡面的值。<br>這就要提到 call by value 以及 call by reference</p>
-<h3 id="call-by-value-x2F-call-by-object"><a href="#call-by-value-x2F-call-by-object" class="headerlink" title="call by value &#x2F; call by object"></a>call by value &#x2F; call by object</h3><h4 id="什麼是call-by-value"><a href="#什麼是call-by-value" class="headerlink" title="什麼是call by value?"></a>什麼是call by value?</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">let x =1;</span><br><span class="line">let y = x;</span><br><span class="line"></span><br><span class="line">console.log(y); // 結果:1</span><br><span class="line">y=10;</span><br><span class="line">console.log(y); //結果:10</span><br><span class="line">console.log(x); //結果:1</span><br></pre></td></tr></table></figure>
-<p>以一般變數assign來說，是以call by value，也就是說直接把 <code>x</code> 的值傳給 <code>y</code></p>
-<h4 id="什麼又是-call-by-reference"><a href="#什麼又是-call-by-reference" class="headerlink" title="什麼又是 call by reference?"></a>什麼又是 call by reference?</h4><p>在一開始的object assign方法就是 call by reference，意思就是說 <code>source</code> 這個變數在assign給 <code>destination</code> 時，他是以傳遞記憶體位址方式給<code>destination</code>，可以想像 <code>destination</code> 就是儲存一個記憶體位置，當程式要讀取資料時就會透過這個位置去存取這個記憶體位置實際儲存的值。</p>
-<p>所以這樣就可以很明確的瞭解為什麼改變object的值的時候，<code>source</code> <code>destination</code> 裡面的值會被同步更動，因為兩者都是指到同一個記憶體位置。</p>
-<h4 id="要怎麼做才能不更動-source-的值"><a href="#要怎麼做才能不更動-source-的值" class="headerlink" title="要怎麼做才能不更動 source 的值"></a>要怎麼做才能不更動 source 的值</h4><p>不更動的方式有兩種： <em>淺拷貝跟深拷貝</em></p>
-<h4 id="淺拷貝"><a href="#淺拷貝" class="headerlink" title="淺拷貝"></a>淺拷貝</h4><p>字面意思就是比較淺，<br>這時候就會使用Object.assign <a href="https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Global_Objects/Object/assign">MDN介紹</a><br>舉例：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//Object.assign()</span><br><span class="line">const source = &#123;name:&#x27;Andy&#x27;,coutry:&#x27;Taiwan&#x27;,phone:&#x27;0911-111-111&#x27;,detail:&#123;age:10, job:&#x27;photographer&#x27;&#125;&#125;</span><br><span class="line">//原始資料</span><br><span class="line"></span><br><span class="line">const destination = &#123;&#125; </span><br><span class="line">Object.assign(destination,source);  //把objec assign 給 destination</span><br><span class="line"></span><br><span class="line">destination.name=&#x27;rendy&#x27;;</span><br><span class="line">console.log(destination.name,source.name) //結果 Rendy Andy 互不影響</span><br><span class="line"></span><br><span class="line">destination.detail.age=100;</span><br><span class="line">console.log(destination.detail.age,source.detail.age) //結果: 100 100</span><br></pre></td></tr></table></figure>
-<p>在這裡會發現修改 <code>name</code> 時資料互不影響，但在修改detail.age時又互相影響了，這是因為使用的是淺拷貝，這個copy只有單純複製第一層的資料，第二層以下的都還是以call by reference，所以當你修改detail.age時兩邊同時都會被修改。</p>
-<h4 id="以深拷貝來解決淺拷貝的問題"><a href="#以深拷貝來解決淺拷貝的問題" class="headerlink" title="以深拷貝來解決淺拷貝的問題"></a>以深拷貝來解決淺拷貝的問題</h4><p>使用 JSON.parse(JSON.stringify())，用這個方法就可以把淺拷貝碰到裡面有多層的問題解決。</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">const destination = JSON.parse(JSON.stringify(source));</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<h4 id="JSON-stringify-amp-JSON-parse"><a href="#JSON-stringify-amp-JSON-parse" class="headerlink" title="JSON.stringify &amp; JSON.parse"></a>JSON.stringify &amp; JSON.parse</h4><p>以MDN解釋，透過這個function可以把js value轉換成JSON string。<br>而parse可以把JSON字串轉成js value，這樣一來一往就可以把js object深層的值給取出來，而不是取得他的reference</p>
-<p>相關參考<br><a href="https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Global_Objects/Object/assign">參考1</a><br><a href="https://jamie-life-coding.site/2021/10/javascript-copy-object/">參考2</a></p>
-]]></content>
-      <categories>
-        <category>Frontend</category>
-      </categories>
-      <tags>
-        <tag>Javascript</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>codemirror v5 與 v6的差異</title>
     <url>/andy-tech-note/2023/01/17/codemirror-v5-v6-diff/</url>
     <content><![CDATA[<h3 id="Codemirror-v5"><a href="#Codemirror-v5" class="headerlink" title="Codemirror v5"></a>Codemirror v5</h3><p>版本5 -&gt; 6的資料夾結構變動很大</p>
@@ -134,24 +152,6 @@
       </categories>
       <tags>
         <tag>codemirror</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>JS中的Async/Sync</title>
-    <url>/andy-tech-note/2023/01/01/Javascript-async-sync/</url>
-    <content><![CDATA[<h2 id="同步與非同步？"><a href="#同步與非同步？" class="headerlink" title="同步與非同步？"></a>同步與非同步？</h2><h4 id="什麼是同步"><a href="#什麼是同步" class="headerlink" title="什麼是同步"></a>什麼是同步</h4><p>一般來說JS都是以 <code>同步synchronous</code> 的方式執行程式碼，以圖中左邊來說，由上而下的時間軸順序執行程式碼，每次只做一件事，<br>以<code>同步</code>的字面上來說很像是同時做很多件事，但其實是一次只執行一件事。</p>
-<h4 id="什麼是非同步"><a href="#什麼是非同步" class="headerlink" title="什麼是非同步"></a>什麼是非同步</h4><p>什麼又是 <code>非同步</code> ，上面提到的一次只能一次做一件，以下圖來看的意思就是，某些時候會有些運算或是網路請求耗時會較長，但我們又不希望整個程式碼因為要等待某個function執行完畢才往下繼續執行，這時候就需要非同步。<br>想像一下，你在正瀏覽某個網頁，因為點擊某個按鈕，而這按鈕因為需要做些費時較長的功能，而因為這樣頁面就卡住無法瀏覽，這樣使用者體驗應該會很差吧？</p>
-<ul>
-<li>舉例：JS中有個function <code>setTimeout()</code> 是可以在這裡面寫一個callback function，在設定的倒數時間到之後執行它，那如果現在他是以同步的方式執行，這樣程式碼會卡在那邊等到時間到才能往下繼續執行，那如果是非同步，程式碼會繼續往下執行之外同時在背景還會繼續倒數直到時間到執行設定好的callback function。</li>
-</ul>
-<p><img src="https://www.freecodecamp.org/news/content/images/2021/09/freeCodeCamp-Cover-2.png" alt="async"></p>
-]]></content>
-      <categories>
-        <category>javascript</category>
-      </categories>
-      <tags>
-        <tag>async</tag>
-        <tag>Javascriptj</tag>
       </tags>
   </entry>
   <entry>
@@ -175,6 +175,20 @@
       </categories>
       <tags>
         <tag>Wordpress</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>chatGPT-想法</title>
+    <url>/andy-tech-note/2023/02/01/chatGPT-note/</url>
+    <content><![CDATA[<h3 id="關於chatGPT想法"><a href="#關於chatGPT想法" class="headerlink" title="關於chatGPT想法"></a>關於chatGPT想法</h3><p>網路上有很多人認為chatGPT會造成很多人依賴chatGPT取得資訊，讓人變得更懶。<br>不過我倒不這麼認為，先前在免費時使用過chatGPT，透過他詢問一下關於寫side project的問題，<br>在這過程成會發現如果你對於你的問題沒有具備相應的背景知識時，AI回答給你的答案你根本無從判斷是否有誤，曾經得到的答案發現大方向沒錯，但是小細節是有瑕疵的。</p>
+<p>所以個人認為他可以是輔助人類而非取代人類，至少在寫程式的部分，碰到問題時可以詢問他，有時候他會告訴你某個大方向，而這個方向可能是你在思考時盲點，可以再透過這個方向去找到你需要的答案，這樣可以避免在某個死胡同打轉。</p>
+<h3 id="收費"><a href="#收費" class="headerlink" title="收費"></a>收費</h3><p>2023年2月開始需要收費囉，一個月20美金，以小弟在線上詢問一些問題，而這些問題可能在google可以輕鬆找到，但是有這些問題是有前後關聯的，在google上並不是這麼容易精確的搜尋到答案，chatGPT反而可以接續著前一個問題回答你下一個問題，讓你的思緒更加完整。<br>以一個軟體工程師來說20美元一個月完全值得投資，問幾個問題可以節省更多時間去做別的事，畢竟軟體工程師就是極致懶，可以讓程式完成的事就不想手動完成，當然拉，在這問問題過程中還是要有學到東西才比較好ＸＤ。</p>
+]]></content>
+      <categories>
+        <category>軟體雜記</category>
+      </categories>
+      <tags>
+        <tag>chatGPT</tag>
       </tags>
   </entry>
   <entry>
@@ -223,44 +237,6 @@
       </tags>
   </entry>
   <entry>
-    <title>chatGPT-想法</title>
-    <url>/andy-tech-note/2023/02/01/chatGPT-note/</url>
-    <content><![CDATA[<h3 id="關於chatGPT想法"><a href="#關於chatGPT想法" class="headerlink" title="關於chatGPT想法"></a>關於chatGPT想法</h3><p>網路上有很多人認為chatGPT會造成很多人依賴chatGPT取得資訊，讓人變得更懶。<br>不過我倒不這麼認為，先前在免費時使用過chatGPT，透過他詢問一下關於寫side project的問題，<br>在這過程成會發現如果你對於你的問題沒有具備相應的背景知識時，AI回答給你的答案你根本無從判斷是否有誤，曾經得到的答案發現大方向沒錯，但是小細節是有瑕疵的。</p>
-<p>所以個人認為他可以是輔助人類而非取代人類，至少在寫程式的部分，碰到問題時可以詢問他，有時候他會告訴你某個大方向，而這個方向可能是你在思考時盲點，可以再透過這個方向去找到你需要的答案，這樣可以避免在某個死胡同打轉。</p>
-<h3 id="收費"><a href="#收費" class="headerlink" title="收費"></a>收費</h3><p>2023年2月開始需要收費囉，一個月20美金，以小弟在線上詢問一些問題，而這些問題可能在google可以輕鬆找到，但是有這些問題是有前後關聯的，在google上並不是這麼容易精確的搜尋到答案，chatGPT反而可以接續著前一個問題回答你下一個問題，讓你的思緒更加完整。<br>以一個軟體工程師來說20美元一個月完全值得投資，問幾個問題可以節省更多時間去做別的事，畢竟軟體工程師就是極致懶，可以讓程式完成的事就不想手動完成，當然拉，在這問問題過程中還是要有學到東西才比較好ＸＤ。</p>
-]]></content>
-      <categories>
-        <category>軟體雜記</category>
-      </categories>
-      <tags>
-        <tag>chatGPT</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>如何使用Google的firebase裡面的驗證功能(login/logout)</title>
-    <url>/andy-tech-note/2023/02/16/firebase-auth/</url>
-    <content><![CDATA[<h4 id="Google-Firebase"><a href="#Google-Firebase" class="headerlink" title="Google Firebase"></a>Google Firebase</h4><p>Google的Firebase是個前端工程師很好用的工具，他可以讓前端工程師省去後端資料庫的建立而可以專注在前端的開發，這裡面有身份驗證、realtime資料庫等好用的功能，只要是拿來做開發，而流量不大的話，通常你都不會達到需要付費流量。</p>
-<h4 id="Firebase-auth-以Email-x2F-password-為例"><a href="#Firebase-auth-以Email-x2F-password-為例" class="headerlink" title="Firebase auth 以Email&#x2F;password 為例"></a>Firebase auth 以Email&#x2F;password 為例</h4><p>可以先到firebase官網看一下的 <a href="https://firebase.google.com/docs/auth/web/start">Authentication</a> 頁面，<code>Get start </code>中有提供範例code</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">import &#123; initializeApp &#125; from &quot;firebase/app&quot;;</span><br><span class="line">import &#123; getAuth &#125; from &quot;firebase/auth&quot;;</span><br><span class="line"></span><br><span class="line">// TODO: Replace the following with your app&#x27;s Firebase project configuration</span><br><span class="line">// See: https://firebase.google.com/docs/web/learn-more#config-object</span><br><span class="line">const firebaseConfig = &#123;</span><br><span class="line">  // ...這裡面呢放上的東西可以參考上面那行網址，</span><br><span class="line">  簡單來說就是你在firebase(https://firebase.google.com/)</span><br><span class="line">  建立新專案時並且建立後會出現的一些資料，按照這些資料填入即可</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">// Initialize Firebase</span><br><span class="line">const app = initializeApp(firebaseConfig);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">// Initialize Firebase Authentication and get a reference to the service</span><br><span class="line">const auth = getAuth(app);</span><br><span class="line">//</span><br></pre></td></tr></table></figure>
-<p>要如何找到firebaseConfig裡面的資料？點到下圖的這個地方，右邊拉到底，新增一個<code>網頁應用程式</code>後就會出現相對應的api key。<br><img src="/andy-tech-note/2023/02/16/firebase-auth/SCR-20230216-t2w.png"><br>而後記得在左側的<code>建構</code>建立一個authication服務，然後在右側sign-in method去新增供應商，選擇電子郵件&#x2F;密碼後在左邊users設定你想要登入的帳號密碼(這是比較陽春的方式，你可以在網路上找一下透過網頁要求建立帳號密碼)<br><img src="/andy-tech-note/2023/02/16/firebase-auth/SCR-20230216-t7l.png"></p>
-<p>而剛剛上面的code，只是把firebase先初始化以及把auth資訊先準備好，接下來要呼叫登入的API。<br><a href="https://firebase.google.com/docs/auth/web/password-auth">email&#x2F;password登入</a></p>
-<h5 id="登入"><a href="#登入" class="headerlink" title="登入"></a>登入</h5><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">import &#123; getAuth, signInWithEmailAndPassword &#125; from &quot;firebase/auth&quot;;</span><br><span class="line"></span><br><span class="line">const auth = getAuth();</span><br><span class="line">signInWithEmailAndPassword(auth, email, password)</span><br><span class="line">  .then((userCredential) =&gt; &#123;</span><br><span class="line">    // Signed in </span><br><span class="line">    const user = userCredential.user;</span><br><span class="line">    // ...</span><br><span class="line">  &#125;)</span><br><span class="line">  .catch((error) =&gt; &#123;</span><br><span class="line">    const errorCode = error.code;</span><br><span class="line">    const errorMessage = error.message;</span><br><span class="line">  &#125;);</span><br></pre></td></tr></table></figure>
-
-<p>如果有需要創建帳號的code，在同個網頁也有</p>
-<h5 id="創建帳號"><a href="#創建帳號" class="headerlink" title="創建帳號"></a>創建帳號</h5><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">import &#123; getAuth, createUserWithEmailAndPassword &#125; from &quot;firebase/auth&quot;;</span><br><span class="line"></span><br><span class="line">const auth = getAuth();</span><br><span class="line">createUserWithEmailAndPassword(auth, email, password)</span><br><span class="line">  .then((userCredential) =&gt; &#123;</span><br><span class="line">    // Signed in </span><br><span class="line">    const user = userCredential.user;</span><br><span class="line">    // ...</span><br><span class="line">  &#125;)</span><br><span class="line">  .catch((error) =&gt; &#123;</span><br><span class="line">    const errorCode = error.code;</span><br><span class="line">    const errorMessage = error.message;</span><br><span class="line">    // ..</span><br><span class="line">  &#125;);</span><br></pre></td></tr></table></figure>
-
-<h5 id="登出"><a href="#登出" class="headerlink" title="登出"></a>登出</h5><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">import &#123; getAuth, signOut &#125; from &quot;firebase/auth&quot;;</span><br><span class="line"></span><br><span class="line">const auth = getAuth();</span><br><span class="line">signOut(auth).then(() =&gt; &#123;</span><br><span class="line">  // Sign-out successful.</span><br><span class="line">&#125;).catch((error) =&gt; &#123;</span><br><span class="line">  // An error happened.</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-
-<h4 id="登入後"><a href="#登入後" class="headerlink" title="登入後"></a>登入後</h4><p>執行完登入後，要怎麼知道是不是真正登入？<br>可以點開瀏覽器的開發者工具裡面的儲存空間如下，如果再相對應的位置有找到寫有你之前填入的API Key就代表登入成功，而且他還幫你存在暫存裡面。<br><img src="/andy-tech-note/2023/02/16/firebase-auth/SCR-20230216-to3.png"></p>
-]]></content>
-      <categories>
-        <category>Frontend</category>
-      </categories>
-      <tags>
-        <tag>Firebase</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Javascript中的promise - 處理異步</title>
     <url>/andy-tech-note/2023/03/23/promise-async/</url>
     <content><![CDATA[<h4 id="promise是幹嘛的？"><a href="#promise是幹嘛的？" class="headerlink" title="promise是幹嘛的？"></a>promise是幹嘛的？</h4><p>promise這個方法是ES6時推出的，這個主要可以用來解決非同步中XMLHttpRequest的問題<br>promise不需要監測Event(也就是js中的addEventListener())，而且會在資料回傳時執行callback function，<br>以及處理在做非同步請求時使用callback時所產生的callback hell。<br>之所以會產生callback hell是因為，當多個非同步請求有前後相關性時就會發生，所謂的前後相關性就是<code>C request</code> 需要等到<br><code>B request</code>的結果才能發出請求，B又要等到<code>A request</code>的結果才能發出，這樣就會變成巢狀的結構，會變得非常難以閱讀。</p>
@@ -286,6 +262,30 @@
         <tag>Javascript</tag>
         <tag>async</tag>
         <tag>promise</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>如何使用Google的firebase裡面的驗證功能(login/logout)</title>
+    <url>/andy-tech-note/2023/02/16/firebase-auth/</url>
+    <content><![CDATA[<h4 id="Google-Firebase"><a href="#Google-Firebase" class="headerlink" title="Google Firebase"></a>Google Firebase</h4><p>Google的Firebase是個前端工程師很好用的工具，他可以讓前端工程師省去後端資料庫的建立而可以專注在前端的開發，這裡面有身份驗證、realtime資料庫等好用的功能，只要是拿來做開發，而流量不大的話，通常你都不會達到需要付費流量。</p>
+<h4 id="Firebase-auth-以Email-x2F-password-為例"><a href="#Firebase-auth-以Email-x2F-password-為例" class="headerlink" title="Firebase auth 以Email&#x2F;password 為例"></a>Firebase auth 以Email&#x2F;password 為例</h4><p>可以先到firebase官網看一下的 <a href="https://firebase.google.com/docs/auth/web/start">Authentication</a> 頁面，<code>Get start </code>中有提供範例code</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">import &#123; initializeApp &#125; from &quot;firebase/app&quot;;</span><br><span class="line">import &#123; getAuth &#125; from &quot;firebase/auth&quot;;</span><br><span class="line"></span><br><span class="line">// TODO: Replace the following with your app&#x27;s Firebase project configuration</span><br><span class="line">// See: https://firebase.google.com/docs/web/learn-more#config-object</span><br><span class="line">const firebaseConfig = &#123;</span><br><span class="line">  // ...這裡面呢放上的東西可以參考上面那行網址，</span><br><span class="line">  簡單來說就是你在firebase(https://firebase.google.com/)</span><br><span class="line">  建立新專案時並且建立後會出現的一些資料，按照這些資料填入即可</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">// Initialize Firebase</span><br><span class="line">const app = initializeApp(firebaseConfig);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">// Initialize Firebase Authentication and get a reference to the service</span><br><span class="line">const auth = getAuth(app);</span><br><span class="line">//</span><br></pre></td></tr></table></figure>
+<p>要如何找到firebaseConfig裡面的資料？點到下圖的這個地方，右邊拉到底，新增一個<code>網頁應用程式</code>後就會出現相對應的api key。<br><img src="/andy-tech-note/2023/02/16/firebase-auth/SCR-20230216-t2w.png"><br>而後記得在左側的<code>建構</code>建立一個authication服務，然後在右側sign-in method去新增供應商，選擇電子郵件&#x2F;密碼後在左邊users設定你想要登入的帳號密碼(這是比較陽春的方式，你可以在網路上找一下透過網頁要求建立帳號密碼)<br><img src="/andy-tech-note/2023/02/16/firebase-auth/SCR-20230216-t7l.png"></p>
+<p>而剛剛上面的code，只是把firebase先初始化以及把auth資訊先準備好，接下來要呼叫登入的API。<br><a href="https://firebase.google.com/docs/auth/web/password-auth">email&#x2F;password登入</a></p>
+<h5 id="登入"><a href="#登入" class="headerlink" title="登入"></a>登入</h5><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">import &#123; getAuth, signInWithEmailAndPassword &#125; from &quot;firebase/auth&quot;;</span><br><span class="line"></span><br><span class="line">const auth = getAuth();</span><br><span class="line">signInWithEmailAndPassword(auth, email, password)</span><br><span class="line">  .then((userCredential) =&gt; &#123;</span><br><span class="line">    // Signed in </span><br><span class="line">    const user = userCredential.user;</span><br><span class="line">    // ...</span><br><span class="line">  &#125;)</span><br><span class="line">  .catch((error) =&gt; &#123;</span><br><span class="line">    const errorCode = error.code;</span><br><span class="line">    const errorMessage = error.message;</span><br><span class="line">  &#125;);</span><br></pre></td></tr></table></figure>
+
+<p>如果有需要創建帳號的code，在同個網頁也有</p>
+<h5 id="創建帳號"><a href="#創建帳號" class="headerlink" title="創建帳號"></a>創建帳號</h5><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">import &#123; getAuth, createUserWithEmailAndPassword &#125; from &quot;firebase/auth&quot;;</span><br><span class="line"></span><br><span class="line">const auth = getAuth();</span><br><span class="line">createUserWithEmailAndPassword(auth, email, password)</span><br><span class="line">  .then((userCredential) =&gt; &#123;</span><br><span class="line">    // Signed in </span><br><span class="line">    const user = userCredential.user;</span><br><span class="line">    // ...</span><br><span class="line">  &#125;)</span><br><span class="line">  .catch((error) =&gt; &#123;</span><br><span class="line">    const errorCode = error.code;</span><br><span class="line">    const errorMessage = error.message;</span><br><span class="line">    // ..</span><br><span class="line">  &#125;);</span><br></pre></td></tr></table></figure>
+
+<h5 id="登出"><a href="#登出" class="headerlink" title="登出"></a>登出</h5><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">import &#123; getAuth, signOut &#125; from &quot;firebase/auth&quot;;</span><br><span class="line"></span><br><span class="line">const auth = getAuth();</span><br><span class="line">signOut(auth).then(() =&gt; &#123;</span><br><span class="line">  // Sign-out successful.</span><br><span class="line">&#125;).catch((error) =&gt; &#123;</span><br><span class="line">  // An error happened.</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<h4 id="登入後"><a href="#登入後" class="headerlink" title="登入後"></a>登入後</h4><p>執行完登入後，要怎麼知道是不是真正登入？<br>可以點開瀏覽器的開發者工具裡面的儲存空間如下，如果再相對應的位置有找到寫有你之前填入的API Key就代表登入成功，而且他還幫你存在暫存裡面。<br><img src="/andy-tech-note/2023/02/16/firebase-auth/SCR-20230216-to3.png"></p>
+]]></content>
+      <categories>
+        <category>Frontend</category>
+      </categories>
+      <tags>
+        <tag>Firebase</tag>
       </tags>
   </entry>
   <entry>
@@ -403,6 +403,39 @@
       </tags>
   </entry>
   <entry>
+    <title>google_oauth2_flow</title>
+    <url>/andy-tech-note/2024/01/27/google-oauth2-flow/</url>
+    <content><![CDATA[<h2 id="google-oauth2-的流程"><a href="#google-oauth2-的流程" class="headerlink" title="google oauth2 的流程"></a>google oauth2 的流程</h2><h4 id="一般人視角"><a href="#一般人視角" class="headerlink" title="一般人視角"></a>一般人視角</h4><p>以一般人視角來思考oauth2的驗證的流程，在一個網頁點擊登入頁面，選擇google登入，<br>會跳出一個是否要同意網站取用你的google資料用來登入，點擊同意後，就會回到該網站的頁面(會員中心、首頁…等等)</p>
+<h4 id="開發者的流程"><a href="#開發者的流程" class="headerlink" title="開發者的流程"></a>開發者的流程</h4><p>前端要有一個按鈕，在點擊後需要被導頁到google的授權頁面，當同意授權後被導回到網站。<br>在這裡會有前端跟後端的身份，</p>
+<ol>
+<li>當前端點擊google登入的按鈕時會發送一個API query到後端，</li>
+<li>後端依照該網站設定的API憑證的<code>Client ID、Client secret、redirectURL</code><br>建立一個導頁的URL(包含該網站要存取哪些資料的設定)，傳送給前端</li>
+<li>當前端收到該URL就會跳到該網址，也就是我們常看到的授權同意的頁面，當使用者點擊同意後，就會拿依照前面提到的 <code>redirectURL</code>去做重新導向</li>
+<li>這個重新導向會在URL的參數中帶上授權碼(是authorization code，不是Access token)，而這個導向通常會是導到後端。</li>
+<li>後端拿到授權碼後，就可以向google索取該使用者的<code>Access token</code>(這是有過期時效的)，拿到後就可以取得該使用者的資料</li>
+<li>拿到使用者資料後就可以在後端建立使用者的帳號並存入資料庫，若是已經存在就會取得相對應的資料並回傳給前段並且重新導向把前端瀏覽器導向到網站的會員中心或是首頁…等等<br><img src="https://developers.google.com/static/identity/protocols/oauth2/images/flows/authorization-code.png" alt="google 的流程圖"></li>
+</ol>
+<h4 id="要做哪些設定？"><a href="#要做哪些設定？" class="headerlink" title="要做哪些設定？"></a>要做哪些設定？</h4><ul>
+<li><a href="https://console.cloud.google.com/apis">google Console API</a> 可以去這裡設定Oauth同意畫面以及憑證，設定完之後就可以看到 Client ID、Client secret</li>
+<li>在 <code>已授權的重新導向 URI</code> 要設定第三步的<code>redirectURL</code>，如果在此沒有設定，你在code裡面寫該URL都會被阻擋，被Google是為非法的導向，所以這裡會是後端的路由，是用來處理接收 authorization code 的，收到後可以去取得 <code>Access code</code> 進一步取得使用者資料，然後才會是回傳一個網站的重新導向，把使用者導向到該去的網頁 </li>
+<li><code>Scopes</code> 是用來告知 google 這個網站要取得使用者什麼資料，這也會在同意畫面讓使用者看到，例如取用使用者個人資料、google drive資料等等，這個是在上述的步驟二設定 <a href="https://developers.google.com/identity/protocols/oauth2/scopes">參考資料</a><br>如果只是要取得Profile 可以設定這兩個就好 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">https://www.googleapis.com/auth/userinfo.email	</span><br><span class="line">https://www.googleapis.com/auth/userinfo.profile</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h5 id="程式碼"><a href="#程式碼" class="headerlink" title="程式碼"></a><strong>程式碼</strong></h5><p><code>npm</code> &amp; <code>github</code> 上都有google的lib可以看並且使用，如果不知道ChatGPT也可以告訴你怎麼寫，但我覺得最主要的還是要搞懂整個流程，如果不懂流程真的會一頭霧水，不知道到底該拿什麼資料()。<br><a href="https://developers.google.com/identity/protocols/oauth2/web-server">官方Server端的教學</a><br><code>node.js API</code> <a href="https://github.com/googleapis/google-auth-library-nodejs">google-auth-library-nodejs</a></p>
+<h2 id="取得-Access-Token-後的Google-API"><a href="#取得-Access-Token-後的Google-API" class="headerlink" title="取得 Access Token 後的Google API"></a>取得 Access Token 後的Google API</h2><p>當取得Access Token後是另一個重頭戲，也就是要存取google相關服務，以版主個人來說是希望取得使用者的profile用來註冊，讓使用者不必再次填寫資料。</p>
+<p><a href="https://developers.google.com/apis-explorer">Google API</a> 可以看一下有哪些API可以用，如果希望獲取使用者資料是使用 <code>people API</code>，點進去後可以看到 API 的 Endpoint要怎麼寫，但目前有Google API Lib可以使用。</p>
+<h5 id="Node-js-Google-API"><a href="#Node-js-Google-API" class="headerlink" title="Node.js Google API"></a>Node.js Google API</h5><p><a href="https://github.com/googleapis/google-api-nodejs-client">Node.js Google API Github</a></p>
+<p>取得使用者資料</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">const people = google.people(&#123; version: &#x27;v1&#x27;, auth: oAuth2Client &#125;);</span><br><span class="line">// 取得user profile</span><br><span class="line">//參數要怎麼寫可以參考上面的 Google API的Endpoint，還是看不懂，可以請ChatGPT給你一個範例</span><br><span class="line">const me = await people.people.get(&#123;</span><br><span class="line">    resourceName: &#x27;people/me&#x27;,</span><br><span class="line">    personFields: &#x27;emailAddresses,names,photos&#x27;,</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">console.log(me.data);</span><br></pre></td></tr></table></figure>
+<p>如果要存取people，server會叫你去開啟這個api服務，如果沒開啟會拒絕你的請求，<br>只要去這裡 <code>console.cloud.google</code> <a href="https://console.cloud.google.com/apis">google Console API</a>的<code>已啟用的API與服務</code> 去啟動people api 服務，才能順利取得使用者資料</p>
+]]></content>
+      <categories>
+        <category>Frontend</category>
+      </categories>
+      <tags>
+        <tag>auth</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>git local 及 remote repo 不同步怎麼處理</title>
     <url>/andy-tech-note/2024/01/28/git-remote-repo-%E4%B8%8D%E5%90%8C%E6%AD%A5/</url>
     <content><![CDATA[<h3 id="Local的commit-與-Remote-的commit-沒有同步"><a href="#Local的commit-與-Remote-的commit-沒有同步" class="headerlink" title="Local的commit 與 Remote 的commit 沒有同步"></a>Local的commit 與 Remote 的commit 沒有同步</h3><p><img src="/andy-tech-note/2024/01/28/git-remote-repo-%E4%B8%8D%E5%90%8C%E6%AD%A5/git.png" alt="git"><br>如圖中所示，會發現 <code>github remote 的 main</code> 跟 <code>local 的 main</code> 分岔了。<br>這是因為在先前在B電腦做了一次 commit &amp; push，也就是圖中岔出去的那個 Remote main，<br>然而在A電腦的commit還停留在B電腦commit的前一個版本，但是我沒發現就繼續開發下去，<br>一路開發下去，直到要push到遠端時才被告知遠端有code沒有同步到。</p>
@@ -436,36 +469,30 @@
       </tags>
   </entry>
   <entry>
-    <title>google_oauth2_flow</title>
-    <url>/andy-tech-note/2024/01/27/google-oauth2-flow/</url>
-    <content><![CDATA[<h2 id="google-oauth2-的流程"><a href="#google-oauth2-的流程" class="headerlink" title="google oauth2 的流程"></a>google oauth2 的流程</h2><h4 id="一般人視角"><a href="#一般人視角" class="headerlink" title="一般人視角"></a>一般人視角</h4><p>以一般人視角來思考oauth2的驗證的流程，在一個網頁點擊登入頁面，選擇google登入，<br>會跳出一個是否要同意網站取用你的google資料用來登入，點擊同意後，就會回到該網站的頁面(會員中心、首頁…等等)</p>
-<h4 id="開發者的流程"><a href="#開發者的流程" class="headerlink" title="開發者的流程"></a>開發者的流程</h4><p>前端要有一個按鈕，在點擊後需要被導頁到google的授權頁面，當同意授權後被導回到網站。<br>在這裡會有前端跟後端的身份，</p>
-<ol>
-<li>當前端點擊google登入的按鈕時會發送一個API query到後端，</li>
-<li>後端依照該網站設定的API憑證的<code>Client ID、Client secret、redirectURL</code><br>建立一個導頁的URL(包含該網站要存取哪些資料的設定)，傳送給前端</li>
-<li>當前端收到該URL就會跳到該網址，也就是我們常看到的授權同意的頁面，當使用者點擊同意後，就會拿依照前面提到的 <code>redirectURL</code>去做重新導向</li>
-<li>這個重新導向會在URL的參數中帶上授權碼(是authorization code，不是Access token)，而這個導向通常會是導到後端。</li>
-<li>後端拿到授權碼後，就可以向google索取該使用者的<code>Access token</code>(這是有過期時效的)，拿到後就可以取得該使用者的資料</li>
-<li>拿到使用者資料後就可以在後端建立使用者的帳號並存入資料庫，若是已經存在就會取得相對應的資料並回傳給前段並且重新導向把前端瀏覽器導向到網站的會員中心或是首頁…等等<br><img src="https://developers.google.com/static/identity/protocols/oauth2/images/flows/authorization-code.png" alt="google 的流程圖"></li>
-</ol>
-<h4 id="要做哪些設定？"><a href="#要做哪些設定？" class="headerlink" title="要做哪些設定？"></a>要做哪些設定？</h4><ul>
-<li><a href="https://console.cloud.google.com/apis">google Console API</a> 可以去這裡設定Oauth同意畫面以及憑證，設定完之後就可以看到 Client ID、Client secret</li>
-<li>在 <code>已授權的重新導向 URI</code> 要設定第三步的<code>redirectURL</code>，如果在此沒有設定，你在code裡面寫該URL都會被阻擋，被Google是為非法的導向，所以這裡會是後端的路由，是用來處理接收 authorization code 的，收到後可以去取得 <code>Access code</code> 進一步取得使用者資料，然後才會是回傳一個網站的重新導向，把使用者導向到該去的網頁 </li>
-<li><code>Scopes</code> 是用來告知 google 這個網站要取得使用者什麼資料，這也會在同意畫面讓使用者看到，例如取用使用者個人資料、google drive資料等等，這個是在上述的步驟二設定 <a href="https://developers.google.com/identity/protocols/oauth2/scopes">參考資料</a><br>如果只是要取得Profile 可以設定這兩個就好 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">https://www.googleapis.com/auth/userinfo.email	</span><br><span class="line">https://www.googleapis.com/auth/userinfo.profile</span><br></pre></td></tr></table></figure></li>
-</ul>
-<h5 id="程式碼"><a href="#程式碼" class="headerlink" title="程式碼"></a><strong>程式碼</strong></h5><p><code>npm</code> &amp; <code>github</code> 上都有google的lib可以看並且使用，如果不知道ChatGPT也可以告訴你怎麼寫，但我覺得最主要的還是要搞懂整個流程，如果不懂流程真的會一頭霧水，不知道到底該拿什麼資料()。<br><a href="https://developers.google.com/identity/protocols/oauth2/web-server">官方Server端的教學</a><br><code>node.js API</code> <a href="https://github.com/googleapis/google-auth-library-nodejs">google-auth-library-nodejs</a></p>
-<h2 id="取得-Access-Token-後的Google-API"><a href="#取得-Access-Token-後的Google-API" class="headerlink" title="取得 Access Token 後的Google API"></a>取得 Access Token 後的Google API</h2><p>當取得Access Token後是另一個重頭戲，也就是要存取google相關服務，以版主個人來說是希望取得使用者的profile用來註冊，讓使用者不必再次填寫資料。</p>
-<p><a href="https://developers.google.com/apis-explorer">Google API</a> 可以看一下有哪些API可以用，如果希望獲取使用者資料是使用 <code>people API</code>，點進去後可以看到 API 的 Endpoint要怎麼寫，但目前有Google API Lib可以使用。</p>
-<h5 id="Node-js-Google-API"><a href="#Node-js-Google-API" class="headerlink" title="Node.js Google API"></a>Node.js Google API</h5><p><a href="https://github.com/googleapis/google-api-nodejs-client">Node.js Google API Github</a></p>
-<p>取得使用者資料</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">const people = google.people(&#123; version: &#x27;v1&#x27;, auth: oAuth2Client &#125;);</span><br><span class="line">// 取得user profile</span><br><span class="line">//參數要怎麼寫可以參考上面的 Google API的Endpoint，還是看不懂，可以請ChatGPT給你一個範例</span><br><span class="line">const me = await people.people.get(&#123;</span><br><span class="line">    resourceName: &#x27;people/me&#x27;,</span><br><span class="line">    personFields: &#x27;emailAddresses,names,photos&#x27;,</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">console.log(me.data);</span><br></pre></td></tr></table></figure>
-<p>如果要存取people，server會叫你去開啟這個api服務，如果沒開啟會拒絕你的請求，<br>只要去這裡 <code>console.cloud.google</code> <a href="https://console.cloud.google.com/apis">google Console API</a>的<code>已啟用的API與服務</code> 去啟動people api 服務，才能順利取得使用者資料</p>
+    <title>CSS的的selector的權重</title>
+    <url>/andy-tech-note/2024/04/03/about-CSS-selector-priority/</url>
+    <content><![CDATA[<h3 id="selector是什麼？"><a href="#selector是什麼？" class="headerlink" title="selector是什麼？"></a>selector是什麼？</h3><p>是用來選擇HTML tag並設定寬、高、顏色、背景圖等等(如：H1,p,div)，選擇器不僅限於標籤(div, p, span)，還包含class及id。</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.className</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>:blue;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">div</span> &#123;</span><br><span class="line">    <span class="attribute">font-size</span>:<span class="number">16px</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="權重可以幹嘛？"><a href="#權重可以幹嘛？" class="headerlink" title="權重可以幹嘛？"></a>權重可以幹嘛？</h3><p>在selector有四個權重，依序是 <code>inline style &gt; id &gt; class &gt; tag</code>，這意思是說如果你對某些元素設定屬性時，權重會依照這個來做處理，也就是說如果在<code>class及inline style</code>裡面都設定 <code>color</code>，而最終HTML顯示的顏色會是由inline設定的為主，這是因為權重大小的關係。<br>而這四個權重會是這樣寫(0,0,0,0)對應的順序(inline, id, class, tag)，所以這樣就可以看出誰的權重比較大。</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">style</span>=<span class="string">&quot;color=yellow&quot;</span> <span class="attr">class</span>=<span class="string">&quot;className&quot;</span>&gt;</span><span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.className</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>=blue</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在這裡顏色就會是yellow，因為inline權重大於class</p>
+<h3 id="權重計算方式"><a href="#權重計算方式" class="headerlink" title="權重計算方式"></a>權重計算方式</h3><figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.className1</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>:blue;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><code>(0,0,1,0)</code></p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.className1</span><span class="selector-class">.className2</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>:yellow;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><code>(0,0,2,0)</code><br>上面這個會把兩個class加起來，這是要該元素同時有這兩個class存在</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.className2</span> <span class="selector-tag">div</span> <span class="selector-tag">p</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>:yellow;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><code>(0,0,1,2)</code></p>
+<h3 id="important"><a href="#important" class="headerlink" title="!important"></a>!important</h3><p>這個大魔王，在某些情況希望直接覆蓋掉該元素的屬性，可以在 該屬性後面加上 <code>!important</code>，但是不建議太常使用，會在開發上容易造成不要的困擾。</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.className2</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>:yellow <span class="meta">!important</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 ]]></content>
       <categories>
-        <category>Frontend</category>
+        <category>frontend_interview</category>
       </categories>
       <tags>
-        <tag>auth</tag>
+        <tag>CSS</tag>
+        <tag>Frontend</tag>
       </tags>
   </entry>
   <entry>
@@ -500,7 +527,7 @@
 <figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> arr = [<span class="number">1</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>];</span><br><span class="line"><span class="keyword">const</span> result = arr.<span class="title function_">filter</span>(<span class="function">(<span class="params">item</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> item &lt; <span class="number">4</span>;</span><br><span class="line">&#125;);</span><br><span class="line"><span class="comment">// result = [1,3]</span></span><br></pre></td></tr></table></figure>
 
 <h3 id="reduce"><a href="#reduce" class="headerlink" title="reduce"></a>reduce</h3><p>可以傳入一個initial value，然後在callback function中會依次回傳initial value和每個元素的一些操作，最後會回傳最終的value。<br>參考 <a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce">MDN</a></p>
-<p>&#96;&#96;&#96;javascript<br>const arr &#x3D; [1,3,4,5];<br>const result &#x3D; arr.reduce((initialValue, item) &#x3D;&gt; {<br>    return initialValue + item;<br>}</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> arr = [<span class="number">1</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>];</span><br><span class="line"><span class="keyword">const</span> result = arr.<span class="title function_">reduce</span>(<span class="function">(<span class="params">initialValue, item</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> initialValue + item;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>item為arr中的每個元素，initialValue為reduce的第一個參數，假設想要把所有的值加起來，就可以用reduce來做，把每次值都累加到initialValue上，最後就會回傳最終的值。</p>
 ]]></content>
       <categories>
@@ -508,33 +535,6 @@
       </categories>
       <tags>
         <tag>Javascript</tag>
-        <tag>Frontend</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>CSS的的selector的權重</title>
-    <url>/andy-tech-note/2024/04/03/about-CSS-selector-priority/</url>
-    <content><![CDATA[<h3 id="selector是什麼？"><a href="#selector是什麼？" class="headerlink" title="selector是什麼？"></a>selector是什麼？</h3><p>是用來選擇HTML tag並設定寬、高、顏色、背景圖等等(如：H1,p,div)，選擇器不僅限於標籤(div, p, span)，還包含class及id。</p>
-<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.className</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>:blue;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">div</span> &#123;</span><br><span class="line">    <span class="attribute">font-size</span>:<span class="number">16px</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="權重可以幹嘛？"><a href="#權重可以幹嘛？" class="headerlink" title="權重可以幹嘛？"></a>權重可以幹嘛？</h3><p>在selector有四個權重，依序是 <code>inline style &gt; id &gt; class &gt; tag</code>，這意思是說如果你對某些元素設定屬性時，權重會依照這個來做處理，也就是說如果在<code>class及inline style</code>裡面都設定 <code>color</code>，而最終HTML顯示的顏色會是由inline設定的為主，這是因為權重大小的關係。<br>而這四個權重會是這樣寫(0,0,0,0)對應的順序(inline, id, class, tag)，所以這樣就可以看出誰的權重比較大。</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">style</span>=<span class="string">&quot;color=yellow&quot;</span> <span class="attr">class</span>=<span class="string">&quot;className&quot;</span>&gt;</span><span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.className</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>=blue</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>在這裡顏色就會是yellow，因為inline權重大於class</p>
-<h3 id="權重計算方式"><a href="#權重計算方式" class="headerlink" title="權重計算方式"></a>權重計算方式</h3><figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.className1</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>:blue;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><code>(0,0,1,0)</code></p>
-<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.className1</span><span class="selector-class">.className2</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>:yellow;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><code>(0,0,2,0)</code><br>上面這個會把兩個class加起來，這是要該元素同時有這兩個class存在</p>
-<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.className2</span> <span class="selector-tag">div</span> <span class="selector-tag">p</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>:yellow;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><code>(0,0,1,2)</code></p>
-<h3 id="important"><a href="#important" class="headerlink" title="!important"></a>!important</h3><p>這個大魔王，在某些情況希望直接覆蓋掉該元素的屬性，可以在 該屬性後面加上 <code>!important</code>，但是不建議太常使用，會在開發上容易造成不要的困擾。</p>
-<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.className2</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>:yellow <span class="meta">!important</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>frontend_interview</category>
-      </categories>
-      <tags>
-        <tag>CSS</tag>
         <tag>Frontend</tag>
       </tags>
   </entry>

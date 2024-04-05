@@ -14,8 +14,8 @@
         <category>javascript</category>
       </categories>
       <tags>
-        <tag>async</tag>
         <tag>Javascriptj</tag>
+        <tag>async</tag>
       </tags>
   </entry>
   <entry>
@@ -237,34 +237,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Javascript中的promise - 處理異步</title>
-    <url>/andy-tech-note/2023/03/23/promise-async/</url>
-    <content><![CDATA[<h4 id="promise是幹嘛的？"><a href="#promise是幹嘛的？" class="headerlink" title="promise是幹嘛的？"></a>promise是幹嘛的？</h4><p>promise這個方法是ES6時推出的，這個主要可以用來解決非同步中XMLHttpRequest的問題<br>promise不需要監測Event(也就是js中的addEventListener())，而且會在資料回傳時執行callback function，<br>以及處理在做非同步請求時使用callback時所產生的callback hell。<br>之所以會產生callback hell是因為，當多個非同步請求有前後相關性時就會發生，所謂的前後相關性就是<code>C request</code> 需要等到<br><code>B request</code>的結果才能發出請求，B又要等到<code>A request</code>的結果才能發出，這樣就會變成巢狀的結構，會變得非常難以閱讀。</p>
-<h5 id="示意："><a href="#示意：" class="headerlink" title="示意："></a>示意：</h5><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">callback(()=&gt;&#123;</span><br><span class="line">    //在此發出A request</span><br><span class="line">    callback(()=&gt;&#123;</span><br><span class="line">        //在此發出B request    </span><br><span class="line">        callback(()=&gt;&#123;</span><br><span class="line">        //在此發出C request    </span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-<p><img src="https://res.cloudinary.com/practicaldev/image/fetch/s--c0aEZX7m--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/b8euo2n7twvgh3dbuatd.jpeg" alt="callback hell"></p>
-<h4 id="Promise有什麼？"><a href="#Promise有什麼？" class="headerlink" title="Promise有什麼？"></a>Promise有什麼？</h4><p>如前面提到promise是用來處理異步事件，promise會有三個狀態</p>
-<ul>
-<li>pending : 等待，還沒接到對方的資料回傳，等待中也就是Not Available</li>
-<li>fulfilled : 成功，也就是有資料成功回傳一個值，在這情況下會進入 <code>.then</code></li>
-<li>rejected : 失敗，對方(可能是server)回傳一個錯誤 會進入<code>catch</code>處理錯誤。</li>
-</ul>
-<p><code>舉例</code></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">const getCountryData = (country)=&gt;&#123;</span><br><span class="line">    fetch(`https://restcountries.com/v2/name/$&#123;country&#125;`).then((res)=&gt;&#123;</span><br><span class="line">        return res.json();</span><br><span class="line">    &#125;).then((data)=&gt;&#123;</span><br><span class="line">        console.log(data);</span><br><span class="line">    &#125;).catch(()=&gt;&#123;</span><br><span class="line">        console.log(&#x27;error&#x27;);</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">getCountryData(&#x27;taiwan&#x27;);</span><br></pre></td></tr></table></figure>
-<p>上述例子使用fetch去執行異步向某個server發出資料請求，並在<code>then裡面等待回傳資料</code>，若是<code>回傳錯誤會由catch處理錯誤</code>。<br><code>fetch</code>是一個可以回傳<code>promise</code>的function，而在then裡面經常需要處理資料，而資料經常是JSON格式，若要轉譯JSON格式則必須使用json()這個function，但因為它也是回傳promise，所以必須再透過then處理。</p>
-<h5 id="如何解決callback-hell"><a href="#如何解決callback-hell" class="headerlink" title="如何解決callback hell?"></a>如何解決callback hell?</h5><p>如果會有前後相依的fetch要做，也就是需要等到前一個fetch取得資料後才執行，可以如下，在<code>then</code>裡面 <code>return fetch</code>，如此就可以在後面的then繼續處理第二個fetch的值。</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">const getCountryData = (country)=&gt;&#123;</span><br><span class="line">    fetch(`https://restcountries.com/v2/name/$&#123;country&#125;`).then((res)=&gt;&#123;</span><br><span class="line">        return res.json();</span><br><span class="line">    &#125;).then((data)=&gt;&#123;</span><br><span class="line">        console.log(data);</span><br><span class="line">        return fetch(`https://restcountries.com/v2/name/china`)</span><br><span class="line">    &#125;).then((res)=&gt;&#123;</span><br><span class="line">        return res.json()</span><br><span class="line">    &#125;).then((data)=&gt;&#123;</span><br><span class="line">        console.log(data);</span><br><span class="line">    &#125;).catch(()=&gt;&#123;</span><br><span class="line">        console.log(&#x27;error&#x27;);</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">getCountryData(&#x27;Taiwan&#x27;);</span><br></pre></td></tr></table></figure>
-<p>不過此法雖然解決callback hell，但是then也變得很長，接下來又有<code>async/await</code>來讓其進化</p>
-]]></content>
-      <categories>
-        <category>Frontend</category>
-      </categories>
-      <tags>
-        <tag>Javascript</tag>
-        <tag>async</tag>
-        <tag>promise</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>如何使用Google的firebase裡面的驗證功能(login/logout)</title>
     <url>/andy-tech-note/2023/02/16/firebase-auth/</url>
     <content><![CDATA[<h4 id="Google-Firebase"><a href="#Google-Firebase" class="headerlink" title="Google Firebase"></a>Google Firebase</h4><p>Google的Firebase是個前端工程師很好用的工具，他可以讓前端工程師省去後端資料庫的建立而可以專注在前端的開發，這裡面有身份驗證、realtime資料庫等好用的功能，只要是拿來做開發，而流量不大的話，通常你都不會達到需要付費流量。</p>
@@ -289,47 +261,31 @@
       </tags>
   </entry>
   <entry>
-    <title>CSS的Box-model</title>
-    <url>/andy-tech-note/2023/03/25/box-model/</url>
-    <content><![CDATA[<h4 id="什麼是Box-model"><a href="#什麼是Box-model" class="headerlink" title="什麼是Box model"></a>什麼是Box model</h4><p>在網頁中每個element都被看作一個box，每個box可以有內容content、邊界border、內外空間。<br>所以box會有padding &#x2F; marging&#x2F; border&#x2F; content</p>
-<h4 id="Padding"><a href="#Padding" class="headerlink" title="Padding"></a>Padding</h4><p>padding是content與border的距離</p>
-<h4 id="Margin"><a href="#Margin" class="headerlink" title="Margin"></a>Margin</h4><p>margin是物件與其他物件的距離，可以使用margin來產生空白與其他element產生一段距離</p>
-<p><img src="https://developer.mozilla.org/en-US/docs/Learn/CSS/Building_blocks/The_box_model/box-model.png" alt="來源MDN"></p>
-<h4 id="Width-x2F-Height"><a href="#Width-x2F-Height" class="headerlink" title="Width&#x2F;Height"></a>Width&#x2F;Height</h4><p>在box中可以設定寬度與高度(width &amp; Height)，現在的CSS寬度是指content的寬度，所以在製作layout時要注意寬度要再加上border+padding+margin才是最終寬度或是高度。<br><img src="https://developer.mozilla.org/en-US/docs/Learn/CSS/Building_blocks/The_box_model/standard-box-model.png" alt="設定高寬"></p>
+    <title>Javascript中的promise - 處理異步</title>
+    <url>/andy-tech-note/2023/03/23/promise-async/</url>
+    <content><![CDATA[<h4 id="promise是幹嘛的？"><a href="#promise是幹嘛的？" class="headerlink" title="promise是幹嘛的？"></a>promise是幹嘛的？</h4><p>promise這個方法是ES6時推出的，這個主要可以用來解決非同步中XMLHttpRequest的問題<br>promise不需要監測Event(也就是js中的addEventListener())，而且會在資料回傳時執行callback function，<br>以及處理在做非同步請求時使用callback時所產生的callback hell。<br>之所以會產生callback hell是因為，當多個非同步請求有前後相關性時就會發生，所謂的前後相關性就是<code>C request</code> 需要等到<br><code>B request</code>的結果才能發出請求，B又要等到<code>A request</code>的結果才能發出，這樣就會變成巢狀的結構，會變得非常難以閱讀。</p>
+<h5 id="示意："><a href="#示意：" class="headerlink" title="示意："></a>示意：</h5><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">callback(()=&gt;&#123;</span><br><span class="line">    //在此發出A request</span><br><span class="line">    callback(()=&gt;&#123;</span><br><span class="line">        //在此發出B request    </span><br><span class="line">        callback(()=&gt;&#123;</span><br><span class="line">        //在此發出C request    </span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p><img src="https://res.cloudinary.com/practicaldev/image/fetch/s--c0aEZX7m--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/b8euo2n7twvgh3dbuatd.jpeg" alt="callback hell"></p>
+<h4 id="Promise有什麼？"><a href="#Promise有什麼？" class="headerlink" title="Promise有什麼？"></a>Promise有什麼？</h4><p>如前面提到promise是用來處理異步事件，promise會有三個狀態</p>
+<ul>
+<li>pending : 等待，還沒接到對方的資料回傳，等待中也就是Not Available</li>
+<li>fulfilled : 成功，也就是有資料成功回傳一個值，在這情況下會進入 <code>.then</code></li>
+<li>rejected : 失敗，對方(可能是server)回傳一個錯誤 會進入<code>catch</code>處理錯誤。</li>
+</ul>
+<p><code>舉例</code></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">const getCountryData = (country)=&gt;&#123;</span><br><span class="line">    fetch(`https://restcountries.com/v2/name/$&#123;country&#125;`).then((res)=&gt;&#123;</span><br><span class="line">        return res.json();</span><br><span class="line">    &#125;).then((data)=&gt;&#123;</span><br><span class="line">        console.log(data);</span><br><span class="line">    &#125;).catch(()=&gt;&#123;</span><br><span class="line">        console.log(&#x27;error&#x27;);</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">getCountryData(&#x27;taiwan&#x27;);</span><br></pre></td></tr></table></figure>
+<p>上述例子使用fetch去執行異步向某個server發出資料請求，並在<code>then裡面等待回傳資料</code>，若是<code>回傳錯誤會由catch處理錯誤</code>。<br><code>fetch</code>是一個可以回傳<code>promise</code>的function，而在then裡面經常需要處理資料，而資料經常是JSON格式，若要轉譯JSON格式則必須使用json()這個function，但因為它也是回傳promise，所以必須再透過then處理。</p>
+<h5 id="如何解決callback-hell"><a href="#如何解決callback-hell" class="headerlink" title="如何解決callback hell?"></a>如何解決callback hell?</h5><p>如果會有前後相依的fetch要做，也就是需要等到前一個fetch取得資料後才執行，可以如下，在<code>then</code>裡面 <code>return fetch</code>，如此就可以在後面的then繼續處理第二個fetch的值。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">const getCountryData = (country)=&gt;&#123;</span><br><span class="line">    fetch(`https://restcountries.com/v2/name/$&#123;country&#125;`).then((res)=&gt;&#123;</span><br><span class="line">        return res.json();</span><br><span class="line">    &#125;).then((data)=&gt;&#123;</span><br><span class="line">        console.log(data);</span><br><span class="line">        return fetch(`https://restcountries.com/v2/name/china`)</span><br><span class="line">    &#125;).then((res)=&gt;&#123;</span><br><span class="line">        return res.json()</span><br><span class="line">    &#125;).then((data)=&gt;&#123;</span><br><span class="line">        console.log(data);</span><br><span class="line">    &#125;).catch(()=&gt;&#123;</span><br><span class="line">        console.log(&#x27;error&#x27;);</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">getCountryData(&#x27;Taiwan&#x27;);</span><br></pre></td></tr></table></figure>
+<p>不過此法雖然解決callback hell，但是then也變得很長，接下來又有<code>async/await</code>來讓其進化</p>
 ]]></content>
       <categories>
         <category>Frontend</category>
       </categories>
       <tags>
-        <tag>CSS</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>CSS中的px-em-rem</title>
-    <url>/andy-tech-note/2023/03/25/px-em-rem/</url>
-    <content><![CDATA[<h3 id="這是關於長度單位"><a href="#這是關於長度單位" class="headerlink" title="這是關於長度單位"></a>這是關於長度單位</h3><h4 id="px"><a href="#px" class="headerlink" title="px"></a>px</h4><p>是一個絕對長度的單位，是以螢幕pixel為基準。</p>
-<h4 id="em"><a href="#em" class="headerlink" title="em"></a>em</h4><p>是一個相對長度單位，是依照當下所在的element其parent element的大小來當作倍數計算，舉例如果是把em設定在font-size，如果當下font-size是以10px，而在child 設定的font-size是設定<code>1ex</code> &#x3D;&gt;也就是 <code>10px</code> ，若是<code>2ex</code> &#x3D;&gt;<code>20px</code></p>
-<h4 id="rem"><a href="#rem" class="headerlink" title="rem"></a>rem</h4><p>這也是相對長度單位，但是以root的大小當作依據來算倍數，所以若是root size設定為<code>12px</code>，而當下的size設定為<code>3rem</code> &#x3D;&gt; <code>36px</code></p>
-]]></content>
-      <categories>
-        <category>Frontend</category>
-      </categories>
-      <tags>
-        <tag>CSS</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>CSS中的inline、block以及inline block</title>
-    <url>/andy-tech-note/2023/03/27/inline-block/</url>
-    <content><![CDATA[<h3 id="element樣式"><a href="#element樣式" class="headerlink" title="element樣式"></a>element樣式</h3><h4 id="block-element"><a href="#block-element" class="headerlink" title="block element"></a>block element</h4><p>這個element是會佔用整個整行的空間(也就是滿版)，即便你的資料沒有這麼多。<br>舉例：<code>&lt;div&gt;</code> <code>&lt;h1&gt;</code> <code>&lt;p&gt;</code><br>不過可以透過設定寬度高度去控制樣式。</p>
-<h4 id="inline-element"><a href="#inline-element" class="headerlink" title="inline element"></a>inline element</h4><p>依照inline element的內容去調整整個element的寬度，<br>舉例：<code>&lt;a&gt; &lt;br&gt; &lt;input&gt;</code><br>但是無法修改寬度與高度，即便加入margin與padding。</p>
-<h4 id="inline-block"><a href="#inline-block" class="headerlink" title="inline-block"></a>inline-block</h4><p>可以在display中設定inline-block<br><code>display:inline-block;</code><br>這樣就可以讓block不佔用滿版，但還可以控制其寬度與高度。</p>
-]]></content>
-      <categories>
-        <category>Frontend</category>
-      </categories>
-      <tags>
-        <tag>CSS</tag>
+        <tag>async</tag>
+        <tag>Javascript</tag>
+        <tag>promise</tag>
       </tags>
   </entry>
   <entry>
@@ -355,6 +311,22 @@
       </tags>
   </entry>
   <entry>
+    <title>CSS的Box-model</title>
+    <url>/andy-tech-note/2023/03/25/box-model/</url>
+    <content><![CDATA[<h4 id="什麼是Box-model"><a href="#什麼是Box-model" class="headerlink" title="什麼是Box model"></a>什麼是Box model</h4><p>在網頁中每個element都被看作一個box，每個box可以有內容content、邊界border、內外空間。<br>所以box會有padding &#x2F; marging&#x2F; border&#x2F; content</p>
+<h4 id="Padding"><a href="#Padding" class="headerlink" title="Padding"></a>Padding</h4><p>padding是content與border的距離</p>
+<h4 id="Margin"><a href="#Margin" class="headerlink" title="Margin"></a>Margin</h4><p>margin是物件與其他物件的距離，可以使用margin來產生空白與其他element產生一段距離</p>
+<p><img src="https://developer.mozilla.org/en-US/docs/Learn/CSS/Building_blocks/The_box_model/box-model.png" alt="來源MDN"></p>
+<h4 id="Width-x2F-Height"><a href="#Width-x2F-Height" class="headerlink" title="Width&#x2F;Height"></a>Width&#x2F;Height</h4><p>在box中可以設定寬度與高度(width &amp; Height)，現在的CSS寬度是指content的寬度，所以在製作layout時要注意寬度要再加上border+padding+margin才是最終寬度或是高度。<br><img src="https://developer.mozilla.org/en-US/docs/Learn/CSS/Building_blocks/The_box_model/standard-box-model.png" alt="設定高寬"></p>
+]]></content>
+      <categories>
+        <category>Frontend</category>
+      </categories>
+      <tags>
+        <tag>CSS</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>在Javacript建立promise</title>
     <url>/andy-tech-note/2023/03/29/how-to-create-promise/</url>
     <content><![CDATA[<h4 id="建立promise"><a href="#建立promise" class="headerlink" title="建立promise"></a>建立promise</h4><p>延續前一篇關於promise的文章，來試試看要怎麼建立一個Promise。</p>
@@ -367,24 +339,9 @@
         <category>Frontend</category>
       </categories>
       <tags>
-        <tag>Javascript</tag>
         <tag>async</tag>
+        <tag>Javascript</tag>
         <tag>promise</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>nextTick in Vue3</title>
-    <url>/andy-tech-note/2024/01/20/nextTick-in-Vue3/</url>
-    <content><![CDATA[<h4 id="什麼是nextTick-？"><a href="#什麼是nextTick-？" class="headerlink" title="什麼是nextTick()？"></a>什麼是nextTick()？</h4><h6 id="官方定義"><a href="#官方定義" class="headerlink" title="官方定義"></a>官方定義</h6><p><code>在下次 DOM 更新循环结束之后执行延迟回调。在修改数据之后立即使用这个方法，获取更新后的 DOM</code></p>
-<h4 id="實際應用場景"><a href="#實際應用場景" class="headerlink" title="實際應用場景"></a>實際應用場景</h4><p>版主在Vue3的 project中有一個<code>child componet</code> 跟 <code>parent component</code>，在child component中有使用 <code>Primevue</code>的 <code>Checkbox</code>，而我希望在勾選Checkbox時可以觸發emit，所以使用watch監聽Checkbox 綁定的一個<code>ref</code>的變數，所以在watch監聽該變數，當有變化就發出emit，而parent收到emit的會依照回傳的值做一些array的過濾，在這裡因為過濾會花點時間。</p>
-<p>於此同時Checkbox不會馬上被改變打勾或是非打勾的狀態，需要等到parent計算完才會被更新DOM，所以我認為是parent中的filter造成DOM的延遲更新，所以就使用nextTick()，先讓Checkbox可以先被渲染，再執行emit。</p>
-<p>程式碼如下</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">watch(destination, () =&gt; &#123;</span><br><span class="line">    nextTick(()=&gt; &#123;</span><br><span class="line">        emit(&#x27;filterCondiction&#x27;, &#123;date: [&#123;index: &#x27;1&#x27;, date: &quot;20240201&quot;&#125;], location: [&#123;index: props.airport.location.split(&#x27; &#x27;)[1], destination: destination.value&#125;]&#125;);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-<p>請忽略傳遞的參數ＸＤ</p>
-<p>在這裡會看到emit會在DOM完成更新後才執行，這樣就不會有覺得為什麼點擊Chenckbox後卻沒有馬上被打勾的問題。</p>
-]]></content>
-      <tags>
-        <tag>Vue</tag>
       </tags>
   </entry>
   <entry>
@@ -436,6 +393,78 @@
       </tags>
   </entry>
   <entry>
+    <title>nextTick in Vue3</title>
+    <url>/andy-tech-note/2024/01/20/nextTick-in-Vue3/</url>
+    <content><![CDATA[<h4 id="什麼是nextTick-？"><a href="#什麼是nextTick-？" class="headerlink" title="什麼是nextTick()？"></a>什麼是nextTick()？</h4><h6 id="官方定義"><a href="#官方定義" class="headerlink" title="官方定義"></a>官方定義</h6><p><code>在下次 DOM 更新循环结束之后执行延迟回调。在修改数据之后立即使用这个方法，获取更新后的 DOM</code></p>
+<h4 id="實際應用場景"><a href="#實際應用場景" class="headerlink" title="實際應用場景"></a>實際應用場景</h4><p>版主在Vue3的 project中有一個<code>child componet</code> 跟 <code>parent component</code>，在child component中有使用 <code>Primevue</code>的 <code>Checkbox</code>，而我希望在勾選Checkbox時可以觸發emit，所以使用watch監聽Checkbox 綁定的一個<code>ref</code>的變數，所以在watch監聽該變數，當有變化就發出emit，而parent收到emit的會依照回傳的值做一些array的過濾，在這裡因為過濾會花點時間。</p>
+<p>於此同時Checkbox不會馬上被改變打勾或是非打勾的狀態，需要等到parent計算完才會被更新DOM，所以我認為是parent中的filter造成DOM的延遲更新，所以就使用nextTick()，先讓Checkbox可以先被渲染，再執行emit。</p>
+<p>程式碼如下</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">watch(destination, () =&gt; &#123;</span><br><span class="line">    nextTick(()=&gt; &#123;</span><br><span class="line">        emit(&#x27;filterCondiction&#x27;, &#123;date: [&#123;index: &#x27;1&#x27;, date: &quot;20240201&quot;&#125;], location: [&#123;index: props.airport.location.split(&#x27; &#x27;)[1], destination: destination.value&#125;]&#125;);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>請忽略傳遞的參數ＸＤ</p>
+<p>在這裡會看到emit會在DOM完成更新後才執行，這樣就不會有覺得為什麼點擊Chenckbox後卻沒有馬上被打勾的問題。</p>
+]]></content>
+      <tags>
+        <tag>Vue</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Javascript中&lt;script&gt;的async與defer</title>
+    <url>/andy-tech-note/2024/04/02/js-script-async-defer/</url>
+    <content><![CDATA[<h2 id="什麼是async-x2F-defer"><a href="#什麼是async-x2F-defer" class="headerlink" title="什麼是async&#x2F;defer"></a>什麼是async&#x2F;defer</h2><h4 id="HTML做些什麼事？"><a href="#HTML做些什麼事？" class="headerlink" title="HTML做些什麼事？"></a>HTML做些什麼事？</h4><p>在瀏覽器執行解析網頁時如果碰到<code>&lt;script&gt;</code>標籤，會先執行該script中的行為，而如果需要下載檔案則會執行下載，而此時若是執行下載時，整個網頁的解析就會停下來，等到檔案被下載後才會繼續解析，這樣有一個很大的問題，也就是當使用者瀏覽網頁時就會有些元素不是馬上出現在使用者面前，就是因為在等待JS檔案的下載，這就有關UX了。</p>
+<p>但是又有些JS檔案是要盡可能提早被下載到<code>client</code>端，如果讓<code>script</code> 在解析完<code>DOM</code>才執行就會有問題，因為當頁面解析完後會馬傷需要使用<code>JS</code>中的功能，所以就有了<code>async/defer</code>的概念。</p>
+<h4 id="解決方法"><a href="#解決方法" class="headerlink" title="解決方法"></a>解決方法</h4><p>上述問題就可以透過<code>async/defer</code>解決，這兩個主要都是讓<code>script</code>可以在背景執行，但是有個主要差異如下：</p>
+<h5 id="async"><a href="#async" class="headerlink" title="async"></a>async</h5><p>會在背景下載也就是異步的方式執行，在同時 HTML 解析會繼續執行，而當js檔案被下載後會被立即執行，不必等到 DOM 被全部解析。</p>
+<h5 id="defer"><a href="#defer" class="headerlink" title="defer"></a>defer</h5><p>也同是在背景下載不影響<code>DOM</code>的解析，但是他會等到<code>DOM</code>完全解析完才執行，而若是有多個js有互相依賴的行為可以以 <code>defer</code> 方式執行，只要按照執行順序去寫<code>script</code>即可</p>
+]]></content>
+      <categories>
+        <category>frontend_interview</category>
+      </categories>
+      <tags>
+        <tag>Javascript</tag>
+        <tag>Frontend</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>CSS中的inline、block以及inline block</title>
+    <url>/andy-tech-note/2023/03/27/inline-block/</url>
+    <content><![CDATA[<h3 id="element樣式"><a href="#element樣式" class="headerlink" title="element樣式"></a>element樣式</h3><h4 id="block-element"><a href="#block-element" class="headerlink" title="block element"></a>block element</h4><p>這個element是會佔用整個整行的空間(也就是滿版)，即便你的資料沒有這麼多。<br>舉例：<code>&lt;div&gt;</code> <code>&lt;h1&gt;</code> <code>&lt;p&gt;</code><br>不過可以透過設定寬度高度去控制樣式。</p>
+<h4 id="inline-element"><a href="#inline-element" class="headerlink" title="inline element"></a>inline element</h4><p>依照inline element的內容去調整整個element的寬度，<br>舉例：<code>&lt;a&gt; &lt;br&gt; &lt;input&gt;</code><br>但是無法修改寬度與高度，即便加入margin與padding。</p>
+<h4 id="inline-block"><a href="#inline-block" class="headerlink" title="inline-block"></a>inline-block</h4><p>可以在display中設定inline-block<br><code>display:inline-block;</code><br>這樣就可以讓block不佔用滿版，但還可以控制其寬度與高度。</p>
+]]></content>
+      <categories>
+        <category>Frontend</category>
+      </categories>
+      <tags>
+        <tag>CSS</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Javascript的map,filter,reduce</title>
+    <url>/andy-tech-note/2024/04/03/Javascript%E7%9A%84map-filter-reduce/</url>
+    <content><![CDATA[<h2 id="什麼是map-filter-reduce"><a href="#什麼是map-filter-reduce" class="headerlink" title="什麼是map, filter, reduce"></a>什麼是map, filter, reduce</h2><p>這三個東西都是ES5推出的Array method，的可以對Array裡面的元素做一些操作。</p>
+<h3 id="map"><a href="#map" class="headerlink" title="map"></a>map</h3><ul>
+<li>會回傳一個新的array</li>
+<li>在map裡面用callback function對每個element 逐一做操作後回傳</li>
+</ul>
+<p>map不會影響到原先的array，也不必用for之類的迴圈去一個一個處理後存回去，更多資訊可以查看<a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array/map">MDN</a></p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> arr = [<span class="number">1</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>];</span><br><span class="line"><span class="keyword">const</span> result = arr.<span class="title function_">map</span>(<span class="function">(<span class="params">item</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> item * <span class="number">2</span>;</span><br><span class="line">&#125;);</span><br><span class="line"><span class="comment">// result = [2,6,8,10]</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="filter"><a href="#filter" class="headerlink" title="filter"></a>filter</h3><p>可以用來過濾不符合callback function判斷式的元素，也就是在callback function中需要return true or false來決定是否要保留這個元素。<br>這個也是會回傳一個新的array，查看<a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array/filter">MDN</a></p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> arr = [<span class="number">1</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>];</span><br><span class="line"><span class="keyword">const</span> result = arr.<span class="title function_">filter</span>(<span class="function">(<span class="params">item</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> item &lt; <span class="number">4</span>;</span><br><span class="line">&#125;);</span><br><span class="line"><span class="comment">// result = [1,3]</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="reduce"><a href="#reduce" class="headerlink" title="reduce"></a>reduce</h3><p>可以傳入一個initial value，然後在callback function中會依次回傳initial value和每個元素的一些操作，最後會回傳最終的value。<br>也就是每回合把initial value和每個元素的值相加，最後就會回傳最終的value。<br>參考 <a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce">MDN</a></p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> arr = [<span class="number">1</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>];</span><br><span class="line"><span class="keyword">const</span> result = arr.<span class="title function_">reduce</span>(<span class="function">(<span class="params">acc, item</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> acc + item;</span><br><span class="line">&#125;)</span><br><span class="line"><span class="comment">// result = 15</span></span><br></pre></td></tr></table></figure>
+<p>item為arr中的每個元素，acc為reduce的第一個參數，假設想要把所有的值加起來，就可以用reduce來做，把每次值都累加到acc上，然後回傳最終值。</p>
+]]></content>
+      <categories>
+        <category>frontend_interview</category>
+      </categories>
+      <tags>
+        <tag>Javascript</tag>
+        <tag>Frontend</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>git local 及 remote repo 不同步怎麼處理</title>
     <url>/andy-tech-note/2024/01/28/git-remote-repo-%E4%B8%8D%E5%90%8C%E6%AD%A5/</url>
     <content><![CDATA[<h3 id="Local的commit-與-Remote-的commit-沒有同步"><a href="#Local的commit-與-Remote-的commit-沒有同步" class="headerlink" title="Local的commit 與 Remote 的commit 沒有同步"></a>Local的commit 與 Remote 的commit 沒有同步</h3><p><img src="/andy-tech-note/2024/01/28/git-remote-repo-%E4%B8%8D%E5%90%8C%E6%AD%A5/git.png" alt="git"><br>如圖中所示，會發現 <code>github remote 的 main</code> 跟 <code>local 的 main</code> 分岔了。<br>這是因為在先前在B電腦做了一次 commit &amp; push，也就是圖中岔出去的那個 Remote main，<br>然而在A電腦的commit還停留在B電腦commit的前一個版本，但是我沒發現就繼續開發下去，<br>一路開發下去，直到要push到遠端時才被告知遠端有code沒有同步到。</p>
@@ -449,6 +478,20 @@
       <tags>
         <tag>git</tag>
         <tag>github</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>CSS中的px-em-rem</title>
+    <url>/andy-tech-note/2023/03/25/px-em-rem/</url>
+    <content><![CDATA[<h3 id="這是關於長度單位"><a href="#這是關於長度單位" class="headerlink" title="這是關於長度單位"></a>這是關於長度單位</h3><h4 id="px"><a href="#px" class="headerlink" title="px"></a>px</h4><p>是一個絕對長度的單位，是以螢幕pixel為基準。</p>
+<h4 id="em"><a href="#em" class="headerlink" title="em"></a>em</h4><p>是一個相對長度單位，是依照當下所在的element其parent element的大小來當作倍數計算，舉例如果是把em設定在font-size，如果當下font-size是以10px，而在child 設定的font-size是設定<code>1ex</code> &#x3D;&gt;也就是 <code>10px</code> ，若是<code>2ex</code> &#x3D;&gt;<code>20px</code></p>
+<h4 id="rem"><a href="#rem" class="headerlink" title="rem"></a>rem</h4><p>這也是相對長度單位，但是以root的大小當作依據來算倍數，所以若是root size設定為<code>12px</code>，而當下的size設定為<code>3rem</code> &#x3D;&gt; <code>36px</code></p>
+]]></content>
+      <categories>
+        <category>Frontend</category>
+      </categories>
+      <tags>
+        <tag>CSS</tag>
       </tags>
   </entry>
   <entry>
@@ -492,49 +535,6 @@
       </categories>
       <tags>
         <tag>CSS</tag>
-        <tag>Frontend</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Javascript中&lt;script&gt;的async與defer</title>
-    <url>/andy-tech-note/2024/04/02/js-script-async-defer/</url>
-    <content><![CDATA[<h2 id="什麼是async-x2F-defer"><a href="#什麼是async-x2F-defer" class="headerlink" title="什麼是async&#x2F;defer"></a>什麼是async&#x2F;defer</h2><h4 id="HTML做些什麼事？"><a href="#HTML做些什麼事？" class="headerlink" title="HTML做些什麼事？"></a>HTML做些什麼事？</h4><p>在瀏覽器執行解析網頁時如果碰到<code>&lt;script&gt;</code>標籤，會先執行該script中的行為，而如果需要下載檔案則會執行下載，而此時若是執行下載時，整個網頁的解析就會停下來，等到檔案被下載後才會繼續解析，這樣有一個很大的問題，也就是當使用者瀏覽網頁時就會有些元素不是馬上出現在使用者面前，就是因為在等待JS檔案的下載，這就有關UX了。</p>
-<p>但是又有些JS檔案是要盡可能提早被下載到<code>client</code>端，如果讓<code>script</code> 在解析完<code>DOM</code>才執行就會有問題，因為當頁面解析完後會馬傷需要使用<code>JS</code>中的功能，所以就有了<code>async/defer</code>的概念。</p>
-<h4 id="解決方法"><a href="#解決方法" class="headerlink" title="解決方法"></a>解決方法</h4><p>上述問題就可以透過<code>async/defer</code>解決，這兩個主要都是讓<code>script</code>可以在背景執行，但是有個主要差異如下：</p>
-<h5 id="async"><a href="#async" class="headerlink" title="async"></a>async</h5><p>會在背景下載也就是異步的方式執行，在同時 HTML 解析會繼續執行，而當js檔案被下載後會被立即執行，不必等到 DOM 被全部解析。</p>
-<h5 id="defer"><a href="#defer" class="headerlink" title="defer"></a>defer</h5><p>也同是在背景下載不影響<code>DOM</code>的解析，但是他會等到<code>DOM</code>完全解析完才執行，而若是有多個js有互相依賴的行為可以以 <code>defer</code> 方式執行，只要按照執行順序去寫<code>script</code>即可</p>
-]]></content>
-      <categories>
-        <category>frontend_interview</category>
-      </categories>
-      <tags>
-        <tag>Javascript</tag>
-        <tag>Frontend</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Javascript的map,filter,reduce</title>
-    <url>/andy-tech-note/2024/04/03/Javascript%E7%9A%84map-filter-reduce/</url>
-    <content><![CDATA[<h2 id="什麼是map-filter-reduce"><a href="#什麼是map-filter-reduce" class="headerlink" title="什麼是map, filter, reduce"></a>什麼是map, filter, reduce</h2><p>這三個東西都是ES5推出的Array method，的可以對Array裡面的元素做一些操作。</p>
-<h3 id="map"><a href="#map" class="headerlink" title="map"></a>map</h3><ul>
-<li>會回傳一個新的array</li>
-<li>在map裡面用callback function對每個element 逐一做操作後回傳</li>
-</ul>
-<p>map不會影響到原先的array，也不必用for之類的迴圈去一個一個處理後存回去，更多資訊可以查看<a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array/map">MDN</a></p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> arr = [<span class="number">1</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>];</span><br><span class="line"><span class="keyword">const</span> result = arr.<span class="title function_">map</span>(<span class="function">(<span class="params">item</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> item * <span class="number">2</span>;</span><br><span class="line">&#125;);</span><br><span class="line"><span class="comment">// result = [2,6,8,10]</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="filter"><a href="#filter" class="headerlink" title="filter"></a>filter</h3><p>可以用來過濾不符合callback function判斷式的元素，也就是在callback function中需要return true or false來決定是否要保留這個元素。<br>這個也是會回傳一個新的array，查看<a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array/filter">MDN</a></p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> arr = [<span class="number">1</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>];</span><br><span class="line"><span class="keyword">const</span> result = arr.<span class="title function_">filter</span>(<span class="function">(<span class="params">item</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> item &lt; <span class="number">4</span>;</span><br><span class="line">&#125;);</span><br><span class="line"><span class="comment">// result = [1,3]</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="reduce"><a href="#reduce" class="headerlink" title="reduce"></a>reduce</h3><p>可以傳入一個initial value，然後在callback function中會依次回傳initial value和每個元素的一些操作，最後會回傳最終的value。<br>參考 <a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce">MDN</a></p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> arr = [<span class="number">1</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>];</span><br><span class="line"><span class="keyword">const</span> result = arr.<span class="title function_">reduce</span>(<span class="function">(<span class="params">initialValue, item</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> initialValue + item;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>item為arr中的每個元素，initialValue為reduce的第一個參數，假設想要把所有的值加起來，就可以用reduce來做，把每次值都累加到initialValue上，最後就會回傳最終的值。</p>
-]]></content>
-      <categories>
-        <category>frontend_interview</category>
-      </categories>
-      <tags>
-        <tag>Javascript</tag>
         <tag>Frontend</tag>
       </tags>
   </entry>

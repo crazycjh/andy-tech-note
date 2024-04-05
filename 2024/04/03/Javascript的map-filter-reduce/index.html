@@ -278,7 +278,7 @@
       <button class="mdui-btn mdui-btn-icon mdui-text-color-teal" mdui-menu="{target: '#share_menu', align: 'right'}"><i class="iconfont icon-share"></i></button>
       <ul class="mdui-menu" id="share_menu">
         <li class="mdui-menu-item">
-          <a href="http://service.weibo.com/share/share.php?appkey=&title=Javascript的map,filter,reduce&url=http://crazycjh.github.io/andy-tech-note/2024/04/03/Javascript%E7%9A%84map-filter-reduce/&pic=http://crazycjh.github.io/andy-tech-note/andy-tech-note/null&searchPic=false&style=simple" target="_blank" class="mdui-ripple">分享到 Weibo</a>
+          <a href="http://service.weibo.com/share/share.php?appkey=&title=Javascript的map,filter,reduce&url=http://crazycjh.github.io/andy-tech-note/2024/04/03/Javascript%E7%9A%84map-filter-reduce/&pic=http://crazycjh.github.io/andy-tech-note/andy-tech-note/null&searchPic=false&style=simple" target="_blank" class="mdui-ripple">Share to Weibo</a>
         </li>
         <li class="mdui-menu-item">
           <a href="https://twitter.com/intent/tweet?text=Javascript的map,filter,reduce&url=http://crazycjh.github.io/andy-tech-note/2024/04/03/Javascript%E7%9A%84map-filter-reduce/&via=Andy Chen" target="_blank" class="mdui-ripple">分享到 Twitter</a>
@@ -287,13 +287,13 @@
           <a href="https://www.facebook.com/sharer/sharer.php?u=http://crazycjh.github.io/andy-tech-note/2024/04/03/Javascript%E7%9A%84map-filter-reduce/" target="_blank" class="mdui-ripple">分享到 Facebook</a>
         </li>
         <li class="mdui-menu-item">
-          <a href="https://plus.google.com/share?url=http://crazycjh.github.io/andy-tech-note/2024/04/03/Javascript%E7%9A%84map-filter-reduce/" target="_blank" class="mdui-ripple">分享到 Google+</a>
+          <a href="https://plus.google.com/share?url=http://crazycjh.github.io/andy-tech-note/2024/04/03/Javascript%E7%9A%84map-filter-reduce/" target="_blank" class="mdui-ripple">Share to Google+</a>
         </li>
         <li class="mdui-menu-item">
           <a href="https://www.linkedin.com/shareArticle?mini=true&url=http://crazycjh.github.io/andy-tech-note/2024/04/03/Javascript%E7%9A%84map-filter-reduce/&title=Javascript的map,filter,reduce" target="_blank" class="mdui-ripple">分享到 LinkedIn</a>
         </li>
         <li class="mdui-menu-item">
-          <a href="http://connect.qq.com/widget/shareqq/index.html?site=Andy的技術筆記、生活紀錄&title=Javascript的map,filter,reduce&summary=把生活中學習到瑣碎的小事記下來，讓想法更加完整。&pics=http://crazycjh.github.io/andy-tech-note/andy-tech-note/null&url=http://crazycjh.github.io/andy-tech-note/2024/04/03/Javascript%E7%9A%84map-filter-reduce/" target="_blank" class="mdui-ripple">分享到 QQ</a>
+          <a href="http://connect.qq.com/widget/shareqq/index.html?site=Andy的技術筆記、生活紀錄&title=Javascript的map,filter,reduce&summary=把生活中學習到瑣碎的小事記下來，讓想法更加完整。&pics=http://crazycjh.github.io/andy-tech-note/andy-tech-note/null&url=http://crazycjh.github.io/andy-tech-note/2024/04/03/Javascript%E7%9A%84map-filter-reduce/" target="_blank" class="mdui-ripple">Share to QQ</a>
         </li>
         <li class="mdui-menu-item">
           <a href="https://telegram.me/share/url?url=http://crazycjh.github.io/andy-tech-note/2024/04/03/Javascript%E7%9A%84map-filter-reduce/&text=Javascript的map,filter,reduce" target="_blank" class="mdui-ripple">分享到 Telegram</a>
@@ -331,9 +331,9 @@
 <h3 id="filter"><a href="#filter" class="headerlink" title="filter"></a>filter</h3><p>可以用來過濾不符合callback function判斷式的元素，也就是在callback function中需要return true or false來決定是否要保留這個元素。<br>這個也是會回傳一個新的array，查看<a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array/filter">MDN</a></p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> arr = [<span class="number">1</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>];</span><br><span class="line"><span class="keyword">const</span> result = arr.<span class="title function_">filter</span>(<span class="function">(<span class="params">item</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> item &lt; <span class="number">4</span>;</span><br><span class="line">&#125;);</span><br><span class="line"><span class="comment">// result = [1,3]</span></span><br></pre></td></tr></table></figure>
 
-<h3 id="reduce"><a href="#reduce" class="headerlink" title="reduce"></a>reduce</h3><p>可以傳入一個initial value，然後在callback function中會依次回傳initial value和每個元素的一些操作，最後會回傳最終的value。<br>參考 <a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce">MDN</a></p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> arr = [<span class="number">1</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>];</span><br><span class="line"><span class="keyword">const</span> result = arr.<span class="title function_">reduce</span>(<span class="function">(<span class="params">initialValue, item</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> initialValue + item;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>item為arr中的每個元素，initialValue為reduce的第一個參數，假設想要把所有的值加起來，就可以用reduce來做，把每次值都累加到initialValue上，最後就會回傳最終的值。</p>
+<h3 id="reduce"><a href="#reduce" class="headerlink" title="reduce"></a>reduce</h3><p>可以傳入一個initial value，然後在callback function中會依次回傳initial value和每個元素的一些操作，最後會回傳最終的value。<br>也就是每回合把initial value和每個元素的值相加，最後就會回傳最終的value。<br>參考 <a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce">MDN</a></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> arr = [<span class="number">1</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>];</span><br><span class="line"><span class="keyword">const</span> result = arr.<span class="title function_">reduce</span>(<span class="function">(<span class="params">acc, item</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> acc + item;</span><br><span class="line">&#125;)</span><br><span class="line"><span class="comment">// result = 15</span></span><br></pre></td></tr></table></figure>
+<p>item為arr中的每個元素，acc為reduce的第一個參數，假設想要把所有的值加起來，就可以用reduce來做，把每次值都累加到acc上，然後回傳最終值。</p>
 
   </div>
   <!--文末结束语-->

@@ -14,8 +14,8 @@
         <category>javascript</category>
       </categories>
       <tags>
-        <tag>Javascriptj</tag>
         <tag>async</tag>
+        <tag>Javascriptj</tag>
       </tags>
   </entry>
   <entry>
@@ -41,33 +41,6 @@
       </categories>
       <tags>
         <tag>Javascript</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>在vue中一次watch多個變數</title>
-    <url>/andy-tech-note/2023/01/10/vue-watch-multiple-value/</url>
-    <content><![CDATA[<h4 id="在Vue3-amp-Composition下，想一次watch多個變數的實現方法"><a href="#在Vue3-amp-Composition下，想一次watch多個變數的實現方法" class="headerlink" title="在Vue3 &amp; Composition下，想一次watch多個變數的實現方法"></a>在Vue3 &amp; Composition下，想一次watch多個變數的實現方法</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">setup()&#123;</span><br><span class="line">    const message = ref(&#x27;&#x27;);</span><br><span class="line">    const name = ref(&#x27;&#x27;);</span><br><span class="line">    watch([message,name],([newValueMessage,newValueName],[oldValueMessage,oldValueName])=&gt;&#123;</span><br><span class="line">        //do something</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<h4 id="watch-vuex裡面的state或是其他reactive裡的某個值"><a href="#watch-vuex裡面的state或是其他reactive裡的某個值" class="headerlink" title="watch vuex裡面的state或是其他reactive裡的某個值"></a>watch vuex裡面的state或是其他reactive裡的某個值</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//假設vuex state中影一個名為msg的值</span><br><span class="line">setup()&#123;</span><br><span class="line">    const message= reactive(&#123;user1:&#x27;&#x27;&#125;)</span><br><span class="line">    watch([()=&gt;message.user1,()=&gt;store.state.msg],()=&gt;&#123;</span><br><span class="line">        //do something</span><br><span class="line"></span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p>使用 <code>()=&gt; arrow</code> function去return reactive的值才能watch</p>
-]]></content>
-      <categories>
-        <category>Frontend</category>
-      </categories>
-      <tags>
-        <tag>Javascript</tag>
-        <tag>Vue</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>如何修改NPM下載的程式碼</title>
-    <url>/andy-tech-note/2023/01/11/how-to-edit-sourcecode-installed-by-npm-nodemodule/</url>
-    <content><![CDATA[<p>嘗試對npm下載的node_modules裡面的套件的code做修改，但是發現不論怎麼改都不會生效。<br>才發現在vite &amp; vue3的環境下，vite把一些預先編譯好的東西放到<code>node_modules/.vite</code>中，<br>所以需要手動刪除這個資料夾去讓編譯器去編譯修改過的程式碼，又或者透過 <code>npm run dev --force</code></p>
-]]></content>
-      <categories>
-        <category>Frontend</category>
-      </categories>
-      <tags>
-        <tag>npm</tag>
       </tags>
   </entry>
   <entry>
@@ -98,14 +71,45 @@
       </tags>
   </entry>
   <entry>
-    <title>在vue中把變數傳進css</title>
-    <url>/andy-tech-note/2023/01/14/vue-ref-css-vbind/</url>
-    <content><![CDATA[<p>某些時候會希望動態改變css的樣式高度、寬度、顏色…等等的<br>在vue中可以宣告一個ref變數(composition API)，然後把搭丟到vue檔案中的 <style></style>中，又或者透過inline的方式直接插入到html tag中，舉例如下：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">setup()&#123;</span><br><span class="line">    const mdSize = ref(&quot;100px&quot;);</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="傳到-lt-style-gt"><a href="#傳到-lt-style-gt" class="headerlink" title="傳到 &lt;style&gt;"></a>傳到 <code>&lt;style&gt;</code></h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;div class=&quot;md-size&quot;&gt;&lt;/div&gt; //在這裏class不需要v-bind</span><br><span class="line">&lt;style&gt;</span><br><span class="line">.md-size&#123;</span><br><span class="line">    height:v-bind(mdSize);</span><br><span class="line">&#125;</span><br><span class="line">&lt;/style&gt;    </span><br></pre></td></tr></table></figure>
+    <title>如何修改NPM下載的程式碼</title>
+    <url>/andy-tech-note/2023/01/11/how-to-edit-sourcecode-installed-by-npm-nodemodule/</url>
+    <content><![CDATA[<p>嘗試對npm下載的node_modules裡面的套件的code做修改，但是發現不論怎麼改都不會生效。<br>才發現在vite &amp; vue3的環境下，vite把一些預先編譯好的東西放到<code>node_modules/.vite</code>中，<br>所以需要手動刪除這個資料夾去讓編譯器去編譯修改過的程式碼，又或者透過 <code>npm run dev --force</code></p>
+]]></content>
+      <categories>
+        <category>Frontend</category>
+      </categories>
+      <tags>
+        <tag>npm</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>codemirror 設定(註冊)事件觸發Codemirror.on</title>
+    <url>/andy-tech-note/2023/01/16/codemirror-set-eventListener/</url>
+    <content><![CDATA[<h3 id="codemirror"><a href="#codemirror" class="headerlink" title="codemirror"></a>codemirror</h3><p>什麼是codemirror，它是一款可以實現在前端網頁上的編輯器。<br>如同現在網路上看到的文字編輯器一樣，但你可以去設定當使用者做哪些操作時codemirror做哪些對應的行為。<br><a href="https://codemirror.net/5/">CodeMirror v5</a></p>
+<h3 id="如何在codemirror編輯器設定事件觸發"><a href="#如何在codemirror編輯器設定事件觸發" class="headerlink" title="如何在codemirror編輯器設定事件觸發"></a>如何在codemirror編輯器設定事件觸發</h3><p><a href="https://codemirror.net/5/doc/manual.html#events">Event列表</a></p>
+<p>使用 const editor &#x3D; CodeMirror.fromTextArea()建立編輯器instance後<br>在透過這個instance去呼叫 <code>on</code> 這個function</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">editor.on(&quot;change&quot;,(cm,changeObj)=&gt;&#123;                  </span><br><span class="line">    //這個意思是當editor文字有改變時就執行callback function</span><br><span class="line">    </span><br><span class="line">    //do something，這裡也可以加入其他CodeMirror的function執行</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>要怎麼使用on呢？ <a href="https://codemirror.net/5/doc/manual.html#on">官方介紹</a></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cm.on(type: string, func: (...args))</span><br></pre></td></tr></table></figure>
 
-<h3 id="以傳值的方式丟到inline"><a href="#以傳值的方式丟到inline" class="headerlink" title="以傳值的方式丟到inline"></a>以傳值的方式丟到inline</h3><p>搭配v-bind 也就是縮寫 “:”<br>把mdSize放進去style</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;button :style=&quot;&#123; height: mdSize &#125;&quot; &gt; 按鈕名稱 &lt;/button&gt;</span><br></pre></td></tr></table></figure>
+<p>舉例：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//建議以下function可以在頁面建立一併執行(如果是馬上要用到)，on的功能可以看成註冊的概念，把這個功能註冊給editor，條件有達到就會執行</span><br><span class="line">editor.on(&quot;change&quot;,(cm,changeObj)=&gt;&#123;                  </span><br><span class="line">    console.log(changeObj.ch);</span><br><span class="line">    console.log(changeObj.line); </span><br><span class="line">    //在change中會有ch(第幾個位元) line第幾行</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>這裡的cm是指codemirror，在官方頁面中有提到，不管是看到codemirror(簡寫cm)或是doc，在使用上都可以用前面建立好的editor instance(端看使用者怎麼命名)</p>
+<p>on裡面第一的參數 <code>type</code> 也就是 cursorActivity  或者 change 之類的事件，後面callback function裡面的參數，在每個event中都會清楚告訴你有什麼參數可以用。<br>在<code>change</code>中可以使用cm instance以及獲取改變的文字及其相關資訊。</p>
+]]></content>
+      <categories>
+        <category>Frontend</category>
+      </categories>
+      <tags>
+        <tag>codemirror</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>在vue中一次watch多個變數</title>
+    <url>/andy-tech-note/2023/01/10/vue-watch-multiple-value/</url>
+    <content><![CDATA[<h4 id="在Vue3-amp-Composition下，想一次watch多個變數的實現方法"><a href="#在Vue3-amp-Composition下，想一次watch多個變數的實現方法" class="headerlink" title="在Vue3 &amp; Composition下，想一次watch多個變數的實現方法"></a>在Vue3 &amp; Composition下，想一次watch多個變數的實現方法</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">setup()&#123;</span><br><span class="line">    const message = ref(&#x27;&#x27;);</span><br><span class="line">    const name = ref(&#x27;&#x27;);</span><br><span class="line">    watch([message,name],([newValueMessage,newValueName],[oldValueMessage,oldValueName])=&gt;&#123;</span><br><span class="line">        //do something</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h4 id="watch-vuex裡面的state或是其他reactive裡的某個值"><a href="#watch-vuex裡面的state或是其他reactive裡的某個值" class="headerlink" title="watch vuex裡面的state或是其他reactive裡的某個值"></a>watch vuex裡面的state或是其他reactive裡的某個值</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//假設vuex state中影一個名為msg的值</span><br><span class="line">setup()&#123;</span><br><span class="line">    const message= reactive(&#123;user1:&#x27;&#x27;&#125;)</span><br><span class="line">    watch([()=&gt;message.user1,()=&gt;store.state.msg],()=&gt;&#123;</span><br><span class="line">        //do something</span><br><span class="line"></span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>使用 <code>()=&gt; arrow</code> function去return reactive的值才能watch</p>
 ]]></content>
       <categories>
         <category>Frontend</category>
@@ -113,20 +117,6 @@
       <tags>
         <tag>Javascript</tag>
         <tag>Vue</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>chatGPT-想法</title>
-    <url>/andy-tech-note/2023/02/01/chatGPT-note/</url>
-    <content><![CDATA[<h3 id="關於chatGPT想法"><a href="#關於chatGPT想法" class="headerlink" title="關於chatGPT想法"></a>關於chatGPT想法</h3><p>網路上有很多人認為chatGPT會造成很多人依賴chatGPT取得資訊，讓人變得更懶。<br>不過我倒不這麼認為，先前在免費時使用過chatGPT，透過他詢問一下關於寫side project的問題，<br>在這過程成會發現如果你對於你的問題沒有具備相應的背景知識時，AI回答給你的答案你根本無從判斷是否有誤，曾經得到的答案發現大方向沒錯，但是小細節是有瑕疵的。</p>
-<p>所以個人認為他可以是輔助人類而非取代人類，至少在寫程式的部分，碰到問題時可以詢問他，有時候他會告訴你某個大方向，而這個方向可能是你在思考時盲點，可以再透過這個方向去找到你需要的答案，這樣可以避免在某個死胡同打轉。</p>
-<h3 id="收費"><a href="#收費" class="headerlink" title="收費"></a>收費</h3><p>2023年2月開始需要收費囉，一個月20美金，以小弟在線上詢問一些問題，而這些問題可能在google可以輕鬆找到，但是有這些問題是有前後關聯的，在google上並不是這麼容易精確的搜尋到答案，chatGPT反而可以接續著前一個問題回答你下一個問題，讓你的思緒更加完整。<br>以一個軟體工程師來說20美元一個月完全值得投資，問幾個問題可以節省更多時間去做別的事，畢竟軟體工程師就是極致懶，可以讓程式完成的事就不想手動完成，當然拉，在這問問題過程中還是要有學到東西才比較好ＸＤ。</p>
-]]></content>
-      <categories>
-        <category>軟體雜記</category>
-      </categories>
-      <tags>
-        <tag>chatGPT</tag>
       </tags>
   </entry>
   <entry>
@@ -170,6 +160,20 @@
       </tags>
   </entry>
   <entry>
+    <title>chatGPT-想法</title>
+    <url>/andy-tech-note/2023/02/01/chatGPT-note/</url>
+    <content><![CDATA[<h3 id="關於chatGPT想法"><a href="#關於chatGPT想法" class="headerlink" title="關於chatGPT想法"></a>關於chatGPT想法</h3><p>網路上有很多人認為chatGPT會造成很多人依賴chatGPT取得資訊，讓人變得更懶。<br>不過我倒不這麼認為，先前在免費時使用過chatGPT，透過他詢問一下關於寫side project的問題，<br>在這過程成會發現如果你對於你的問題沒有具備相應的背景知識時，AI回答給你的答案你根本無從判斷是否有誤，曾經得到的答案發現大方向沒錯，但是小細節是有瑕疵的。</p>
+<p>所以個人認為他可以是輔助人類而非取代人類，至少在寫程式的部分，碰到問題時可以詢問他，有時候他會告訴你某個大方向，而這個方向可能是你在思考時盲點，可以再透過這個方向去找到你需要的答案，這樣可以避免在某個死胡同打轉。</p>
+<h3 id="收費"><a href="#收費" class="headerlink" title="收費"></a>收費</h3><p>2023年2月開始需要收費囉，一個月20美金，以小弟在線上詢問一些問題，而這些問題可能在google可以輕鬆找到，但是有這些問題是有前後關聯的，在google上並不是這麼容易精確的搜尋到答案，chatGPT反而可以接續著前一個問題回答你下一個問題，讓你的思緒更加完整。<br>以一個軟體工程師來說20美元一個月完全值得投資，問幾個問題可以節省更多時間去做別的事，畢竟軟體工程師就是極致懶，可以讓程式完成的事就不想手動完成，當然拉，在這問問題過程中還是要有學到東西才比較好ＸＤ。</p>
+]]></content>
+      <categories>
+        <category>軟體雜記</category>
+      </categories>
+      <tags>
+        <tag>chatGPT</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>CSS中的偽類-pseudo-class</title>
     <url>/andy-tech-note/2023/02/13/pseudo-class/</url>
     <content><![CDATA[<h3 id="情境1"><a href="#情境1" class="headerlink" title="情境1"></a>情境1</h3><p>直接範例解釋</p>
@@ -188,30 +192,6 @@
       </categories>
       <tags>
         <tag>CSS</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>如何使用Google的firebase裡面的驗證功能(login/logout)</title>
-    <url>/andy-tech-note/2023/02/16/firebase-auth/</url>
-    <content><![CDATA[<h4 id="Google-Firebase"><a href="#Google-Firebase" class="headerlink" title="Google Firebase"></a>Google Firebase</h4><p>Google的Firebase是個前端工程師很好用的工具，他可以讓前端工程師省去後端資料庫的建立而可以專注在前端的開發，這裡面有身份驗證、realtime資料庫等好用的功能，只要是拿來做開發，而流量不大的話，通常你都不會達到需要付費流量。</p>
-<h4 id="Firebase-auth-以Email-x2F-password-為例"><a href="#Firebase-auth-以Email-x2F-password-為例" class="headerlink" title="Firebase auth 以Email&#x2F;password 為例"></a>Firebase auth 以Email&#x2F;password 為例</h4><p>可以先到firebase官網看一下的 <a href="https://firebase.google.com/docs/auth/web/start">Authentication</a> 頁面，<code>Get start </code>中有提供範例code</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">import &#123; initializeApp &#125; from &quot;firebase/app&quot;;</span><br><span class="line">import &#123; getAuth &#125; from &quot;firebase/auth&quot;;</span><br><span class="line"></span><br><span class="line">// TODO: Replace the following with your app&#x27;s Firebase project configuration</span><br><span class="line">// See: https://firebase.google.com/docs/web/learn-more#config-object</span><br><span class="line">const firebaseConfig = &#123;</span><br><span class="line">  // ...這裡面呢放上的東西可以參考上面那行網址，</span><br><span class="line">  簡單來說就是你在firebase(https://firebase.google.com/)</span><br><span class="line">  建立新專案時並且建立後會出現的一些資料，按照這些資料填入即可</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">// Initialize Firebase</span><br><span class="line">const app = initializeApp(firebaseConfig);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">// Initialize Firebase Authentication and get a reference to the service</span><br><span class="line">const auth = getAuth(app);</span><br><span class="line">//</span><br></pre></td></tr></table></figure>
-<p>要如何找到firebaseConfig裡面的資料？點到下圖的這個地方，右邊拉到底，新增一個<code>網頁應用程式</code>後就會出現相對應的api key。<br><img src="/andy-tech-note/2023/02/16/firebase-auth/SCR-20230216-t2w.png"><br>而後記得在左側的<code>建構</code>建立一個authication服務，然後在右側sign-in method去新增供應商，選擇電子郵件&#x2F;密碼後在左邊users設定你想要登入的帳號密碼(這是比較陽春的方式，你可以在網路上找一下透過網頁要求建立帳號密碼)<br><img src="/andy-tech-note/2023/02/16/firebase-auth/SCR-20230216-t7l.png"></p>
-<p>而剛剛上面的code，只是把firebase先初始化以及把auth資訊先準備好，接下來要呼叫登入的API。<br><a href="https://firebase.google.com/docs/auth/web/password-auth">email&#x2F;password登入</a></p>
-<h5 id="登入"><a href="#登入" class="headerlink" title="登入"></a>登入</h5><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">import &#123; getAuth, signInWithEmailAndPassword &#125; from &quot;firebase/auth&quot;;</span><br><span class="line"></span><br><span class="line">const auth = getAuth();</span><br><span class="line">signInWithEmailAndPassword(auth, email, password)</span><br><span class="line">  .then((userCredential) =&gt; &#123;</span><br><span class="line">    // Signed in </span><br><span class="line">    const user = userCredential.user;</span><br><span class="line">    // ...</span><br><span class="line">  &#125;)</span><br><span class="line">  .catch((error) =&gt; &#123;</span><br><span class="line">    const errorCode = error.code;</span><br><span class="line">    const errorMessage = error.message;</span><br><span class="line">  &#125;);</span><br></pre></td></tr></table></figure>
-
-<p>如果有需要創建帳號的code，在同個網頁也有</p>
-<h5 id="創建帳號"><a href="#創建帳號" class="headerlink" title="創建帳號"></a>創建帳號</h5><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">import &#123; getAuth, createUserWithEmailAndPassword &#125; from &quot;firebase/auth&quot;;</span><br><span class="line"></span><br><span class="line">const auth = getAuth();</span><br><span class="line">createUserWithEmailAndPassword(auth, email, password)</span><br><span class="line">  .then((userCredential) =&gt; &#123;</span><br><span class="line">    // Signed in </span><br><span class="line">    const user = userCredential.user;</span><br><span class="line">    // ...</span><br><span class="line">  &#125;)</span><br><span class="line">  .catch((error) =&gt; &#123;</span><br><span class="line">    const errorCode = error.code;</span><br><span class="line">    const errorMessage = error.message;</span><br><span class="line">    // ..</span><br><span class="line">  &#125;);</span><br></pre></td></tr></table></figure>
-
-<h5 id="登出"><a href="#登出" class="headerlink" title="登出"></a>登出</h5><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">import &#123; getAuth, signOut &#125; from &quot;firebase/auth&quot;;</span><br><span class="line"></span><br><span class="line">const auth = getAuth();</span><br><span class="line">signOut(auth).then(() =&gt; &#123;</span><br><span class="line">  // Sign-out successful.</span><br><span class="line">&#125;).catch((error) =&gt; &#123;</span><br><span class="line">  // An error happened.</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-
-<h4 id="登入後"><a href="#登入後" class="headerlink" title="登入後"></a>登入後</h4><p>執行完登入後，要怎麼知道是不是真正登入？<br>可以點開瀏覽器的開發者工具裡面的儲存空間如下，如果再相對應的位置有找到寫有你之前填入的API Key就代表登入成功，而且他還幫你存在暫存裡面。<br><img src="/andy-tech-note/2023/02/16/firebase-auth/SCR-20230216-to3.png"></p>
-]]></content>
-      <categories>
-        <category>Frontend</category>
-      </categories>
-      <tags>
-        <tag>Firebase</tag>
       </tags>
   </entry>
   <entry>
@@ -239,25 +219,37 @@
       </tags>
   </entry>
   <entry>
-    <title>CSS中的px-em-rem</title>
-    <url>/andy-tech-note/2023/03/25/px-em-rem/</url>
-    <content><![CDATA[<h3 id="這是關於長度單位"><a href="#這是關於長度單位" class="headerlink" title="這是關於長度單位"></a>這是關於長度單位</h3><h4 id="px"><a href="#px" class="headerlink" title="px"></a>px</h4><p>是一個絕對長度的單位，是以螢幕pixel為基準。</p>
-<h4 id="em"><a href="#em" class="headerlink" title="em"></a>em</h4><p>是一個相對長度單位，是依照當下所在的element其parent element的大小來當作倍數計算，舉例如果是把em設定在font-size，如果當下font-size是以10px，而在child 設定的font-size是設定<code>1ex</code> &#x3D;&gt;也就是 <code>10px</code> ，若是<code>2ex</code> &#x3D;&gt;<code>20px</code></p>
-<h4 id="rem"><a href="#rem" class="headerlink" title="rem"></a>rem</h4><p>這也是相對長度單位，但是以root的大小當作依據來算倍數，所以若是root size設定為<code>12px</code>，而當下的size設定為<code>3rem</code> &#x3D;&gt; <code>36px</code></p>
+    <title>如何使用Google的firebase裡面的驗證功能(login/logout)</title>
+    <url>/andy-tech-note/2023/02/16/firebase-auth/</url>
+    <content><![CDATA[<h4 id="Google-Firebase"><a href="#Google-Firebase" class="headerlink" title="Google Firebase"></a>Google Firebase</h4><p>Google的Firebase是個前端工程師很好用的工具，他可以讓前端工程師省去後端資料庫的建立而可以專注在前端的開發，這裡面有身份驗證、realtime資料庫等好用的功能，只要是拿來做開發，而流量不大的話，通常你都不會達到需要付費流量。</p>
+<h4 id="Firebase-auth-以Email-x2F-password-為例"><a href="#Firebase-auth-以Email-x2F-password-為例" class="headerlink" title="Firebase auth 以Email&#x2F;password 為例"></a>Firebase auth 以Email&#x2F;password 為例</h4><p>可以先到firebase官網看一下的 <a href="https://firebase.google.com/docs/auth/web/start">Authentication</a> 頁面，<code>Get start </code>中有提供範例code</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">import &#123; initializeApp &#125; from &quot;firebase/app&quot;;</span><br><span class="line">import &#123; getAuth &#125; from &quot;firebase/auth&quot;;</span><br><span class="line"></span><br><span class="line">// TODO: Replace the following with your app&#x27;s Firebase project configuration</span><br><span class="line">// See: https://firebase.google.com/docs/web/learn-more#config-object</span><br><span class="line">const firebaseConfig = &#123;</span><br><span class="line">  // ...這裡面呢放上的東西可以參考上面那行網址，</span><br><span class="line">  簡單來說就是你在firebase(https://firebase.google.com/)</span><br><span class="line">  建立新專案時並且建立後會出現的一些資料，按照這些資料填入即可</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">// Initialize Firebase</span><br><span class="line">const app = initializeApp(firebaseConfig);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">// Initialize Firebase Authentication and get a reference to the service</span><br><span class="line">const auth = getAuth(app);</span><br><span class="line">//</span><br></pre></td></tr></table></figure>
+<p>要如何找到firebaseConfig裡面的資料？點到下圖的這個地方，右邊拉到底，新增一個<code>網頁應用程式</code>後就會出現相對應的api key。<br><img src="/andy-tech-note/2023/02/16/firebase-auth/SCR-20230216-t2w.png"><br>而後記得在左側的<code>建構</code>建立一個authication服務，然後在右側sign-in method去新增供應商，選擇電子郵件&#x2F;密碼後在左邊users設定你想要登入的帳號密碼(這是比較陽春的方式，你可以在網路上找一下透過網頁要求建立帳號密碼)<br><img src="/andy-tech-note/2023/02/16/firebase-auth/SCR-20230216-t7l.png"></p>
+<p>而剛剛上面的code，只是把firebase先初始化以及把auth資訊先準備好，接下來要呼叫登入的API。<br><a href="https://firebase.google.com/docs/auth/web/password-auth">email&#x2F;password登入</a></p>
+<h5 id="登入"><a href="#登入" class="headerlink" title="登入"></a>登入</h5><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">import &#123; getAuth, signInWithEmailAndPassword &#125; from &quot;firebase/auth&quot;;</span><br><span class="line"></span><br><span class="line">const auth = getAuth();</span><br><span class="line">signInWithEmailAndPassword(auth, email, password)</span><br><span class="line">  .then((userCredential) =&gt; &#123;</span><br><span class="line">    // Signed in </span><br><span class="line">    const user = userCredential.user;</span><br><span class="line">    // ...</span><br><span class="line">  &#125;)</span><br><span class="line">  .catch((error) =&gt; &#123;</span><br><span class="line">    const errorCode = error.code;</span><br><span class="line">    const errorMessage = error.message;</span><br><span class="line">  &#125;);</span><br></pre></td></tr></table></figure>
+
+<p>如果有需要創建帳號的code，在同個網頁也有</p>
+<h5 id="創建帳號"><a href="#創建帳號" class="headerlink" title="創建帳號"></a>創建帳號</h5><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">import &#123; getAuth, createUserWithEmailAndPassword &#125; from &quot;firebase/auth&quot;;</span><br><span class="line"></span><br><span class="line">const auth = getAuth();</span><br><span class="line">createUserWithEmailAndPassword(auth, email, password)</span><br><span class="line">  .then((userCredential) =&gt; &#123;</span><br><span class="line">    // Signed in </span><br><span class="line">    const user = userCredential.user;</span><br><span class="line">    // ...</span><br><span class="line">  &#125;)</span><br><span class="line">  .catch((error) =&gt; &#123;</span><br><span class="line">    const errorCode = error.code;</span><br><span class="line">    const errorMessage = error.message;</span><br><span class="line">    // ..</span><br><span class="line">  &#125;);</span><br></pre></td></tr></table></figure>
+
+<h5 id="登出"><a href="#登出" class="headerlink" title="登出"></a>登出</h5><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">import &#123; getAuth, signOut &#125; from &quot;firebase/auth&quot;;</span><br><span class="line"></span><br><span class="line">const auth = getAuth();</span><br><span class="line">signOut(auth).then(() =&gt; &#123;</span><br><span class="line">  // Sign-out successful.</span><br><span class="line">&#125;).catch((error) =&gt; &#123;</span><br><span class="line">  // An error happened.</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<h4 id="登入後"><a href="#登入後" class="headerlink" title="登入後"></a>登入後</h4><p>執行完登入後，要怎麼知道是不是真正登入？<br>可以點開瀏覽器的開發者工具裡面的儲存空間如下，如果再相對應的位置有找到寫有你之前填入的API Key就代表登入成功，而且他還幫你存在暫存裡面。<br><img src="/andy-tech-note/2023/02/16/firebase-auth/SCR-20230216-to3.png"></p>
 ]]></content>
       <categories>
         <category>Frontend</category>
       </categories>
       <tags>
-        <tag>CSS</tag>
+        <tag>Firebase</tag>
       </tags>
   </entry>
   <entry>
-    <title>CSS中的inline、block以及inline block</title>
-    <url>/andy-tech-note/2023/03/27/inline-block/</url>
-    <content><![CDATA[<h3 id="element樣式"><a href="#element樣式" class="headerlink" title="element樣式"></a>element樣式</h3><h4 id="block-element"><a href="#block-element" class="headerlink" title="block element"></a>block element</h4><p>這個element是會佔用整個整行的空間(也就是滿版)，即便你的資料沒有這麼多。<br>舉例：<code>&lt;div&gt;</code> <code>&lt;h1&gt;</code> <code>&lt;p&gt;</code><br>不過可以透過設定寬度高度去控制樣式。</p>
-<h4 id="inline-element"><a href="#inline-element" class="headerlink" title="inline element"></a>inline element</h4><p>依照inline element的內容去調整整個element的寬度，<br>舉例：<code>&lt;a&gt; &lt;br&gt; &lt;input&gt;</code><br>但是無法修改寬度與高度，即便加入margin與padding。</p>
-<h4 id="inline-block"><a href="#inline-block" class="headerlink" title="inline-block"></a>inline-block</h4><p>可以在display中設定inline-block<br><code>display:inline-block;</code><br>這樣就可以讓block不佔用滿版，但還可以控制其寬度與高度。</p>
+    <title>CSS的Box-model</title>
+    <url>/andy-tech-note/2023/03/25/box-model/</url>
+    <content><![CDATA[<h4 id="什麼是Box-model"><a href="#什麼是Box-model" class="headerlink" title="什麼是Box model"></a>什麼是Box model</h4><p>在網頁中每個element都被看作一個box，每個box可以有內容content、邊界border、內外空間。<br>所以box會有padding &#x2F; marging&#x2F; border&#x2F; content</p>
+<h4 id="Padding"><a href="#Padding" class="headerlink" title="Padding"></a>Padding</h4><p>padding是content與border的距離</p>
+<h4 id="Margin"><a href="#Margin" class="headerlink" title="Margin"></a>Margin</h4><p>margin是物件與其他物件的距離，可以使用margin來產生空白與其他element產生一段距離</p>
+<p><img src="https://developer.mozilla.org/en-US/docs/Learn/CSS/Building_blocks/The_box_model/box-model.png" alt="來源MDN"></p>
+<h4 id="Width-x2F-Height"><a href="#Width-x2F-Height" class="headerlink" title="Width&#x2F;Height"></a>Width&#x2F;Height</h4><p>在box中可以設定寬度與高度(width &amp; Height)，現在的CSS寬度是指content的寬度，所以在製作layout時要注意寬度要再加上border+padding+margin才是最終寬度或是高度。<br><img src="https://developer.mozilla.org/en-US/docs/Learn/CSS/Building_blocks/The_box_model/standard-box-model.png" alt="設定高寬"></p>
 ]]></content>
       <categories>
         <category>Frontend</category>
@@ -289,9 +281,37 @@
         <category>Frontend</category>
       </categories>
       <tags>
-        <tag>async</tag>
         <tag>Javascript</tag>
+        <tag>async</tag>
         <tag>promise</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>CSS中的px-em-rem</title>
+    <url>/andy-tech-note/2023/03/25/px-em-rem/</url>
+    <content><![CDATA[<h3 id="這是關於長度單位"><a href="#這是關於長度單位" class="headerlink" title="這是關於長度單位"></a>這是關於長度單位</h3><h4 id="px"><a href="#px" class="headerlink" title="px"></a>px</h4><p>是一個絕對長度的單位，是以螢幕pixel為基準。</p>
+<h4 id="em"><a href="#em" class="headerlink" title="em"></a>em</h4><p>是一個相對長度單位，是依照當下所在的element其parent element的大小來當作倍數計算，舉例如果是把em設定在font-size，如果當下font-size是以10px，而在child 設定的font-size是設定<code>1ex</code> &#x3D;&gt;也就是 <code>10px</code> ，若是<code>2ex</code> &#x3D;&gt;<code>20px</code></p>
+<h4 id="rem"><a href="#rem" class="headerlink" title="rem"></a>rem</h4><p>這也是相對長度單位，但是以root的大小當作依據來算倍數，所以若是root size設定為<code>12px</code>，而當下的size設定為<code>3rem</code> &#x3D;&gt; <code>36px</code></p>
+]]></content>
+      <categories>
+        <category>Frontend</category>
+      </categories>
+      <tags>
+        <tag>CSS</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>CSS中的inline、block以及inline block</title>
+    <url>/andy-tech-note/2023/03/27/inline-block/</url>
+    <content><![CDATA[<h3 id="element樣式"><a href="#element樣式" class="headerlink" title="element樣式"></a>element樣式</h3><h4 id="block-element"><a href="#block-element" class="headerlink" title="block element"></a>block element</h4><p>這個element是會佔用整個整行的空間(也就是滿版)，即便你的資料沒有這麼多。<br>舉例：<code>&lt;div&gt;</code> <code>&lt;h1&gt;</code> <code>&lt;p&gt;</code><br>不過可以透過設定寬度高度去控制樣式。</p>
+<h4 id="inline-element"><a href="#inline-element" class="headerlink" title="inline element"></a>inline element</h4><p>依照inline element的內容去調整整個element的寬度，<br>舉例：<code>&lt;a&gt; &lt;br&gt; &lt;input&gt;</code><br>但是無法修改寬度與高度，即便加入margin與padding。</p>
+<h4 id="inline-block"><a href="#inline-block" class="headerlink" title="inline-block"></a>inline-block</h4><p>可以在display中設定inline-block<br><code>display:inline-block;</code><br>這樣就可以讓block不佔用滿版，但還可以控制其寬度與高度。</p>
+]]></content>
+      <categories>
+        <category>Frontend</category>
+      </categories>
+      <tags>
+        <tag>CSS</tag>
       </tags>
   </entry>
   <entry>
@@ -317,22 +337,6 @@
       </tags>
   </entry>
   <entry>
-    <title>CSS的Box-model</title>
-    <url>/andy-tech-note/2023/03/25/box-model/</url>
-    <content><![CDATA[<h4 id="什麼是Box-model"><a href="#什麼是Box-model" class="headerlink" title="什麼是Box model"></a>什麼是Box model</h4><p>在網頁中每個element都被看作一個box，每個box可以有內容content、邊界border、內外空間。<br>所以box會有padding &#x2F; marging&#x2F; border&#x2F; content</p>
-<h4 id="Padding"><a href="#Padding" class="headerlink" title="Padding"></a>Padding</h4><p>padding是content與border的距離</p>
-<h4 id="Margin"><a href="#Margin" class="headerlink" title="Margin"></a>Margin</h4><p>margin是物件與其他物件的距離，可以使用margin來產生空白與其他element產生一段距離</p>
-<p><img src="https://developer.mozilla.org/en-US/docs/Learn/CSS/Building_blocks/The_box_model/box-model.png" alt="來源MDN"></p>
-<h4 id="Width-x2F-Height"><a href="#Width-x2F-Height" class="headerlink" title="Width&#x2F;Height"></a>Width&#x2F;Height</h4><p>在box中可以設定寬度與高度(width &amp; Height)，現在的CSS寬度是指content的寬度，所以在製作layout時要注意寬度要再加上border+padding+margin才是最終寬度或是高度。<br><img src="https://developer.mozilla.org/en-US/docs/Learn/CSS/Building_blocks/The_box_model/standard-box-model.png" alt="設定高寬"></p>
-]]></content>
-      <categories>
-        <category>Frontend</category>
-      </categories>
-      <tags>
-        <tag>CSS</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>在Javacript建立promise</title>
     <url>/andy-tech-note/2023/03/29/how-to-create-promise/</url>
     <content><![CDATA[<h4 id="建立promise"><a href="#建立promise" class="headerlink" title="建立promise"></a>建立promise</h4><p>延續前一篇關於promise的文章，來試試看要怎麼建立一個Promise。</p>
@@ -345,8 +349,8 @@
         <category>Frontend</category>
       </categories>
       <tags>
-        <tag>async</tag>
         <tag>Javascript</tag>
+        <tag>async</tag>
         <tag>promise</tag>
       </tags>
   </entry>
@@ -366,41 +370,18 @@
       </tags>
   </entry>
   <entry>
-    <title>codemirror 設定(註冊)事件觸發Codemirror.on</title>
-    <url>/andy-tech-note/2023/01/16/codemirror-set-eventListener/</url>
-    <content><![CDATA[<h3 id="codemirror"><a href="#codemirror" class="headerlink" title="codemirror"></a>codemirror</h3><p>什麼是codemirror，它是一款可以實現在前端網頁上的編輯器。<br>如同現在網路上看到的文字編輯器一樣，但你可以去設定當使用者做哪些操作時codemirror做哪些對應的行為。<br><a href="https://codemirror.net/5/">CodeMirror v5</a></p>
-<h3 id="如何在codemirror編輯器設定事件觸發"><a href="#如何在codemirror編輯器設定事件觸發" class="headerlink" title="如何在codemirror編輯器設定事件觸發"></a>如何在codemirror編輯器設定事件觸發</h3><p><a href="https://codemirror.net/5/doc/manual.html#events">Event列表</a></p>
-<p>使用 const editor &#x3D; CodeMirror.fromTextArea()建立編輯器instance後<br>在透過這個instance去呼叫 <code>on</code> 這個function</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">editor.on(&quot;change&quot;,(cm,changeObj)=&gt;&#123;                  </span><br><span class="line">    //這個意思是當editor文字有改變時就執行callback function</span><br><span class="line">    </span><br><span class="line">    //do something，這裡也可以加入其他CodeMirror的function執行</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-<p>要怎麼使用on呢？ <a href="https://codemirror.net/5/doc/manual.html#on">官方介紹</a></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cm.on(type: string, func: (...args))</span><br></pre></td></tr></table></figure>
+    <title>Javascript - 對object(key value)做 filter &amp; map</title>
+    <url>/andy-tech-note/2024/01/23/Javascript-%E5%B0%8Dobject-key-value-%E5%81%9A-filter&amp;map/</url>
+    <content><![CDATA[<h4 id="如何對object做類似filter的行為"><a href="#如何對object做類似filter的行為" class="headerlink" title="如何對object做類似filter的行為"></a>如何對object做類似filter的行為</h4><p>透過Object.keys把key 輸出成 Array，這樣就可以使用filter，把key當作index逐一帶入obj做條件判斷，即可達到過濾效果</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">const obj = &#123;a : 1, b : 2, c : 3&#125;;</span><br><span class="line">const filteredResult = Object.keys(obj)</span><br><span class="line">    .filter((key) =&gt; obj[key] &gt; 1)</span><br></pre></td></tr></table></figure>
 
-<p>舉例：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//建議以下function可以在頁面建立一併執行(如果是馬上要用到)，on的功能可以看成註冊的概念，把這個功能註冊給editor，條件有達到就會執行</span><br><span class="line">editor.on(&quot;change&quot;,(cm,changeObj)=&gt;&#123;                  </span><br><span class="line">    console.log(changeObj.ch);</span><br><span class="line">    console.log(changeObj.line); </span><br><span class="line">    //在change中會有ch(第幾個位元) line第幾行</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-<p>這裡的cm是指codemirror，在官方頁面中有提到，不管是看到codemirror(簡寫cm)或是doc，在使用上都可以用前面建立好的editor instance(端看使用者怎麼命名)</p>
-<p>on裡面第一的參數 <code>type</code> 也就是 cursorActivity  或者 change 之類的事件，後面callback function裡面的參數，在每個event中都會清楚告訴你有什麼參數可以用。<br>在<code>change</code>中可以使用cm instance以及獲取改變的文字及其相關資訊。</p>
-]]></content>
+
+<h4 id="使用Object-entries及reduce-來對object做一對一的處理來達到map效果"><a href="#使用Object-entries及reduce-來對object做一對一的處理來達到map效果" class="headerlink" title="使用Object.entries及reduce 來對object做一對一的處理來達到map效果"></a>使用Object.entries及reduce 來對object做一對一的處理來達到map效果</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">const obj = &#123;</span><br><span class="line">    a: &#123;name: &#x27;andy&#x27;, b: 2, c: 3&#125;, </span><br><span class="line">    b: &#123;name: &#x27;amy&#x27;, b: 2, c: 3&#125;, </span><br><span class="line">    c: &#123;name: &#x27;john&#x27;, b: 2, c: 3&#125; </span><br><span class="line">    &#125;;</span><br><span class="line">    </span><br><span class="line">const result = Object.entries(obj).reduce((acc, [key, value]) =&gt; &#123;</span><br><span class="line">  acc[key] = value</span><br><span class="line">  acc[key].name = acc[key].name + &#x27; chen&#x27;</span><br><span class="line"></span><br><span class="line">  return acc;</span><br><span class="line"></span><br><span class="line">&#125;, &#123;&#125;)</span><br><span class="line">// 可以對 name的後面全部加上 &quot;chen&quot;的字串</span><br></pre></td></tr></table></figure>]]></content>
       <categories>
         <category>Frontend</category>
       </categories>
       <tags>
-        <tag>codemirror</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>git local 及 remote repo 不同步怎麼處理</title>
-    <url>/andy-tech-note/2024/01/28/git-remote-repo-%E4%B8%8D%E5%90%8C%E6%AD%A5/</url>
-    <content><![CDATA[<h3 id="Local的commit-與-Remote-的commit-沒有同步"><a href="#Local的commit-與-Remote-的commit-沒有同步" class="headerlink" title="Local的commit 與 Remote 的commit 沒有同步"></a>Local的commit 與 Remote 的commit 沒有同步</h3><p><img src="/andy-tech-note/2024/01/28/git-remote-repo-%E4%B8%8D%E5%90%8C%E6%AD%A5/git.png" alt="git"><br>如圖中所示，會發現 <code>github remote 的 main</code> 跟 <code>local 的 main</code> 分岔了。<br>這是因為在先前在B電腦做了一次 commit &amp; push，也就是圖中岔出去的那個 Remote main，<br>然而在A電腦的commit還停留在B電腦commit的前一個版本，但是我沒發現就繼續開發下去，<br>一路開發下去，直到要push到遠端時才被告知遠端有code沒有同步到。</p>
-<p>查了一下，查到git fetch origin main 似乎是比較安全的，他可以單純把遠端你所有缺少的code抓下來，然後你再透過git status查詢時，git 會告知你 local 的 code 與遠端的 code 差異在哪，然後再透過<code>git merge origin main</code> 或是 <code>git rebase origin main</code>。<br>但要注意，當前如果有code還尚未commit，git會告知你要先commit，並且不會讓你merge，應該是怕你的 code 丟失，若還沒要 commit 可以透過<code>git stage</code> 把 code 存起來以防止不見。</p>
-<p>指令</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git fetch origin main </span><br><span class="line">git merge origin/main</span><br></pre></td></tr></table></figure>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git fetch origin main </span><br><span class="line">git rebase origin/main</span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>dev</category>
-      </categories>
-      <tags>
-        <tag>git</tag>
-        <tag>github</tag>
+        <tag>Javascript</tag>
       </tags>
   </entry>
   <entry>
@@ -437,18 +418,19 @@
       </tags>
   </entry>
   <entry>
-    <title>Javascript - 對object(key value)做 filter &amp; map</title>
-    <url>/andy-tech-note/2024/01/23/Javascript-%E5%B0%8Dobject-key-value-%E5%81%9A-filter&amp;map/</url>
-    <content><![CDATA[<h4 id="如何對object做類似filter的行為"><a href="#如何對object做類似filter的行為" class="headerlink" title="如何對object做類似filter的行為"></a>如何對object做類似filter的行為</h4><p>透過Object.keys把key 輸出成 Array，這樣就可以使用filter，把key當作index逐一帶入obj做條件判斷，即可達到過濾效果</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">const obj = &#123;a : 1, b : 2, c : 3&#125;;</span><br><span class="line">const filteredResult = Object.keys(obj)</span><br><span class="line">    .filter((key) =&gt; obj[key] &gt; 1)</span><br></pre></td></tr></table></figure>
-
-
-<h4 id="使用Object-entries及reduce-來對object做一對一的處理來達到map效果"><a href="#使用Object-entries及reduce-來對object做一對一的處理來達到map效果" class="headerlink" title="使用Object.entries及reduce 來對object做一對一的處理來達到map效果"></a>使用Object.entries及reduce 來對object做一對一的處理來達到map效果</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">const obj = &#123;</span><br><span class="line">    a: &#123;name: &#x27;andy&#x27;, b: 2, c: 3&#125;, </span><br><span class="line">    b: &#123;name: &#x27;amy&#x27;, b: 2, c: 3&#125;, </span><br><span class="line">    c: &#123;name: &#x27;john&#x27;, b: 2, c: 3&#125; </span><br><span class="line">    &#125;;</span><br><span class="line">    </span><br><span class="line">const result = Object.entries(obj).reduce((acc, [key, value]) =&gt; &#123;</span><br><span class="line">  acc[key] = value</span><br><span class="line">  acc[key].name = acc[key].name + &#x27; chen&#x27;</span><br><span class="line"></span><br><span class="line">  return acc;</span><br><span class="line"></span><br><span class="line">&#125;, &#123;&#125;)</span><br><span class="line">// 可以對 name的後面全部加上 &quot;chen&quot;的字串</span><br></pre></td></tr></table></figure>]]></content>
+    <title>git local 及 remote repo 不同步怎麼處理</title>
+    <url>/andy-tech-note/2024/01/28/git-remote-repo-%E4%B8%8D%E5%90%8C%E6%AD%A5/</url>
+    <content><![CDATA[<h3 id="Local的commit-與-Remote-的commit-沒有同步"><a href="#Local的commit-與-Remote-的commit-沒有同步" class="headerlink" title="Local的commit 與 Remote 的commit 沒有同步"></a>Local的commit 與 Remote 的commit 沒有同步</h3><p><img src="/andy-tech-note/2024/01/28/git-remote-repo-%E4%B8%8D%E5%90%8C%E6%AD%A5/git.png" alt="git"><br>如圖中所示，會發現 <code>github remote 的 main</code> 跟 <code>local 的 main</code> 分岔了。<br>這是因為在先前在B電腦做了一次 commit &amp; push，也就是圖中岔出去的那個 Remote main，<br>然而在A電腦的commit還停留在B電腦commit的前一個版本，但是我沒發現就繼續開發下去，<br>一路開發下去，直到要push到遠端時才被告知遠端有code沒有同步到。</p>
+<p>查了一下，查到git fetch origin main 似乎是比較安全的，他可以單純把遠端你所有缺少的code抓下來，然後你再透過git status查詢時，git 會告知你 local 的 code 與遠端的 code 差異在哪，然後再透過<code>git merge origin main</code> 或是 <code>git rebase origin main</code>。<br>但要注意，當前如果有code還尚未commit，git會告知你要先commit，並且不會讓你merge，應該是怕你的 code 丟失，若還沒要 commit 可以透過<code>git stage</code> 把 code 存起來以防止不見。</p>
+<p>指令</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git fetch origin main </span><br><span class="line">git merge origin/main</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git fetch origin main </span><br><span class="line">git rebase origin/main</span><br></pre></td></tr></table></figure>]]></content>
       <categories>
-        <category>Frontend</category>
+        <category>dev</category>
       </categories>
       <tags>
-        <tag>Javascript</tag>
+        <tag>git</tag>
+        <tag>github</tag>
       </tags>
   </entry>
   <entry>
@@ -495,36 +477,44 @@
       </tags>
   </entry>
   <entry>
-    <title>CSS的的selector的權重</title>
-    <url>/andy-tech-note/2024/04/03/about-CSS-selector-priority/</url>
-    <content><![CDATA[<h3 id="selector是什麼？"><a href="#selector是什麼？" class="headerlink" title="selector是什麼？"></a>selector是什麼？</h3><p>是用來選擇HTML tag並設定寬、高、顏色、背景圖等等(如：H1,p,div)，選擇器不僅限於標籤(div, p, span)，還包含class及id。</p>
-<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.className</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>:blue;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">div</span> &#123;</span><br><span class="line">    <span class="attribute">font-size</span>:<span class="number">16px</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="權重可以幹嘛？"><a href="#權重可以幹嘛？" class="headerlink" title="權重可以幹嘛？"></a>權重可以幹嘛？</h3><p>在selector有四個權重，依序是 <code>inline style &gt; id &gt; class &gt; tag</code>，這意思是說如果你對某些元素設定屬性時，權重會依照這個來做處理，也就是說如果在<code>class及inline style</code>裡面都設定 <code>color</code>，而最終HTML顯示的顏色會是由inline設定的為主，這是因為權重大小的關係。<br>而這四個權重會是這樣寫(0,0,0,0)對應的順序(inline, id, class, tag)，所以這樣就可以看出誰的權重比較大。</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">style</span>=<span class="string">&quot;color=yellow&quot;</span> <span class="attr">class</span>=<span class="string">&quot;className&quot;</span>&gt;</span><span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.className</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>=blue</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>在這裡顏色就會是yellow，因為inline權重大於class</p>
-<h3 id="權重計算方式"><a href="#權重計算方式" class="headerlink" title="權重計算方式"></a>權重計算方式</h3><figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.className1</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>:blue;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><code>(0,0,1,0)</code></p>
-<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.className1</span><span class="selector-class">.className2</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>:yellow;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><code>(0,0,2,0)</code><br>上面這個會把兩個class加起來，這是要該元素同時有這兩個class存在</p>
-<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.className2</span> <span class="selector-tag">div</span> <span class="selector-tag">p</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>:yellow;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><code>(0,0,1,2)</code></p>
-<h3 id="important"><a href="#important" class="headerlink" title="!important"></a>!important</h3><p>這個大魔王，在某些情況希望直接覆蓋掉該元素的屬性，可以在 該屬性後面加上 <code>!important</code>，但是不建議太常使用，會在開發上容易造成不要的困擾。</p>
-<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.className2</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>:yellow <span class="meta">!important</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+    <title>Javascript中&lt;script&gt;的async與defer</title>
+    <url>/andy-tech-note/2024/04/02/js-script-async-defer/</url>
+    <content><![CDATA[<h2 id="什麼是async-x2F-defer"><a href="#什麼是async-x2F-defer" class="headerlink" title="什麼是async&#x2F;defer"></a>什麼是async&#x2F;defer</h2><h4 id="HTML做些什麼事？"><a href="#HTML做些什麼事？" class="headerlink" title="HTML做些什麼事？"></a>HTML做些什麼事？</h4><p>在瀏覽器執行解析網頁時如果碰到<code>&lt;script&gt;</code>標籤，會先執行該script中的行為，而如果需要下載檔案則會執行下載，而此時若是執行下載時，整個網頁的解析就會停下來，等到檔案被下載後才會繼續解析，這樣有一個很大的問題，也就是當使用者瀏覽網頁時就會有些元素不是馬上出現在使用者面前，就是因為在等待JS檔案的下載，這就有關UX了。</p>
+<p>但是又有些JS檔案是要盡可能提早被下載到<code>client</code>端，如果讓<code>script</code> 在解析完<code>DOM</code>才執行就會有問題，因為當頁面解析完後會馬傷需要使用<code>JS</code>中的功能，所以就有了<code>async/defer</code>的概念。</p>
+<h4 id="解決方法"><a href="#解決方法" class="headerlink" title="解決方法"></a>解決方法</h4><p>上述問題就可以透過<code>async/defer</code>解決，這兩個主要都是讓<code>script</code>可以在背景執行，但是有個主要差異如下：</p>
+<h5 id="async"><a href="#async" class="headerlink" title="async"></a>async</h5><p>會在背景下載也就是異步的方式執行，在同時 HTML 解析會繼續執行，而當js檔案被下載後會被立即執行，不必等到 DOM 被全部解析。</p>
+<h5 id="defer"><a href="#defer" class="headerlink" title="defer"></a>defer</h5><p>也同是在背景下載不影響<code>DOM</code>的解析，但是他會等到<code>DOM</code>完全解析完才執行，而若是有多個js有互相依賴的行為可以以 <code>defer</code> 方式執行，只要按照執行順序去寫<code>script</code>即可</p>
 ]]></content>
       <categories>
         <category>frontend_interview</category>
       </categories>
       <tags>
-        <tag>CSS</tag>
+        <tag>Javascript</tag>
         <tag>Frontend</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>在vue中把變數傳進css</title>
+    <url>/andy-tech-note/2023/01/14/vue-ref-css-vbind/</url>
+    <content><![CDATA[<p>某些時候會希望動態改變css的樣式高度、寬度、顏色…等等的<br>在vue中可以宣告一個ref變數(composition API)，然後把搭丟到vue檔案中的 <style></style>中，又或者透過inline的方式直接插入到html tag中，舉例如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">setup()&#123;</span><br><span class="line">    const mdSize = ref(&quot;100px&quot;);</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="傳到-lt-style-gt"><a href="#傳到-lt-style-gt" class="headerlink" title="傳到 &lt;style&gt;"></a>傳到 <code>&lt;style&gt;</code></h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;div class=&quot;md-size&quot;&gt;&lt;/div&gt; //在這裏class不需要v-bind</span><br><span class="line">&lt;style&gt;</span><br><span class="line">.md-size&#123;</span><br><span class="line">    height:v-bind(mdSize);</span><br><span class="line">&#125;</span><br><span class="line">&lt;/style&gt;    </span><br></pre></td></tr></table></figure>
+
+<h3 id="以傳值的方式丟到inline"><a href="#以傳值的方式丟到inline" class="headerlink" title="以傳值的方式丟到inline"></a>以傳值的方式丟到inline</h3><p>搭配v-bind 也就是縮寫 “:”<br>把mdSize放進去style</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;button :style=&quot;&#123; height: mdSize &#125;&quot; &gt; 按鈕名稱 &lt;/button&gt;</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>Frontend</category>
+      </categories>
+      <tags>
+        <tag>Javascript</tag>
+        <tag>Vue</tag>
       </tags>
   </entry>
   <entry>
     <title>建構子函式constructor_function</title>
     <url>/andy-tech-note/2024/04/08/constructor-function/</url>
-    <content><![CDATA[<h3 id="什麼是-constructor-function建構子函式"><a href="#什麼是-constructor-function建構子函式" class="headerlink" title="什麼是 constructor function建構子函式"></a>什麼是 constructor function建構子函式</h3><p>建構子函式是一個由普通函式與new關鍵字組合而成的函式，而該函式就像是一個藍圖一樣，要透過new關鍵字才能建立一個真正的instance 實例。<br>其主要用途是用於建立物件，而非一般的函式。</p>
+    <content><![CDATA[<h3 id="什麼是-constructor-function建構子函式"><a href="#什麼是-constructor-function建構子函式" class="headerlink" title="什麼是 constructor function建構子函式"></a>什麼是 constructor function建構子函式</h3><p>建構子函式是一個由普通函式與new關鍵字組合而成的函式，而該函式就像是一個藍圖一樣，要透過new關鍵字才能建立一個真正的instance(object)。<br>其主要用途是用於建立物件，而非一般的函式。</p>
 <p>而建構子函示 <code>.prototype</code> 可以查看透過建構子函式所建立的object的prototype。</p>
 <h3 id="如何建立一個instance"><a href="#如何建立一個instance" class="headerlink" title="如何建立一個instance"></a>如何建立一個instance</h3><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="title class_">Person</span>() &#123;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">name</span> = <span class="string">&#x27;Andy&#x27;</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="title class_">Person</span>.<span class="property"><span class="keyword">prototype</span></span>.<span class="property">sayHello</span> = <span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;Hello, I am &#x27;</span> + <span class="variable language_">this</span>.<span class="property">name</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> person1 = <span class="keyword">new</span> <span class="title class_">Person</span>();</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(person1.<span class="property">__proto__</span>); </span><br><span class="line"><span class="comment">// 透過__proto__可以得到Person.prototype</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title class_">Person</span>.<span class="property"><span class="keyword">prototype</span></span>);</span><br><span class="line"><span class="comment">// 可以得到由Person()定義的prototype</span></span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
 <p>可以透過這種方法達到建立多個如person的實例，例如：可以對各個object 實例的name設定不同人名，另外還可以對其prototype設定method，這樣多個實例被創建時就可以使用同一個method，而不用在建構函式中定義method，造成在建立instance時創建多個相同的method。</p>
@@ -553,19 +543,29 @@
       </tags>
   </entry>
   <entry>
-    <title>Javascript中&lt;script&gt;的async與defer</title>
-    <url>/andy-tech-note/2024/04/02/js-script-async-defer/</url>
-    <content><![CDATA[<h2 id="什麼是async-x2F-defer"><a href="#什麼是async-x2F-defer" class="headerlink" title="什麼是async&#x2F;defer"></a>什麼是async&#x2F;defer</h2><h4 id="HTML做些什麼事？"><a href="#HTML做些什麼事？" class="headerlink" title="HTML做些什麼事？"></a>HTML做些什麼事？</h4><p>在瀏覽器執行解析網頁時如果碰到<code>&lt;script&gt;</code>標籤，會先執行該script中的行為，而如果需要下載檔案則會執行下載，而此時若是執行下載時，整個網頁的解析就會停下來，等到檔案被下載後才會繼續解析，這樣有一個很大的問題，也就是當使用者瀏覽網頁時就會有些元素不是馬上出現在使用者面前，就是因為在等待JS檔案的下載，這就有關UX了。</p>
-<p>但是又有些JS檔案是要盡可能提早被下載到<code>client</code>端，如果讓<code>script</code> 在解析完<code>DOM</code>才執行就會有問題，因為當頁面解析完後會馬傷需要使用<code>JS</code>中的功能，所以就有了<code>async/defer</code>的概念。</p>
-<h4 id="解決方法"><a href="#解決方法" class="headerlink" title="解決方法"></a>解決方法</h4><p>上述問題就可以透過<code>async/defer</code>解決，這兩個主要都是讓<code>script</code>可以在背景執行，但是有個主要差異如下：</p>
-<h5 id="async"><a href="#async" class="headerlink" title="async"></a>async</h5><p>會在背景下載也就是異步的方式執行，在同時 HTML 解析會繼續執行，而當js檔案被下載後會被立即執行，不必等到 DOM 被全部解析。</p>
-<h5 id="defer"><a href="#defer" class="headerlink" title="defer"></a>defer</h5><p>也同是在背景下載不影響<code>DOM</code>的解析，但是他會等到<code>DOM</code>完全解析完才執行，而若是有多個js有互相依賴的行為可以以 <code>defer</code> 方式執行，只要按照執行順序去寫<code>script</code>即可</p>
+    <title>CSS的的selector的權重</title>
+    <url>/andy-tech-note/2024/04/03/about-CSS-selector-priority/</url>
+    <content><![CDATA[<h3 id="selector是什麼？"><a href="#selector是什麼？" class="headerlink" title="selector是什麼？"></a>selector是什麼？</h3><p>是用來選擇HTML tag並設定寬、高、顏色、背景圖等等(如：H1,p,div)，選擇器不僅限於標籤(div, p, span)，還包含class及id。</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.className</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>:blue;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">div</span> &#123;</span><br><span class="line">    <span class="attribute">font-size</span>:<span class="number">16px</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="權重可以幹嘛？"><a href="#權重可以幹嘛？" class="headerlink" title="權重可以幹嘛？"></a>權重可以幹嘛？</h3><p>在selector有四個權重，依序是 <code>inline style &gt; id &gt; class &gt; tag</code>，這意思是說如果你對某些元素設定屬性時，權重會依照這個來做處理，也就是說如果在<code>class及inline style</code>裡面都設定 <code>color</code>，而最終HTML顯示的顏色會是由inline設定的為主，這是因為權重大小的關係。<br>而這四個權重會是這樣寫(0,0,0,0)對應的順序(inline, id, class, tag)，所以這樣就可以看出誰的權重比較大。</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">style</span>=<span class="string">&quot;color=yellow&quot;</span> <span class="attr">class</span>=<span class="string">&quot;className&quot;</span>&gt;</span><span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.className</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>=blue</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在這裡顏色就會是yellow，因為inline權重大於class</p>
+<h3 id="權重計算方式"><a href="#權重計算方式" class="headerlink" title="權重計算方式"></a>權重計算方式</h3><figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.className1</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>:blue;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><code>(0,0,1,0)</code></p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.className1</span><span class="selector-class">.className2</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>:yellow;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><code>(0,0,2,0)</code><br>上面這個會把兩個class加起來，這是要該元素同時有這兩個class存在</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.className2</span> <span class="selector-tag">div</span> <span class="selector-tag">p</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>:yellow;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><code>(0,0,1,2)</code></p>
+<h3 id="important"><a href="#important" class="headerlink" title="!important"></a>!important</h3><p>這個大魔王，在某些情況希望直接覆蓋掉該元素的屬性，可以在 該屬性後面加上 <code>!important</code>，但是不建議太常使用，會在開發上容易造成不要的困擾。</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.className2</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>:yellow <span class="meta">!important</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 ]]></content>
       <categories>
         <category>frontend_interview</category>
       </categories>
       <tags>
-        <tag>Javascript</tag>
+        <tag>CSS</tag>
         <tag>Frontend</tag>
       </tags>
   </entry>

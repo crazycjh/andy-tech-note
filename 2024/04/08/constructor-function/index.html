@@ -278,7 +278,7 @@
       <button class="mdui-btn mdui-btn-icon mdui-text-color-teal" mdui-menu="{target: '#share_menu', align: 'right'}"><i class="iconfont icon-share"></i></button>
       <ul class="mdui-menu" id="share_menu">
         <li class="mdui-menu-item">
-          <a href="http://service.weibo.com/share/share.php?appkey=&title=建構子函式constructor_function&url=http://crazycjh.github.io/andy-tech-note/2024/04/08/constructor-function/&pic=http://crazycjh.github.io/andy-tech-note/andy-tech-note/null&searchPic=false&style=simple" target="_blank" class="mdui-ripple">Share to Weibo</a>
+          <a href="http://service.weibo.com/share/share.php?appkey=&title=建構子函式constructor_function&url=http://crazycjh.github.io/andy-tech-note/2024/04/08/constructor-function/&pic=http://crazycjh.github.io/andy-tech-note/andy-tech-note/null&searchPic=false&style=simple" target="_blank" class="mdui-ripple">分享到 Weibo</a>
         </li>
         <li class="mdui-menu-item">
           <a href="https://twitter.com/intent/tweet?text=建構子函式constructor_function&url=http://crazycjh.github.io/andy-tech-note/2024/04/08/constructor-function/&via=Andy Chen" target="_blank" class="mdui-ripple">分享到 Twitter</a>
@@ -287,13 +287,13 @@
           <a href="https://www.facebook.com/sharer/sharer.php?u=http://crazycjh.github.io/andy-tech-note/2024/04/08/constructor-function/" target="_blank" class="mdui-ripple">分享到 Facebook</a>
         </li>
         <li class="mdui-menu-item">
-          <a href="https://plus.google.com/share?url=http://crazycjh.github.io/andy-tech-note/2024/04/08/constructor-function/" target="_blank" class="mdui-ripple">Share to Google+</a>
+          <a href="https://plus.google.com/share?url=http://crazycjh.github.io/andy-tech-note/2024/04/08/constructor-function/" target="_blank" class="mdui-ripple">分享到 Google+</a>
         </li>
         <li class="mdui-menu-item">
           <a href="https://www.linkedin.com/shareArticle?mini=true&url=http://crazycjh.github.io/andy-tech-note/2024/04/08/constructor-function/&title=建構子函式constructor_function" target="_blank" class="mdui-ripple">分享到 LinkedIn</a>
         </li>
         <li class="mdui-menu-item">
-          <a href="http://connect.qq.com/widget/shareqq/index.html?site=Andy的技術筆記、生活紀錄&title=建構子函式constructor_function&summary=把生活中學習到瑣碎的小事記下來，讓想法更加完整。&pics=http://crazycjh.github.io/andy-tech-note/andy-tech-note/null&url=http://crazycjh.github.io/andy-tech-note/2024/04/08/constructor-function/" target="_blank" class="mdui-ripple">Share to QQ</a>
+          <a href="http://connect.qq.com/widget/shareqq/index.html?site=Andy的技術筆記、生活紀錄&title=建構子函式constructor_function&summary=把生活中學習到瑣碎的小事記下來，讓想法更加完整。&pics=http://crazycjh.github.io/andy-tech-note/andy-tech-note/null&url=http://crazycjh.github.io/andy-tech-note/2024/04/08/constructor-function/" target="_blank" class="mdui-ripple">分享到 QQ</a>
         </li>
         <li class="mdui-menu-item">
           <a href="https://telegram.me/share/url?url=http://crazycjh.github.io/andy-tech-note/2024/04/08/constructor-function/&text=建構子函式constructor_function" target="_blank" class="mdui-ripple">分享到 Telegram</a>
@@ -320,7 +320,7 @@
 
   
   <div class="mdui-card-content mdui-typo mdui-p-x-4">
-    <h3 id="什麼是-constructor-function建構子函式"><a href="#什麼是-constructor-function建構子函式" class="headerlink" title="什麼是 constructor function建構子函式"></a>什麼是 constructor function建構子函式</h3><p>建構子函式是一個由普通函式與new關鍵字組合而成的函式，而該函式就像是一個藍圖一樣，要透過new關鍵字才能建立一個真正的instance 實例。<br>其主要用途是用於建立物件，而非一般的函式。</p>
+    <h3 id="什麼是-constructor-function建構子函式"><a href="#什麼是-constructor-function建構子函式" class="headerlink" title="什麼是 constructor function建構子函式"></a>什麼是 constructor function建構子函式</h3><p>建構子函式是一個由普通函式與new關鍵字組合而成的函式，而該函式就像是一個藍圖一樣，要透過new關鍵字才能建立一個真正的instance(object)。<br>其主要用途是用於建立物件，而非一般的函式。</p>
 <p>而建構子函示 <code>.prototype</code> 可以查看透過建構子函式所建立的object的prototype。</p>
 <h3 id="如何建立一個instance"><a href="#如何建立一個instance" class="headerlink" title="如何建立一個instance"></a>如何建立一個instance</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="title class_">Person</span>() &#123;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">name</span> = <span class="string">&#x27;Andy&#x27;</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="title class_">Person</span>.<span class="property"><span class="keyword">prototype</span></span>.<span class="property">sayHello</span> = <span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;Hello, I am &#x27;</span> + <span class="variable language_">this</span>.<span class="property">name</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> person1 = <span class="keyword">new</span> <span class="title class_">Person</span>();</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(person1.<span class="property">__proto__</span>); </span><br><span class="line"><span class="comment">// 透過__proto__可以得到Person.prototype</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title class_">Person</span>.<span class="property"><span class="keyword">prototype</span></span>);</span><br><span class="line"><span class="comment">// 可以得到由Person()定義的prototype</span></span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
 <p>可以透過這種方法達到建立多個如person的實例，例如：可以對各個object 實例的name設定不同人名，另外還可以對其prototype設定method，這樣多個實例被創建時就可以使用同一個method，而不用在建構函式中定義method，造成在建立instance時創建多個相同的method。</p>

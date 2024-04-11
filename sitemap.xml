@@ -2,15 +2,6 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>http://crazycjh.github.io/andy-tech-note/2024/04/11/Javascript_Map_Set/</loc>
-    
-    <lastmod>2024-04-11</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>http://crazycjh.github.io/andy-tech-note/2024/04/08/constructor-function/</loc>
     
     <lastmod>2024-04-09</lastmod>
@@ -308,7 +299,7 @@
 
   
   <url>
-    <loc>http://crazycjh.github.io/andy-tech-note/tags/Javascriptj/</loc>
+    <loc>http://crazycjh.github.io/andy-tech-note/tags/Javascript/</loc>
     <lastmod>2024-04-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -322,7 +313,7 @@
   </url>
   
   <url>
-    <loc>http://crazycjh.github.io/andy-tech-note/tags/Javascript/</loc>
+    <loc>http://crazycjh.github.io/andy-tech-note/tags/Javascriptj/</loc>
     <lastmod>2024-04-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -344,13 +335,6 @@
   
   <url>
     <loc>http://crazycjh.github.io/andy-tech-note/tags/codemirror/</loc>
-    <lastmod>2024-04-11</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>http://crazycjh.github.io/andy-tech-note/tags/Wordpress/</loc>
     <lastmod>2024-04-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -406,13 +390,6 @@
   </url>
   
   <url>
-    <loc>http://crazycjh.github.io/andy-tech-note/tags/Frontend/</loc>
-    <lastmod>2024-04-11</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>http://crazycjh.github.io/andy-tech-note/tags/git/</loc>
     <lastmod>2024-04-11</lastmod>
     <changefreq>weekly</changefreq>
@@ -426,14 +403,21 @@
     <priority>0.2</priority>
   </url>
   
-
-  
   <url>
-    <loc>http://crazycjh.github.io/andy-tech-note/categories/javascript/</loc>
+    <loc>http://crazycjh.github.io/andy-tech-note/tags/Wordpress/</loc>
     <lastmod>2024-04-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
+  
+  <url>
+    <loc>http://crazycjh.github.io/andy-tech-note/tags/Frontend/</loc>
+    <lastmod>2024-04-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+
   
   <url>
     <loc>http://crazycjh.github.io/andy-tech-note/categories/Frontend/</loc>
@@ -443,7 +427,7 @@
   </url>
   
   <url>
-    <loc>http://crazycjh.github.io/andy-tech-note/categories/Wordpress/</loc>
+    <loc>http://crazycjh.github.io/andy-tech-note/categories/javascript/</loc>
     <lastmod>2024-04-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -464,14 +448,21 @@
   </url>
   
   <url>
-    <loc>http://crazycjh.github.io/andy-tech-note/categories/frontend-interview/</loc>
+    <loc>http://crazycjh.github.io/andy-tech-note/categories/dev/</loc>
     <lastmod>2024-04-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>http://crazycjh.github.io/andy-tech-note/categories/dev/</loc>
+    <loc>http://crazycjh.github.io/andy-tech-note/categories/Wordpress/</loc>
+    <lastmod>2024-04-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://crazycjh.github.io/andy-tech-note/categories/frontend-interview/</loc>
     <lastmod>2024-04-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>

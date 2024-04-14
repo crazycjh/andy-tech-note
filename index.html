@@ -144,7 +144,7 @@
     
     <title>
           
-            Andy的技術筆記、生活紀錄
+            Andy的前後端技術筆記、生活紀錄
         
     </title>
     
@@ -162,7 +162,7 @@
  
   <div id="toolbar" class="mdui-toolbar mdui-color-theme">
     <button class="mdui-btn mdui-btn-icon" mdui-drawer="{target: '#sidebar', swipe: true}"><i class="iconfont icon-menu"></i></button>
-    <a href="/andy-tech-note/" class="mdui-typo-headline">Andy的技術筆記、生活紀錄</a>
+    <a href="/andy-tech-note/" class="mdui-typo-headline">Andy的前後端技術筆記、生活紀錄</a>
     <a href="/andy-tech-note/" class="header-subtitle mdui-typo-headline"></a>
     <div class="mdui-toolbar-spacer"></div>
     <button class="mdui-btn mdui-btn-icon" mdui-dialog="{target: '#search'}" mdui-tooltip="{content: 'search'}"><i class="iconfont icon-search"></i></button>
@@ -250,7 +250,7 @@
                 
             </div>
             <div class="sidebar-author-name">Andy Chen</div>
-            <div class="sidebar-description">把生活中學習到瑣碎的小事記下來，讓想法更加完整。</div>
+            <div class="sidebar-description">前後端開發的技術筆記，使用Vue, Javascript及前端面試練習題筆記，把生活中學習到瑣碎的小事記下來，讓想法更加完整。</div>
         </div>
         <div class="sidebar-links">
             
@@ -296,6 +296,60 @@
   
   <main id="main-contain" class="mdui-container mdui-m-t-5">
     
+    <article class="mdui-card mdui-m-b-5 mdui-hoverable">    
+      
+      
+        <div class="post-header"> 
+  <a class="post-header-title" href="/andy-tech-note/Javascript-constructor-function-inheritance/">Javascript建構子函式繼承</a>
+  <div class="post-header-meta">
+    <span>
+      <span class="iconfont icon-calendar"></span>
+      發佈於:&nbsp;2024-04-14
+    </span>
+    <span>
+      <span class="iconfont icon-calendar-check"></span>
+      更新於:&nbsp;2024-04-14
+    </span>
+    <span>
+      <span class="iconfont icon-folder"></span>
+      分類於:&nbsp;<a class="category-link" href="/andy-tech-note/categories/frontend-interview/">frontend_interview</a>
+    </span>
+    
+  </div>
+</div>   
+    
+
+
+
+      
+      
+  <div class="post-tags">
+    
+      <i class="iconfont icon-tag">
+        <a rel="tag" href = /andy-tech-note/tags/Javascript/ >Javascript</a>
+      </i>
+    
+      <i class="iconfont icon-tag">
+        <a rel="tag" href = /andy-tech-note/tags/Frontend/ >Frontend</a>
+      </i>
+    
+  </div>
+
+      
+      <div id="achieve-abstract" class="mdui-card-content mdui-p-x-4">
+        <div class="post-abstract mdui-typo ">
+          
+            <h2 id="如何以建構函式的方式達到繼承"><a href="#如何以建構函式的方式達到繼承" class="headerlink" title="如何以建構函式的方式達到繼承"></a>如何以建構函式的方式達到繼承</h2><p>繼承在OOP物件導向的語言中很常見，而在Javascript中並不是真正的物件導向的語言，所以在Javascript中繼承的方式就不一樣，但是我們可以用建構子函式的方式達到繼承的效果。</p>
+<h3 id="建構子函式的繼承"><a href="#建構子函式的繼承" class="headerlink" title="建構子函式的繼承"></a>建構子函...
+          
+        </div>
+        
+        <div style="text-align:center;">
+          <a class="post-readmore mdui-btn mdui-ripple mdui-btn-raised" href="/andy-tech-note/Javascript-constructor-function-inheritance/">閱讀更多</a>
+        </div>
+      </div>
+    </article>
+
     <article class="mdui-card mdui-m-b-5 mdui-hoverable">    
       
       
@@ -768,56 +822,6 @@
         
         <div style="text-align:center;">
           <a class="post-readmore mdui-btn mdui-ripple mdui-btn-raised" href="/andy-tech-note/Javascript-object-key-value-filter_map/">閱讀更多</a>
-        </div>
-      </div>
-    </article>
-
-    <article class="mdui-card mdui-m-b-5 mdui-hoverable">    
-      
-      
-        <div class="post-header"> 
-  <a class="post-header-title" href="/andy-tech-note/nextTick-in-Vue3/">nextTick in Vue3</a>
-  <div class="post-header-meta">
-    <span>
-      <span class="iconfont icon-calendar"></span>
-      發佈於:&nbsp;2024-01-20
-    </span>
-    <span>
-      <span class="iconfont icon-calendar-check"></span>
-      更新於:&nbsp;2024-01-20
-    </span>
-    <span>
-      <span class="iconfont icon-folder"></span>
-      分類於:&nbsp;
-    </span>
-    
-  </div>
-</div>   
-    
-
-
-
-      
-      
-  <div class="post-tags">
-    
-      <i class="iconfont icon-tag">
-        <a rel="tag" href = /andy-tech-note/tags/Vue/ >Vue</a>
-      </i>
-    
-  </div>
-
-      
-      <div id="achieve-abstract" class="mdui-card-content mdui-p-x-4">
-        <div class="post-abstract mdui-typo ">
-          
-            <h4 id="什麼是nextTick-？"><a href="#什麼是nextTick-？" class="headerlink" title="什麼是nextTick()？"></a>什麼是nextTick()？</h4><h6 id="官方定義"><a href="#官方定義" class="headerlink" title="官方定義"></a>官方定義</h6><p><code>在下次 DOM 更新循环结束之后执行延迟回调。在修改数据之后立即使用这个方法，获取更新后的 DOM</code></p>
-<h4 id="實際應用場景"><a href="#實際應用場景" class...
-          
-        </div>
-        
-        <div style="text-align:center;">
-          <a class="post-readmore mdui-btn mdui-ripple mdui-btn-raised" href="/andy-tech-note/nextTick-in-Vue3/">閱讀更多</a>
         </div>
       </div>
     </article>

@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>http://crazycjh.github.io/andy-tech-note/eventloop-micro-task-macro-task/</loc>
+    <loc>http://crazycjh.github.io/andy-tech-note/event-loop-micro-task-macro-task/</loc>
     
     <lastmod>2024-04-16</lastmod>
     
@@ -335,7 +335,7 @@
 
   
   <url>
-    <loc>http://crazycjh.github.io/andy-tech-note/tags/Javascript/</loc>
+    <loc>http://crazycjh.github.io/andy-tech-note/tags/Javascriptj/</loc>
     <lastmod>2024-04-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -349,7 +349,7 @@
   </url>
   
   <url>
-    <loc>http://crazycjh.github.io/andy-tech-note/tags/Javascriptj/</loc>
+    <loc>http://crazycjh.github.io/andy-tech-note/tags/Javascript/</loc>
     <lastmod>2024-04-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -456,14 +456,14 @@
 
   
   <url>
-    <loc>http://crazycjh.github.io/andy-tech-note/categories/Frontend/</loc>
+    <loc>http://crazycjh.github.io/andy-tech-note/categories/javascript/</loc>
     <lastmod>2024-04-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>http://crazycjh.github.io/andy-tech-note/categories/javascript/</loc>
+    <loc>http://crazycjh.github.io/andy-tech-note/categories/Frontend/</loc>
     <lastmod>2024-04-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>

@@ -88,7 +88,7 @@
     
     <title>
         
-            Javascript中使用structuredClone做深拷貝 | Andy的前後端技術筆記、生活紀錄
+            Javascript的Event Loop以及Micro  task, Macro task是如何運作的？ | Andy的前後端技術筆記、生活紀錄
         
     </title>
     
@@ -244,7 +244,7 @@
     
     
       <div class="post-header"> 
-  <a class="post-header-title" href="/andy-tech-note/structuredClone-deep-clone/">Javascript中使用structuredClone做深拷貝</a>
+  <a class="post-header-title" href="/andy-tech-note/eventloop-micro-task-macro-task/">Javascript的Event Loop以及Micro  task, Macro task是如何運作的？</a>
   <div class="post-header-meta">
     <span>
       <span class="iconfont icon-calendar"></span>
@@ -272,25 +272,25 @@
       <button class="mdui-btn mdui-btn-icon mdui-text-color-teal" mdui-menu="{target: '#share_menu', align: 'right'}"><i class="iconfont icon-share"></i></button>
       <ul class="mdui-menu" id="share_menu">
         <li class="mdui-menu-item">
-          <a href="http://service.weibo.com/share/share.php?appkey=&title=Javascript中使用structuredClone做深拷貝&url=http://crazycjh.github.io/andy-tech-note/structuredClone-deep-clone/&pic=http://crazycjh.github.io/andy-tech-note/andy-tech-note/icon.jpg&searchPic=false&style=simple" target="_blank" class="mdui-ripple">分享到 Weibo</a>
+          <a href="http://service.weibo.com/share/share.php?appkey=&title=Javascript的Event Loop以及Micro  task, Macro task是如何運作的？&url=http://crazycjh.github.io/andy-tech-note/eventloop-micro-task-macro-task/&pic=http://crazycjh.github.io/andy-tech-note/andy-tech-note/icon.jpg&searchPic=false&style=simple" target="_blank" class="mdui-ripple">分享到 Weibo</a>
         </li>
         <li class="mdui-menu-item">
-          <a href="https://twitter.com/intent/tweet?text=Javascript中使用structuredClone做深拷貝&url=http://crazycjh.github.io/andy-tech-note/structuredClone-deep-clone/&via=Andy Chen" target="_blank" class="mdui-ripple">分享到 Twitter</a>
+          <a href="https://twitter.com/intent/tweet?text=Javascript的Event Loop以及Micro  task, Macro task是如何運作的？&url=http://crazycjh.github.io/andy-tech-note/eventloop-micro-task-macro-task/&via=Andy Chen" target="_blank" class="mdui-ripple">分享到 Twitter</a>
         </li>
         <li class="mdui-menu-item">
-          <a href="https://www.facebook.com/sharer/sharer.php?u=http://crazycjh.github.io/andy-tech-note/structuredClone-deep-clone/" target="_blank" class="mdui-ripple">分享到 Facebook</a>
+          <a href="https://www.facebook.com/sharer/sharer.php?u=http://crazycjh.github.io/andy-tech-note/eventloop-micro-task-macro-task/" target="_blank" class="mdui-ripple">分享到 Facebook</a>
         </li>
         <li class="mdui-menu-item">
-          <a href="https://plus.google.com/share?url=http://crazycjh.github.io/andy-tech-note/structuredClone-deep-clone/" target="_blank" class="mdui-ripple">分享到 Google+</a>
+          <a href="https://plus.google.com/share?url=http://crazycjh.github.io/andy-tech-note/eventloop-micro-task-macro-task/" target="_blank" class="mdui-ripple">分享到 Google+</a>
         </li>
         <li class="mdui-menu-item">
-          <a href="https://www.linkedin.com/shareArticle?mini=true&url=http://crazycjh.github.io/andy-tech-note/structuredClone-deep-clone/&title=Javascript中使用structuredClone做深拷貝" target="_blank" class="mdui-ripple">分享到 LinkedIn</a>
+          <a href="https://www.linkedin.com/shareArticle?mini=true&url=http://crazycjh.github.io/andy-tech-note/eventloop-micro-task-macro-task/&title=Javascript的Event Loop以及Micro  task, Macro task是如何運作的？" target="_blank" class="mdui-ripple">分享到 LinkedIn</a>
         </li>
         <li class="mdui-menu-item">
-          <a href="http://connect.qq.com/widget/shareqq/index.html?site=Andy的前後端技術筆記、生活紀錄&title=Javascript中使用structuredClone做深拷貝&summary=前後端開發的技術筆記，使用Vue, Javascript及前端面試練習題筆記，把生活中學習到瑣碎的小事記下來，讓想法更加完整。&pics=http://crazycjh.github.io/andy-tech-note/andy-tech-note/icon.jpg&url=http://crazycjh.github.io/andy-tech-note/structuredClone-deep-clone/" target="_blank" class="mdui-ripple">分享到 QQ</a>
+          <a href="http://connect.qq.com/widget/shareqq/index.html?site=Andy的前後端技術筆記、生活紀錄&title=Javascript的Event Loop以及Micro  task, Macro task是如何運作的？&summary=前後端開發的技術筆記，使用Vue, Javascript及前端面試練習題筆記，把生活中學習到瑣碎的小事記下來，讓想法更加完整。&pics=http://crazycjh.github.io/andy-tech-note/andy-tech-note/icon.jpg&url=http://crazycjh.github.io/andy-tech-note/eventloop-micro-task-macro-task/" target="_blank" class="mdui-ripple">分享到 QQ</a>
         </li>
         <li class="mdui-menu-item">
-          <a href="https://telegram.me/share/url?url=http://crazycjh.github.io/andy-tech-note/structuredClone-deep-clone/&text=Javascript中使用structuredClone做深拷貝" target="_blank" class="mdui-ripple">分享到 Telegram</a>
+          <a href="https://telegram.me/share/url?url=http://crazycjh.github.io/andy-tech-note/eventloop-micro-task-macro-task/&text=Javascript的Event Loop以及Micro  task, Macro task是如何運作的？" target="_blank" class="mdui-ripple">分享到 Telegram</a>
         </li>
       </ul>
     
@@ -314,12 +314,34 @@
 
   
   <div class="mdui-card-content mdui-typo mdui-p-x-4">
-    <h2 id="深拷貝是什麼？"><a href="#深拷貝是什麼？" class="headerlink" title="深拷貝是什麼？"></a>深拷貝是什麼？</h2><p>先前有寫過如何處理深拷貝，深拷貝是要幹嘛？<br>簡單的說就是當有個物件他裡面有巢狀結構，不只有一層，如果直接以變數assign的方式賦值給一個新的變數，這時候在第二層開始的元素會是指向原先的物件，所以當使用者在對新的物件第二層的元素操作時就會修改到舊有的物件的值，這時候就需要深拷貝來處理，詳細請參閱👇</p>
-<p><a href="https://crazycjh.github.io/andy-tech-note/deep-copy-Shallow-copy/">在JS中複製object-深拷貝&#x2F;淺拷貝</a>。</p>
-<h3 id="進階版structuredClone"><a href="#進階版structuredClone" class="headerlink" title="進階版structuredClone"></a>進階版structuredClone</h3><p>先前都是使用JSON.stringify &amp; JSON.parse來組合處理，現在只要透過structuredClone來處理，這個有什麼差異呢？<br>舊有的方法只能準確地處理 primitive Value，若是碰到Map, Set 非primitive的物件就會被變成空object{}，也就會造成資料的不完整。</p>
-<p>可以看以下程式碼 或是<a target="_blank" rel="noopener" href="https://codepen.io/jean-hao-chen/pen/KKYxPOe">玩玩看</a></p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> obj = &#123;</span><br><span class="line">  <span class="string">&#x27;name&#x27;</span>: <span class="string">&#x27;Andy&#x27;</span>, </span><br><span class="line">  <span class="string">&#x27;profile&#x27;</span>: &#123;</span><br><span class="line">    <span class="attr">height</span>:<span class="number">182</span>,</span><br><span class="line">    <span class="attr">age</span>:<span class="number">18</span>,</span><br><span class="line">    <span class="attr">fn</span>: <span class="keyword">new</span> <span class="title class_">Set</span>([<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>])</span><br><span class="line">    </span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> objStructuredClone = <span class="title function_">structuredClone</span>(obj);</span><br><span class="line"><span class="keyword">const</span> objJson = <span class="title class_">JSON</span>.<span class="title function_">parse</span>(<span class="title class_">JSON</span>.<span class="title function_">stringify</span>(obj))</span><br><span class="line"></span><br><span class="line">objStructuredClone[<span class="string">&#x27;profile&#x27;</span>][<span class="string">&#x27;age&#x27;</span>] = <span class="number">35</span>;</span><br><span class="line">objStructuredClone[<span class="string">&#x27;profile&#x27;</span>][<span class="string">&#x27;fn&#x27;</span>].<span class="title function_">add</span>(<span class="number">5</span>);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(objStructuredClone[<span class="string">&#x27;profile&#x27;</span>][<span class="string">&#x27;fn&#x27;</span>]);</span><br><span class="line"><span class="comment">// Set(4) &#123;1, 2, 3, 5&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(obj[<span class="string">&#x27;profile&#x27;</span>][<span class="string">&#x27;fn&#x27;</span>]);</span><br><span class="line"><span class="comment">// Set(3) &#123;1, 2, 3&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(objJson[<span class="string">&#x27;profile&#x27;</span>][<span class="string">&#x27;fn&#x27;</span>])</span><br><span class="line"><span class="comment">// &#123;&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(objStructuredClone[<span class="string">&#x27;profile&#x27;</span>]);</span><br><span class="line"><span class="comment">// &#123;height: 182, age: 35, fn: Set(4) &#123;1, 2, 3, 5&#125;&#125;</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(obj[<span class="string">&#x27;profile&#x27;</span>]);</span><br><span class="line"><span class="comment">// &#123;height: 182, age: 18, fn: Set(3) &#123;1, 2, 3&#125;&#125;</span></span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+    <h2 id="Event-loop是什麼？"><a href="#Event-loop是什麼？" class="headerlink" title="Event loop是什麼？"></a>Event loop是什麼？</h2><p>在javascript的設計中，javascript runtime是以single Thread單執行在執行程式碼，也就是說程式會順序的執行程式碼，而Javascript 透過 Event Loop 讓程式可以異步執行，也就是I&#x2F;O存取、setTimeout、長時間操作(遠端資料請求)，讓使用者不用在順序執行的程式流一直在等待，那這些在被執行完的異步行為的後續程式碼要如何讓他繼續被執行後續的程式碼呢，這就要透過Event loop來做調配。</p>
+<h2 id="Event-loop角色"><a href="#Event-loop角色" class="headerlink" title="Event loop角色"></a>Event loop角色</h2><ul>
+<li>Call stack</li>
+<li>micro task</li>
+<li>macro task</li>
+</ul>
+<h3 id="程式執行順序"><a href="#程式執行順序" class="headerlink" title="程式執行順序"></a>程式執行順序</h3><p>依照程式碼一路順序執行，執行的方式就是會把程式碼逐個放進到call stack中執行，當碰到如setTimeout、I&#x2F;O存取、Fetch、Promise時，會開始執行且將其變成異步執行，也就是說原先的程式碼會繼續執行，當setTimeout、檔案讀取完成，Event loop就會將如setTimeout的callback function放進到task queue(micro task or macro task)中，等待被執行。</p>
+<p>什麼時候執行task中的callback function呢？當call stack沒有程式碼要被執行時就會來檢查task queue裡面是否有task要被執行，若有則開始執行，在這裡會有執行的優先順序，會先執行Micro task queue，直到Micro task queue為空時才會去檢查Macro task queue，Event loop會從Macro task中取出一個task來執行，執行完後再檢查Micro Task，若沒有才會再進到Macro task取出一個task執行。</p>
+<p><img src="/andy-tech-note/eventloop-micro-task-macro-task/eventloop.png" alt="eventloop"></p>
+<h3 id="誰會進入Macro-x2F-Micro-task呢？"><a href="#誰會進入Macro-x2F-Micro-task呢？" class="headerlink" title="誰會進入Macro &#x2F; Micro task呢？"></a>誰會進入Macro &#x2F; Micro task呢？</h3><ul>
+<li>Macro : <strong>setTimeout, setInterval, I&#x2F;O操作, UI渲染…</strong></li>
+<li>Micro : <strong>Promise.then, Promise.catch, Promise.finally, MutationObserver,  process.nextTick()(屬於Node.js)</strong></li>
+</ul>
+<p>首先先來基本題，我們先把macro task跟 micro task 看成同一個Queue</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;First&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;Second&#x27;</span>);</span><br><span class="line">&#125;, <span class="number">0</span>);</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;Third&#x27;</span>);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
+<p>上述會怎麼執行呢？</p>
+<p>順序:<br> First<br>Third<br>Sencond</p>
+<p>一開始碰到setTimeout被設為0，看似會馬上執行callback function，依照流程此callback function會被放到task queue中等待被執行，而在setTimeout後面還有程式碼要被放到call stack執行，所以得等到他被執行完才會去到Queue把 console.log(‘Second’); 拿出來執行。</p>
+<p>進階題</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;Start&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;Timeout&#x27;</span>);</span><br><span class="line">&#125;, <span class="number">0</span>);</span><br><span class="line"></span><br><span class="line"><span class="title class_">Promise</span>.<span class="title function_">resolve</span>().<span class="title function_">then</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;Promise 1&#x27;</span>);</span><br><span class="line">&#125;).<span class="title function_">then</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;Promise 2&#x27;</span>);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="keyword">async</span> <span class="keyword">function</span> <span class="title function_">asyncFunction</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;Async Function Start&#x27;</span>);</span><br><span class="line">  <span class="keyword">await</span> <span class="literal">null</span>; </span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;Async Function End&#x27;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="title function_">asyncFunction</span>();</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;End&#x27;</span>);</span><br></pre></td></tr></table></figure>
+
+<p>執行順序：</p>
+<p><a target="_blank" rel="noopener" href="https://codepen.io/jean-hao-chen/pen/bGJxqbO">玩玩看</a></p>
+<p><code>console.log(&#39;Start&#39;)</code>會先被執行，再來碰到<code>setTimeout</code>會進到背景去執行，而<code>console.log(&#39;Timeout&#39;)</code>callback function不會馬上被執行，即便setTimeout是設定0秒，還是會被放到Macro Task等待被執行，接下來Promise.resolve()會被執行，它後面有帶.then，所以<code>console.log(&#39;Promise 1&#39;)</code>會被放到micro task等待執行，再來則是執行<code>asyncFunction()</code>的<code> console.log(&#39;Async Function Start&#39;)</code> 以及 <code>await null</code>，在這裡碰到await 不管await執行的function是否為異步其後面的程式碼都會被包成micro task等待被執行，接下來則執行 <code>console.log(&#39;End&#39;);</code>。</p>
+<p>到此synchronize的 code 已經沒有需要被放到 call stack，接下來檢查micro task，開始執行，<code>console.log(&#39;Promise 1&#39;)</code> 而後又有.then，這個<code> console.log(&#39;Promise 2&#39;)</code> callback function會被放到micro task中，再來執行<code>console.log(&#39;Async Function End&#39;)</code>，接下來因為<code>console.log(&#39;Promise 2&#39;)</code>還在micro task，所以會先被執行，最後才是執行macro task的<code>console.log(&#39;Timeout&#39;)</code>;</p>
+<p>順序<br>‘Start’<br>‘Async Function Start’<br>‘End’<br>‘Promise 1’<br>‘Async Function End’<br>‘Promise 2’<br>‘Timeout’</p>
+<p>以上就是Event loop的執行流程。</p>
 
   </div>
   <!--文末结束语-->
@@ -332,14 +354,9 @@
   
   <nav>
     
-      <a rel="prev" class="post-nav-item mdui-float-left" href="/andy-tech-note/eventloop-micro-task-macro-task/">
-        <i class="iconfont icon-angle-left"></i>
-        <span>Javascript的Event Loop以及Micro  task, Macro task是如何運作的？</span>
-      </a>
     
-    
-      <a rel="next" class="post-nav-item mdui-float-right" href="/andy-tech-note/Javascript-constructor-function-inheritance_es6_class/">
-        <span>Javascript建構子函式繼承及ES6的class方式的繼承</span>
+      <a rel="next" class="post-nav-item mdui-float-right" href="/andy-tech-note/structuredClone-deep-clone/">
+        <span>Javascript中使用structuredClone做深拷貝</span>
         <i class="iconfont icon-angle-right"></i>
       </a>
     
@@ -353,8 +370,8 @@
     <button class="mdui-fab mdui-ripple mdui-color-teal" mdui-menu="{target: '#toc'}"><i class="iconfont icon-list"></i></button>
     <ul class="mdui-menu" id="toc">
       <li class="mdui-menu-item">
-        <a href="/andy-tech-note/structuredClone-deep-clone/" id="toc-header" class="mdui-ripple">文章目錄</a>
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B7%B1%E6%8B%B7%E8%B2%9D%E6%98%AF%E4%BB%80%E9%BA%BC%EF%BC%9F"><span class="toc-number">1.</span> <span class="toc-text">深拷貝是什麼？</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%80%B2%E9%9A%8E%E7%89%88structuredClone"><span class="toc-number">1.1.</span> <span class="toc-text">進階版structuredClone</span></a></li></ol></li></ol>
+        <a href="/andy-tech-note/eventloop-micro-task-macro-task/" id="toc-header" class="mdui-ripple">文章目錄</a>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Event-loop%E6%98%AF%E4%BB%80%E9%BA%BC%EF%BC%9F"><span class="toc-number">1.</span> <span class="toc-text">Event loop是什麼？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Event-loop%E8%A7%92%E8%89%B2"><span class="toc-number">2.</span> <span class="toc-text">Event loop角色</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%A8%8B%E5%BC%8F%E5%9F%B7%E8%A1%8C%E9%A0%86%E5%BA%8F"><span class="toc-number">2.1.</span> <span class="toc-text">程式執行順序</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AA%B0%E6%9C%83%E9%80%B2%E5%85%A5Macro-x2F-Micro-task%E5%91%A2%EF%BC%9F"><span class="toc-number">2.2.</span> <span class="toc-text">誰會進入Macro &#x2F; Micro task呢？</span></a></li></ol></li></ol>
       </li>
     </ul>
   </div>

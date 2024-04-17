@@ -393,7 +393,7 @@
   </url>
   
   <url>
-    <loc>http://crazycjh.github.io/andy-tech-note/tags/CSS/</loc>
+    <loc>http://crazycjh.github.io/andy-tech-note/tags/Firebase/</loc>
     <lastmod>2024-04-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -407,13 +407,6 @@
   </url>
   
   <url>
-    <loc>http://crazycjh.github.io/andy-tech-note/tags/Firebase/</loc>
-    <lastmod>2024-04-17</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>http://crazycjh.github.io/andy-tech-note/tags/promise/</loc>
     <lastmod>2024-04-17</lastmod>
     <changefreq>weekly</changefreq>
@@ -421,14 +414,14 @@
   </url>
   
   <url>
-    <loc>http://crazycjh.github.io/andy-tech-note/tags/JSON/</loc>
+    <loc>http://crazycjh.github.io/andy-tech-note/tags/CSS/</loc>
     <lastmod>2024-04-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>http://crazycjh.github.io/andy-tech-note/tags/auth/</loc>
+    <loc>http://crazycjh.github.io/andy-tech-note/tags/JSON/</loc>
     <lastmod>2024-04-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -455,17 +448,24 @@
     <priority>0.2</priority>
   </url>
   
+  <url>
+    <loc>http://crazycjh.github.io/andy-tech-note/tags/auth/</loc>
+    <lastmod>2024-04-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
 
   
   <url>
-    <loc>http://crazycjh.github.io/andy-tech-note/categories/javascript/</loc>
+    <loc>http://crazycjh.github.io/andy-tech-note/categories/Frontend/</loc>
     <lastmod>2024-04-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>http://crazycjh.github.io/andy-tech-note/categories/Frontend/</loc>
+    <loc>http://crazycjh.github.io/andy-tech-note/categories/javascript/</loc>
     <lastmod>2024-04-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>

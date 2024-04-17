@@ -252,7 +252,7 @@
     </span>
     <span>
       <span class="iconfont icon-calendar-check"></span>
-      更新於:&nbsp;2024-04-16
+      更新於:&nbsp;2024-04-17
     </span>
     <span>
       <span class="iconfont icon-folder"></span>
@@ -338,7 +338,7 @@
 
 <p>執行順序：</p>
 <p><a target="_blank" rel="noopener" href="https://codepen.io/jean-hao-chen/pen/bGJxqbO">玩玩看</a></p>
-<p><code>console.log(&#39;Start&#39;)</code>會先被執行，再來碰到<code>setTimeout</code>會進到背景去執行，而<code>console.log(&#39;Timeout&#39;)</code>callback function不會馬上被執行，即便setTimeout是設定0秒，還是會被放到Macro Task等待被執行，接下來Promise.resolve()會被執行，它後面有帶.then，所以<code>console.log(&#39;Promise 1&#39;)</code>會被放到micro task等待執行，再來則是執行<code>asyncFunction()</code>的<code> console.log(&#39;Async Function Start&#39;)</code> 以及 <code>await null</code>，在這裡碰到await 不管await執行的function是否為異步其後面的程式碼都會被包成micro task等待被執行，接下來則執行 <code>console.log(&#39;End&#39;);</code>。</p>
+<p><code>console.log(&#39;Start&#39;)</code>會先被執行，再來碰到<code>setTimeout</code>會進到背景去執行，而<code>console.log(&#39;Timeout&#39;)</code>callback function不會馬上被執行，即便setTimeout是設定0秒，還是會被放到Macro Task等待被執行，接下來Promise.resolve()會被執行，它後面有帶.then，所以<code>console.log(&#39;Promise 1&#39;)</code>會被放到micro task等待執行，再來則是執行<code>asyncFunction()</code>的<code> console.log(&#39;Async Function Start&#39;)</code> 以及 <code>await null</code>，在這裡碰到await 不管await執行的function是否為異步其後面的程式碼都會被包起來放到micro task等待被執行，接下來則執行 <code>console.log(&#39;End&#39;);</code>。</p>
 <p>到此synchronize的 code 已經沒有需要被放到 call stack，接下來檢查micro task，開始執行，<code>console.log(&#39;Promise 1&#39;)</code> 而後又有.then，這個<code> console.log(&#39;Promise 2&#39;)</code> callback function會被放到micro task中，再來執行<code>console.log(&#39;Async Function End&#39;)</code>，接下來因為<code>console.log(&#39;Promise 2&#39;)</code>還在micro task，所以會先被執行，最後才是執行macro task的<code>console.log(&#39;Timeout&#39;)</code>;</p>
 <p>順序<br>‘Start’<br>‘Async Function Start’<br>‘End’<br>‘Promise 1’<br>‘Async Function End’<br>‘Promise 2’<br>‘Timeout’</p>
 <p>以上就是Event loop的執行流程。</p>

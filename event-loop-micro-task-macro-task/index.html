@@ -342,6 +342,13 @@
 <p>到此synchronize的 code 已經沒有需要被放到 call stack，接下來檢查micro task，開始執行，<code>console.log(&#39;Promise 1&#39;)</code> 而後又有.then，這個<code> console.log(&#39;Promise 2&#39;)</code> callback function會被放到micro task中，再來執行<code>console.log(&#39;Async Function End&#39;)</code>，接下來因為<code>console.log(&#39;Promise 2&#39;)</code>還在micro task，所以會先被執行，最後才是執行macro task的<code>console.log(&#39;Timeout&#39;)</code>;</p>
 <p>順序<br>‘Start’<br>‘Async Function Start’<br>‘End’<br>‘Promise 1’<br>‘Async Function End’<br>‘Promise 2’<br>‘Timeout’</p>
 <p>以上就是Event loop的執行流程。</p>
+<p>參考資料：</p>
+<ul>
+<li><p>Lydia Hallie <a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=eiC58R16hb8">JavaScript Visualized - Event Loop, Web APIs, (Micro)task Queue</a></p>
+</li>
+<li><p>ExplainThis <a target="_blank" rel="noopener" href="https://www.explainthis.io/zh-hant/swe/js-event-loop-questions">最常見的事件循環 (Event Loop) 面試題目彙整</a></p>
+</li>
+</ul>
 
   </div>
   <!--文末结束语-->
@@ -353,6 +360,11 @@
   <div class="mdui-divider"></div>
   
   <nav>
+    
+      <a rel="prev" class="post-nav-item mdui-float-left" href="/andy-tech-note/hoisting-about-var-let-const-function/">
+        <i class="iconfont icon-angle-left"></i>
+        <span>Javascript 的 hoisting關於var,let,const and function</span>
+      </a>
     
     
       <a rel="next" class="post-nav-item mdui-float-right" href="/andy-tech-note/structuredClone-deep-clone/">

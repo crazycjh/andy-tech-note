@@ -71,24 +71,6 @@
       </tags>
   </entry>
   <entry>
-    <title>在vue中把變數傳進css</title>
-    <url>/andy-tech-note/vue-ref-css-vbind/</url>
-    <content><![CDATA[<p>某些時候會希望動態改變css的樣式高度、寬度、顏色…等等的<br>在vue中可以宣告一個ref變數(composition API)，然後把搭丟到vue檔案中的 <style></style>中，又或者透過inline的方式直接插入到html tag中，舉例如下：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">setup()&#123;</span><br><span class="line">    const mdSize = ref(&quot;100px&quot;);</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="傳到-lt-style-gt"><a href="#傳到-lt-style-gt" class="headerlink" title="傳到 &lt;style&gt;"></a>傳到 <code>&lt;style&gt;</code></h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;div class=&quot;md-size&quot;&gt;&lt;/div&gt; //在這裏class不需要v-bind</span><br><span class="line">&lt;style&gt;</span><br><span class="line">.md-size&#123;</span><br><span class="line">    height:v-bind(mdSize);</span><br><span class="line">&#125;</span><br><span class="line">&lt;/style&gt;    </span><br></pre></td></tr></table></figure>
-
-<h3 id="以傳值的方式丟到inline"><a href="#以傳值的方式丟到inline" class="headerlink" title="以傳值的方式丟到inline"></a>以傳值的方式丟到inline</h3><p>搭配v-bind 也就是縮寫 “:”<br>把mdSize放進去style</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;button :style=&quot;&#123; height: mdSize &#125;&quot; &gt; 按鈕名稱 &lt;/button&gt;</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>Frontend</category>
-      </categories>
-      <tags>
-        <tag>Javascript</tag>
-        <tag>Vue</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>在JS中複製object-深拷貝/淺拷貝</title>
     <url>/andy-tech-note/deep-copy-Shallow-copy/</url>
     <content><![CDATA[<h3 id="在JS複製object"><a href="#在JS複製object" class="headerlink" title="在JS複製object"></a>在JS複製object</h3><p>在寫code有時候會需要使用某些變數或是object，但是又不希望直接對其做操作，因為可能在其他地方會繼續使用原始的object，<br>這時候就會宣告一個新的變數去把原先的object assign過去。</p>
@@ -113,6 +95,24 @@
       </categories>
       <tags>
         <tag>Javascript</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>在vue中把變數傳進css</title>
+    <url>/andy-tech-note/vue-ref-css-vbind/</url>
+    <content><![CDATA[<p>某些時候會希望動態改變css的樣式高度、寬度、顏色…等等的<br>在vue中可以宣告一個ref變數(composition API)，然後把搭丟到vue檔案中的 <style></style>中，又或者透過inline的方式直接插入到html tag中，舉例如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">setup()&#123;</span><br><span class="line">    const mdSize = ref(&quot;100px&quot;);</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="傳到-lt-style-gt"><a href="#傳到-lt-style-gt" class="headerlink" title="傳到 &lt;style&gt;"></a>傳到 <code>&lt;style&gt;</code></h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;div class=&quot;md-size&quot;&gt;&lt;/div&gt; //在這裏class不需要v-bind</span><br><span class="line">&lt;style&gt;</span><br><span class="line">.md-size&#123;</span><br><span class="line">    height:v-bind(mdSize);</span><br><span class="line">&#125;</span><br><span class="line">&lt;/style&gt;    </span><br></pre></td></tr></table></figure>
+
+<h3 id="以傳值的方式丟到inline"><a href="#以傳值的方式丟到inline" class="headerlink" title="以傳值的方式丟到inline"></a>以傳值的方式丟到inline</h3><p>搭配v-bind 也就是縮寫 “:”<br>把mdSize放進去style</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;button :style=&quot;&#123; height: mdSize &#125;&quot; &gt; 按鈕名稱 &lt;/button&gt;</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>Frontend</category>
+      </categories>
+      <tags>
+        <tag>Javascript</tag>
+        <tag>Vue</tag>
       </tags>
   </entry>
   <entry>
@@ -178,6 +178,20 @@
       </tags>
   </entry>
   <entry>
+    <title>chatGPT-想法</title>
+    <url>/andy-tech-note/chatGPT-note/</url>
+    <content><![CDATA[<h3 id="關於chatGPT想法"><a href="#關於chatGPT想法" class="headerlink" title="關於chatGPT想法"></a>關於chatGPT想法</h3><p>網路上有很多人認為chatGPT會造成很多人依賴chatGPT取得資訊，讓人變得更懶。<br>不過我倒不這麼認為，先前在免費時使用過chatGPT，透過他詢問一下關於寫side project的問題，<br>在這過程成會發現如果你對於你的問題沒有具備相應的背景知識時，AI回答給你的答案你根本無從判斷是否有誤，曾經得到的答案發現大方向沒錯，但是小細節是有瑕疵的。</p>
+<p>所以個人認為他可以是輔助人類而非取代人類，至少在寫程式的部分，碰到問題時可以詢問他，有時候他會告訴你某個大方向，而這個方向可能是你在思考時盲點，可以再透過這個方向去找到你需要的答案，這樣可以避免在某個死胡同打轉。</p>
+<h3 id="收費"><a href="#收費" class="headerlink" title="收費"></a>收費</h3><p>2023年2月開始需要收費囉，一個月20美金，以小弟在線上詢問一些問題，而這些問題可能在google可以輕鬆找到，但是有這些問題是有前後關聯的，在google上並不是這麼容易精確的搜尋到答案，chatGPT反而可以接續著前一個問題回答你下一個問題，讓你的思緒更加完整。<br>以一個軟體工程師來說20美元一個月完全值得投資，問幾個問題可以節省更多時間去做別的事，畢竟軟體工程師就是極致懶，可以讓程式完成的事就不想手動完成，當然拉，在這問問題過程中還是要有學到東西才比較好ＸＤ。</p>
+]]></content>
+      <categories>
+        <category>軟體雜記</category>
+      </categories>
+      <tags>
+        <tag>chatGPT</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>CSS中的偽類-pseudo-class</title>
     <url>/andy-tech-note/pseudo-class/</url>
     <content><![CDATA[<h3 id="情境1"><a href="#情境1" class="headerlink" title="情境1"></a>情境1</h3><p>直接範例解釋</p>
@@ -223,30 +237,6 @@
       </tags>
   </entry>
   <entry>
-    <title>如何使用Google的firebase裡面的驗證功能(login/logout)</title>
-    <url>/andy-tech-note/firebase-auth/</url>
-    <content><![CDATA[<h4 id="Google-Firebase"><a href="#Google-Firebase" class="headerlink" title="Google Firebase"></a>Google Firebase</h4><p>Google的Firebase是個前端工程師很好用的工具，他可以讓前端工程師省去後端資料庫的建立而可以專注在前端的開發，這裡面有身份驗證、realtime資料庫等好用的功能，只要是拿來做開發，而流量不大的話，通常你都不會達到需要付費流量。</p>
-<h4 id="Firebase-auth-以Email-x2F-password-為例"><a href="#Firebase-auth-以Email-x2F-password-為例" class="headerlink" title="Firebase auth 以Email&#x2F;password 為例"></a>Firebase auth 以Email&#x2F;password 為例</h4><p>可以先到firebase官網看一下的 <a href="https://firebase.google.com/docs/auth/web/start">Authentication</a> 頁面，<code>Get start </code>中有提供範例code</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">import &#123; initializeApp &#125; from &quot;firebase/app&quot;;</span><br><span class="line">import &#123; getAuth &#125; from &quot;firebase/auth&quot;;</span><br><span class="line"></span><br><span class="line">// TODO: Replace the following with your app&#x27;s Firebase project configuration</span><br><span class="line">// See: https://firebase.google.com/docs/web/learn-more#config-object</span><br><span class="line">const firebaseConfig = &#123;</span><br><span class="line">  // ...這裡面呢放上的東西可以參考上面那行網址，</span><br><span class="line">  簡單來說就是你在firebase(https://firebase.google.com/)</span><br><span class="line">  建立新專案時並且建立後會出現的一些資料，按照這些資料填入即可</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">// Initialize Firebase</span><br><span class="line">const app = initializeApp(firebaseConfig);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">// Initialize Firebase Authentication and get a reference to the service</span><br><span class="line">const auth = getAuth(app);</span><br><span class="line">//</span><br></pre></td></tr></table></figure>
-<p>要如何找到firebaseConfig裡面的資料？點到下圖的這個地方，右邊拉到底，新增一個<code>網頁應用程式</code>後就會出現相對應的api key。<br><img src="/andy-tech-note/firebase-auth/SCR-20230216-t2w.png"><br>而後記得在左側的<code>建構</code>建立一個authication服務，然後在右側sign-in method去新增供應商，選擇電子郵件&#x2F;密碼後在左邊users設定你想要登入的帳號密碼(這是比較陽春的方式，你可以在網路上找一下透過網頁要求建立帳號密碼)<br><img src="/andy-tech-note/firebase-auth/SCR-20230216-t7l.png"></p>
-<p>而剛剛上面的code，只是把firebase先初始化以及把auth資訊先準備好，接下來要呼叫登入的API。<br><a href="https://firebase.google.com/docs/auth/web/password-auth">email&#x2F;password登入</a></p>
-<h5 id="登入"><a href="#登入" class="headerlink" title="登入"></a>登入</h5><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">import &#123; getAuth, signInWithEmailAndPassword &#125; from &quot;firebase/auth&quot;;</span><br><span class="line"></span><br><span class="line">const auth = getAuth();</span><br><span class="line">signInWithEmailAndPassword(auth, email, password)</span><br><span class="line">  .then((userCredential) =&gt; &#123;</span><br><span class="line">    // Signed in </span><br><span class="line">    const user = userCredential.user;</span><br><span class="line">    // ...</span><br><span class="line">  &#125;)</span><br><span class="line">  .catch((error) =&gt; &#123;</span><br><span class="line">    const errorCode = error.code;</span><br><span class="line">    const errorMessage = error.message;</span><br><span class="line">  &#125;);</span><br></pre></td></tr></table></figure>
-
-<p>如果有需要創建帳號的code，在同個網頁也有</p>
-<h5 id="創建帳號"><a href="#創建帳號" class="headerlink" title="創建帳號"></a>創建帳號</h5><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">import &#123; getAuth, createUserWithEmailAndPassword &#125; from &quot;firebase/auth&quot;;</span><br><span class="line"></span><br><span class="line">const auth = getAuth();</span><br><span class="line">createUserWithEmailAndPassword(auth, email, password)</span><br><span class="line">  .then((userCredential) =&gt; &#123;</span><br><span class="line">    // Signed in </span><br><span class="line">    const user = userCredential.user;</span><br><span class="line">    // ...</span><br><span class="line">  &#125;)</span><br><span class="line">  .catch((error) =&gt; &#123;</span><br><span class="line">    const errorCode = error.code;</span><br><span class="line">    const errorMessage = error.message;</span><br><span class="line">    // ..</span><br><span class="line">  &#125;);</span><br></pre></td></tr></table></figure>
-
-<h5 id="登出"><a href="#登出" class="headerlink" title="登出"></a>登出</h5><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">import &#123; getAuth, signOut &#125; from &quot;firebase/auth&quot;;</span><br><span class="line"></span><br><span class="line">const auth = getAuth();</span><br><span class="line">signOut(auth).then(() =&gt; &#123;</span><br><span class="line">  // Sign-out successful.</span><br><span class="line">&#125;).catch((error) =&gt; &#123;</span><br><span class="line">  // An error happened.</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-
-<h4 id="登入後"><a href="#登入後" class="headerlink" title="登入後"></a>登入後</h4><p>執行完登入後，要怎麼知道是不是真正登入？<br>可以點開瀏覽器的開發者工具裡面的儲存空間如下，如果再相對應的位置有找到寫有你之前填入的API Key就代表登入成功，而且他還幫你存在暫存裡面。<br><img src="/andy-tech-note/firebase-auth/SCR-20230216-to3.png"></p>
-]]></content>
-      <categories>
-        <category>Frontend</category>
-      </categories>
-      <tags>
-        <tag>Firebase</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Javascript中的promise - 處理異步</title>
     <url>/andy-tech-note/promise-async/</url>
     <content><![CDATA[<h4 id="promise是幹嘛的？"><a href="#promise是幹嘛的？" class="headerlink" title="promise是幹嘛的？"></a>promise是幹嘛的？</h4><p>promise這個方法是ES6時推出的，這個主要可以用來解決非同步中XMLHttpRequest的問題<br>promise不需要監測Event(也就是js中的addEventListener())，而且會在資料回傳時執行callback function，<br>以及處理在做非同步請求時使用callback時所產生的callback hell。<br>之所以會產生callback hell是因為，當多個非同步請求有前後相關性時就會發生，所謂的前後相關性就是<code>C request</code> 需要等到<br><code>B request</code>的結果才能發出請求，B又要等到<code>A request</code>的結果才能發出，這樣就會變成巢狀的結構，會變得非常難以閱讀。</p>
@@ -275,17 +265,27 @@
       </tags>
   </entry>
   <entry>
-    <title>chatGPT-想法</title>
-    <url>/andy-tech-note/chatGPT-note/</url>
-    <content><![CDATA[<h3 id="關於chatGPT想法"><a href="#關於chatGPT想法" class="headerlink" title="關於chatGPT想法"></a>關於chatGPT想法</h3><p>網路上有很多人認為chatGPT會造成很多人依賴chatGPT取得資訊，讓人變得更懶。<br>不過我倒不這麼認為，先前在免費時使用過chatGPT，透過他詢問一下關於寫side project的問題，<br>在這過程成會發現如果你對於你的問題沒有具備相應的背景知識時，AI回答給你的答案你根本無從判斷是否有誤，曾經得到的答案發現大方向沒錯，但是小細節是有瑕疵的。</p>
-<p>所以個人認為他可以是輔助人類而非取代人類，至少在寫程式的部分，碰到問題時可以詢問他，有時候他會告訴你某個大方向，而這個方向可能是你在思考時盲點，可以再透過這個方向去找到你需要的答案，這樣可以避免在某個死胡同打轉。</p>
-<h3 id="收費"><a href="#收費" class="headerlink" title="收費"></a>收費</h3><p>2023年2月開始需要收費囉，一個月20美金，以小弟在線上詢問一些問題，而這些問題可能在google可以輕鬆找到，但是有這些問題是有前後關聯的，在google上並不是這麼容易精確的搜尋到答案，chatGPT反而可以接續著前一個問題回答你下一個問題，讓你的思緒更加完整。<br>以一個軟體工程師來說20美元一個月完全值得投資，問幾個問題可以節省更多時間去做別的事，畢竟軟體工程師就是極致懶，可以讓程式完成的事就不想手動完成，當然拉，在這問問題過程中還是要有學到東西才比較好ＸＤ。</p>
+    <title>如何使用Google的firebase裡面的驗證功能(login/logout)</title>
+    <url>/andy-tech-note/firebase-auth/</url>
+    <content><![CDATA[<h4 id="Google-Firebase"><a href="#Google-Firebase" class="headerlink" title="Google Firebase"></a>Google Firebase</h4><p>Google的Firebase是個前端工程師很好用的工具，他可以讓前端工程師省去後端資料庫的建立而可以專注在前端的開發，這裡面有身份驗證、realtime資料庫等好用的功能，只要是拿來做開發，而流量不大的話，通常你都不會達到需要付費流量。</p>
+<h4 id="Firebase-auth-以Email-x2F-password-為例"><a href="#Firebase-auth-以Email-x2F-password-為例" class="headerlink" title="Firebase auth 以Email&#x2F;password 為例"></a>Firebase auth 以Email&#x2F;password 為例</h4><p>可以先到firebase官網看一下的 <a href="https://firebase.google.com/docs/auth/web/start">Authentication</a> 頁面，<code>Get start </code>中有提供範例code</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">import &#123; initializeApp &#125; from &quot;firebase/app&quot;;</span><br><span class="line">import &#123; getAuth &#125; from &quot;firebase/auth&quot;;</span><br><span class="line"></span><br><span class="line">// TODO: Replace the following with your app&#x27;s Firebase project configuration</span><br><span class="line">// See: https://firebase.google.com/docs/web/learn-more#config-object</span><br><span class="line">const firebaseConfig = &#123;</span><br><span class="line">  // ...這裡面呢放上的東西可以參考上面那行網址，</span><br><span class="line">  簡單來說就是你在firebase(https://firebase.google.com/)</span><br><span class="line">  建立新專案時並且建立後會出現的一些資料，按照這些資料填入即可</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">// Initialize Firebase</span><br><span class="line">const app = initializeApp(firebaseConfig);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">// Initialize Firebase Authentication and get a reference to the service</span><br><span class="line">const auth = getAuth(app);</span><br><span class="line">//</span><br></pre></td></tr></table></figure>
+<p>要如何找到firebaseConfig裡面的資料？點到下圖的這個地方，右邊拉到底，新增一個<code>網頁應用程式</code>後就會出現相對應的api key。<br><img src="/andy-tech-note/firebase-auth/SCR-20230216-t2w.png"><br>而後記得在左側的<code>建構</code>建立一個authication服務，然後在右側sign-in method去新增供應商，選擇電子郵件&#x2F;密碼後在左邊users設定你想要登入的帳號密碼(這是比較陽春的方式，你可以在網路上找一下透過網頁要求建立帳號密碼)<br><img src="/andy-tech-note/firebase-auth/SCR-20230216-t7l.png"></p>
+<p>而剛剛上面的code，只是把firebase先初始化以及把auth資訊先準備好，接下來要呼叫登入的API。<br><a href="https://firebase.google.com/docs/auth/web/password-auth">email&#x2F;password登入</a></p>
+<h5 id="登入"><a href="#登入" class="headerlink" title="登入"></a>登入</h5><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">import &#123; getAuth, signInWithEmailAndPassword &#125; from &quot;firebase/auth&quot;;</span><br><span class="line"></span><br><span class="line">const auth = getAuth();</span><br><span class="line">signInWithEmailAndPassword(auth, email, password)</span><br><span class="line">  .then((userCredential) =&gt; &#123;</span><br><span class="line">    // Signed in </span><br><span class="line">    const user = userCredential.user;</span><br><span class="line">    // ...</span><br><span class="line">  &#125;)</span><br><span class="line">  .catch((error) =&gt; &#123;</span><br><span class="line">    const errorCode = error.code;</span><br><span class="line">    const errorMessage = error.message;</span><br><span class="line">  &#125;);</span><br></pre></td></tr></table></figure>
+
+<p>如果有需要創建帳號的code，在同個網頁也有</p>
+<h5 id="創建帳號"><a href="#創建帳號" class="headerlink" title="創建帳號"></a>創建帳號</h5><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">import &#123; getAuth, createUserWithEmailAndPassword &#125; from &quot;firebase/auth&quot;;</span><br><span class="line"></span><br><span class="line">const auth = getAuth();</span><br><span class="line">createUserWithEmailAndPassword(auth, email, password)</span><br><span class="line">  .then((userCredential) =&gt; &#123;</span><br><span class="line">    // Signed in </span><br><span class="line">    const user = userCredential.user;</span><br><span class="line">    // ...</span><br><span class="line">  &#125;)</span><br><span class="line">  .catch((error) =&gt; &#123;</span><br><span class="line">    const errorCode = error.code;</span><br><span class="line">    const errorMessage = error.message;</span><br><span class="line">    // ..</span><br><span class="line">  &#125;);</span><br></pre></td></tr></table></figure>
+
+<h5 id="登出"><a href="#登出" class="headerlink" title="登出"></a>登出</h5><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">import &#123; getAuth, signOut &#125; from &quot;firebase/auth&quot;;</span><br><span class="line"></span><br><span class="line">const auth = getAuth();</span><br><span class="line">signOut(auth).then(() =&gt; &#123;</span><br><span class="line">  // Sign-out successful.</span><br><span class="line">&#125;).catch((error) =&gt; &#123;</span><br><span class="line">  // An error happened.</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<h4 id="登入後"><a href="#登入後" class="headerlink" title="登入後"></a>登入後</h4><p>執行完登入後，要怎麼知道是不是真正登入？<br>可以點開瀏覽器的開發者工具裡面的儲存空間如下，如果再相對應的位置有找到寫有你之前填入的API Key就代表登入成功，而且他還幫你存在暫存裡面。<br><img src="/andy-tech-note/firebase-auth/SCR-20230216-to3.png"></p>
 ]]></content>
       <categories>
-        <category>軟體雜記</category>
+        <category>Frontend</category>
       </categories>
       <tags>
-        <tag>chatGPT</tag>
+        <tag>Firebase</tag>
       </tags>
   </entry>
   <entry>
@@ -355,21 +355,6 @@
       </tags>
   </entry>
   <entry>
-    <title>nextTick in Vue3</title>
-    <url>/andy-tech-note/nextTick-in-Vue3/</url>
-    <content><![CDATA[<h4 id="什麼是nextTick-？"><a href="#什麼是nextTick-？" class="headerlink" title="什麼是nextTick()？"></a>什麼是nextTick()？</h4><h6 id="官方定義"><a href="#官方定義" class="headerlink" title="官方定義"></a>官方定義</h6><p><code>在下次 DOM 更新循环结束之后执行延迟回调。在修改数据之后立即使用这个方法，获取更新后的 DOM</code></p>
-<h4 id="實際應用場景"><a href="#實際應用場景" class="headerlink" title="實際應用場景"></a>實際應用場景</h4><p>版主在Vue3的 project中有一個<code>child componet</code> 跟 <code>parent component</code>，在child component中有使用 <code>Primevue</code>的 <code>Checkbox</code>，而我希望在勾選Checkbox時可以觸發emit，所以使用watch監聽Checkbox 綁定的一個<code>ref</code>的變數，所以在watch監聽該變數，當有變化就發出emit，而parent收到emit的會依照回傳的值做一些array的過濾，在這裡因為過濾會花點時間。</p>
-<p>於此同時Checkbox不會馬上被改變打勾或是非打勾的狀態，需要等到parent計算完才會被更新DOM，所以我認為是parent中的filter造成DOM的延遲更新，所以就使用nextTick()，先讓Checkbox可以先被渲染，再執行emit。</p>
-<p>程式碼如下</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">watch(destination, () =&gt; &#123;</span><br><span class="line">    nextTick(()=&gt; &#123;</span><br><span class="line">        emit(&#x27;filterCondiction&#x27;, &#123;date: [&#123;index: &#x27;1&#x27;, date: &quot;20240201&quot;&#125;], location: [&#123;index: props.airport.location.split(&#x27; &#x27;)[1], destination: destination.value&#125;]&#125;);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-<p>請忽略傳遞的參數ＸＤ</p>
-<p>在這裡會看到emit會在DOM完成更新後才執行，這樣就不會有覺得為什麼點擊Chenckbox後卻沒有馬上被打勾的問題。</p>
-]]></content>
-      <tags>
-        <tag>Vue</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>在Javacript建立promise</title>
     <url>/andy-tech-note/how-to-create-promise/</url>
     <content><![CDATA[<h4 id="建立promise"><a href="#建立promise" class="headerlink" title="建立promise"></a>建立promise</h4><p>延續前一篇關於promise的文章，來試試看要怎麼建立一個Promise。</p>
@@ -385,6 +370,36 @@
         <tag>Javascript</tag>
         <tag>async</tag>
         <tag>promise</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>nextTick in Vue3</title>
+    <url>/andy-tech-note/nextTick-in-Vue3/</url>
+    <content><![CDATA[<h4 id="什麼是nextTick-？"><a href="#什麼是nextTick-？" class="headerlink" title="什麼是nextTick()？"></a>什麼是nextTick()？</h4><h6 id="官方定義"><a href="#官方定義" class="headerlink" title="官方定義"></a>官方定義</h6><p><code>在下次 DOM 更新循环结束之后执行延迟回调。在修改数据之后立即使用这个方法，获取更新后的 DOM</code></p>
+<h4 id="實際應用場景"><a href="#實際應用場景" class="headerlink" title="實際應用場景"></a>實際應用場景</h4><p>版主在Vue3的 project中有一個<code>child componet</code> 跟 <code>parent component</code>，在child component中有使用 <code>Primevue</code>的 <code>Checkbox</code>，而我希望在勾選Checkbox時可以觸發emit，所以使用watch監聽Checkbox 綁定的一個<code>ref</code>的變數，所以在watch監聽該變數，當有變化就發出emit，而parent收到emit的會依照回傳的值做一些array的過濾，在這裡因為過濾會花點時間。</p>
+<p>於此同時Checkbox不會馬上被改變打勾或是非打勾的狀態，需要等到parent計算完才會被更新DOM，所以我認為是parent中的filter造成DOM的延遲更新，所以就使用nextTick()，先讓Checkbox可以先被渲染，再執行emit。</p>
+<p>程式碼如下</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">watch(destination, () =&gt; &#123;</span><br><span class="line">    nextTick(()=&gt; &#123;</span><br><span class="line">        emit(&#x27;filterCondiction&#x27;, &#123;date: [&#123;index: &#x27;1&#x27;, date: &quot;20240201&quot;&#125;], location: [&#123;index: props.airport.location.split(&#x27; &#x27;)[1], destination: destination.value&#125;]&#125;);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>請忽略傳遞的參數ＸＤ</p>
+<p>在這裡會看到emit會在DOM完成更新後才執行，這樣就不會有覺得為什麼點擊Chenckbox後卻沒有馬上被打勾的問題。</p>
+]]></content>
+      <tags>
+        <tag>Vue</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Javascript - 對object(key value)做 filter &amp; map</title>
+    <url>/andy-tech-note/Javascript-object-key-value-filter_map/</url>
+    <content><![CDATA[<h4 id="如何對object做類似filter的行為"><a href="#如何對object做類似filter的行為" class="headerlink" title="如何對object做類似filter的行為"></a>如何對object做類似filter的行為</h4><p>透過Object.keys把key 輸出成 Array，這樣就可以使用filter，把key當作index逐一帶入obj做條件判斷，即可達到過濾效果</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">const obj = &#123;a : 1, b : 2, c : 3&#125;;</span><br><span class="line">const filteredResult = Object.keys(obj)</span><br><span class="line">    .filter((key) =&gt; obj[key] &gt; 1)</span><br></pre></td></tr></table></figure>
+
+
+<h4 id="使用Object-entries及reduce-來對object做一對一的處理來達到map效果"><a href="#使用Object-entries及reduce-來對object做一對一的處理來達到map效果" class="headerlink" title="使用Object.entries及reduce 來對object做一對一的處理來達到map效果"></a>使用Object.entries及reduce 來對object做一對一的處理來達到map效果</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">const obj = &#123;</span><br><span class="line">    a: &#123;name: &#x27;andy&#x27;, b: 2, c: 3&#125;, </span><br><span class="line">    b: &#123;name: &#x27;amy&#x27;, b: 2, c: 3&#125;, </span><br><span class="line">    c: &#123;name: &#x27;john&#x27;, b: 2, c: 3&#125; </span><br><span class="line">    &#125;;</span><br><span class="line">    </span><br><span class="line">const result = Object.entries(obj).reduce((acc, [key, value]) =&gt; &#123;</span><br><span class="line">  acc[key] = value</span><br><span class="line">  acc[key].name = acc[key].name + &#x27; chen&#x27;</span><br><span class="line"></span><br><span class="line">  return acc;</span><br><span class="line"></span><br><span class="line">&#125;, &#123;&#125;)</span><br><span class="line">// 可以對 name的後面全部加上 &quot;chen&quot;的字串</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>Frontend</category>
+      </categories>
+      <tags>
+        <tag>Javascript</tag>
       </tags>
   </entry>
   <entry>
@@ -418,21 +433,6 @@
       <tags>
         <tag>Wordpress</tag>
         <tag>Frontend</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Javascript - 對object(key value)做 filter &amp; map</title>
-    <url>/andy-tech-note/Javascript-object-key-value-filter_map/</url>
-    <content><![CDATA[<h4 id="如何對object做類似filter的行為"><a href="#如何對object做類似filter的行為" class="headerlink" title="如何對object做類似filter的行為"></a>如何對object做類似filter的行為</h4><p>透過Object.keys把key 輸出成 Array，這樣就可以使用filter，把key當作index逐一帶入obj做條件判斷，即可達到過濾效果</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">const obj = &#123;a : 1, b : 2, c : 3&#125;;</span><br><span class="line">const filteredResult = Object.keys(obj)</span><br><span class="line">    .filter((key) =&gt; obj[key] &gt; 1)</span><br></pre></td></tr></table></figure>
-
-
-<h4 id="使用Object-entries及reduce-來對object做一對一的處理來達到map效果"><a href="#使用Object-entries及reduce-來對object做一對一的處理來達到map效果" class="headerlink" title="使用Object.entries及reduce 來對object做一對一的處理來達到map效果"></a>使用Object.entries及reduce 來對object做一對一的處理來達到map效果</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">const obj = &#123;</span><br><span class="line">    a: &#123;name: &#x27;andy&#x27;, b: 2, c: 3&#125;, </span><br><span class="line">    b: &#123;name: &#x27;amy&#x27;, b: 2, c: 3&#125;, </span><br><span class="line">    c: &#123;name: &#x27;john&#x27;, b: 2, c: 3&#125; </span><br><span class="line">    &#125;;</span><br><span class="line">    </span><br><span class="line">const result = Object.entries(obj).reduce((acc, [key, value]) =&gt; &#123;</span><br><span class="line">  acc[key] = value</span><br><span class="line">  acc[key].name = acc[key].name + &#x27; chen&#x27;</span><br><span class="line"></span><br><span class="line">  return acc;</span><br><span class="line"></span><br><span class="line">&#125;, &#123;&#125;)</span><br><span class="line">// 可以對 name的後面全部加上 &quot;chen&quot;的字串</span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>Frontend</category>
-      </categories>
-      <tags>
-        <tag>Javascript</tag>
       </tags>
   </entry>
   <entry>
@@ -659,6 +659,24 @@
       </tags>
   </entry>
   <entry>
+    <title>Javascript中使用structuredClone做深拷貝</title>
+    <url>/andy-tech-note/structuredClone-deep-clone/</url>
+    <content><![CDATA[<h2 id="深拷貝是什麼？"><a href="#深拷貝是什麼？" class="headerlink" title="深拷貝是什麼？"></a>深拷貝是什麼？</h2><p>先前有寫過如何處理深拷貝，深拷貝是要幹嘛？<br>簡單的說就是當有個物件他裡面有巢狀結構，不只有一層，如果直接以變數assign的方式賦值給一個新的變數，這時候在第二層開始的元素會是指向原先的物件，所以當使用者在對新的物件第二層的元素操作時就會修改到舊有的物件的值，這時候就需要深拷貝來處理，詳細請參閱👇</p>
+<p><a href="https://crazycjh.github.io/andy-tech-note/deep-copy-Shallow-copy/">在JS中複製object-深拷貝&#x2F;淺拷貝</a>。</p>
+<h3 id="進階版structuredClone"><a href="#進階版structuredClone" class="headerlink" title="進階版structuredClone"></a>進階版structuredClone</h3><p>先前都是使用JSON.stringify &amp; JSON.parse來組合處理，現在只要透過structuredClone來處理，這個有什麼差異呢？<br>舊有的方法只能準確地處理 primitive Value，若是碰到Map, Set 非primitive的物件就會被變成空object{}，也就會造成資料的不完整。</p>
+<p>可以看以下程式碼 或是<a href="https://codepen.io/jean-hao-chen/pen/KKYxPOe">玩玩看</a></p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> obj = &#123;</span><br><span class="line">  <span class="string">&#x27;name&#x27;</span>: <span class="string">&#x27;Andy&#x27;</span>, </span><br><span class="line">  <span class="string">&#x27;profile&#x27;</span>: &#123;</span><br><span class="line">    <span class="attr">height</span>:<span class="number">182</span>,</span><br><span class="line">    <span class="attr">age</span>:<span class="number">18</span>,</span><br><span class="line">    <span class="attr">fn</span>: <span class="keyword">new</span> <span class="title class_">Set</span>([<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>])</span><br><span class="line">    </span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> objStructuredClone = <span class="title function_">structuredClone</span>(obj);</span><br><span class="line"><span class="keyword">const</span> objJson = <span class="title class_">JSON</span>.<span class="title function_">parse</span>(<span class="title class_">JSON</span>.<span class="title function_">stringify</span>(obj))</span><br><span class="line"></span><br><span class="line">objStructuredClone[<span class="string">&#x27;profile&#x27;</span>][<span class="string">&#x27;age&#x27;</span>] = <span class="number">35</span>;</span><br><span class="line">objStructuredClone[<span class="string">&#x27;profile&#x27;</span>][<span class="string">&#x27;fn&#x27;</span>].<span class="title function_">add</span>(<span class="number">5</span>);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(objStructuredClone[<span class="string">&#x27;profile&#x27;</span>][<span class="string">&#x27;fn&#x27;</span>]);</span><br><span class="line"><span class="comment">// Set(4) &#123;1, 2, 3, 5&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(obj[<span class="string">&#x27;profile&#x27;</span>][<span class="string">&#x27;fn&#x27;</span>]);</span><br><span class="line"><span class="comment">// Set(3) &#123;1, 2, 3&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(objJson[<span class="string">&#x27;profile&#x27;</span>][<span class="string">&#x27;fn&#x27;</span>])</span><br><span class="line"><span class="comment">// &#123;&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(objStructuredClone[<span class="string">&#x27;profile&#x27;</span>]);</span><br><span class="line"><span class="comment">// &#123;height: 182, age: 35, fn: Set(4) &#123;1, 2, 3, 5&#125;&#125;</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(obj[<span class="string">&#x27;profile&#x27;</span>]);</span><br><span class="line"><span class="comment">// &#123;height: 182, age: 18, fn: Set(3) &#123;1, 2, 3&#125;&#125;</span></span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>frontend_interview</category>
+      </categories>
+      <tags>
+        <tag>Javascript</tag>
+        <tag>Frontend</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Javascript 的 hoisting關於var,let,const and function</title>
     <url>/andy-tech-note/hoisting-about-var-let-const-function/</url>
     <content><![CDATA[<h2 id="什麼是Hoisting-提升"><a href="#什麼是Hoisting-提升" class="headerlink" title="什麼是Hoisting(提升)"></a>什麼是Hoisting(提升)</h2><p>當js在編譯時會把變數宣告以及函式宣告提升到該<code>作用域</code>的最頂端，但實際上不會去改動程式碼，有時候在撰寫程式碼時有沒有發現雖然你的function宣告在後面，卻在前面使用function而不會跳錯，就是這個原因</p>
@@ -677,24 +695,6 @@
 
 <p>Arrow Function 如下：</p>
 <figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="title function_">exampleFunction</span>()</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="title function_">exampleFunction</span> = (<span class="params"></span>) =&gt; &#123;</span><br><span class="line">  <span class="keyword">let</span> a = <span class="number">5</span>;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(a);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>frontend_interview</category>
-      </categories>
-      <tags>
-        <tag>Javascript</tag>
-        <tag>Frontend</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Javascript中使用structuredClone做深拷貝</title>
-    <url>/andy-tech-note/structuredClone-deep-clone/</url>
-    <content><![CDATA[<h2 id="深拷貝是什麼？"><a href="#深拷貝是什麼？" class="headerlink" title="深拷貝是什麼？"></a>深拷貝是什麼？</h2><p>先前有寫過如何處理深拷貝，深拷貝是要幹嘛？<br>簡單的說就是當有個物件他裡面有巢狀結構，不只有一層，如果直接以變數assign的方式賦值給一個新的變數，這時候在第二層開始的元素會是指向原先的物件，所以當使用者在對新的物件第二層的元素操作時就會修改到舊有的物件的值，這時候就需要深拷貝來處理，詳細請參閱👇</p>
-<p><a href="https://crazycjh.github.io/andy-tech-note/deep-copy-Shallow-copy/">在JS中複製object-深拷貝&#x2F;淺拷貝</a>。</p>
-<h3 id="進階版structuredClone"><a href="#進階版structuredClone" class="headerlink" title="進階版structuredClone"></a>進階版structuredClone</h3><p>先前都是使用JSON.stringify &amp; JSON.parse來組合處理，現在只要透過structuredClone來處理，這個有什麼差異呢？<br>舊有的方法只能準確地處理 primitive Value，若是碰到Map, Set 非primitive的物件就會被變成空object{}，也就會造成資料的不完整。</p>
-<p>可以看以下程式碼 或是<a href="https://codepen.io/jean-hao-chen/pen/KKYxPOe">玩玩看</a></p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> obj = &#123;</span><br><span class="line">  <span class="string">&#x27;name&#x27;</span>: <span class="string">&#x27;Andy&#x27;</span>, </span><br><span class="line">  <span class="string">&#x27;profile&#x27;</span>: &#123;</span><br><span class="line">    <span class="attr">height</span>:<span class="number">182</span>,</span><br><span class="line">    <span class="attr">age</span>:<span class="number">18</span>,</span><br><span class="line">    <span class="attr">fn</span>: <span class="keyword">new</span> <span class="title class_">Set</span>([<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>])</span><br><span class="line">    </span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> objStructuredClone = <span class="title function_">structuredClone</span>(obj);</span><br><span class="line"><span class="keyword">const</span> objJson = <span class="title class_">JSON</span>.<span class="title function_">parse</span>(<span class="title class_">JSON</span>.<span class="title function_">stringify</span>(obj))</span><br><span class="line"></span><br><span class="line">objStructuredClone[<span class="string">&#x27;profile&#x27;</span>][<span class="string">&#x27;age&#x27;</span>] = <span class="number">35</span>;</span><br><span class="line">objStructuredClone[<span class="string">&#x27;profile&#x27;</span>][<span class="string">&#x27;fn&#x27;</span>].<span class="title function_">add</span>(<span class="number">5</span>);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(objStructuredClone[<span class="string">&#x27;profile&#x27;</span>][<span class="string">&#x27;fn&#x27;</span>]);</span><br><span class="line"><span class="comment">// Set(4) &#123;1, 2, 3, 5&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(obj[<span class="string">&#x27;profile&#x27;</span>][<span class="string">&#x27;fn&#x27;</span>]);</span><br><span class="line"><span class="comment">// Set(3) &#123;1, 2, 3&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(objJson[<span class="string">&#x27;profile&#x27;</span>][<span class="string">&#x27;fn&#x27;</span>])</span><br><span class="line"><span class="comment">// &#123;&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(objStructuredClone[<span class="string">&#x27;profile&#x27;</span>]);</span><br><span class="line"><span class="comment">// &#123;height: 182, age: 35, fn: Set(4) &#123;1, 2, 3, 5&#125;&#125;</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(obj[<span class="string">&#x27;profile&#x27;</span>]);</span><br><span class="line"><span class="comment">// &#123;height: 182, age: 18, fn: Set(3) &#123;1, 2, 3&#125;&#125;</span></span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-]]></content>
       <categories>
         <category>frontend_interview</category>
       </categories>

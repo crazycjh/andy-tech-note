@@ -1,6 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>JS中的Async/Sync</title>
+    <url>/andy-tech-note/Javascript-async-sync/</url>
+    <content><![CDATA[<h2 id="同步與非同步？"><a href="#同步與非同步？" class="headerlink" title="同步與非同步？"></a>同步與非同步？</h2><h4 id="什麼是同步"><a href="#什麼是同步" class="headerlink" title="什麼是同步"></a>什麼是同步</h4><p>一般來說JS都是以 <code>同步synchronous</code> 的方式執行程式碼，以圖中左邊來說，由上而下的時間軸順序執行程式碼，每次只做一件事，<br>以<code>同步</code>的字面上來說很像是同時做很多件事，但其實是一次只執行一件事。</p>
+<h4 id="什麼是非同步"><a href="#什麼是非同步" class="headerlink" title="什麼是非同步"></a>什麼是非同步</h4><p>什麼又是 <code>非同步</code> ，上面提到的一次只能一次做一件，以下圖來看的意思就是，某些時候會有些運算或是網路請求耗時會較長，但我們又不希望整個程式碼因為要等待某個function執行完畢才往下繼續執行，這時候就需要非同步。<br>想像一下，你在正瀏覽某個網頁，因為點擊某個按鈕，而這按鈕因為需要做些費時較長的功能，而因為這樣頁面就卡住無法瀏覽，這樣使用者體驗應該會很差吧？</p>
+<ul>
+<li>舉例：JS中有個function <code>setTimeout()</code> 是可以在這裡面寫一個callback function，在設定的倒數時間到之後執行它，那如果現在他是以同步的方式執行，這樣程式碼會卡在那邊等到時間到才能往下繼續執行，那如果是非同步，程式碼會繼續往下執行之外同時在背景還會繼續倒數直到時間到執行設定好的callback function。</li>
+</ul>
+<p><img src="https://www.freecodecamp.org/news/content/images/2021/09/freeCodeCamp-Cover-2.png" alt="async"></p>
+]]></content>
+      <categories>
+        <category>javascript</category>
+      </categories>
+      <tags>
+        <tag>Javascript</tag>
+        <tag>async</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>在vue中一次watch多個變數</title>
+    <url>/andy-tech-note/vue-watch-multiple-value/</url>
+    <content><![CDATA[<h4 id="在Vue3-amp-Composition下，想一次watch多個變數的實現方法"><a href="#在Vue3-amp-Composition下，想一次watch多個變數的實現方法" class="headerlink" title="在Vue3 &amp; Composition下，想一次watch多個變數的實現方法"></a>在Vue3 &amp; Composition下，想一次watch多個變數的實現方法</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">setup()&#123;</span><br><span class="line">    const message = ref(&#x27;&#x27;);</span><br><span class="line">    const name = ref(&#x27;&#x27;);</span><br><span class="line">    watch([message,name],([newValueMessage,newValueName],[oldValueMessage,oldValueName])=&gt;&#123;</span><br><span class="line">        //do something</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h4 id="watch-vuex裡面的state或是其他reactive裡的某個值"><a href="#watch-vuex裡面的state或是其他reactive裡的某個值" class="headerlink" title="watch vuex裡面的state或是其他reactive裡的某個值"></a>watch vuex裡面的state或是其他reactive裡的某個值</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//假設vuex state中影一個名為msg的值</span><br><span class="line">setup()&#123;</span><br><span class="line">    const message= reactive(&#123;user1:&#x27;&#x27;&#125;)</span><br><span class="line">    watch([()=&gt;message.user1,()=&gt;store.state.msg],()=&gt;&#123;</span><br><span class="line">        //do something</span><br><span class="line"></span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>使用 <code>()=&gt; arrow</code> function去return reactive的值才能watch</p>
+]]></content>
+      <categories>
+        <category>Frontend</category>
+      </categories>
+      <tags>
+        <tag>Javascript</tag>
+        <tag>Vue</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>如何在vue上建立codemirror編輯器</title>
     <url>/andy-tech-note/how-to-create-codemirror/</url>
     <content><![CDATA[<h3 id="什麼是codemirror"><a href="#什麼是codemirror" class="headerlink" title="什麼是codemirror"></a>什麼是codemirror</h3><p>codemirror是一個可以應用在web頁面的程式碼編輯器。</p>
@@ -23,21 +56,6 @@
       </categories>
       <tags>
         <tag>Javascript</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>在vue中一次watch多個變數</title>
-    <url>/andy-tech-note/vue-watch-multiple-value/</url>
-    <content><![CDATA[<h4 id="在Vue3-amp-Composition下，想一次watch多個變數的實現方法"><a href="#在Vue3-amp-Composition下，想一次watch多個變數的實現方法" class="headerlink" title="在Vue3 &amp; Composition下，想一次watch多個變數的實現方法"></a>在Vue3 &amp; Composition下，想一次watch多個變數的實現方法</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">setup()&#123;</span><br><span class="line">    const message = ref(&#x27;&#x27;);</span><br><span class="line">    const name = ref(&#x27;&#x27;);</span><br><span class="line">    watch([message,name],([newValueMessage,newValueName],[oldValueMessage,oldValueName])=&gt;&#123;</span><br><span class="line">        //do something</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<h4 id="watch-vuex裡面的state或是其他reactive裡的某個值"><a href="#watch-vuex裡面的state或是其他reactive裡的某個值" class="headerlink" title="watch vuex裡面的state或是其他reactive裡的某個值"></a>watch vuex裡面的state或是其他reactive裡的某個值</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//假設vuex state中影一個名為msg的值</span><br><span class="line">setup()&#123;</span><br><span class="line">    const message= reactive(&#123;user1:&#x27;&#x27;&#125;)</span><br><span class="line">    watch([()=&gt;message.user1,()=&gt;store.state.msg],()=&gt;&#123;</span><br><span class="line">        //do something</span><br><span class="line"></span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p>使用 <code>()=&gt; arrow</code> function去return reactive的值才能watch</p>
-]]></content>
-      <categories>
-        <category>Frontend</category>
-      </categories>
-      <tags>
-        <tag>Javascript</tag>
-        <tag>Vue</tag>
       </tags>
   </entry>
   <entry>
@@ -98,28 +116,6 @@
       </tags>
   </entry>
   <entry>
-    <title>codemirror 設定(註冊)事件觸發Codemirror.on</title>
-    <url>/andy-tech-note/codemirror-set-eventListener/</url>
-    <content><![CDATA[<h3 id="codemirror"><a href="#codemirror" class="headerlink" title="codemirror"></a>codemirror</h3><p>什麼是codemirror，它是一款可以實現在前端網頁上的編輯器。<br>如同現在網路上看到的文字編輯器一樣，但你可以去設定當使用者做哪些操作時codemirror做哪些對應的行為。<br><a href="https://codemirror.net/5/">CodeMirror v5</a></p>
-<h3 id="如何在codemirror編輯器設定事件觸發"><a href="#如何在codemirror編輯器設定事件觸發" class="headerlink" title="如何在codemirror編輯器設定事件觸發"></a>如何在codemirror編輯器設定事件觸發</h3><p><a href="https://codemirror.net/5/doc/manual.html#events">Event列表</a></p>
-<p>使用 const editor &#x3D; CodeMirror.fromTextArea()建立編輯器instance後<br>在透過這個instance去呼叫 <code>on</code> 這個function</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">editor.on(&quot;change&quot;,(cm,changeObj)=&gt;&#123;                  </span><br><span class="line">    //這個意思是當editor文字有改變時就執行callback function</span><br><span class="line">    </span><br><span class="line">    //do something，這裡也可以加入其他CodeMirror的function執行</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-<p>要怎麼使用on呢？ <a href="https://codemirror.net/5/doc/manual.html#on">官方介紹</a></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cm.on(type: string, func: (...args))</span><br></pre></td></tr></table></figure>
-
-<p>舉例：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//建議以下function可以在頁面建立一併執行(如果是馬上要用到)，on的功能可以看成註冊的概念，把這個功能註冊給editor，條件有達到就會執行</span><br><span class="line">editor.on(&quot;change&quot;,(cm,changeObj)=&gt;&#123;                  </span><br><span class="line">    console.log(changeObj.ch);</span><br><span class="line">    console.log(changeObj.line); </span><br><span class="line">    //在change中會有ch(第幾個位元) line第幾行</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-<p>這裡的cm是指codemirror，在官方頁面中有提到，不管是看到codemirror(簡寫cm)或是doc，在使用上都可以用前面建立好的editor instance(端看使用者怎麼命名)</p>
-<p>on裡面第一的參數 <code>type</code> 也就是 cursorActivity  或者 change 之類的事件，後面callback function裡面的參數，在每個event中都會清楚告訴你有什麼參數可以用。<br>在<code>change</code>中可以使用cm instance以及獲取改變的文字及其相關資訊。</p>
-]]></content>
-      <categories>
-        <category>Frontend</category>
-      </categories>
-      <tags>
-        <tag>codemirror</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>codemirror v5 與 v6的差異</title>
     <url>/andy-tech-note/codemirror-v5-v6-diff/</url>
     <content><![CDATA[<h3 id="Codemirror-v5"><a href="#Codemirror-v5" class="headerlink" title="Codemirror v5"></a>Codemirror v5</h3><p>版本5 -&gt; 6的資料夾結構變動很大</p>
@@ -134,24 +130,6 @@
       </categories>
       <tags>
         <tag>codemirror</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>JS中的Async/Sync</title>
-    <url>/andy-tech-note/Javascript-async-sync/</url>
-    <content><![CDATA[<h2 id="同步與非同步？"><a href="#同步與非同步？" class="headerlink" title="同步與非同步？"></a>同步與非同步？</h2><h4 id="什麼是同步"><a href="#什麼是同步" class="headerlink" title="什麼是同步"></a>什麼是同步</h4><p>一般來說JS都是以 <code>同步synchronous</code> 的方式執行程式碼，以圖中左邊來說，由上而下的時間軸順序執行程式碼，每次只做一件事，<br>以<code>同步</code>的字面上來說很像是同時做很多件事，但其實是一次只執行一件事。</p>
-<h4 id="什麼是非同步"><a href="#什麼是非同步" class="headerlink" title="什麼是非同步"></a>什麼是非同步</h4><p>什麼又是 <code>非同步</code> ，上面提到的一次只能一次做一件，以下圖來看的意思就是，某些時候會有些運算或是網路請求耗時會較長，但我們又不希望整個程式碼因為要等待某個function執行完畢才往下繼續執行，這時候就需要非同步。<br>想像一下，你在正瀏覽某個網頁，因為點擊某個按鈕，而這按鈕因為需要做些費時較長的功能，而因為這樣頁面就卡住無法瀏覽，這樣使用者體驗應該會很差吧？</p>
-<ul>
-<li>舉例：JS中有個function <code>setTimeout()</code> 是可以在這裡面寫一個callback function，在設定的倒數時間到之後執行它，那如果現在他是以同步的方式執行，這樣程式碼會卡在那邊等到時間到才能往下繼續執行，那如果是非同步，程式碼會繼續往下執行之外同時在背景還會繼續倒數直到時間到執行設定好的callback function。</li>
-</ul>
-<p><img src="https://www.freecodecamp.org/news/content/images/2021/09/freeCodeCamp-Cover-2.png" alt="async"></p>
-]]></content>
-      <categories>
-        <category>javascript</category>
-      </categories>
-      <tags>
-        <tag>Javascript</tag>
-        <tag>async</tag>
       </tags>
   </entry>
   <entry>
@@ -213,6 +191,56 @@
       </tags>
   </entry>
   <entry>
+    <title>codemirror 設定(註冊)事件觸發Codemirror.on</title>
+    <url>/andy-tech-note/codemirror-set-eventListener/</url>
+    <content><![CDATA[<h3 id="codemirror"><a href="#codemirror" class="headerlink" title="codemirror"></a>codemirror</h3><p>什麼是codemirror，它是一款可以實現在前端網頁上的編輯器。<br>如同現在網路上看到的文字編輯器一樣，但你可以去設定當使用者做哪些操作時codemirror做哪些對應的行為。<br><a href="https://codemirror.net/5/">CodeMirror v5</a></p>
+<h3 id="如何在codemirror編輯器設定事件觸發"><a href="#如何在codemirror編輯器設定事件觸發" class="headerlink" title="如何在codemirror編輯器設定事件觸發"></a>如何在codemirror編輯器設定事件觸發</h3><p><a href="https://codemirror.net/5/doc/manual.html#events">Event列表</a></p>
+<p>使用 const editor &#x3D; CodeMirror.fromTextArea()建立編輯器instance後<br>在透過這個instance去呼叫 <code>on</code> 這個function</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">editor.on(&quot;change&quot;,(cm,changeObj)=&gt;&#123;                  </span><br><span class="line">    //這個意思是當editor文字有改變時就執行callback function</span><br><span class="line">    </span><br><span class="line">    //do something，這裡也可以加入其他CodeMirror的function執行</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>要怎麼使用on呢？ <a href="https://codemirror.net/5/doc/manual.html#on">官方介紹</a></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cm.on(type: string, func: (...args))</span><br></pre></td></tr></table></figure>
+
+<p>舉例：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//建議以下function可以在頁面建立一併執行(如果是馬上要用到)，on的功能可以看成註冊的概念，把這個功能註冊給editor，條件有達到就會執行</span><br><span class="line">editor.on(&quot;change&quot;,(cm,changeObj)=&gt;&#123;                  </span><br><span class="line">    console.log(changeObj.ch);</span><br><span class="line">    console.log(changeObj.line); </span><br><span class="line">    //在change中會有ch(第幾個位元) line第幾行</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>這裡的cm是指codemirror，在官方頁面中有提到，不管是看到codemirror(簡寫cm)或是doc，在使用上都可以用前面建立好的editor instance(端看使用者怎麼命名)</p>
+<p>on裡面第一的參數 <code>type</code> 也就是 cursorActivity  或者 change 之類的事件，後面callback function裡面的參數，在每個event中都會清楚告訴你有什麼參數可以用。<br>在<code>change</code>中可以使用cm instance以及獲取改變的文字及其相關資訊。</p>
+]]></content>
+      <categories>
+        <category>Frontend</category>
+      </categories>
+      <tags>
+        <tag>codemirror</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Javascript中的promise - 處理異步</title>
+    <url>/andy-tech-note/promise-async/</url>
+    <content><![CDATA[<h4 id="promise是幹嘛的？"><a href="#promise是幹嘛的？" class="headerlink" title="promise是幹嘛的？"></a>promise是幹嘛的？</h4><p>promise這個方法是ES6時推出的，這個主要可以用來解決非同步中XMLHttpRequest的問題<br>promise不需要監測Event(也就是js中的addEventListener())，而且會在資料回傳時執行callback function，<br>以及處理在做非同步請求時使用callback時所產生的callback hell。<br>之所以會產生callback hell是因為，當多個非同步請求有前後相關性時就會發生，所謂的前後相關性就是<code>C request</code> 需要等到<br><code>B request</code>的結果才能發出請求，B又要等到<code>A request</code>的結果才能發出，這樣就會變成巢狀的結構，會變得非常難以閱讀。</p>
+<h5 id="示意："><a href="#示意：" class="headerlink" title="示意："></a>示意：</h5><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">callback(()=&gt;&#123;</span><br><span class="line">    //在此發出A request</span><br><span class="line">    callback(()=&gt;&#123;</span><br><span class="line">        //在此發出B request    </span><br><span class="line">        callback(()=&gt;&#123;</span><br><span class="line">        //在此發出C request    </span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p><img src="https://res.cloudinary.com/practicaldev/image/fetch/s--c0aEZX7m--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/b8euo2n7twvgh3dbuatd.jpeg" alt="callback hell"></p>
+<h4 id="Promise有什麼？"><a href="#Promise有什麼？" class="headerlink" title="Promise有什麼？"></a>Promise有什麼？</h4><p>如前面提到promise是用來處理異步事件，promise會有三個狀態</p>
+<ul>
+<li>pending : 等待，還沒接到對方的資料回傳，等待中也就是Not Available</li>
+<li>fulfilled : 成功，也就是有資料成功回傳一個值，在這情況下會進入 <code>.then</code></li>
+<li>rejected : 失敗，對方(可能是server)回傳一個錯誤 會進入<code>catch</code>處理錯誤。</li>
+</ul>
+<p><code>舉例</code></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">const getCountryData = (country)=&gt;&#123;</span><br><span class="line">    fetch(`https://restcountries.com/v2/name/$&#123;country&#125;`).then((res)=&gt;&#123;</span><br><span class="line">        return res.json();</span><br><span class="line">    &#125;).then((data)=&gt;&#123;</span><br><span class="line">        console.log(data);</span><br><span class="line">    &#125;).catch(()=&gt;&#123;</span><br><span class="line">        console.log(&#x27;error&#x27;);</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">getCountryData(&#x27;taiwan&#x27;);</span><br></pre></td></tr></table></figure>
+<p>上述例子使用fetch去執行異步向某個server發出資料請求，並在<code>then裡面等待回傳資料</code>，若是<code>回傳錯誤會由catch處理錯誤</code>。<br><code>fetch</code>是一個可以回傳<code>promise</code>的function，而在then裡面經常需要處理資料，而資料經常是JSON格式，若要轉譯JSON格式則必須使用json()這個function，但因為它也是回傳promise，所以必須再透過then處理。</p>
+<h5 id="如何解決callback-hell"><a href="#如何解決callback-hell" class="headerlink" title="如何解決callback hell?"></a>如何解決callback hell?</h5><p>如果會有前後相依的fetch要做，也就是需要等到前一個fetch取得資料後才執行，可以如下，在<code>then</code>裡面 <code>return fetch</code>，如此就可以在後面的then繼續處理第二個fetch的值。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">const getCountryData = (country)=&gt;&#123;</span><br><span class="line">    fetch(`https://restcountries.com/v2/name/$&#123;country&#125;`).then((res)=&gt;&#123;</span><br><span class="line">        return res.json();</span><br><span class="line">    &#125;).then((data)=&gt;&#123;</span><br><span class="line">        console.log(data);</span><br><span class="line">        return fetch(`https://restcountries.com/v2/name/china`)</span><br><span class="line">    &#125;).then((res)=&gt;&#123;</span><br><span class="line">        return res.json()</span><br><span class="line">    &#125;).then((data)=&gt;&#123;</span><br><span class="line">        console.log(data);</span><br><span class="line">    &#125;).catch(()=&gt;&#123;</span><br><span class="line">        console.log(&#x27;error&#x27;);</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">getCountryData(&#x27;Taiwan&#x27;);</span><br></pre></td></tr></table></figure>
+<p>不過此法雖然解決callback hell，但是then也變得很長，接下來又有<code>async/await</code>來讓其進化</p>
+]]></content>
+      <categories>
+        <category>Frontend</category>
+      </categories>
+      <tags>
+        <tag>Javascript</tag>
+        <tag>async</tag>
+        <tag>promise</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>vue-react-mvvm-virtualDom的一些筆記</title>
     <url>/andy-tech-note/vue-react-mvvm-virtualDom/</url>
     <content><![CDATA[<h3 id="指令式渲染-imperative-redering"><a href="#指令式渲染-imperative-redering" class="headerlink" title="指令式渲染 imperative redering"></a>指令式渲染 imperative redering</h3><h4 id="jquery"><a href="#jquery" class="headerlink" title="jquery"></a>jquery</h4><p>在框架還沒出來時jquery依舊是非常火紅的，而其對於DOM的渲染方式就是透過<br>選擇器 <code>document.querySelector</code> 去選擇HTML裡面的tag，從而去修改他們的值或是<code> addEventListener</code> 加入事件監聽來獲取使用者的行為，進而在js裡面做一些判斷後再把資料丟到頁面讓使用者看到。</p>
@@ -258,34 +286,6 @@
       </categories>
       <tags>
         <tag>Firebase</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Javascript中的promise - 處理異步</title>
-    <url>/andy-tech-note/promise-async/</url>
-    <content><![CDATA[<h4 id="promise是幹嘛的？"><a href="#promise是幹嘛的？" class="headerlink" title="promise是幹嘛的？"></a>promise是幹嘛的？</h4><p>promise這個方法是ES6時推出的，這個主要可以用來解決非同步中XMLHttpRequest的問題<br>promise不需要監測Event(也就是js中的addEventListener())，而且會在資料回傳時執行callback function，<br>以及處理在做非同步請求時使用callback時所產生的callback hell。<br>之所以會產生callback hell是因為，當多個非同步請求有前後相關性時就會發生，所謂的前後相關性就是<code>C request</code> 需要等到<br><code>B request</code>的結果才能發出請求，B又要等到<code>A request</code>的結果才能發出，這樣就會變成巢狀的結構，會變得非常難以閱讀。</p>
-<h5 id="示意："><a href="#示意：" class="headerlink" title="示意："></a>示意：</h5><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">callback(()=&gt;&#123;</span><br><span class="line">    //在此發出A request</span><br><span class="line">    callback(()=&gt;&#123;</span><br><span class="line">        //在此發出B request    </span><br><span class="line">        callback(()=&gt;&#123;</span><br><span class="line">        //在此發出C request    </span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-<p><img src="https://res.cloudinary.com/practicaldev/image/fetch/s--c0aEZX7m--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/b8euo2n7twvgh3dbuatd.jpeg" alt="callback hell"></p>
-<h4 id="Promise有什麼？"><a href="#Promise有什麼？" class="headerlink" title="Promise有什麼？"></a>Promise有什麼？</h4><p>如前面提到promise是用來處理異步事件，promise會有三個狀態</p>
-<ul>
-<li>pending : 等待，還沒接到對方的資料回傳，等待中也就是Not Available</li>
-<li>fulfilled : 成功，也就是有資料成功回傳一個值，在這情況下會進入 <code>.then</code></li>
-<li>rejected : 失敗，對方(可能是server)回傳一個錯誤 會進入<code>catch</code>處理錯誤。</li>
-</ul>
-<p><code>舉例</code></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">const getCountryData = (country)=&gt;&#123;</span><br><span class="line">    fetch(`https://restcountries.com/v2/name/$&#123;country&#125;`).then((res)=&gt;&#123;</span><br><span class="line">        return res.json();</span><br><span class="line">    &#125;).then((data)=&gt;&#123;</span><br><span class="line">        console.log(data);</span><br><span class="line">    &#125;).catch(()=&gt;&#123;</span><br><span class="line">        console.log(&#x27;error&#x27;);</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">getCountryData(&#x27;taiwan&#x27;);</span><br></pre></td></tr></table></figure>
-<p>上述例子使用fetch去執行異步向某個server發出資料請求，並在<code>then裡面等待回傳資料</code>，若是<code>回傳錯誤會由catch處理錯誤</code>。<br><code>fetch</code>是一個可以回傳<code>promise</code>的function，而在then裡面經常需要處理資料，而資料經常是JSON格式，若要轉譯JSON格式則必須使用json()這個function，但因為它也是回傳promise，所以必須再透過then處理。</p>
-<h5 id="如何解決callback-hell"><a href="#如何解決callback-hell" class="headerlink" title="如何解決callback hell?"></a>如何解決callback hell?</h5><p>如果會有前後相依的fetch要做，也就是需要等到前一個fetch取得資料後才執行，可以如下，在<code>then</code>裡面 <code>return fetch</code>，如此就可以在後面的then繼續處理第二個fetch的值。</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">const getCountryData = (country)=&gt;&#123;</span><br><span class="line">    fetch(`https://restcountries.com/v2/name/$&#123;country&#125;`).then((res)=&gt;&#123;</span><br><span class="line">        return res.json();</span><br><span class="line">    &#125;).then((data)=&gt;&#123;</span><br><span class="line">        console.log(data);</span><br><span class="line">        return fetch(`https://restcountries.com/v2/name/china`)</span><br><span class="line">    &#125;).then((res)=&gt;&#123;</span><br><span class="line">        return res.json()</span><br><span class="line">    &#125;).then((data)=&gt;&#123;</span><br><span class="line">        console.log(data);</span><br><span class="line">    &#125;).catch(()=&gt;&#123;</span><br><span class="line">        console.log(&#x27;error&#x27;);</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">getCountryData(&#x27;Taiwan&#x27;);</span><br></pre></td></tr></table></figure>
-<p>不過此法雖然解決callback hell，但是then也變得很長，接下來又有<code>async/await</code>來讓其進化</p>
-]]></content>
-      <categories>
-        <category>Frontend</category>
-      </categories>
-      <tags>
-        <tag>Javascript</tag>
-        <tag>async</tag>
-        <tag>promise</tag>
       </tags>
   </entry>
   <entry>
@@ -355,6 +355,24 @@
       </tags>
   </entry>
   <entry>
+    <title>在Javacript建立promise</title>
+    <url>/andy-tech-note/how-to-create-promise/</url>
+    <content><![CDATA[<h4 id="建立promise"><a href="#建立promise" class="headerlink" title="建立promise"></a>建立promise</h4><p>延續前一篇關於promise的文章，來試試看要怎麼建立一個Promise。</p>
+<h4 id="promise初版"><a href="#promise初版" class="headerlink" title="promise初版"></a>promise初版</h4><p>製作一個樂透功能的promise</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">const lotteryPromise = new Promise(function(resolve,reject)&#123;</span><br><span class="line">    if(Math.random() &gt;= 0.5)&#123;</span><br><span class="line">        resolve(&#x27;You Win the Lottery&#x27;); //fulfilled</span><br><span class="line">    &#125;else&#123;</span><br><span class="line">        reject(&quot;loser la&quot;); //reject</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">lotteryPromise.then((res)=&gt;&#123;</span><br><span class="line">    console.log(res) //印出You Win the Lottery</span><br><span class="line">&#125;).catch((err)=&gt;&#123;</span><br><span class="line">    console.log(err) //印出loser la</span><br><span class="line">&#125;)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h4 id="有async效果的promise版本"><a href="#有async效果的promise版本" class="headerlink" title="有async效果的promise版本"></a>有async效果的promise版本</h4><p><code>以上不是async</code>所以加入setTimeout來實現延遲</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">const lotteryPromise = new Promise(function(resolve,reject)&#123;</span><br><span class="line">    setTimeout(()=&gt;&#123;</span><br><span class="line">        if(Math.random() &gt;= 0.5)&#123;</span><br><span class="line">            resolve(&#x27;You Win the Lottery&#x27;);</span><br><span class="line">        &#125;else&#123;</span><br><span class="line">            reject(&quot;loser la&quot;);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,2000) //等2秒才執行</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">lotteryPromise.then((res)=&gt;&#123;</span><br><span class="line">    console.log(res) //印出You Win the Lottery</span><br><span class="line">&#125;).catch((err)=&gt;&#123;</span><br><span class="line">    console.log(err) //印出loser la</span><br><span class="line">&#125;)</span><br><span class="line"></span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>Frontend</category>
+      </categories>
+      <tags>
+        <tag>Javascript</tag>
+        <tag>async</tag>
+        <tag>promise</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>nextTick in Vue3</title>
     <url>/andy-tech-note/nextTick-in-Vue3/</url>
     <content><![CDATA[<h4 id="什麼是nextTick-？"><a href="#什麼是nextTick-？" class="headerlink" title="什麼是nextTick()？"></a>什麼是nextTick()？</h4><h6 id="官方定義"><a href="#官方定義" class="headerlink" title="官方定義"></a>官方定義</h6><p><code>在下次 DOM 更新循环结束之后执行延迟回调。在修改数据之后立即使用这个方法，获取更新后的 DOM</code></p>
@@ -382,24 +400,6 @@
       </categories>
       <tags>
         <tag>Javascript</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>在Javacript建立promise</title>
-    <url>/andy-tech-note/how-to-create-promise/</url>
-    <content><![CDATA[<h4 id="建立promise"><a href="#建立promise" class="headerlink" title="建立promise"></a>建立promise</h4><p>延續前一篇關於promise的文章，來試試看要怎麼建立一個Promise。</p>
-<h4 id="promise初版"><a href="#promise初版" class="headerlink" title="promise初版"></a>promise初版</h4><p>製作一個樂透功能的promise</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">const lotteryPromise = new Promise(function(resolve,reject)&#123;</span><br><span class="line">    if(Math.random() &gt;= 0.5)&#123;</span><br><span class="line">        resolve(&#x27;You Win the Lottery&#x27;); //fulfilled</span><br><span class="line">    &#125;else&#123;</span><br><span class="line">        reject(&quot;loser la&quot;); //reject</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">lotteryPromise.then((res)=&gt;&#123;</span><br><span class="line">    console.log(res) //印出You Win the Lottery</span><br><span class="line">&#125;).catch((err)=&gt;&#123;</span><br><span class="line">    console.log(err) //印出loser la</span><br><span class="line">&#125;)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h4 id="有async效果的promise版本"><a href="#有async效果的promise版本" class="headerlink" title="有async效果的promise版本"></a>有async效果的promise版本</h4><p><code>以上不是async</code>所以加入setTimeout來實現延遲</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">const lotteryPromise = new Promise(function(resolve,reject)&#123;</span><br><span class="line">    setTimeout(()=&gt;&#123;</span><br><span class="line">        if(Math.random() &gt;= 0.5)&#123;</span><br><span class="line">            resolve(&#x27;You Win the Lottery&#x27;);</span><br><span class="line">        &#125;else&#123;</span><br><span class="line">            reject(&quot;loser la&quot;);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,2000) //等2秒才執行</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">lotteryPromise.then((res)=&gt;&#123;</span><br><span class="line">    console.log(res) //印出You Win the Lottery</span><br><span class="line">&#125;).catch((err)=&gt;&#123;</span><br><span class="line">    console.log(err) //印出loser la</span><br><span class="line">&#125;)</span><br><span class="line"></span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>Frontend</category>
-      </categories>
-      <tags>
-        <tag>Javascript</tag>
-        <tag>async</tag>
-        <tag>promise</tag>
       </tags>
   </entry>
   <entry>
@@ -443,6 +443,22 @@
       </tags>
   </entry>
   <entry>
+    <title>git local 及 remote repo 不同步怎麼處理</title>
+    <url>/andy-tech-note/git-remote-repo-%E4%B8%8D%E5%90%8C%E6%AD%A5/</url>
+    <content><![CDATA[<h3 id="Local的commit-與-Remote-的commit-沒有同步"><a href="#Local的commit-與-Remote-的commit-沒有同步" class="headerlink" title="Local的commit 與 Remote 的commit 沒有同步"></a>Local的commit 與 Remote 的commit 沒有同步</h3><p><img src="/andy-tech-note/git-remote-repo-%E4%B8%8D%E5%90%8C%E6%AD%A5/git.png" alt="git"><br>如圖中所示，會發現 <code>github remote 的 main</code> 跟 <code>local 的 main</code> 分岔了。<br>這是因為在先前在B電腦做了一次 commit &amp; push，也就是圖中岔出去的那個 Remote main，<br>然而在A電腦的commit還停留在B電腦commit的前一個版本，但是我沒發現就繼續開發下去，<br>一路開發下去，直到要push到遠端時才被告知遠端有code沒有同步到。</p>
+<p>查了一下，查到git fetch origin main 似乎是比較安全的，他可以單純把遠端你所有缺少的code抓下來，然後你再透過git status查詢時，git 會告知你 local 的 code 與遠端的 code 差異在哪，然後再透過<code>git merge origin main</code> 或是 <code>git rebase origin main</code>。<br>但要注意，當前如果有code還尚未commit，git會告知你要先commit，並且不會讓你merge，應該是怕你的 code 丟失，若還沒要 commit 可以透過<code>git stage</code> 把 code 存起來以防止不見。</p>
+<p>指令</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git fetch origin main </span><br><span class="line">git merge origin/main</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git fetch origin main </span><br><span class="line">git rebase origin/main</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>dev</category>
+      </categories>
+      <tags>
+        <tag>git</tag>
+        <tag>github</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Wordpress當後端傳文章內容到前端(Vue)</title>
     <url>/andy-tech-note/wordpress%E7%95%B6%E5%BE%8C%E7%AB%AF%E5%82%B3%E6%96%87%E7%AB%A0%E5%85%A7%E5%AE%B9%E5%88%B0%E5%89%8D%E7%AB%AF-Vue/</url>
     <content><![CDATA[<h3 id="以Wordpress為後端傳資料到前端"><a href="#以Wordpress為後端傳資料到前端" class="headerlink" title="以Wordpress為後端傳資料到前端"></a>以Wordpress為後端傳資料到前端</h3><p>wordpress 為後端，前端向後端取得wp中的文章時，我希望直接取得可以呈現的HTML格式，試過使用 WP 中的 function <code>get_post_field</code>，雖然可以取得HTML，但是HTML結構與真正在以WP當作前端呈現的文章的html有些出入，也就是在WP呈現頁面前會對原始的html做特殊格式化，這就要透過 apply_filters   ‘the_content’ 去把取得的html做格式化，這樣才會與wp呈現出來的樣式一樣。</p>
@@ -457,22 +473,6 @@
       <tags>
         <tag>Wordpress</tag>
         <tag>Frontend</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>git local 及 remote repo 不同步怎麼處理</title>
-    <url>/andy-tech-note/git-remote-repo-%E4%B8%8D%E5%90%8C%E6%AD%A5/</url>
-    <content><![CDATA[<h3 id="Local的commit-與-Remote-的commit-沒有同步"><a href="#Local的commit-與-Remote-的commit-沒有同步" class="headerlink" title="Local的commit 與 Remote 的commit 沒有同步"></a>Local的commit 與 Remote 的commit 沒有同步</h3><p><img src="/andy-tech-note/git-remote-repo-%E4%B8%8D%E5%90%8C%E6%AD%A5/git.png" alt="git"><br>如圖中所示，會發現 <code>github remote 的 main</code> 跟 <code>local 的 main</code> 分岔了。<br>這是因為在先前在B電腦做了一次 commit &amp; push，也就是圖中岔出去的那個 Remote main，<br>然而在A電腦的commit還停留在B電腦commit的前一個版本，但是我沒發現就繼續開發下去，<br>一路開發下去，直到要push到遠端時才被告知遠端有code沒有同步到。</p>
-<p>查了一下，查到git fetch origin main 似乎是比較安全的，他可以單純把遠端你所有缺少的code抓下來，然後你再透過git status查詢時，git 會告知你 local 的 code 與遠端的 code 差異在哪，然後再透過<code>git merge origin main</code> 或是 <code>git rebase origin main</code>。<br>但要注意，當前如果有code還尚未commit，git會告知你要先commit，並且不會讓你merge，應該是怕你的 code 丟失，若還沒要 commit 可以透過<code>git stage</code> 把 code 存起來以防止不見。</p>
-<p>指令</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git fetch origin main </span><br><span class="line">git merge origin/main</span><br></pre></td></tr></table></figure>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git fetch origin main </span><br><span class="line">git rebase origin/main</span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>dev</category>
-      </categories>
-      <tags>
-        <tag>git</tag>
-        <tag>github</tag>
       </tags>
   </entry>
   <entry>
@@ -519,29 +519,25 @@
       </tags>
   </entry>
   <entry>
-    <title>CSS的的selector的權重</title>
-    <url>/andy-tech-note/about-CSS-selector-priority/</url>
-    <content><![CDATA[<h3 id="selector是什麼？"><a href="#selector是什麼？" class="headerlink" title="selector是什麼？"></a>selector是什麼？</h3><p>是用來選擇HTML tag並設定寬、高、顏色、背景圖等等(如：H1,p,div)，選擇器不僅限於標籤(div, p, span)，還包含class及id。</p>
-<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.className</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>:blue;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">div</span> &#123;</span><br><span class="line">    <span class="attribute">font-size</span>:<span class="number">16px</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+    <title>Javascript的Map及Set</title>
+    <url>/andy-tech-note/Javascript_Map_Set/</url>
+    <content><![CDATA[<h2 id="Set是什麼？"><a href="#Set是什麼？" class="headerlink" title="Set是什麼？"></a>Set是什麼？</h2><p>Set 是一個構造函式可以建構一個如Array的資料集合，有個特別的地方是，如果傳入的值相同，會把多餘的值移除只剩下一個。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> array1 = [<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>,<span class="number">8</span>,<span class="number">9</span>,<span class="number">10</span>]</span><br><span class="line"><span class="keyword">const</span> array2 = [<span class="number">9</span>,<span class="number">10</span>,<span class="number">11</span>,<span class="number">12</span>,<span class="number">13</span>,<span class="number">14</span>] </span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> set1 = <span class="keyword">new</span> <span class="title class_">Set</span>([...array1,...array2])</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(set1)</span><br><span class="line"><span class="comment">// Set(5,6,7,8,9,10,11,12,13,14)</span></span><br></pre></td></tr></table></figure>
 
-<h3 id="權重可以幹嘛？"><a href="#權重可以幹嘛？" class="headerlink" title="權重可以幹嘛？"></a>權重可以幹嘛？</h3><p>在selector有四個權重，依序是 <code>inline style &gt; id &gt; class &gt; tag</code>，這意思是說如果你對某些元素設定屬性時，權重會依照這個來做處理，也就是說如果在<code>class及inline style</code>裡面都設定 <code>color</code>，而最終HTML顯示的顏色會是由inline設定的為主，這是因為權重大小的關係。<br>而這四個權重會是這樣寫(0,0,0,0)對應的順序(inline, id, class, tag)，所以這樣就可以看出誰的權重比較大。</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">style</span>=<span class="string">&quot;color=yellow&quot;</span> <span class="attr">class</span>=<span class="string">&quot;className&quot;</span>&gt;</span><span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.className</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>=blue</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>在這裡顏色就會是yellow，因為inline權重大於class</p>
-<h3 id="權重計算方式"><a href="#權重計算方式" class="headerlink" title="權重計算方式"></a>權重計算方式</h3><figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.className1</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>:blue;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><code>(0,0,1,0)</code></p>
-<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.className1</span><span class="selector-class">.className2</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>:yellow;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><code>(0,0,2,0)</code><br>上面這個會把兩個class加起來，這是要該元素同時有這兩個class存在</p>
-<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.className2</span> <span class="selector-tag">div</span> <span class="selector-tag">p</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>:yellow;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><code>(0,0,1,2)</code></p>
-<h3 id="important"><a href="#important" class="headerlink" title="!important"></a>!important</h3><p>這個大魔王，在某些情況希望直接覆蓋掉該元素的屬性，可以在 該屬性後面加上 <code>!important</code>，但是不建議太常使用，會在開發上容易造成不要的困擾。</p>
-<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.className2</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>:yellow <span class="meta">!important</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>用Set建立好的資料集合要透過他的method來處理，常見的有<code>add</code>, <code>delete</code>, <code>has</code>，其他的可以參考<a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Set/Set">MDN</a>的文件。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">set1.<span class="title function_">add</span>(<span class="number">15</span>);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(set1)</span><br><span class="line"><span class="comment">// Set(5,6,7,8,9,10,11,12,13,14,15)</span></span><br><span class="line"></span><br><span class="line">set1.<span class="title function_">delete</span>(<span class="number">9</span>)</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(set1)</span><br><span class="line"><span class="comment">// Set(5,6,7,8,10,11,12,13,14,15)</span></span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(set1.<span class="title function_">has</span>(<span class="number">5</span>))</span><br><span class="line"><span class="comment">// true</span></span><br><span class="line">set1.<span class="title function_">has</span>(<span class="number">9</span>)</span><br><span class="line"><span class="comment">// false</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="Map是什麼？"><a href="#Map是什麼？" class="headerlink" title="Map是什麼？"></a>Map是什麼？</h2><p>Map 也是一個構建函式，可以建構一個如Object的資料集合，但Map的key值與原始的object不同，原始的object的key只能是字串，而Map可以是任何東西，另外Map的key&#x2F;value是有順序性且可以做迭代處理的，在Object中若要做迭代，得透過<code>Object.keys</code>或是<code>Object.entries</code>搭配<code>forEach</code>或是<code>for of</code>之類的方法來遍歷所有元素，而且該順序不一定與用戶放進去的順序相同。</p>
+<p>常見的有<code>entries</code>, <code>keys</code>, <code>values</code>，其他的可以參考<a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Map/Map">MDN</a>的文件。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> map1 = <span class="keyword">new</span> <span class="title class_">Map</span>([</span><br><span class="line">  [<span class="string">&#x27;a&#x27;</span>, <span class="number">1</span>],</span><br><span class="line">  [<span class="string">&#x27;b&#x27;</span>, <span class="number">2</span>],</span><br><span class="line">  [<span class="string">&#x27;c&#x27;</span>, <span class="number">3</span>],</span><br><span class="line">  [<span class="string">&#x27;d&#x27;</span>, <span class="number">4</span>],</span><br><span class="line">  [<span class="string">&#x27;e&#x27;</span>, <span class="number">5</span>],</span><br><span class="line">  [<span class="string">&#x27;f&#x27;</span>, <span class="number">6</span>],</span><br><span class="line">])</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(map1.<span class="title function_">values</span>().<span class="title function_">forEach</span>(<span class="function"><span class="params">item</span> =&gt;</span> <span class="variable language_">console</span>.<span class="title function_">log</span>(item)))</span><br><span class="line"><span class="comment">// 印出所有的value值</span></span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(map1.<span class="title function_">keys</span>().<span class="title function_">forEach</span>(<span class="function"><span class="params">item</span> =&gt;</span> <span class="variable language_">console</span>.<span class="title function_">log</span>(item)))</span><br><span class="line"><span class="comment">// 印出所有的key值</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">const</span> [key,value] <span class="keyword">of</span> map1.<span class="title function_">entries</span>())&#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(key,value)</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 印出所有的key/value</span></span><br><span class="line"></span><br><span class="line">map1.<span class="title function_">forEach</span>(<span class="function">(<span class="params">i, key</span>)=&gt;</span> &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(i, key)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>用法實在很多元，有興趣的可以去MDN文件看看</p>
 ]]></content>
       <categories>
         <category>frontend_interview</category>
       </categories>
       <tags>
-        <tag>CSS</tag>
+        <tag>Javascript</tag>
         <tag>Frontend</tag>
       </tags>
   </entry>
@@ -577,25 +573,29 @@
       </tags>
   </entry>
   <entry>
-    <title>Javascript的Map及Set</title>
-    <url>/andy-tech-note/Javascript_Map_Set/</url>
-    <content><![CDATA[<h2 id="Set是什麼？"><a href="#Set是什麼？" class="headerlink" title="Set是什麼？"></a>Set是什麼？</h2><p>Set 是一個構造函式可以建構一個如Array的資料集合，有個特別的地方是，如果傳入的值相同，會把多餘的值移除只剩下一個。</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> array1 = [<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>,<span class="number">8</span>,<span class="number">9</span>,<span class="number">10</span>]</span><br><span class="line"><span class="keyword">const</span> array2 = [<span class="number">9</span>,<span class="number">10</span>,<span class="number">11</span>,<span class="number">12</span>,<span class="number">13</span>,<span class="number">14</span>] </span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> set1 = <span class="keyword">new</span> <span class="title class_">Set</span>([...array1,...array2])</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(set1)</span><br><span class="line"><span class="comment">// Set(5,6,7,8,9,10,11,12,13,14)</span></span><br></pre></td></tr></table></figure>
+    <title>CSS的的selector的權重</title>
+    <url>/andy-tech-note/about-CSS-selector-priority/</url>
+    <content><![CDATA[<h3 id="selector是什麼？"><a href="#selector是什麼？" class="headerlink" title="selector是什麼？"></a>selector是什麼？</h3><p>是用來選擇HTML tag並設定寬、高、顏色、背景圖等等(如：H1,p,div)，選擇器不僅限於標籤(div, p, span)，還包含class及id。</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.className</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>:blue;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">div</span> &#123;</span><br><span class="line">    <span class="attribute">font-size</span>:<span class="number">16px</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>用Set建立好的資料集合要透過他的method來處理，常見的有<code>add</code>, <code>delete</code>, <code>has</code>，其他的可以參考<a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Set/Set">MDN</a>的文件。</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">set1.<span class="title function_">add</span>(<span class="number">15</span>);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(set1)</span><br><span class="line"><span class="comment">// Set(5,6,7,8,9,10,11,12,13,14,15)</span></span><br><span class="line"></span><br><span class="line">set1.<span class="title function_">delete</span>(<span class="number">9</span>)</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(set1)</span><br><span class="line"><span class="comment">// Set(5,6,7,8,10,11,12,13,14,15)</span></span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(set1.<span class="title function_">has</span>(<span class="number">5</span>))</span><br><span class="line"><span class="comment">// true</span></span><br><span class="line">set1.<span class="title function_">has</span>(<span class="number">9</span>)</span><br><span class="line"><span class="comment">// false</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="Map是什麼？"><a href="#Map是什麼？" class="headerlink" title="Map是什麼？"></a>Map是什麼？</h2><p>Map 也是一個構建函式，可以建構一個如Object的資料集合，但Map的key值與原始的object不同，原始的object的key只能是字串，而Map可以是任何東西，另外Map的key&#x2F;value是有順序性且可以做迭代處理的，在Object中若要做迭代，得透過<code>Object.keys</code>或是<code>Object.entries</code>搭配<code>forEach</code>或是<code>for of</code>之類的方法來遍歷所有元素，而且該順序不一定與用戶放進去的順序相同。</p>
-<p>常見的有<code>entries</code>, <code>keys</code>, <code>values</code>，其他的可以參考<a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Map/Map">MDN</a>的文件。</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> map1 = <span class="keyword">new</span> <span class="title class_">Map</span>([</span><br><span class="line">  [<span class="string">&#x27;a&#x27;</span>, <span class="number">1</span>],</span><br><span class="line">  [<span class="string">&#x27;b&#x27;</span>, <span class="number">2</span>],</span><br><span class="line">  [<span class="string">&#x27;c&#x27;</span>, <span class="number">3</span>],</span><br><span class="line">  [<span class="string">&#x27;d&#x27;</span>, <span class="number">4</span>],</span><br><span class="line">  [<span class="string">&#x27;e&#x27;</span>, <span class="number">5</span>],</span><br><span class="line">  [<span class="string">&#x27;f&#x27;</span>, <span class="number">6</span>],</span><br><span class="line">])</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(map1.<span class="title function_">values</span>().<span class="title function_">forEach</span>(<span class="function"><span class="params">item</span> =&gt;</span> <span class="variable language_">console</span>.<span class="title function_">log</span>(item)))</span><br><span class="line"><span class="comment">// 印出所有的value值</span></span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(map1.<span class="title function_">keys</span>().<span class="title function_">forEach</span>(<span class="function"><span class="params">item</span> =&gt;</span> <span class="variable language_">console</span>.<span class="title function_">log</span>(item)))</span><br><span class="line"><span class="comment">// 印出所有的key值</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">const</span> [key,value] <span class="keyword">of</span> map1.<span class="title function_">entries</span>())&#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(key,value)</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 印出所有的key/value</span></span><br><span class="line"></span><br><span class="line">map1.<span class="title function_">forEach</span>(<span class="function">(<span class="params">i, key</span>)=&gt;</span> &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(i, key)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-
-<p>用法實在很多元，有興趣的可以去MDN文件看看</p>
+<h3 id="權重可以幹嘛？"><a href="#權重可以幹嘛？" class="headerlink" title="權重可以幹嘛？"></a>權重可以幹嘛？</h3><p>在selector有四個權重，依序是 <code>inline style &gt; id &gt; class &gt; tag</code>，這意思是說如果你對某些元素設定屬性時，權重會依照這個來做處理，也就是說如果在<code>class及inline style</code>裡面都設定 <code>color</code>，而最終HTML顯示的顏色會是由inline設定的為主，這是因為權重大小的關係。<br>而這四個權重會是這樣寫(0,0,0,0)對應的順序(inline, id, class, tag)，所以這樣就可以看出誰的權重比較大。</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">style</span>=<span class="string">&quot;color=yellow&quot;</span> <span class="attr">class</span>=<span class="string">&quot;className&quot;</span>&gt;</span><span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.className</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>=blue</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在這裡顏色就會是yellow，因為inline權重大於class</p>
+<h3 id="權重計算方式"><a href="#權重計算方式" class="headerlink" title="權重計算方式"></a>權重計算方式</h3><figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.className1</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>:blue;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><code>(0,0,1,0)</code></p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.className1</span><span class="selector-class">.className2</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>:yellow;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><code>(0,0,2,0)</code><br>上面這個會把兩個class加起來，這是要該元素同時有這兩個class存在</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.className2</span> <span class="selector-tag">div</span> <span class="selector-tag">p</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>:yellow;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><code>(0,0,1,2)</code></p>
+<h3 id="important"><a href="#important" class="headerlink" title="!important"></a>!important</h3><p>這個大魔王，在某些情況希望直接覆蓋掉該元素的屬性，可以在 該屬性後面加上 <code>!important</code>，但是不建議太常使用，會在開發上容易造成不要的困擾。</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.className2</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>:yellow <span class="meta">!important</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 ]]></content>
       <categories>
         <category>frontend_interview</category>
       </categories>
       <tags>
-        <tag>Javascript</tag>
+        <tag>CSS</tag>
         <tag>Frontend</tag>
       </tags>
   </entry>
@@ -666,6 +666,21 @@
       </tags>
   </entry>
   <entry>
+    <title>Javascript事件冒泡Event Bubbling</title>
+    <url>/andy-tech-note/javascript-event-bubbling/</url>
+    <content><![CDATA[<h2 id="事件冒泡Event-Bubbling"><a href="#事件冒泡Event-Bubbling" class="headerlink" title="事件冒泡Event Bubbling"></a>事件冒泡Event Bubbling</h2><p>事件冒泡是DOM中對事件處理的一種機制。當在DOM中的某個元素（例如，一個按鈕）發生事件（如點擊）時，這個事件不僅在該元素上觸發，還會沿著DOM樹向上冒泡，依次觸發其父元素、父元素的父元素，一直到最頂層的document物件，這一路上的元素都可以收到事件觸發。</p>
+<p>例子：假設你希望在一個容器（div）內的所有元素被點擊時執行相同的操作(console.log(‘click’))，你可以在這個容器上設置一個事件監聽器（<code>event listener</code>）。當容器內的任何一個元素被點擊時，點擊事件會通過事件冒泡機制向上傳遞，最終抵達這個容器。一旦事件到達容器，就會觸發設置在容器上的callback function(這裡設定console.log(‘click’))。</p>
+<p>上面的例子稱作<code>事件委託</code>，它利用了事件冒泡的特性來簡化對多個元素的事件處理，同時提升程式效能，也不需要每個元素都去設定事件監聽。特別是對於動態加入到容器中的新元素，無需單獨為它們綁定事件監聽器，事件委託可以自動地管理它們的事件。</p>
+]]></content>
+      <categories>
+        <category>frontend_interview</category>
+      </categories>
+      <tags>
+        <tag>Javascript</tag>
+        <tag>Frontend</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Javascript中使用structuredClone做深拷貝</title>
     <url>/andy-tech-note/structuredClone-deep-clone/</url>
     <content><![CDATA[<h2 id="深拷貝是什麼？"><a href="#深拷貝是什麼？" class="headerlink" title="深拷貝是什麼？"></a>深拷貝是什麼？</h2><p>先前有寫過如何處理深拷貝，深拷貝是要幹嘛？<br>簡單的說就是當有個物件他裡面有巢狀結構，不只有一層，如果直接以變數assign的方式賦值給一個新的變數，這時候在第二層開始的元素會是指向原先的物件，所以當使用者在對新的物件第二層的元素操作時就會修改到舊有的物件的值，這時候就需要深拷貝來處理，詳細請參閱👇</p>
@@ -702,21 +717,6 @@
 
 <p>Arrow Function 如下：</p>
 <figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="title function_">exampleFunction</span>()</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="title function_">exampleFunction</span> = (<span class="params"></span>) =&gt; &#123;</span><br><span class="line">  <span class="keyword">let</span> a = <span class="number">5</span>;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(a);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>frontend_interview</category>
-      </categories>
-      <tags>
-        <tag>Javascript</tag>
-        <tag>Frontend</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>javascript-event-bubbling</title>
-    <url>/andy-tech-note/javascript-event-bubbling/</url>
-    <content><![CDATA[<h2 id="事件冒泡Event-Bubbling"><a href="#事件冒泡Event-Bubbling" class="headerlink" title="事件冒泡Event Bubbling"></a>事件冒泡Event Bubbling</h2><p>事件冒泡是DOM中對事件處理的一種機制。當在DOM中的某個元素（例如，一個按鈕）發生事件（如點擊）時，這個事件不僅在該元素上觸發，還會沿著DOM樹向上冒泡，依次觸發其父元素、父元素的父元素，一直到最頂層的document物件，這一路上的元素都可以收到事件觸發。</p>
-<p>例子：假設你希望在一個容器（div）內的所有元素被點擊時執行相同的操作(console.log(‘click’))，你可以在這個容器上設置一個事件監聽器（<code>event listener</code>）。當容器內的任何一個元素被點擊時，點擊事件會通過事件冒泡機制向上傳遞，最終抵達這個容器。一旦事件到達容器，就會觸發設置在容器上的callback function(這裡設定console.log(‘click’))。</p>
-<p>上面的例子稱作<code>事件委託</code>，它利用了事件冒泡的特性來簡化對多個元素的事件處理，同時提升程式效能，也不需要每個元素都去設定事件監聽。特別是對於動態加入到容器中的新元素，無需單獨為它們綁定事件監聽器，事件委託可以自動地管理它們的事件。</p>
-]]></content>
       <categories>
         <category>frontend_interview</category>
       </categories>

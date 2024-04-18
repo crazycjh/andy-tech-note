@@ -19,21 +19,6 @@
       </tags>
   </entry>
   <entry>
-    <title>在vue中一次watch多個變數</title>
-    <url>/andy-tech-note/vue-watch-multiple-value/</url>
-    <content><![CDATA[<h4 id="在Vue3-amp-Composition下，想一次watch多個變數的實現方法"><a href="#在Vue3-amp-Composition下，想一次watch多個變數的實現方法" class="headerlink" title="在Vue3 &amp; Composition下，想一次watch多個變數的實現方法"></a>在Vue3 &amp; Composition下，想一次watch多個變數的實現方法</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">setup()&#123;</span><br><span class="line">    const message = ref(&#x27;&#x27;);</span><br><span class="line">    const name = ref(&#x27;&#x27;);</span><br><span class="line">    watch([message,name],([newValueMessage,newValueName],[oldValueMessage,oldValueName])=&gt;&#123;</span><br><span class="line">        //do something</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<h4 id="watch-vuex裡面的state或是其他reactive裡的某個值"><a href="#watch-vuex裡面的state或是其他reactive裡的某個值" class="headerlink" title="watch vuex裡面的state或是其他reactive裡的某個值"></a>watch vuex裡面的state或是其他reactive裡的某個值</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//假設vuex state中影一個名為msg的值</span><br><span class="line">setup()&#123;</span><br><span class="line">    const message= reactive(&#123;user1:&#x27;&#x27;&#125;)</span><br><span class="line">    watch([()=&gt;message.user1,()=&gt;store.state.msg],()=&gt;&#123;</span><br><span class="line">        //do something</span><br><span class="line"></span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p>使用 <code>()=&gt; arrow</code> function去return reactive的值才能watch</p>
-]]></content>
-      <categories>
-        <category>Frontend</category>
-      </categories>
-      <tags>
-        <tag>Javascript</tag>
-        <tag>Vue</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>如何在vue上建立codemirror編輯器</title>
     <url>/andy-tech-note/how-to-create-codemirror/</url>
     <content><![CDATA[<h3 id="什麼是codemirror"><a href="#什麼是codemirror" class="headerlink" title="什麼是codemirror"></a>什麼是codemirror</h3><p>codemirror是一個可以應用在web頁面的程式碼編輯器。</p>
@@ -56,6 +41,21 @@
       </categories>
       <tags>
         <tag>Javascript</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>在vue中一次watch多個變數</title>
+    <url>/andy-tech-note/vue-watch-multiple-value/</url>
+    <content><![CDATA[<h4 id="在Vue3-amp-Composition下，想一次watch多個變數的實現方法"><a href="#在Vue3-amp-Composition下，想一次watch多個變數的實現方法" class="headerlink" title="在Vue3 &amp; Composition下，想一次watch多個變數的實現方法"></a>在Vue3 &amp; Composition下，想一次watch多個變數的實現方法</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">setup()&#123;</span><br><span class="line">    const message = ref(&#x27;&#x27;);</span><br><span class="line">    const name = ref(&#x27;&#x27;);</span><br><span class="line">    watch([message,name],([newValueMessage,newValueName],[oldValueMessage,oldValueName])=&gt;&#123;</span><br><span class="line">        //do something</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h4 id="watch-vuex裡面的state或是其他reactive裡的某個值"><a href="#watch-vuex裡面的state或是其他reactive裡的某個值" class="headerlink" title="watch vuex裡面的state或是其他reactive裡的某個值"></a>watch vuex裡面的state或是其他reactive裡的某個值</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//假設vuex state中影一個名為msg的值</span><br><span class="line">setup()&#123;</span><br><span class="line">    const message= reactive(&#123;user1:&#x27;&#x27;&#125;)</span><br><span class="line">    watch([()=&gt;message.user1,()=&gt;store.state.msg],()=&gt;&#123;</span><br><span class="line">        //do something</span><br><span class="line"></span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>使用 <code>()=&gt; arrow</code> function去return reactive的值才能watch</p>
+]]></content>
+      <categories>
+        <category>Frontend</category>
+      </categories>
+      <tags>
+        <tag>Javascript</tag>
+        <tag>Vue</tag>
       </tags>
   </entry>
   <entry>
@@ -116,14 +116,19 @@
       </tags>
   </entry>
   <entry>
-    <title>codemirror v5 與 v6的差異</title>
-    <url>/andy-tech-note/codemirror-v5-v6-diff/</url>
-    <content><![CDATA[<h3 id="Codemirror-v5"><a href="#Codemirror-v5" class="headerlink" title="Codemirror v5"></a>Codemirror v5</h3><p>版本5 -&gt; 6的資料夾結構變動很大</p>
-<h4 id="v5"><a href="#v5" class="headerlink" title="v5"></a><a href="https://codemirror.net/5/index.html">v5</a></h4><p>v5的所有套件在npm install <code>codemirror</code>時所有功能全部都會幫你下載，所以在node_modules裡面可以找到codemirror資料夾，裡面所有功能都會放在裡面。</p>
-<h4 id="v6"><a href="#v6" class="headerlink" title="v6"></a><a href="https://codemirror.net/">v6</a></h4><p>v6在npm install後，<code>codemirror</code> 的資料夾內容不多，而如果需要使用特定功能需要下指令<br>如下：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">npm install @codemirror/search </span><br></pre></td></tr></table></figure>
-<p>如果需要serch功能，需要先install<br>安裝的功能相關檔案會出現在 @codemirror 資料夾中。</p>
-<p>在查相關資料時要注意是使用v5還是v6版本，否則會發現一直找不到檔案的鬼故事。</p>
+    <title>codemirror 設定(註冊)事件觸發Codemirror.on</title>
+    <url>/andy-tech-note/codemirror-set-eventListener/</url>
+    <content><![CDATA[<h3 id="codemirror"><a href="#codemirror" class="headerlink" title="codemirror"></a>codemirror</h3><p>什麼是codemirror，它是一款可以實現在前端網頁上的編輯器。<br>如同現在網路上看到的文字編輯器一樣，但你可以去設定當使用者做哪些操作時codemirror做哪些對應的行為。<br><a href="https://codemirror.net/5/">CodeMirror v5</a></p>
+<h3 id="如何在codemirror編輯器設定事件觸發"><a href="#如何在codemirror編輯器設定事件觸發" class="headerlink" title="如何在codemirror編輯器設定事件觸發"></a>如何在codemirror編輯器設定事件觸發</h3><p><a href="https://codemirror.net/5/doc/manual.html#events">Event列表</a></p>
+<p>使用 const editor &#x3D; CodeMirror.fromTextArea()建立編輯器instance後<br>在透過這個instance去呼叫 <code>on</code> 這個function</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">editor.on(&quot;change&quot;,(cm,changeObj)=&gt;&#123;                  </span><br><span class="line">    //這個意思是當editor文字有改變時就執行callback function</span><br><span class="line">    </span><br><span class="line">    //do something，這裡也可以加入其他CodeMirror的function執行</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>要怎麼使用on呢？ <a href="https://codemirror.net/5/doc/manual.html#on">官方介紹</a></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cm.on(type: string, func: (...args))</span><br></pre></td></tr></table></figure>
+
+<p>舉例：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//建議以下function可以在頁面建立一併執行(如果是馬上要用到)，on的功能可以看成註冊的概念，把這個功能註冊給editor，條件有達到就會執行</span><br><span class="line">editor.on(&quot;change&quot;,(cm,changeObj)=&gt;&#123;                  </span><br><span class="line">    console.log(changeObj.ch);</span><br><span class="line">    console.log(changeObj.line); </span><br><span class="line">    //在change中會有ch(第幾個位元) line第幾行</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>這裡的cm是指codemirror，在官方頁面中有提到，不管是看到codemirror(簡寫cm)或是doc，在使用上都可以用前面建立好的editor instance(端看使用者怎麼命名)</p>
+<p>on裡面第一的參數 <code>type</code> 也就是 cursorActivity  或者 change 之類的事件，後面callback function裡面的參數，在每個event中都會清楚告訴你有什麼參數可以用。<br>在<code>change</code>中可以使用cm instance以及獲取改變的文字及其相關資訊。</p>
 ]]></content>
       <categories>
         <category>Frontend</category>
@@ -191,25 +196,68 @@
       </tags>
   </entry>
   <entry>
-    <title>codemirror 設定(註冊)事件觸發Codemirror.on</title>
-    <url>/andy-tech-note/codemirror-set-eventListener/</url>
-    <content><![CDATA[<h3 id="codemirror"><a href="#codemirror" class="headerlink" title="codemirror"></a>codemirror</h3><p>什麼是codemirror，它是一款可以實現在前端網頁上的編輯器。<br>如同現在網路上看到的文字編輯器一樣，但你可以去設定當使用者做哪些操作時codemirror做哪些對應的行為。<br><a href="https://codemirror.net/5/">CodeMirror v5</a></p>
-<h3 id="如何在codemirror編輯器設定事件觸發"><a href="#如何在codemirror編輯器設定事件觸發" class="headerlink" title="如何在codemirror編輯器設定事件觸發"></a>如何在codemirror編輯器設定事件觸發</h3><p><a href="https://codemirror.net/5/doc/manual.html#events">Event列表</a></p>
-<p>使用 const editor &#x3D; CodeMirror.fromTextArea()建立編輯器instance後<br>在透過這個instance去呼叫 <code>on</code> 這個function</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">editor.on(&quot;change&quot;,(cm,changeObj)=&gt;&#123;                  </span><br><span class="line">    //這個意思是當editor文字有改變時就執行callback function</span><br><span class="line">    </span><br><span class="line">    //do something，這裡也可以加入其他CodeMirror的function執行</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-<p>要怎麼使用on呢？ <a href="https://codemirror.net/5/doc/manual.html#on">官方介紹</a></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cm.on(type: string, func: (...args))</span><br></pre></td></tr></table></figure>
+    <title>vue-react-mvvm-virtualDom的一些筆記</title>
+    <url>/andy-tech-note/vue-react-mvvm-virtualDom/</url>
+    <content><![CDATA[<h3 id="指令式渲染-imperative-redering"><a href="#指令式渲染-imperative-redering" class="headerlink" title="指令式渲染 imperative redering"></a>指令式渲染 imperative redering</h3><h4 id="jquery"><a href="#jquery" class="headerlink" title="jquery"></a>jquery</h4><p>在框架還沒出來時jquery依舊是非常火紅的，而其對於DOM的渲染方式就是透過<br>選擇器 <code>document.querySelector</code> 去選擇HTML裡面的tag，從而去修改他們的值或是<code> addEventListener</code> 加入事件監聽來獲取使用者的行為，進而在js裡面做一些判斷後再把資料丟到頁面讓使用者看到。</p>
+<p>而這些都是指令式渲染，也就是直接透過指令直接對DOM做操作，而當整個程式架構變得很大時，對於這些變數或是事件的管理就會變得相對困難(東一塊西一塊的選擇器，也就是你會看到一堆的querySelector以及addEventListener)，易讀性也會很差，因為沒有一個集中管理的地方。</p>
+<h3 id="宣告式渲染-declarative-rendering"><a href="#宣告式渲染-declarative-rendering" class="headerlink" title="宣告式渲染 declarative rendering"></a>宣告式渲染 declarative rendering</h3><h4 id="Vue-MVVM"><a href="#Vue-MVVM" class="headerlink" title="Vue MVVM"></a>Vue MVVM</h4><p>以例子來說：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;div id=&#x27;app&#x27;&gt;</span><br><span class="line">    &lt;div&gt;&#123;&#123;data&#125;&#125;&lt;/div&gt;</span><br><span class="line">    &lt;inpup v-model=&quot;data&quot; /&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
 
-<p>舉例：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//建議以下function可以在頁面建立一併執行(如果是馬上要用到)，on的功能可以看成註冊的概念，把這個功能註冊給editor，條件有達到就會執行</span><br><span class="line">editor.on(&quot;change&quot;,(cm,changeObj)=&gt;&#123;                  </span><br><span class="line">    console.log(changeObj.ch);</span><br><span class="line">    console.log(changeObj.line); </span><br><span class="line">    //在change中會有ch(第幾個位元) line第幾行</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-<p>這裡的cm是指codemirror，在官方頁面中有提到，不管是看到codemirror(簡寫cm)或是doc，在使用上都可以用前面建立好的editor instance(端看使用者怎麼命名)</p>
-<p>on裡面第一的參數 <code>type</code> 也就是 cursorActivity  或者 change 之類的事件，後面callback function裡面的參數，在每個event中都會清楚告訴你有什麼參數可以用。<br>在<code>change</code>中可以使用cm instance以及獲取改變的文字及其相關資訊。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">const app = createApp(&#123;</span><br><span class="line">    data()&#123;</span><br><span class="line">        return &#123;</span><br><span class="line">            data:&#x27;hello world&#x27;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;).mount(&#x27;#app&#x27;)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>透過以上寫法可以把createApp裡面的data的值傳遞到html 裡面大括號 <code>&#123;&#123;&#125;&#125;</code> 框起來的data中顯示在畫面上。<br>在vue中如果有多個地方需要用到data這個變數，只需用大括號及可以讓其值顯示在html，不需要像是jquery透過選擇器的方式去綁定資料，畫面也相對簡潔。</p>
+<h5 id="MVVM-MVC"><a href="#MVVM-MVC" class="headerlink" title="MVVM MVC"></a>MVVM MVC</h5><p>MVVC是由Model &#x2F; View &#x2F; ViewModel組成，早期微軟提出的是把網頁分成model層與view層，也就是把畫面與狀態分離(MVC)，Vue則是加入viewModel，也就是在view與model之間插入viewModel去把model層的資料綁定以及監聽view層的事件。<br><img src="/andy-tech-note/vue-react-mvvm-virtualDom/mvvm.png" alt="MVVM"></p>
+<h4 id="React-Virtual-DOM"><a href="#React-Virtual-DOM" class="headerlink" title="React Virtual DOM"></a>React Virtual DOM</h4><p>React會先複製一份DOM物件(稱之為Virtual DOM)，而在React中是使用useState去改變想顯示在view上的值，當這些state被改變時他會去修改virtual dom，而後再去與先前的dom做比較，找出差異的地方再去對DOM做渲染，而這個渲染單純只有渲染被修改的，其他沒有變化的部分不會影響，如此一來不會因為要重新渲染整個畫面而造成效能低落。</p>
+<p>應該還有很多細節部分沒提到，未來有碰到更多再來補充更完整。</p>
+<p>參考資料 : <a href="https://book.vue.tw/CH1/1-1-introduction.html">重新認識 Vue.js | Kuro Hsu </a></p>
+]]></content>
+      <categories>
+        <category>Frontend</category>
+      </categories>
+      <tags>
+        <tag>Vue</tag>
+        <tag>React</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>codemirror v5 與 v6的差異</title>
+    <url>/andy-tech-note/codemirror-v5-v6-diff/</url>
+    <content><![CDATA[<h3 id="Codemirror-v5"><a href="#Codemirror-v5" class="headerlink" title="Codemirror v5"></a>Codemirror v5</h3><p>版本5 -&gt; 6的資料夾結構變動很大</p>
+<h4 id="v5"><a href="#v5" class="headerlink" title="v5"></a><a href="https://codemirror.net/5/index.html">v5</a></h4><p>v5的所有套件在npm install <code>codemirror</code>時所有功能全部都會幫你下載，所以在node_modules裡面可以找到codemirror資料夾，裡面所有功能都會放在裡面。</p>
+<h4 id="v6"><a href="#v6" class="headerlink" title="v6"></a><a href="https://codemirror.net/">v6</a></h4><p>v6在npm install後，<code>codemirror</code> 的資料夾內容不多，而如果需要使用特定功能需要下指令<br>如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">npm install @codemirror/search </span><br></pre></td></tr></table></figure>
+<p>如果需要serch功能，需要先install<br>安裝的功能相關檔案會出現在 @codemirror 資料夾中。</p>
+<p>在查相關資料時要注意是使用v5還是v6版本，否則會發現一直找不到檔案的鬼故事。</p>
 ]]></content>
       <categories>
         <category>Frontend</category>
       </categories>
       <tags>
         <tag>codemirror</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>如何使用Google的firebase裡面的驗證功能(login/logout)</title>
+    <url>/andy-tech-note/firebase-auth/</url>
+    <content><![CDATA[<h4 id="Google-Firebase"><a href="#Google-Firebase" class="headerlink" title="Google Firebase"></a>Google Firebase</h4><p>Google的Firebase是個前端工程師很好用的工具，他可以讓前端工程師省去後端資料庫的建立而可以專注在前端的開發，這裡面有身份驗證、realtime資料庫等好用的功能，只要是拿來做開發，而流量不大的話，通常你都不會達到需要付費流量。</p>
+<h4 id="Firebase-auth-以Email-x2F-password-為例"><a href="#Firebase-auth-以Email-x2F-password-為例" class="headerlink" title="Firebase auth 以Email&#x2F;password 為例"></a>Firebase auth 以Email&#x2F;password 為例</h4><p>可以先到firebase官網看一下的 <a href="https://firebase.google.com/docs/auth/web/start">Authentication</a> 頁面，<code>Get start </code>中有提供範例code</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">import &#123; initializeApp &#125; from &quot;firebase/app&quot;;</span><br><span class="line">import &#123; getAuth &#125; from &quot;firebase/auth&quot;;</span><br><span class="line"></span><br><span class="line">// TODO: Replace the following with your app&#x27;s Firebase project configuration</span><br><span class="line">// See: https://firebase.google.com/docs/web/learn-more#config-object</span><br><span class="line">const firebaseConfig = &#123;</span><br><span class="line">  // ...這裡面呢放上的東西可以參考上面那行網址，</span><br><span class="line">  簡單來說就是你在firebase(https://firebase.google.com/)</span><br><span class="line">  建立新專案時並且建立後會出現的一些資料，按照這些資料填入即可</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">// Initialize Firebase</span><br><span class="line">const app = initializeApp(firebaseConfig);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">// Initialize Firebase Authentication and get a reference to the service</span><br><span class="line">const auth = getAuth(app);</span><br><span class="line">//</span><br></pre></td></tr></table></figure>
+<p>要如何找到firebaseConfig裡面的資料？點到下圖的這個地方，右邊拉到底，新增一個<code>網頁應用程式</code>後就會出現相對應的api key。<br><img src="/andy-tech-note/firebase-auth/SCR-20230216-t2w.png"><br>而後記得在左側的<code>建構</code>建立一個authication服務，然後在右側sign-in method去新增供應商，選擇電子郵件&#x2F;密碼後在左邊users設定你想要登入的帳號密碼(這是比較陽春的方式，你可以在網路上找一下透過網頁要求建立帳號密碼)<br><img src="/andy-tech-note/firebase-auth/SCR-20230216-t7l.png"></p>
+<p>而剛剛上面的code，只是把firebase先初始化以及把auth資訊先準備好，接下來要呼叫登入的API。<br><a href="https://firebase.google.com/docs/auth/web/password-auth">email&#x2F;password登入</a></p>
+<h5 id="登入"><a href="#登入" class="headerlink" title="登入"></a>登入</h5><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">import &#123; getAuth, signInWithEmailAndPassword &#125; from &quot;firebase/auth&quot;;</span><br><span class="line"></span><br><span class="line">const auth = getAuth();</span><br><span class="line">signInWithEmailAndPassword(auth, email, password)</span><br><span class="line">  .then((userCredential) =&gt; &#123;</span><br><span class="line">    // Signed in </span><br><span class="line">    const user = userCredential.user;</span><br><span class="line">    // ...</span><br><span class="line">  &#125;)</span><br><span class="line">  .catch((error) =&gt; &#123;</span><br><span class="line">    const errorCode = error.code;</span><br><span class="line">    const errorMessage = error.message;</span><br><span class="line">  &#125;);</span><br></pre></td></tr></table></figure>
+
+<p>如果有需要創建帳號的code，在同個網頁也有</p>
+<h5 id="創建帳號"><a href="#創建帳號" class="headerlink" title="創建帳號"></a>創建帳號</h5><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">import &#123; getAuth, createUserWithEmailAndPassword &#125; from &quot;firebase/auth&quot;;</span><br><span class="line"></span><br><span class="line">const auth = getAuth();</span><br><span class="line">createUserWithEmailAndPassword(auth, email, password)</span><br><span class="line">  .then((userCredential) =&gt; &#123;</span><br><span class="line">    // Signed in </span><br><span class="line">    const user = userCredential.user;</span><br><span class="line">    // ...</span><br><span class="line">  &#125;)</span><br><span class="line">  .catch((error) =&gt; &#123;</span><br><span class="line">    const errorCode = error.code;</span><br><span class="line">    const errorMessage = error.message;</span><br><span class="line">    // ..</span><br><span class="line">  &#125;);</span><br></pre></td></tr></table></figure>
+
+<h5 id="登出"><a href="#登出" class="headerlink" title="登出"></a>登出</h5><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">import &#123; getAuth, signOut &#125; from &quot;firebase/auth&quot;;</span><br><span class="line"></span><br><span class="line">const auth = getAuth();</span><br><span class="line">signOut(auth).then(() =&gt; &#123;</span><br><span class="line">  // Sign-out successful.</span><br><span class="line">&#125;).catch((error) =&gt; &#123;</span><br><span class="line">  // An error happened.</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<h4 id="登入後"><a href="#登入後" class="headerlink" title="登入後"></a>登入後</h4><p>執行完登入後，要怎麼知道是不是真正登入？<br>可以點開瀏覽器的開發者工具裡面的儲存空間如下，如果再相對應的位置有找到寫有你之前填入的API Key就代表登入成功，而且他還幫你存在暫存裡面。<br><img src="/andy-tech-note/firebase-auth/SCR-20230216-to3.png"></p>
+]]></content>
+      <categories>
+        <category>Frontend</category>
+      </categories>
+      <tags>
+        <tag>Firebase</tag>
       </tags>
   </entry>
   <entry>
@@ -241,54 +289,6 @@
       </tags>
   </entry>
   <entry>
-    <title>vue-react-mvvm-virtualDom的一些筆記</title>
-    <url>/andy-tech-note/vue-react-mvvm-virtualDom/</url>
-    <content><![CDATA[<h3 id="指令式渲染-imperative-redering"><a href="#指令式渲染-imperative-redering" class="headerlink" title="指令式渲染 imperative redering"></a>指令式渲染 imperative redering</h3><h4 id="jquery"><a href="#jquery" class="headerlink" title="jquery"></a>jquery</h4><p>在框架還沒出來時jquery依舊是非常火紅的，而其對於DOM的渲染方式就是透過<br>選擇器 <code>document.querySelector</code> 去選擇HTML裡面的tag，從而去修改他們的值或是<code> addEventListener</code> 加入事件監聽來獲取使用者的行為，進而在js裡面做一些判斷後再把資料丟到頁面讓使用者看到。</p>
-<p>而這些都是指令式渲染，也就是直接透過指令直接對DOM做操作，而當整個程式架構變得很大時，對於這些變數或是事件的管理就會變得相對困難(東一塊西一塊的選擇器，也就是你會看到一堆的querySelector以及addEventListener)，易讀性也會很差，因為沒有一個集中管理的地方。</p>
-<h3 id="宣告式渲染-declarative-rendering"><a href="#宣告式渲染-declarative-rendering" class="headerlink" title="宣告式渲染 declarative rendering"></a>宣告式渲染 declarative rendering</h3><h4 id="Vue-MVVM"><a href="#Vue-MVVM" class="headerlink" title="Vue MVVM"></a>Vue MVVM</h4><p>以例子來說：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;div id=&#x27;app&#x27;&gt;</span><br><span class="line">    &lt;div&gt;&#123;&#123;data&#125;&#125;&lt;/div&gt;</span><br><span class="line">    &lt;inpup v-model=&quot;data&quot; /&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">const app = createApp(&#123;</span><br><span class="line">    data()&#123;</span><br><span class="line">        return &#123;</span><br><span class="line">            data:&#x27;hello world&#x27;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;).mount(&#x27;#app&#x27;)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p>透過以上寫法可以把createApp裡面的data的值傳遞到html 裡面大括號 <code>&#123;&#123;&#125;&#125;</code> 框起來的data中顯示在畫面上。<br>在vue中如果有多個地方需要用到data這個變數，只需用大括號及可以讓其值顯示在html，不需要像是jquery透過選擇器的方式去綁定資料，畫面也相對簡潔。</p>
-<h5 id="MVVM-MVC"><a href="#MVVM-MVC" class="headerlink" title="MVVM MVC"></a>MVVM MVC</h5><p>MVVC是由Model &#x2F; View &#x2F; ViewModel組成，早期微軟提出的是把網頁分成model層與view層，也就是把畫面與狀態分離(MVC)，Vue則是加入viewModel，也就是在view與model之間插入viewModel去把model層的資料綁定以及監聽view層的事件。<br><img src="/andy-tech-note/vue-react-mvvm-virtualDom/mvvm.png" alt="MVVM"></p>
-<h4 id="React-Virtual-DOM"><a href="#React-Virtual-DOM" class="headerlink" title="React Virtual DOM"></a>React Virtual DOM</h4><p>React會先複製一份DOM物件(稱之為Virtual DOM)，而在React中是使用useState去改變想顯示在view上的值，當這些state被改變時他會去修改virtual dom，而後再去與先前的dom做比較，找出差異的地方再去對DOM做渲染，而這個渲染單純只有渲染被修改的，其他沒有變化的部分不會影響，如此一來不會因為要重新渲染整個畫面而造成效能低落。</p>
-<p>應該還有很多細節部分沒提到，未來有碰到更多再來補充更完整。</p>
-<p>參考資料 : <a href="https://book.vue.tw/CH1/1-1-introduction.html">重新認識 Vue.js | Kuro Hsu </a></p>
-]]></content>
-      <categories>
-        <category>Frontend</category>
-      </categories>
-      <tags>
-        <tag>Vue</tag>
-        <tag>React</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>如何使用Google的firebase裡面的驗證功能(login/logout)</title>
-    <url>/andy-tech-note/firebase-auth/</url>
-    <content><![CDATA[<h4 id="Google-Firebase"><a href="#Google-Firebase" class="headerlink" title="Google Firebase"></a>Google Firebase</h4><p>Google的Firebase是個前端工程師很好用的工具，他可以讓前端工程師省去後端資料庫的建立而可以專注在前端的開發，這裡面有身份驗證、realtime資料庫等好用的功能，只要是拿來做開發，而流量不大的話，通常你都不會達到需要付費流量。</p>
-<h4 id="Firebase-auth-以Email-x2F-password-為例"><a href="#Firebase-auth-以Email-x2F-password-為例" class="headerlink" title="Firebase auth 以Email&#x2F;password 為例"></a>Firebase auth 以Email&#x2F;password 為例</h4><p>可以先到firebase官網看一下的 <a href="https://firebase.google.com/docs/auth/web/start">Authentication</a> 頁面，<code>Get start </code>中有提供範例code</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">import &#123; initializeApp &#125; from &quot;firebase/app&quot;;</span><br><span class="line">import &#123; getAuth &#125; from &quot;firebase/auth&quot;;</span><br><span class="line"></span><br><span class="line">// TODO: Replace the following with your app&#x27;s Firebase project configuration</span><br><span class="line">// See: https://firebase.google.com/docs/web/learn-more#config-object</span><br><span class="line">const firebaseConfig = &#123;</span><br><span class="line">  // ...這裡面呢放上的東西可以參考上面那行網址，</span><br><span class="line">  簡單來說就是你在firebase(https://firebase.google.com/)</span><br><span class="line">  建立新專案時並且建立後會出現的一些資料，按照這些資料填入即可</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">// Initialize Firebase</span><br><span class="line">const app = initializeApp(firebaseConfig);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">// Initialize Firebase Authentication and get a reference to the service</span><br><span class="line">const auth = getAuth(app);</span><br><span class="line">//</span><br></pre></td></tr></table></figure>
-<p>要如何找到firebaseConfig裡面的資料？點到下圖的這個地方，右邊拉到底，新增一個<code>網頁應用程式</code>後就會出現相對應的api key。<br><img src="/andy-tech-note/firebase-auth/SCR-20230216-t2w.png"><br>而後記得在左側的<code>建構</code>建立一個authication服務，然後在右側sign-in method去新增供應商，選擇電子郵件&#x2F;密碼後在左邊users設定你想要登入的帳號密碼(這是比較陽春的方式，你可以在網路上找一下透過網頁要求建立帳號密碼)<br><img src="/andy-tech-note/firebase-auth/SCR-20230216-t7l.png"></p>
-<p>而剛剛上面的code，只是把firebase先初始化以及把auth資訊先準備好，接下來要呼叫登入的API。<br><a href="https://firebase.google.com/docs/auth/web/password-auth">email&#x2F;password登入</a></p>
-<h5 id="登入"><a href="#登入" class="headerlink" title="登入"></a>登入</h5><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">import &#123; getAuth, signInWithEmailAndPassword &#125; from &quot;firebase/auth&quot;;</span><br><span class="line"></span><br><span class="line">const auth = getAuth();</span><br><span class="line">signInWithEmailAndPassword(auth, email, password)</span><br><span class="line">  .then((userCredential) =&gt; &#123;</span><br><span class="line">    // Signed in </span><br><span class="line">    const user = userCredential.user;</span><br><span class="line">    // ...</span><br><span class="line">  &#125;)</span><br><span class="line">  .catch((error) =&gt; &#123;</span><br><span class="line">    const errorCode = error.code;</span><br><span class="line">    const errorMessage = error.message;</span><br><span class="line">  &#125;);</span><br></pre></td></tr></table></figure>
-
-<p>如果有需要創建帳號的code，在同個網頁也有</p>
-<h5 id="創建帳號"><a href="#創建帳號" class="headerlink" title="創建帳號"></a>創建帳號</h5><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">import &#123; getAuth, createUserWithEmailAndPassword &#125; from &quot;firebase/auth&quot;;</span><br><span class="line"></span><br><span class="line">const auth = getAuth();</span><br><span class="line">createUserWithEmailAndPassword(auth, email, password)</span><br><span class="line">  .then((userCredential) =&gt; &#123;</span><br><span class="line">    // Signed in </span><br><span class="line">    const user = userCredential.user;</span><br><span class="line">    // ...</span><br><span class="line">  &#125;)</span><br><span class="line">  .catch((error) =&gt; &#123;</span><br><span class="line">    const errorCode = error.code;</span><br><span class="line">    const errorMessage = error.message;</span><br><span class="line">    // ..</span><br><span class="line">  &#125;);</span><br></pre></td></tr></table></figure>
-
-<h5 id="登出"><a href="#登出" class="headerlink" title="登出"></a>登出</h5><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">import &#123; getAuth, signOut &#125; from &quot;firebase/auth&quot;;</span><br><span class="line"></span><br><span class="line">const auth = getAuth();</span><br><span class="line">signOut(auth).then(() =&gt; &#123;</span><br><span class="line">  // Sign-out successful.</span><br><span class="line">&#125;).catch((error) =&gt; &#123;</span><br><span class="line">  // An error happened.</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-
-<h4 id="登入後"><a href="#登入後" class="headerlink" title="登入後"></a>登入後</h4><p>執行完登入後，要怎麼知道是不是真正登入？<br>可以點開瀏覽器的開發者工具裡面的儲存空間如下，如果再相對應的位置有找到寫有你之前填入的API Key就代表登入成功，而且他還幫你存在暫存裡面。<br><img src="/andy-tech-note/firebase-auth/SCR-20230216-to3.png"></p>
-]]></content>
-      <categories>
-        <category>Frontend</category>
-      </categories>
-      <tags>
-        <tag>Firebase</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>CSS的Box-model</title>
     <url>/andy-tech-note/box-model/</url>
     <content><![CDATA[<h4 id="什麼是Box-model"><a href="#什麼是Box-model" class="headerlink" title="什麼是Box model"></a>什麼是Box model</h4><p>在網頁中每個element都被看作一個box，每個box可以有內容content、邊界border、內外空間。<br>所以box會有padding &#x2F; marging&#x2F; border&#x2F; content</p>
@@ -296,20 +296,6 @@
 <h4 id="Margin"><a href="#Margin" class="headerlink" title="Margin"></a>Margin</h4><p>margin是物件與其他物件的距離，可以使用margin來產生空白與其他element產生一段距離</p>
 <p><img src="https://developer.mozilla.org/en-US/docs/Learn/CSS/Building_blocks/The_box_model/box-model.png" alt="來源MDN"></p>
 <h4 id="Width-x2F-Height"><a href="#Width-x2F-Height" class="headerlink" title="Width&#x2F;Height"></a>Width&#x2F;Height</h4><p>在box中可以設定寬度與高度(width &amp; Height)，現在的CSS寬度是指content的寬度，所以在製作layout時要注意寬度要再加上border+padding+margin才是最終寬度或是高度。<br><img src="https://developer.mozilla.org/en-US/docs/Learn/CSS/Building_blocks/The_box_model/standard-box-model.png" alt="設定高寬"></p>
-]]></content>
-      <categories>
-        <category>Frontend</category>
-      </categories>
-      <tags>
-        <tag>CSS</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>CSS中的px-em-rem</title>
-    <url>/andy-tech-note/px-em-rem/</url>
-    <content><![CDATA[<h3 id="這是關於長度單位"><a href="#這是關於長度單位" class="headerlink" title="這是關於長度單位"></a>這是關於長度單位</h3><h4 id="px"><a href="#px" class="headerlink" title="px"></a>px</h4><p>是一個絕對長度的單位，是以螢幕pixel為基準。</p>
-<h4 id="em"><a href="#em" class="headerlink" title="em"></a>em</h4><p>是一個相對長度單位，是依照當下所在的element其parent element的大小來當作倍數計算，舉例如果是把em設定在font-size，如果當下font-size是以10px，而在child 設定的font-size是設定<code>1ex</code> &#x3D;&gt;也就是 <code>10px</code> ，若是<code>2ex</code> &#x3D;&gt;<code>20px</code></p>
-<h4 id="rem"><a href="#rem" class="headerlink" title="rem"></a>rem</h4><p>這也是相對長度單位，但是以root的大小當作依據來算倍數，所以若是root size設定為<code>12px</code>，而當下的size設定為<code>3rem</code> &#x3D;&gt; <code>36px</code></p>
 ]]></content>
       <categories>
         <category>Frontend</category>
@@ -352,6 +338,20 @@
       <tags>
         <tag>Javascript</tag>
         <tag>JSON</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>CSS中的px-em-rem</title>
+    <url>/andy-tech-note/px-em-rem/</url>
+    <content><![CDATA[<h3 id="這是關於長度單位"><a href="#這是關於長度單位" class="headerlink" title="這是關於長度單位"></a>這是關於長度單位</h3><h4 id="px"><a href="#px" class="headerlink" title="px"></a>px</h4><p>是一個絕對長度的單位，是以螢幕pixel為基準。</p>
+<h4 id="em"><a href="#em" class="headerlink" title="em"></a>em</h4><p>是一個相對長度單位，是依照當下所在的element其parent element的大小來當作倍數計算，舉例如果是把em設定在font-size，如果當下font-size是以10px，而在child 設定的font-size是設定<code>1ex</code> &#x3D;&gt;也就是 <code>10px</code> ，若是<code>2ex</code> &#x3D;&gt;<code>20px</code></p>
+<h4 id="rem"><a href="#rem" class="headerlink" title="rem"></a>rem</h4><p>這也是相對長度單位，但是以root的大小當作依據來算倍數，所以若是root size設定為<code>12px</code>，而當下的size設定為<code>3rem</code> &#x3D;&gt; <code>36px</code></p>
+]]></content>
+      <categories>
+        <category>Frontend</category>
+      </categories>
+      <tags>
+        <tag>CSS</tag>
       </tags>
   </entry>
   <entry>
@@ -443,22 +443,6 @@
       </tags>
   </entry>
   <entry>
-    <title>git local 及 remote repo 不同步怎麼處理</title>
-    <url>/andy-tech-note/git-remote-repo-%E4%B8%8D%E5%90%8C%E6%AD%A5/</url>
-    <content><![CDATA[<h3 id="Local的commit-與-Remote-的commit-沒有同步"><a href="#Local的commit-與-Remote-的commit-沒有同步" class="headerlink" title="Local的commit 與 Remote 的commit 沒有同步"></a>Local的commit 與 Remote 的commit 沒有同步</h3><p><img src="/andy-tech-note/git-remote-repo-%E4%B8%8D%E5%90%8C%E6%AD%A5/git.png" alt="git"><br>如圖中所示，會發現 <code>github remote 的 main</code> 跟 <code>local 的 main</code> 分岔了。<br>這是因為在先前在B電腦做了一次 commit &amp; push，也就是圖中岔出去的那個 Remote main，<br>然而在A電腦的commit還停留在B電腦commit的前一個版本，但是我沒發現就繼續開發下去，<br>一路開發下去，直到要push到遠端時才被告知遠端有code沒有同步到。</p>
-<p>查了一下，查到git fetch origin main 似乎是比較安全的，他可以單純把遠端你所有缺少的code抓下來，然後你再透過git status查詢時，git 會告知你 local 的 code 與遠端的 code 差異在哪，然後再透過<code>git merge origin main</code> 或是 <code>git rebase origin main</code>。<br>但要注意，當前如果有code還尚未commit，git會告知你要先commit，並且不會讓你merge，應該是怕你的 code 丟失，若還沒要 commit 可以透過<code>git stage</code> 把 code 存起來以防止不見。</p>
-<p>指令</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git fetch origin main </span><br><span class="line">git merge origin/main</span><br></pre></td></tr></table></figure>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git fetch origin main </span><br><span class="line">git rebase origin/main</span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>dev</category>
-      </categories>
-      <tags>
-        <tag>git</tag>
-        <tag>github</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Wordpress當後端傳文章內容到前端(Vue)</title>
     <url>/andy-tech-note/wordpress%E7%95%B6%E5%BE%8C%E7%AB%AF%E5%82%B3%E6%96%87%E7%AB%A0%E5%85%A7%E5%AE%B9%E5%88%B0%E5%89%8D%E7%AB%AF-Vue/</url>
     <content><![CDATA[<h3 id="以Wordpress為後端傳資料到前端"><a href="#以Wordpress為後端傳資料到前端" class="headerlink" title="以Wordpress為後端傳資料到前端"></a>以Wordpress為後端傳資料到前端</h3><p>wordpress 為後端，前端向後端取得wp中的文章時，我希望直接取得可以呈現的HTML格式，試過使用 WP 中的 function <code>get_post_field</code>，雖然可以取得HTML，但是HTML結構與真正在以WP當作前端呈現的文章的html有些出入，也就是在WP呈現頁面前會對原始的html做特殊格式化，這就要透過 apply_filters   ‘the_content’ 去把取得的html做格式化，這樣才會與wp呈現出來的樣式一樣。</p>
@@ -476,6 +460,22 @@
       </tags>
   </entry>
   <entry>
+    <title>git local 及 remote repo 不同步怎麼處理</title>
+    <url>/andy-tech-note/git-remote-repo-%E4%B8%8D%E5%90%8C%E6%AD%A5/</url>
+    <content><![CDATA[<h3 id="Local的commit-與-Remote-的commit-沒有同步"><a href="#Local的commit-與-Remote-的commit-沒有同步" class="headerlink" title="Local的commit 與 Remote 的commit 沒有同步"></a>Local的commit 與 Remote 的commit 沒有同步</h3><p><img src="/andy-tech-note/git-remote-repo-%E4%B8%8D%E5%90%8C%E6%AD%A5/git.png" alt="git"><br>如圖中所示，會發現 <code>github remote 的 main</code> 跟 <code>local 的 main</code> 分岔了。<br>這是因為在先前在B電腦做了一次 commit &amp; push，也就是圖中岔出去的那個 Remote main，<br>然而在A電腦的commit還停留在B電腦commit的前一個版本，但是我沒發現就繼續開發下去，<br>一路開發下去，直到要push到遠端時才被告知遠端有code沒有同步到。</p>
+<p>查了一下，查到git fetch origin main 似乎是比較安全的，他可以單純把遠端你所有缺少的code抓下來，然後你再透過git status查詢時，git 會告知你 local 的 code 與遠端的 code 差異在哪，然後再透過<code>git merge origin main</code> 或是 <code>git rebase origin main</code>。<br>但要注意，當前如果有code還尚未commit，git會告知你要先commit，並且不會讓你merge，應該是怕你的 code 丟失，若還沒要 commit 可以透過<code>git stage</code> 把 code 存起來以防止不見。</p>
+<p>指令</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git fetch origin main </span><br><span class="line">git merge origin/main</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git fetch origin main </span><br><span class="line">git rebase origin/main</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>dev</category>
+      </categories>
+      <tags>
+        <tag>git</tag>
+        <tag>github</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Javascript中&lt;script&gt;的async與defer</title>
     <url>/andy-tech-note/js-script-async-defer/</url>
     <content><![CDATA[<h2 id="什麼是async-x2F-defer"><a href="#什麼是async-x2F-defer" class="headerlink" title="什麼是async&#x2F;defer"></a>什麼是async&#x2F;defer</h2><h4 id="HTML做些什麼事？"><a href="#HTML做些什麼事？" class="headerlink" title="HTML做些什麼事？"></a>HTML做些什麼事？</h4><p>在瀏覽器執行解析網頁時如果碰到<code>&lt;script&gt;</code>標籤，會先執行該script中的行為，而如果需要下載檔案則會執行下載，而此時若是執行下載時，整個網頁的解析就會停下來，等到檔案被下載後才會繼續解析，這樣有一個很大的問題，也就是當使用者瀏覽網頁時就會有些元素不是馬上出現在使用者面前，就是因為在等待JS檔案的下載，這就有關UX了。</p>
@@ -483,86 +483,6 @@
 <h4 id="解決方法"><a href="#解決方法" class="headerlink" title="解決方法"></a>解決方法</h4><p>上述問題就可以透過<code>async/defer</code>解決，這兩個主要都是讓<code>script</code>可以在背景執行，但是有個主要差異如下：</p>
 <h5 id="async"><a href="#async" class="headerlink" title="async"></a>async</h5><p>會在背景下載也就是異步的方式執行，在同時 HTML 解析會繼續執行，而當js檔案被下載後會被立即執行，不必等到 DOM 被全部解析。</p>
 <h5 id="defer"><a href="#defer" class="headerlink" title="defer"></a>defer</h5><p>也同是在背景下載不影響<code>DOM</code>的解析，但是他會等到<code>DOM</code>完全解析完才執行，而若是有多個js有互相依賴的行為可以以 <code>defer</code> 方式執行，只要按照執行順序去寫<code>script</code>即可</p>
-]]></content>
-      <categories>
-        <category>frontend_interview</category>
-      </categories>
-      <tags>
-        <tag>Javascript</tag>
-        <tag>Frontend</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Javascript的map,filter,reduce</title>
-    <url>/andy-tech-note/Javascript%E7%9A%84map-filter-reduce/</url>
-    <content><![CDATA[<h2 id="什麼是map-filter-reduce"><a href="#什麼是map-filter-reduce" class="headerlink" title="什麼是map, filter, reduce"></a>什麼是map, filter, reduce</h2><p>這三個東西都是ES5推出的Array method，的可以對Array裡面的元素做一些操作。</p>
-<h3 id="map"><a href="#map" class="headerlink" title="map"></a>map</h3><ul>
-<li>會回傳一個新的array</li>
-<li>在map裡面用callback function對每個element 逐一做操作後回傳</li>
-</ul>
-<p>map不會影響到原先的array，也不必用for之類的迴圈去一個一個處理後存回去，更多資訊可以查看<a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array/map">MDN</a></p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> arr = [<span class="number">1</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>];</span><br><span class="line"><span class="keyword">const</span> result = arr.<span class="title function_">map</span>(<span class="function">(<span class="params">item</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> item * <span class="number">2</span>;</span><br><span class="line">&#125;);</span><br><span class="line"><span class="comment">// result = [2,6,8,10]</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="filter"><a href="#filter" class="headerlink" title="filter"></a>filter</h3><p>可以用來過濾不符合callback function判斷式的元素，也就是在callback function中需要return true or false來決定是否要保留這個元素。<br>這個也是會回傳一個新的array，查看<a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array/filter">MDN</a></p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> arr = [<span class="number">1</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>];</span><br><span class="line"><span class="keyword">const</span> result = arr.<span class="title function_">filter</span>(<span class="function">(<span class="params">item</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> item &lt; <span class="number">4</span>;</span><br><span class="line">&#125;);</span><br><span class="line"><span class="comment">// result = [1,3]</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="reduce"><a href="#reduce" class="headerlink" title="reduce"></a>reduce</h3><p>可以傳入一個acc，然後在callback function中會依次回傳acc和每個元素的一些操作，最後會回傳最終的value。<br>也就是每回合把acc和每個元素的值相加，最後就會回傳最終的value，而若是在reduce最後面一個參數帶上init value，就會被帶到acc當作初始值做累加。<br>參考 <a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce">MDN</a></p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> arr = [<span class="number">1</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>];</span><br><span class="line"><span class="keyword">const</span> result = arr.<span class="title function_">reduce</span>(<span class="function">(<span class="params">acc, item</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> acc + item;</span><br><span class="line">&#125;,<span class="number">0</span>)</span><br><span class="line"><span class="comment">// result = 15</span></span><br></pre></td></tr></table></figure>
-<p>item為arr中的每個元素，acc為reduce的第一個參數，假設想要把所有的值加起來，就可以用reduce來做，把每次值都累加到acc上，然後回傳最終值。</p>
-]]></content>
-      <categories>
-        <category>frontend_interview</category>
-      </categories>
-      <tags>
-        <tag>Javascript</tag>
-        <tag>Frontend</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Javascript的Map及Set</title>
-    <url>/andy-tech-note/Javascript_Map_Set/</url>
-    <content><![CDATA[<h2 id="Set是什麼？"><a href="#Set是什麼？" class="headerlink" title="Set是什麼？"></a>Set是什麼？</h2><p>Set 是一個構造函式可以建構一個如Array的資料集合，有個特別的地方是，如果傳入的值相同，會把多餘的值移除只剩下一個。</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> array1 = [<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>,<span class="number">8</span>,<span class="number">9</span>,<span class="number">10</span>]</span><br><span class="line"><span class="keyword">const</span> array2 = [<span class="number">9</span>,<span class="number">10</span>,<span class="number">11</span>,<span class="number">12</span>,<span class="number">13</span>,<span class="number">14</span>] </span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> set1 = <span class="keyword">new</span> <span class="title class_">Set</span>([...array1,...array2])</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(set1)</span><br><span class="line"><span class="comment">// Set(5,6,7,8,9,10,11,12,13,14)</span></span><br></pre></td></tr></table></figure>
-
-<p>用Set建立好的資料集合要透過他的method來處理，常見的有<code>add</code>, <code>delete</code>, <code>has</code>，其他的可以參考<a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Set/Set">MDN</a>的文件。</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">set1.<span class="title function_">add</span>(<span class="number">15</span>);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(set1)</span><br><span class="line"><span class="comment">// Set(5,6,7,8,9,10,11,12,13,14,15)</span></span><br><span class="line"></span><br><span class="line">set1.<span class="title function_">delete</span>(<span class="number">9</span>)</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(set1)</span><br><span class="line"><span class="comment">// Set(5,6,7,8,10,11,12,13,14,15)</span></span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(set1.<span class="title function_">has</span>(<span class="number">5</span>))</span><br><span class="line"><span class="comment">// true</span></span><br><span class="line">set1.<span class="title function_">has</span>(<span class="number">9</span>)</span><br><span class="line"><span class="comment">// false</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="Map是什麼？"><a href="#Map是什麼？" class="headerlink" title="Map是什麼？"></a>Map是什麼？</h2><p>Map 也是一個構建函式，可以建構一個如Object的資料集合，但Map的key值與原始的object不同，原始的object的key只能是字串，而Map可以是任何東西，另外Map的key&#x2F;value是有順序性且可以做迭代處理的，在Object中若要做迭代，得透過<code>Object.keys</code>或是<code>Object.entries</code>搭配<code>forEach</code>或是<code>for of</code>之類的方法來遍歷所有元素，而且該順序不一定與用戶放進去的順序相同。</p>
-<p>常見的有<code>entries</code>, <code>keys</code>, <code>values</code>，其他的可以參考<a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Map/Map">MDN</a>的文件。</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> map1 = <span class="keyword">new</span> <span class="title class_">Map</span>([</span><br><span class="line">  [<span class="string">&#x27;a&#x27;</span>, <span class="number">1</span>],</span><br><span class="line">  [<span class="string">&#x27;b&#x27;</span>, <span class="number">2</span>],</span><br><span class="line">  [<span class="string">&#x27;c&#x27;</span>, <span class="number">3</span>],</span><br><span class="line">  [<span class="string">&#x27;d&#x27;</span>, <span class="number">4</span>],</span><br><span class="line">  [<span class="string">&#x27;e&#x27;</span>, <span class="number">5</span>],</span><br><span class="line">  [<span class="string">&#x27;f&#x27;</span>, <span class="number">6</span>],</span><br><span class="line">])</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(map1.<span class="title function_">values</span>().<span class="title function_">forEach</span>(<span class="function"><span class="params">item</span> =&gt;</span> <span class="variable language_">console</span>.<span class="title function_">log</span>(item)))</span><br><span class="line"><span class="comment">// 印出所有的value值</span></span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(map1.<span class="title function_">keys</span>().<span class="title function_">forEach</span>(<span class="function"><span class="params">item</span> =&gt;</span> <span class="variable language_">console</span>.<span class="title function_">log</span>(item)))</span><br><span class="line"><span class="comment">// 印出所有的key值</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">const</span> [key,value] <span class="keyword">of</span> map1.<span class="title function_">entries</span>())&#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(key,value)</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 印出所有的key/value</span></span><br><span class="line"></span><br><span class="line">map1.<span class="title function_">forEach</span>(<span class="function">(<span class="params">i, key</span>)=&gt;</span> &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(i, key)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-
-<p>用法實在很多元，有興趣的可以去MDN文件看看</p>
-]]></content>
-      <categories>
-        <category>frontend_interview</category>
-      </categories>
-      <tags>
-        <tag>Javascript</tag>
-        <tag>Frontend</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>建構子函式constructor_function</title>
-    <url>/andy-tech-note/constructor-function/</url>
-    <content><![CDATA[<h3 id="什麼是-constructor-function建構子函式"><a href="#什麼是-constructor-function建構子函式" class="headerlink" title="什麼是 constructor function建構子函式"></a>什麼是 constructor function建構子函式</h3><p>建構子函式是一個由普通函式與new關鍵字組合而成的函式，而該函式就像是一個藍圖一樣，要透過new關鍵字才能建立一個真正的instance(object)。<br>其主要用途是用於建立物件，而非一般的函式。</p>
-<p>而建構子函示 <code>.prototype</code> 可以查看透過建構子函式所建立的object的prototype。</p>
-<h3 id="如何建立一個instance"><a href="#如何建立一個instance" class="headerlink" title="如何建立一個instance"></a>如何建立一個instance</h3><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="title class_">Person</span>() &#123;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">name</span> = <span class="string">&#x27;Andy&#x27;</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="title class_">Person</span>.<span class="property"><span class="keyword">prototype</span></span>.<span class="property">sayHello</span> = <span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;Hello, I am &#x27;</span> + <span class="variable language_">this</span>.<span class="property">name</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> person1 = <span class="keyword">new</span> <span class="title class_">Person</span>();</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(person1.<span class="property">__proto__</span>); </span><br><span class="line"><span class="comment">// 透過__proto__可以得到Person.prototype</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title class_">Person</span>.<span class="property"><span class="keyword">prototype</span></span>);</span><br><span class="line"><span class="comment">// 可以得到由Person()定義的prototype</span></span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p>可以透過這種方法達到建立多個如person的實例，例如：可以對各個object 實例的name設定不同人名，另外還可以對其prototype設定method，這樣多個實例被創建時就可以使用同一個method，而不用在建構函式中定義method，造成在建立instance時創建多個相同的method。</p>
-<h3 id="new-一個instance的流程"><a href="#new-一個instance的流程" class="headerlink" title="new 一個instance的流程"></a>new 一個instance的流程</h3><ol>
-<li>用new 建立一個空的object</li>
-<li>constructor function(建構子函式)被執行時會把這個函式的this及constructor指向到步驟一的空object中。</li>
-<li>這樣可以在新的object中看到被設定在constructor function中的this.name &#x3D; ‘Andy’(屬性)</li>
-<li>而這個該object會被linked到constructor function的prototype。</li>
-<li>當建立好之後，可以透過 <code>.__proto__</code> 取得這個object的prototype。</li>
-</ol>
-<h3 id="prototype-Chain"><a href="#prototype-Chain" class="headerlink" title="prototype Chain"></a>prototype Chain</h3><p>prototype chain是一個object的連結，在object中可以透過<code>__proto__</code>取得，而該object可以一路透過 <code>__proto__</code> 取得其prototype，而其可以繼承多層的prototype，可以一路透過 <code>__proto___</code> 取得每一層的prototype，並且可以使用其繼承的method。</p>
-<p>以Array來說，當建立一個array之後，可以透過<code>__proto__</code>取得到Array.prototype，然後透過<code>__proto__</code>取得到Object.prototype，最後透過<code>__proto__</code>取得到null，所以可以透過<code>__proto__</code>取得到Object.prototype的所有method。</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> arr = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>];</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(arr.<span class="property">__proto__</span>);</span><br><span class="line"><span class="comment">// 可以透過__proto__取得到Array.prototype</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title class_">Array</span>.<span class="property"><span class="keyword">prototype</span></span>);</span><br><span class="line"><span class="comment">// 可以透過__proto__取得到Object.prototype</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title class_">Object</span>.<span class="property"><span class="keyword">prototype</span></span>);</span><br><span class="line"><span class="comment">// 可以透過__proto__取得到null</span></span><br></pre></td></tr></table></figure>
-
-<p>以Person的例子來說，可以透過<code>__proto__</code>取得到Person.prototype，然後透過多一層<code>__proto__</code>取得到Object.prototype，最後透過<code>__proto__</code>取得到null，所以可以透過<code>__proto__</code>取得到Object.prototype的所有method。</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> person = <span class="keyword">new</span> <span class="title class_">Person</span>();</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(person.<span class="property">__proto__</span>);</span><br><span class="line"><span class="comment">// 可以透過__proto__取得到Person.prototype</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(person.<span class="property">__proto__</span>.<span class="property">__proto__</span>);</span><br><span class="line"><span class="comment">// 可以透過__proto__取得到Object.prototype</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(person.<span class="property">__proto__</span>.<span class="property">__proto__</span>.<span class="property">__proto__</span>);</span><br><span class="line"><span class="comment">// 可以透過__proto__取得到null</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title class_">Person</span>.<span class="property"><span class="keyword">prototype</span></span>);</span><br><span class="line"><span class="comment">// 可以透過 .prototype 取得到Person.prototype</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title class_">Object</span>.<span class="property"><span class="keyword">prototype</span></span>);</span><br></pre></td></tr></table></figure>
-<p>所以這些object都是以prototype chain的方式來繼承的，所以可以透過<code>__proto__</code>取得Object.prototype的所有method。</p>
-<h4 id="參考資料"><a href="#參考資料" class="headerlink" title="參考資料"></a>參考資料</h4><p><a href="https://hackmd.io/@peggyted0129/r1lNDojWu">JS 核心 – 使用建構式自定義原型</a><br><a href="https://pjchender.blogspot.com/2016/06/javascriptfunction-constructornew.html">[筆記] 談談 JavaScript 中的 function constructor 和關鍵字 new</a></p>
 ]]></content>
       <categories>
         <category>frontend_interview</category>
@@ -600,15 +520,76 @@
       </tags>
   </entry>
   <entry>
-    <title>Javascript建構子函式繼承及ES6的class方式的繼承</title>
-    <url>/andy-tech-note/Javascript-constructor-function-inheritance_es6_class/</url>
-    <content><![CDATA[<h2 id="如何以建構函式的方式達到繼承"><a href="#如何以建構函式的方式達到繼承" class="headerlink" title="如何以建構函式的方式達到繼承"></a>如何以建構函式的方式達到繼承</h2><p>繼承在OOP物件導向的語言中很常見，而在Javascript中並不是真正的物件導向的語言，所以在Javascript中繼承的方式就不一樣，這裡用建構子函式的方式來實作繼承。</p>
-<h3 id="建構子函式的繼承"><a href="#建構子函式的繼承" class="headerlink" title="建構子函式的繼承"></a>建構子函式的繼承</h3><p>在Javascript中，我們可以用建構子函式的方式達到繼承，如果現在有一個Vehicle的父建構函式(父類別)而後我要建立一個Car子建構函式(子類別)，而若是我希望繼承Vehicle裡面的property，可以如下操作：</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">//建立父建構函式及其prototype</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">Vehicle</span>(<span class="params">type, length, width</span>) &#123;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">type</span> =  type;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">length</span> = length;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">width</span> = width;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 建立一個method</span></span><br><span class="line"><span class="title class_">Vehicle</span>.<span class="property"><span class="keyword">prototype</span></span>.<span class="property">start</span> = <span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;start&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//繼承Vehicle的prototype</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">Car</span>(<span class="params">type, length, width, color</span>) &#123;</span><br><span class="line">    <span class="title class_">Vehicle</span>.<span class="title function_">call</span>(<span class="variable language_">this</span>, type, length, width);</span><br><span class="line">    <span class="comment">//把Vehicle的prototype的property繼承到Car的prototype constructor中</span></span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">color</span> = color;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//建立一個與Vehicle相同的prototype給Car.prototype</span></span><br><span class="line"><span class="title class_">Car</span>.<span class="property"><span class="keyword">prototype</span></span> = <span class="title class_">Object</span>.<span class="title function_">create</span>(<span class="title class_">Vehicle</span>.<span class="property"><span class="keyword">prototype</span></span>); </span><br><span class="line"></span><br><span class="line"><span class="comment">// 但因為其constructor是希望使用Car自己的也就是this.color這些自訂的property，所以我們要把Car.prototype.constructor指向Car  </span></span><br><span class="line"><span class="title class_">Car</span>.<span class="property"><span class="keyword">prototype</span></span>.<span class="property">constructor</span> = <span class="title class_">Car</span>;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//建立一個Car的instance</span></span><br><span class="line"><span class="keyword">const</span> myCar = <span class="keyword">new</span> <span class="title class_">Car</span>(<span class="string">&quot;BMW&quot;</span>, <span class="number">150</span>, <span class="number">100</span>, <span class="string">&quot;red&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//使用繼承vehicle的method  </span></span><br><span class="line">myCar.<span class="title function_">start</span>();</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(myCar.<span class="property">color</span>);</span><br><span class="line"><span class="comment">// red</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 而若是要在Car新增method，可以這沒做</span></span><br><span class="line"><span class="title class_">Car</span>.<span class="property"><span class="keyword">prototype</span></span>.<span class="property">stop</span> = <span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;stop&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">myCar.<span class="title function_">stop</span>();</span><br><span class="line"><span class="comment">// stop</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+    <title>建構子函式constructor_function</title>
+    <url>/andy-tech-note/constructor-function/</url>
+    <content><![CDATA[<h3 id="什麼是-constructor-function建構子函式"><a href="#什麼是-constructor-function建構子函式" class="headerlink" title="什麼是 constructor function建構子函式"></a>什麼是 constructor function建構子函式</h3><p>建構子函式是一個由普通函式與new關鍵字組合而成的函式，而該函式就像是一個藍圖一樣，要透過new關鍵字才能建立一個真正的instance(object)。<br>其主要用途是用於建立物件，而非一般的函式。</p>
+<p>而建構子函示 <code>.prototype</code> 可以查看透過建構子函式所建立的object的prototype。</p>
+<h3 id="如何建立一個instance"><a href="#如何建立一個instance" class="headerlink" title="如何建立一個instance"></a>如何建立一個instance</h3><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="title class_">Person</span>() &#123;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">name</span> = <span class="string">&#x27;Andy&#x27;</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="title class_">Person</span>.<span class="property"><span class="keyword">prototype</span></span>.<span class="property">sayHello</span> = <span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;Hello, I am &#x27;</span> + <span class="variable language_">this</span>.<span class="property">name</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> person1 = <span class="keyword">new</span> <span class="title class_">Person</span>();</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(person1.<span class="property">__proto__</span>); </span><br><span class="line"><span class="comment">// 透過__proto__可以得到Person.prototype</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title class_">Person</span>.<span class="property"><span class="keyword">prototype</span></span>);</span><br><span class="line"><span class="comment">// 可以得到由Person()定義的prototype</span></span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>可以透過這種方法達到建立多個如person的實例，例如：可以對各個object 實例的name設定不同人名，另外還可以對其prototype設定method，這樣多個實例被創建時就可以使用同一個method，而不用在建構函式中定義method，造成在建立instance時創建多個相同的method。</p>
+<h3 id="new-一個instance的流程"><a href="#new-一個instance的流程" class="headerlink" title="new 一個instance的流程"></a>new 一個instance的流程</h3><ol>
+<li>用new 建立一個空的object</li>
+<li>constructor function(建構子函式)被執行時會把這個函式的this及constructor指向到步驟一的空object中。</li>
+<li>這樣可以在新的object中看到被設定在constructor function中的this.name &#x3D; ‘Andy’(屬性)</li>
+<li>而這個該object會被linked到constructor function的prototype。</li>
+<li>當建立好之後，可以透過 <code>.__proto__</code> 取得這個object的prototype。</li>
+</ol>
+<h3 id="prototype-Chain"><a href="#prototype-Chain" class="headerlink" title="prototype Chain"></a>prototype Chain</h3><p>prototype chain是一個object的連結，在object中可以透過<code>__proto__</code>取得，而該object可以一路透過 <code>__proto__</code> 取得其prototype，而其可以繼承多層的prototype，可以一路透過 <code>__proto___</code> 取得每一層的prototype，並且可以使用其繼承的method。</p>
+<p>以Array來說，當建立一個array之後，可以透過<code>__proto__</code>取得到Array.prototype，然後透過<code>__proto__</code>取得到Object.prototype，最後透過<code>__proto__</code>取得到null，所以可以透過<code>__proto__</code>取得到Object.prototype的所有method。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> arr = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>];</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(arr.<span class="property">__proto__</span>);</span><br><span class="line"><span class="comment">// 可以透過__proto__取得到Array.prototype</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title class_">Array</span>.<span class="property"><span class="keyword">prototype</span></span>);</span><br><span class="line"><span class="comment">// 可以透過__proto__取得到Object.prototype</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title class_">Object</span>.<span class="property"><span class="keyword">prototype</span></span>);</span><br><span class="line"><span class="comment">// 可以透過__proto__取得到null</span></span><br></pre></td></tr></table></figure>
 
-<h3 id="改以ES6的class方式達到繼承"><a href="#改以ES6的class方式達到繼承" class="headerlink" title="改以ES6的class方式達到繼承"></a>改以ES6的class方式達到繼承</h3><p>這樣就清晰易懂的多了，但是Class只是Javascript的語法糖，讓使用者可以更容易實現繼承，但其底層的原理還是以prototype chain的方式達到繼承。範例如下：</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Vehicle</span> &#123;</span><br><span class="line">  <span class="title function_">constructor</span>(<span class="params">type, length, width</span>) &#123;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">type</span> = type;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">length</span> = length;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">width</span> = width;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="title function_">start</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;start&quot;</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Car</span> <span class="keyword">extends</span> <span class="title class_ inherited__">Vehicle</span> &#123;</span><br><span class="line">  <span class="title function_">constructor</span>(<span class="params">type, length, width, color</span>) &#123;</span><br><span class="line">    <span class="variable language_">super</span>(type, length, width); <span class="comment">// 把vehicle的constructor繼承過來並且把this指向Car</span></span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">color</span> = color;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="title function_">stop</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;stop&quot;</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> myCar = <span class="keyword">new</span> <span class="title class_">Car</span>(<span class="string">&quot;BMW&quot;</span>, <span class="number">150</span>, <span class="number">100</span>, <span class="string">&quot;red&quot;</span>);</span><br><span class="line"></span><br><span class="line">myCar.<span class="title function_">start</span>();</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(myCar.<span class="property">color</span>); <span class="comment">// red</span></span><br><span class="line">myCar.<span class="title function_">stop</span>();</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>以Person的例子來說，可以透過<code>__proto__</code>取得到Person.prototype，然後透過多一層<code>__proto__</code>取得到Object.prototype，最後透過<code>__proto__</code>取得到null，所以可以透過<code>__proto__</code>取得到Object.prototype的所有method。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> person = <span class="keyword">new</span> <span class="title class_">Person</span>();</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(person.<span class="property">__proto__</span>);</span><br><span class="line"><span class="comment">// 可以透過__proto__取得到Person.prototype</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(person.<span class="property">__proto__</span>.<span class="property">__proto__</span>);</span><br><span class="line"><span class="comment">// 可以透過__proto__取得到Object.prototype</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(person.<span class="property">__proto__</span>.<span class="property">__proto__</span>.<span class="property">__proto__</span>);</span><br><span class="line"><span class="comment">// 可以透過__proto__取得到null</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title class_">Person</span>.<span class="property"><span class="keyword">prototype</span></span>);</span><br><span class="line"><span class="comment">// 可以透過 .prototype 取得到Person.prototype</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title class_">Object</span>.<span class="property"><span class="keyword">prototype</span></span>);</span><br></pre></td></tr></table></figure>
+<p>所以這些object都是以prototype chain的方式來繼承的，所以可以透過<code>__proto__</code>取得Object.prototype的所有method。</p>
+<h4 id="參考資料"><a href="#參考資料" class="headerlink" title="參考資料"></a>參考資料</h4><p><a href="https://hackmd.io/@peggyted0129/r1lNDojWu">JS 核心 – 使用建構式自定義原型</a><br><a href="https://pjchender.blogspot.com/2016/06/javascriptfunction-constructornew.html">[筆記] 談談 JavaScript 中的 function constructor 和關鍵字 new</a></p>
+]]></content>
+      <categories>
+        <category>frontend_interview</category>
+      </categories>
+      <tags>
+        <tag>Javascript</tag>
+        <tag>Frontend</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Javascript的Map及Set</title>
+    <url>/andy-tech-note/Javascript_Map_Set/</url>
+    <content><![CDATA[<h2 id="Set是什麼？"><a href="#Set是什麼？" class="headerlink" title="Set是什麼？"></a>Set是什麼？</h2><p>Set 是一個構造函式可以建構一個如Array的資料集合，有個特別的地方是，如果傳入的值相同，會把多餘的值移除只剩下一個。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> array1 = [<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>,<span class="number">8</span>,<span class="number">9</span>,<span class="number">10</span>]</span><br><span class="line"><span class="keyword">const</span> array2 = [<span class="number">9</span>,<span class="number">10</span>,<span class="number">11</span>,<span class="number">12</span>,<span class="number">13</span>,<span class="number">14</span>] </span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> set1 = <span class="keyword">new</span> <span class="title class_">Set</span>([...array1,...array2])</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(set1)</span><br><span class="line"><span class="comment">// Set(5,6,7,8,9,10,11,12,13,14)</span></span><br></pre></td></tr></table></figure>
 
+<p>用Set建立好的資料集合要透過他的method來處理，常見的有<code>add</code>, <code>delete</code>, <code>has</code>，其他的可以參考<a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Set/Set">MDN</a>的文件。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">set1.<span class="title function_">add</span>(<span class="number">15</span>);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(set1)</span><br><span class="line"><span class="comment">// Set(5,6,7,8,9,10,11,12,13,14,15)</span></span><br><span class="line"></span><br><span class="line">set1.<span class="title function_">delete</span>(<span class="number">9</span>)</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(set1)</span><br><span class="line"><span class="comment">// Set(5,6,7,8,10,11,12,13,14,15)</span></span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(set1.<span class="title function_">has</span>(<span class="number">5</span>))</span><br><span class="line"><span class="comment">// true</span></span><br><span class="line">set1.<span class="title function_">has</span>(<span class="number">9</span>)</span><br><span class="line"><span class="comment">// false</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="Map是什麼？"><a href="#Map是什麼？" class="headerlink" title="Map是什麼？"></a>Map是什麼？</h2><p>Map 也是一個構建函式，可以建構一個如Object的資料集合，但Map的key值與原始的object不同，原始的object的key只能是字串，而Map可以是任何東西，另外Map的key&#x2F;value是有順序性且可以做迭代處理的，在Object中若要做迭代，得透過<code>Object.keys</code>或是<code>Object.entries</code>搭配<code>forEach</code>或是<code>for of</code>之類的方法來遍歷所有元素，而且該順序不一定與用戶放進去的順序相同。</p>
+<p>常見的有<code>entries</code>, <code>keys</code>, <code>values</code>，其他的可以參考<a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Map/Map">MDN</a>的文件。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> map1 = <span class="keyword">new</span> <span class="title class_">Map</span>([</span><br><span class="line">  [<span class="string">&#x27;a&#x27;</span>, <span class="number">1</span>],</span><br><span class="line">  [<span class="string">&#x27;b&#x27;</span>, <span class="number">2</span>],</span><br><span class="line">  [<span class="string">&#x27;c&#x27;</span>, <span class="number">3</span>],</span><br><span class="line">  [<span class="string">&#x27;d&#x27;</span>, <span class="number">4</span>],</span><br><span class="line">  [<span class="string">&#x27;e&#x27;</span>, <span class="number">5</span>],</span><br><span class="line">  [<span class="string">&#x27;f&#x27;</span>, <span class="number">6</span>],</span><br><span class="line">])</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(map1.<span class="title function_">values</span>().<span class="title function_">forEach</span>(<span class="function"><span class="params">item</span> =&gt;</span> <span class="variable language_">console</span>.<span class="title function_">log</span>(item)))</span><br><span class="line"><span class="comment">// 印出所有的value值</span></span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(map1.<span class="title function_">keys</span>().<span class="title function_">forEach</span>(<span class="function"><span class="params">item</span> =&gt;</span> <span class="variable language_">console</span>.<span class="title function_">log</span>(item)))</span><br><span class="line"><span class="comment">// 印出所有的key值</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">const</span> [key,value] <span class="keyword">of</span> map1.<span class="title function_">entries</span>())&#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(key,value)</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 印出所有的key/value</span></span><br><span class="line"></span><br><span class="line">map1.<span class="title function_">forEach</span>(<span class="function">(<span class="params">i, key</span>)=&gt;</span> &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(i, key)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>用法實在很多元，有興趣的可以去MDN文件看看</p>
+]]></content>
+      <categories>
+        <category>frontend_interview</category>
+      </categories>
+      <tags>
+        <tag>Javascript</tag>
+        <tag>Frontend</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Javascript的map,filter,reduce</title>
+    <url>/andy-tech-note/Javascript%E7%9A%84map-filter-reduce/</url>
+    <content><![CDATA[<h2 id="什麼是map-filter-reduce"><a href="#什麼是map-filter-reduce" class="headerlink" title="什麼是map, filter, reduce"></a>什麼是map, filter, reduce</h2><p>這三個東西都是ES5推出的Array method，的可以對Array裡面的元素做一些操作。</p>
+<h3 id="map"><a href="#map" class="headerlink" title="map"></a>map</h3><ul>
+<li>會回傳一個新的array</li>
+<li>在map裡面用callback function對每個element 逐一做操作後回傳</li>
+</ul>
+<p>map不會影響到原先的array，也不必用for之類的迴圈去一個一個處理後存回去，更多資訊可以查看<a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array/map">MDN</a></p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> arr = [<span class="number">1</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>];</span><br><span class="line"><span class="keyword">const</span> result = arr.<span class="title function_">map</span>(<span class="function">(<span class="params">item</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> item * <span class="number">2</span>;</span><br><span class="line">&#125;);</span><br><span class="line"><span class="comment">// result = [2,6,8,10]</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="filter"><a href="#filter" class="headerlink" title="filter"></a>filter</h3><p>可以用來過濾不符合callback function判斷式的元素，也就是在callback function中需要return true or false來決定是否要保留這個元素。<br>這個也是會回傳一個新的array，查看<a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array/filter">MDN</a></p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> arr = [<span class="number">1</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>];</span><br><span class="line"><span class="keyword">const</span> result = arr.<span class="title function_">filter</span>(<span class="function">(<span class="params">item</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> item &lt; <span class="number">4</span>;</span><br><span class="line">&#125;);</span><br><span class="line"><span class="comment">// result = [1,3]</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="reduce"><a href="#reduce" class="headerlink" title="reduce"></a>reduce</h3><p>可以傳入一個acc，然後在callback function中會依次回傳acc和每個元素的一些操作，最後會回傳最終的value。<br>也就是每回合把acc和每個元素的值相加，最後就會回傳最終的value，而若是在reduce最後面一個參數帶上init value，就會被帶到acc當作初始值做累加。<br>參考 <a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce">MDN</a></p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> arr = [<span class="number">1</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>];</span><br><span class="line"><span class="keyword">const</span> result = arr.<span class="title function_">reduce</span>(<span class="function">(<span class="params">acc, item</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> acc + item;</span><br><span class="line">&#125;,<span class="number">0</span>)</span><br><span class="line"><span class="comment">// result = 15</span></span><br></pre></td></tr></table></figure>
+<p>item為arr中的每個元素，acc為reduce的第一個參數，假設想要把所有的值加起來，就可以用reduce來做，把每次值都累加到acc上，然後回傳最終值。</p>
 ]]></content>
       <categories>
         <category>frontend_interview</category>
@@ -666,6 +647,33 @@
       </tags>
   </entry>
   <entry>
+    <title>Javascript 的 hoisting關於var,let,const and function</title>
+    <url>/andy-tech-note/hoisting-about-var-let-const-function/</url>
+    <content><![CDATA[<h2 id="什麼是Hoisting-提升"><a href="#什麼是Hoisting-提升" class="headerlink" title="什麼是Hoisting(提升)"></a>什麼是Hoisting(提升)</h2><p>當js在編譯時會把變數宣告以及函式宣告提升到該<code>作用域</code>的最頂端，但實際上不會去改動程式碼，有時候在撰寫程式碼時有沒有發現雖然你的function宣告在後面，卻在前面使用function而不會跳錯，就是這個原因</p>
+<h3 id="變數-var-let-const"><a href="#變數-var-let-const" class="headerlink" title="變數 var, let, const"></a>變數 var, let, const</h3><p>在var宣告變數及使用變數時如果寫成以下狀況，變數a會被提升，在這情況a雖然可以被印出，但不會被賦值，所以會印出undefined。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">exampleFunction</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(a); <span class="comment">// undefined</span></span><br><span class="line">  <span class="keyword">var</span> a = <span class="number">5</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="title function_">exampleFunction</span>();</span><br></pre></td></tr></table></figure>
+
+<p>let, const，若是這樣寫則是會跳出錯誤，<code>Uncaught ReferenceError: Cannot access &#39;a&#39; before initialization</code>，告訴你在尚未初始化前不能使用該變數，該變數會是在<code>暫時死區</code> (temporal dead zone)直到該變數被宣告為止。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">exampleFunction</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(a);</span><br><span class="line">  <span class="keyword">let</span> a = <span class="number">5</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="title function_">exampleFunction</span>();</span><br></pre></td></tr></table></figure>
+
+<h3 id="Function提升"><a href="#Function提升" class="headerlink" title="Function提升"></a>Function提升</h3><p>這裡要分Declaration ,Expressions, Arrow Functions 三種<br>在提升的部分，只有Declaration Function 才會被提升，Expressions Function 和 Arrow Function 都不會被提升，所以哪天在寫程式時發現寫在後面的function無法被前面程式碼使用，通常就是這原因，在js編譯時沒有把它提升上來。</p>
+<p>Declaration Function 如下：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="title function_">exampleFunction</span>()</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">exampleFunction</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">let</span> a = <span class="number">5</span>;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(a);</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Expressions Function 如下：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="title function_">exampleFunction</span>()</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> exampleFunction = <span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">let</span> a = <span class="number">5</span>;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(a);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Arrow Function 如下：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="title function_">exampleFunction</span>()</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="title function_">exampleFunction</span> = (<span class="params"></span>) =&gt; &#123;</span><br><span class="line">  <span class="keyword">let</span> a = <span class="number">5</span>;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(a);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>frontend_interview</category>
+      </categories>
+      <tags>
+        <tag>Javascript</tag>
+        <tag>Frontend</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Javascript事件冒泡Event Bubbling</title>
     <url>/andy-tech-note/javascript-event-bubbling/</url>
     <content><![CDATA[<h2 id="事件冒泡Event-Bubbling"><a href="#事件冒泡Event-Bubbling" class="headerlink" title="事件冒泡Event Bubbling"></a>事件冒泡Event Bubbling</h2><p>事件冒泡是DOM中對事件處理的一種機制。當在DOM中的某個元素（例如，一個按鈕）發生事件（如點擊）時，這個事件不僅在該元素上觸發，還會沿著DOM樹向上冒泡，依次觸發其父元素、父元素的父元素，一直到最頂層的document物件，這一路上的元素都可以收到事件觸發。</p>
@@ -699,24 +707,16 @@
       </tags>
   </entry>
   <entry>
-    <title>Javascript 的 hoisting關於var,let,const and function</title>
-    <url>/andy-tech-note/hoisting-about-var-let-const-function/</url>
-    <content><![CDATA[<h2 id="什麼是Hoisting-提升"><a href="#什麼是Hoisting-提升" class="headerlink" title="什麼是Hoisting(提升)"></a>什麼是Hoisting(提升)</h2><p>當js在編譯時會把變數宣告以及函式宣告提升到該<code>作用域</code>的最頂端，但實際上不會去改動程式碼，有時候在撰寫程式碼時有沒有發現雖然你的function宣告在後面，卻在前面使用function而不會跳錯，就是這個原因</p>
-<h3 id="變數-var-let-const"><a href="#變數-var-let-const" class="headerlink" title="變數 var, let, const"></a>變數 var, let, const</h3><p>在var宣告變數及使用變數時如果寫成以下狀況，變數a會被提升，在這情況a雖然可以被印出，但不會被賦值，所以會印出undefined。</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">exampleFunction</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(a); <span class="comment">// undefined</span></span><br><span class="line">  <span class="keyword">var</span> a = <span class="number">5</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="title function_">exampleFunction</span>();</span><br></pre></td></tr></table></figure>
+    <title>Javascript建構子函式繼承及ES6的class方式的繼承</title>
+    <url>/andy-tech-note/Javascript-constructor-function-inheritance_es6_class/</url>
+    <content><![CDATA[<h2 id="如何以建構函式的方式達到繼承"><a href="#如何以建構函式的方式達到繼承" class="headerlink" title="如何以建構函式的方式達到繼承"></a>如何以建構函式的方式達到繼承</h2><p>繼承在OOP物件導向的語言中很常見，而在Javascript中並不是真正的物件導向的語言，所以在Javascript中繼承的方式就不一樣，這裡用建構子函式的方式來實作繼承。</p>
+<h3 id="建構子函式的繼承"><a href="#建構子函式的繼承" class="headerlink" title="建構子函式的繼承"></a>建構子函式的繼承</h3><p>在Javascript中，我們可以用建構子函式的方式達到繼承，如果現在有一個Vehicle的父建構函式(父類別)而後我要建立一個Car子建構函式(子類別)，而若是我希望繼承Vehicle裡面的property，可以如下操作：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">//建立父建構函式及其prototype</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">Vehicle</span>(<span class="params">type, length, width</span>) &#123;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">type</span> =  type;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">length</span> = length;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">width</span> = width;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 建立一個method</span></span><br><span class="line"><span class="title class_">Vehicle</span>.<span class="property"><span class="keyword">prototype</span></span>.<span class="property">start</span> = <span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;start&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//繼承Vehicle的prototype</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">Car</span>(<span class="params">type, length, width, color</span>) &#123;</span><br><span class="line">    <span class="title class_">Vehicle</span>.<span class="title function_">call</span>(<span class="variable language_">this</span>, type, length, width);</span><br><span class="line">    <span class="comment">//把Vehicle的prototype的property繼承到Car的prototype constructor中</span></span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">color</span> = color;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//建立一個與Vehicle相同的prototype給Car.prototype</span></span><br><span class="line"><span class="title class_">Car</span>.<span class="property"><span class="keyword">prototype</span></span> = <span class="title class_">Object</span>.<span class="title function_">create</span>(<span class="title class_">Vehicle</span>.<span class="property"><span class="keyword">prototype</span></span>); </span><br><span class="line"></span><br><span class="line"><span class="comment">// 但因為其constructor是希望使用Car自己的也就是this.color這些自訂的property，所以我們要把Car.prototype.constructor指向Car  </span></span><br><span class="line"><span class="title class_">Car</span>.<span class="property"><span class="keyword">prototype</span></span>.<span class="property">constructor</span> = <span class="title class_">Car</span>;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//建立一個Car的instance</span></span><br><span class="line"><span class="keyword">const</span> myCar = <span class="keyword">new</span> <span class="title class_">Car</span>(<span class="string">&quot;BMW&quot;</span>, <span class="number">150</span>, <span class="number">100</span>, <span class="string">&quot;red&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//使用繼承vehicle的method  </span></span><br><span class="line">myCar.<span class="title function_">start</span>();</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(myCar.<span class="property">color</span>);</span><br><span class="line"><span class="comment">// red</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 而若是要在Car新增method，可以這沒做</span></span><br><span class="line"><span class="title class_">Car</span>.<span class="property"><span class="keyword">prototype</span></span>.<span class="property">stop</span> = <span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;stop&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">myCar.<span class="title function_">stop</span>();</span><br><span class="line"><span class="comment">// stop</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
-<p>let, const，若是這樣寫則是會跳出錯誤，<code>Uncaught ReferenceError: Cannot access &#39;a&#39; before initialization</code>，告訴你在尚未初始化前不能使用該變數，該變數會是在<code>暫時死區</code> (temporal dead zone)直到該變數被宣告為止。</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">exampleFunction</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(a);</span><br><span class="line">  <span class="keyword">let</span> a = <span class="number">5</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="title function_">exampleFunction</span>();</span><br></pre></td></tr></table></figure>
+<h3 id="改以ES6的class方式達到繼承"><a href="#改以ES6的class方式達到繼承" class="headerlink" title="改以ES6的class方式達到繼承"></a>改以ES6的class方式達到繼承</h3><p>這樣就清晰易懂的多了，但是Class只是Javascript的語法糖，讓使用者可以更容易實現繼承，但其底層的原理還是以prototype chain的方式達到繼承。範例如下：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Vehicle</span> &#123;</span><br><span class="line">  <span class="title function_">constructor</span>(<span class="params">type, length, width</span>) &#123;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">type</span> = type;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">length</span> = length;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">width</span> = width;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="title function_">start</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;start&quot;</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Car</span> <span class="keyword">extends</span> <span class="title class_ inherited__">Vehicle</span> &#123;</span><br><span class="line">  <span class="title function_">constructor</span>(<span class="params">type, length, width, color</span>) &#123;</span><br><span class="line">    <span class="variable language_">super</span>(type, length, width); <span class="comment">// 把vehicle的constructor繼承過來並且把this指向Car</span></span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">color</span> = color;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="title function_">stop</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;stop&quot;</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> myCar = <span class="keyword">new</span> <span class="title class_">Car</span>(<span class="string">&quot;BMW&quot;</span>, <span class="number">150</span>, <span class="number">100</span>, <span class="string">&quot;red&quot;</span>);</span><br><span class="line"></span><br><span class="line">myCar.<span class="title function_">start</span>();</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(myCar.<span class="property">color</span>); <span class="comment">// red</span></span><br><span class="line">myCar.<span class="title function_">stop</span>();</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
-<h3 id="Function提升"><a href="#Function提升" class="headerlink" title="Function提升"></a>Function提升</h3><p>這裡要分Declaration ,Expressions, Arrow Functions 三種<br>在提升的部分，只有Declaration Function 才會被提升，Expressions Function 和 Arrow Function 都不會被提升，所以哪天在寫程式時發現寫在後面的function無法被前面程式碼使用，通常就是這原因，在js編譯時沒有把它提升上來。</p>
-<p>Declaration Function 如下：</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="title function_">exampleFunction</span>()</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">exampleFunction</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">let</span> a = <span class="number">5</span>;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(a);</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>Expressions Function 如下：</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="title function_">exampleFunction</span>()</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> exampleFunction = <span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">let</span> a = <span class="number">5</span>;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(a);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>Arrow Function 如下：</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="title function_">exampleFunction</span>()</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="title function_">exampleFunction</span> = (<span class="params"></span>) =&gt; &#123;</span><br><span class="line">  <span class="keyword">let</span> a = <span class="number">5</span>;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(a);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+]]></content>
       <categories>
         <category>frontend_interview</category>
       </categories>

@@ -459,23 +459,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Wordpress當後端傳文章內容到前端(Vue)</title>
-    <url>/andy-tech-note/wordpress%E7%95%B6%E5%BE%8C%E7%AB%AF%E5%82%B3%E6%96%87%E7%AB%A0%E5%85%A7%E5%AE%B9%E5%88%B0%E5%89%8D%E7%AB%AF-Vue/</url>
-    <content><![CDATA[<h3 id="以Wordpress為後端傳資料到前端"><a href="#以Wordpress為後端傳資料到前端" class="headerlink" title="以Wordpress為後端傳資料到前端"></a>以Wordpress為後端傳資料到前端</h3><p>wordpress 為後端，前端向後端取得wp中的文章時，我希望直接取得可以呈現的HTML格式，試過使用 WP 中的 function <code>get_post_field</code>，雖然可以取得HTML，但是HTML結構與真正在以WP當作前端呈現的文章的html有些出入，也就是在WP呈現頁面前會對原始的html做特殊格式化，這就要透過 apply_filters   ‘the_content’ 去把取得的html做格式化，這樣才會與wp呈現出來的樣式一樣。</p>
-<p>範例如下</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">apply_filters(&#x27;the_content&#x27;, get_post_field(&#x27;post_content&#x27;, $latest_id))</span><br></pre></td></tr></table></figure>
-
-<p>如此一來在 Vue 中就可以透過 v-html 把取得的html呈現在前端。</p>
-]]></content>
-      <categories>
-        <category>Wordpress</category>
-      </categories>
-      <tags>
-        <tag>Wordpress</tag>
-        <tag>Frontend</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Javascript中&lt;script&gt;的async與defer</title>
     <url>/andy-tech-note/js-script-async-defer/</url>
     <content><![CDATA[<h2 id="什麼是async-x2F-defer"><a href="#什麼是async-x2F-defer" class="headerlink" title="什麼是async&#x2F;defer"></a>什麼是async&#x2F;defer</h2><h3 id="HTML做些什麼事？"><a href="#HTML做些什麼事？" class="headerlink" title="HTML做些什麼事？"></a>HTML做些什麼事？</h3><p>在瀏覽器執行解析網頁時如果碰到<code>&lt;script&gt;</code>標籤，會先執行該script中的行為，而如果需要下載檔案則會執行下載，而此時若是執行下載時，整個網頁的解析就會停下來，等到檔案被下載後才會繼續解析，這樣有一個很大的問題，也就是當使用者瀏覽網頁時就會有些元素不是馬上出現在使用者面前，就是因為在等待JS檔案的下載，這就有關UX了。</p>
@@ -489,6 +472,23 @@
       </categories>
       <tags>
         <tag>Javascript</tag>
+        <tag>Frontend</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Wordpress當後端傳文章內容到前端(Vue)</title>
+    <url>/andy-tech-note/wordpress%E7%95%B6%E5%BE%8C%E7%AB%AF%E5%82%B3%E6%96%87%E7%AB%A0%E5%85%A7%E5%AE%B9%E5%88%B0%E5%89%8D%E7%AB%AF-Vue/</url>
+    <content><![CDATA[<h3 id="以Wordpress為後端傳資料到前端"><a href="#以Wordpress為後端傳資料到前端" class="headerlink" title="以Wordpress為後端傳資料到前端"></a>以Wordpress為後端傳資料到前端</h3><p>wordpress 為後端，前端向後端取得wp中的文章時，我希望直接取得可以呈現的HTML格式，試過使用 WP 中的 function <code>get_post_field</code>，雖然可以取得HTML，但是HTML結構與真正在以WP當作前端呈現的文章的html有些出入，也就是在WP呈現頁面前會對原始的html做特殊格式化，這就要透過 apply_filters   ‘the_content’ 去把取得的html做格式化，這樣才會與wp呈現出來的樣式一樣。</p>
+<p>範例如下</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">apply_filters(&#x27;the_content&#x27;, get_post_field(&#x27;post_content&#x27;, $latest_id))</span><br></pre></td></tr></table></figure>
+
+<p>如此一來在 Vue 中就可以透過 v-html 把取得的html呈現在前端。</p>
+]]></content>
+      <categories>
+        <category>Wordpress</category>
+      </categories>
+      <tags>
+        <tag>Wordpress</tag>
         <tag>Frontend</tag>
       </tags>
   </entry>
@@ -666,24 +666,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Javascript中使用structuredClone做深拷貝</title>
-    <url>/andy-tech-note/structuredClone-deep-clone/</url>
-    <content><![CDATA[<h2 id="深拷貝是什麼？"><a href="#深拷貝是什麼？" class="headerlink" title="深拷貝是什麼？"></a>深拷貝是什麼？</h2><p>先前有寫過如何處理深拷貝，深拷貝是要幹嘛？<br>簡單的說就是當有個物件他裡面有巢狀結構，不只有一層，如果直接以變數assign的方式賦值給一個新的變數，這時候在第二層開始的元素會是指向原先的物件，所以當使用者在對新的物件第二層的元素操作時就會修改到舊有的物件的值，這時候就需要深拷貝來處理，詳細請參閱👇</p>
-<p><a href="https://crazycjh.github.io/andy-tech-note/deep-copy-Shallow-copy/">在JS中複製object-深拷貝&#x2F;淺拷貝</a>。</p>
-<h3 id="進階版structuredClone"><a href="#進階版structuredClone" class="headerlink" title="進階版structuredClone"></a>進階版structuredClone</h3><p>先前都是使用JSON.stringify &amp; JSON.parse來組合處理，現在只要透過structuredClone來處理，這個有什麼差異呢？<br>舊有的方法只能準確地處理 primitive Value，若是碰到Map, Set 非primitive的物件就會被變成空object{}，也就會造成資料的不完整。</p>
-<p>可以看以下程式碼 或是<a href="https://codepen.io/jean-hao-chen/pen/KKYxPOe">玩玩看</a></p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> obj = &#123;</span><br><span class="line">  <span class="string">&#x27;name&#x27;</span>: <span class="string">&#x27;Andy&#x27;</span>, </span><br><span class="line">  <span class="string">&#x27;profile&#x27;</span>: &#123;</span><br><span class="line">    <span class="attr">height</span>:<span class="number">182</span>,</span><br><span class="line">    <span class="attr">age</span>:<span class="number">18</span>,</span><br><span class="line">    <span class="attr">fn</span>: <span class="keyword">new</span> <span class="title class_">Set</span>([<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>])</span><br><span class="line">    </span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> objStructuredClone = <span class="title function_">structuredClone</span>(obj);</span><br><span class="line"><span class="keyword">const</span> objJson = <span class="title class_">JSON</span>.<span class="title function_">parse</span>(<span class="title class_">JSON</span>.<span class="title function_">stringify</span>(obj))</span><br><span class="line"></span><br><span class="line">objStructuredClone[<span class="string">&#x27;profile&#x27;</span>][<span class="string">&#x27;age&#x27;</span>] = <span class="number">35</span>;</span><br><span class="line">objStructuredClone[<span class="string">&#x27;profile&#x27;</span>][<span class="string">&#x27;fn&#x27;</span>].<span class="title function_">add</span>(<span class="number">5</span>);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(objStructuredClone[<span class="string">&#x27;profile&#x27;</span>][<span class="string">&#x27;fn&#x27;</span>]);</span><br><span class="line"><span class="comment">// Set(4) &#123;1, 2, 3, 5&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(obj[<span class="string">&#x27;profile&#x27;</span>][<span class="string">&#x27;fn&#x27;</span>]);</span><br><span class="line"><span class="comment">// Set(3) &#123;1, 2, 3&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(objJson[<span class="string">&#x27;profile&#x27;</span>][<span class="string">&#x27;fn&#x27;</span>])</span><br><span class="line"><span class="comment">// &#123;&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(objStructuredClone[<span class="string">&#x27;profile&#x27;</span>]);</span><br><span class="line"><span class="comment">// &#123;height: 182, age: 35, fn: Set(4) &#123;1, 2, 3, 5&#125;&#125;</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(obj[<span class="string">&#x27;profile&#x27;</span>]);</span><br><span class="line"><span class="comment">// &#123;height: 182, age: 18, fn: Set(3) &#123;1, 2, 3&#125;&#125;</span></span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <categories>
-        <category>frontend_interview</category>
-      </categories>
-      <tags>
-        <tag>Javascript</tag>
-        <tag>Frontend</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Javascript 的 hoisting關於var,let,const and function</title>
     <url>/andy-tech-note/hoisting-about-var-let-const-function/</url>
     <content><![CDATA[<h2 id="什麼是Hoisting-提升"><a href="#什麼是Hoisting-提升" class="headerlink" title="什麼是Hoisting(提升)"></a>什麼是Hoisting(提升)</h2><p>當js在編譯時會把變數宣告以及函式宣告提升到該<code>作用域</code>的最頂端，但實際上不會去改動程式碼，有時候在撰寫程式碼時有沒有發現雖然你的function宣告在後面，卻在前面使用function而不會跳錯，就是這個原因</p>
@@ -716,6 +698,24 @@
     <content><![CDATA[<h2 id="事件冒泡Event-Bubbling"><a href="#事件冒泡Event-Bubbling" class="headerlink" title="事件冒泡Event Bubbling"></a>事件冒泡Event Bubbling</h2><p>事件冒泡是DOM中對事件處理的一種機制。<br>當在DOM中的某個元素（例如，一個按鈕）發生事件（如點擊）時，這個事件不僅在該元素上觸發，還會沿著DOM樹向上冒泡，依次觸發其父元素、父元素的父元素，一直到最頂層的document物件，這一路上的元素都可以收到事件觸發。</p>
 <p>例子：假設你希望在一個容器（div）內的所有元素被點擊時執行相同的操作(console.log(‘click’))，你可以在這個容器上設置一個事件監聽器（<code>event listener</code>）。<br>當容器內的任何一個元素被點擊時，點擊事件會通過事件冒泡機制向上傳遞，最終抵達這個容器。一旦事件到達容器，就會觸發設置在容器上的callback function(這裡設定console.log(‘click’))。</p>
 <p>上面的例子稱作<code>事件委託</code>，它利用了事件冒泡的特性來簡化對多個元素的事件處理，同時提升程式效能，也不需要每個元素都去設定事件監聽。特別是對於動態加入到容器中的新元素，無需單獨為它們綁定事件監聽器，事件委託可以自動地管理它們的事件。</p>
+]]></content>
+      <categories>
+        <category>frontend_interview</category>
+      </categories>
+      <tags>
+        <tag>Javascript</tag>
+        <tag>Frontend</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Javascript中使用structuredClone做深拷貝</title>
+    <url>/andy-tech-note/structuredClone-deep-clone/</url>
+    <content><![CDATA[<h2 id="深拷貝是什麼？"><a href="#深拷貝是什麼？" class="headerlink" title="深拷貝是什麼？"></a>深拷貝是什麼？</h2><p>先前有寫過如何處理深拷貝，深拷貝是要幹嘛？<br>簡單的說就是當有個物件他裡面有巢狀結構，不只有一層，如果直接以變數assign的方式賦值給一個新的變數，這時候在第二層開始的元素會是指向原先的物件，所以當使用者在對新的物件第二層的元素操作時就會修改到舊有的物件的值，這時候就需要深拷貝來處理，詳細請參閱👇</p>
+<p><a href="https://crazycjh.github.io/andy-tech-note/deep-copy-Shallow-copy/">在JS中複製object-深拷貝&#x2F;淺拷貝</a>。</p>
+<h3 id="進階版structuredClone"><a href="#進階版structuredClone" class="headerlink" title="進階版structuredClone"></a>進階版structuredClone</h3><p>先前都是使用JSON.stringify &amp; JSON.parse來組合處理，現在只要透過structuredClone來處理，這個有什麼差異呢？<br>舊有的方法只能準確地處理 primitive Value，若是碰到Map, Set 非primitive的物件就會被變成空object{}，也就會造成資料的不完整。</p>
+<p>可以看以下程式碼 或是<a href="https://codepen.io/jean-hao-chen/pen/KKYxPOe">玩玩看</a></p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> obj = &#123;</span><br><span class="line">  <span class="string">&#x27;name&#x27;</span>: <span class="string">&#x27;Andy&#x27;</span>, </span><br><span class="line">  <span class="string">&#x27;profile&#x27;</span>: &#123;</span><br><span class="line">    <span class="attr">height</span>:<span class="number">182</span>,</span><br><span class="line">    <span class="attr">age</span>:<span class="number">18</span>,</span><br><span class="line">    <span class="attr">fn</span>: <span class="keyword">new</span> <span class="title class_">Set</span>([<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>])</span><br><span class="line">    </span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> objStructuredClone = <span class="title function_">structuredClone</span>(obj);</span><br><span class="line"><span class="keyword">const</span> objJson = <span class="title class_">JSON</span>.<span class="title function_">parse</span>(<span class="title class_">JSON</span>.<span class="title function_">stringify</span>(obj))</span><br><span class="line"></span><br><span class="line">objStructuredClone[<span class="string">&#x27;profile&#x27;</span>][<span class="string">&#x27;age&#x27;</span>] = <span class="number">35</span>;</span><br><span class="line">objStructuredClone[<span class="string">&#x27;profile&#x27;</span>][<span class="string">&#x27;fn&#x27;</span>].<span class="title function_">add</span>(<span class="number">5</span>);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(objStructuredClone[<span class="string">&#x27;profile&#x27;</span>][<span class="string">&#x27;fn&#x27;</span>]);</span><br><span class="line"><span class="comment">// Set(4) &#123;1, 2, 3, 5&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(obj[<span class="string">&#x27;profile&#x27;</span>][<span class="string">&#x27;fn&#x27;</span>]);</span><br><span class="line"><span class="comment">// Set(3) &#123;1, 2, 3&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(objJson[<span class="string">&#x27;profile&#x27;</span>][<span class="string">&#x27;fn&#x27;</span>])</span><br><span class="line"><span class="comment">// &#123;&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(objStructuredClone[<span class="string">&#x27;profile&#x27;</span>]);</span><br><span class="line"><span class="comment">// &#123;height: 182, age: 35, fn: Set(4) &#123;1, 2, 3, 5&#125;&#125;</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(obj[<span class="string">&#x27;profile&#x27;</span>]);</span><br><span class="line"><span class="comment">// &#123;height: 182, age: 18, fn: Set(3) &#123;1, 2, 3&#125;&#125;</span></span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
 ]]></content>
       <categories>
         <category>frontend_interview</category>

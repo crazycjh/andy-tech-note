@@ -213,6 +213,34 @@
       </tags>
   </entry>
   <entry>
+    <title>Javascript中的promise - 處理異步</title>
+    <url>/andy-tech-note/promise-async/</url>
+    <content><![CDATA[<h4 id="promise是幹嘛的？"><a href="#promise是幹嘛的？" class="headerlink" title="promise是幹嘛的？"></a>promise是幹嘛的？</h4><p>promise這個方法是ES6時推出的，這個主要可以用來解決非同步中XMLHttpRequest的問題<br>promise不需要監測Event(也就是js中的addEventListener())，而且會在資料回傳時執行callback function，<br>以及處理在做非同步請求時使用callback時所產生的callback hell。<br>之所以會產生callback hell是因為，當多個非同步請求有前後相關性時就會發生，所謂的前後相關性就是<code>C request</code> 需要等到<br><code>B request</code>的結果才能發出請求，B又要等到<code>A request</code>的結果才能發出，這樣就會變成巢狀的結構，會變得非常難以閱讀。</p>
+<h5 id="示意："><a href="#示意：" class="headerlink" title="示意："></a>示意：</h5><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">callback(()=&gt;&#123;</span><br><span class="line">    //在此發出A request</span><br><span class="line">    callback(()=&gt;&#123;</span><br><span class="line">        //在此發出B request    </span><br><span class="line">        callback(()=&gt;&#123;</span><br><span class="line">        //在此發出C request    </span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p><img src="./themes/meadow/source/icons/avatar.jpg" data-original="https://res.cloudinary.com/practicaldev/image/fetch/s--c0aEZX7m--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/b8euo2n7twvgh3dbuatd.jpeg" alt="callback hell"></p>
+<h4 id="Promise有什麼？"><a href="#Promise有什麼？" class="headerlink" title="Promise有什麼？"></a>Promise有什麼？</h4><p>如前面提到promise是用來處理異步事件，promise會有三個狀態</p>
+<ul>
+<li>pending : 等待，還沒接到對方的資料回傳，等待中也就是Not Available</li>
+<li>fulfilled : 成功，也就是有資料成功回傳一個值，在這情況下會進入 <code>.then</code></li>
+<li>rejected : 失敗，對方(可能是server)回傳一個錯誤 會進入<code>catch</code>處理錯誤。</li>
+</ul>
+<p><code>舉例</code></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">const getCountryData = (country)=&gt;&#123;</span><br><span class="line">    fetch(`https://restcountries.com/v2/name/$&#123;country&#125;`).then((res)=&gt;&#123;</span><br><span class="line">        return res.json();</span><br><span class="line">    &#125;).then((data)=&gt;&#123;</span><br><span class="line">        console.log(data);</span><br><span class="line">    &#125;).catch(()=&gt;&#123;</span><br><span class="line">        console.log(&#x27;error&#x27;);</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">getCountryData(&#x27;taiwan&#x27;);</span><br></pre></td></tr></table></figure>
+<p>上述例子使用fetch去執行異步向某個server發出資料請求，並在<code>then裡面等待回傳資料</code>，若是<code>回傳錯誤會由catch處理錯誤</code>。<br><code>fetch</code>是一個可以回傳<code>promise</code>的function，而在then裡面經常需要處理資料，而資料經常是JSON格式，若要轉譯JSON格式則必須使用json()這個function，但因為它也是回傳promise，所以必須再透過then處理。</p>
+<h5 id="如何解決callback-hell"><a href="#如何解決callback-hell" class="headerlink" title="如何解決callback hell?"></a>如何解決callback hell?</h5><p>如果會有前後相依的fetch要做，也就是需要等到前一個fetch取得資料後才執行，可以如下，在<code>then</code>裡面 <code>return fetch</code>，如此就可以在後面的then繼續處理第二個fetch的值。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">const getCountryData = (country)=&gt;&#123;</span><br><span class="line">    fetch(`https://restcountries.com/v2/name/$&#123;country&#125;`).then((res)=&gt;&#123;</span><br><span class="line">        return res.json();</span><br><span class="line">    &#125;).then((data)=&gt;&#123;</span><br><span class="line">        console.log(data);</span><br><span class="line">        return fetch(`https://restcountries.com/v2/name/china`)</span><br><span class="line">    &#125;).then((res)=&gt;&#123;</span><br><span class="line">        return res.json()</span><br><span class="line">    &#125;).then((data)=&gt;&#123;</span><br><span class="line">        console.log(data);</span><br><span class="line">    &#125;).catch(()=&gt;&#123;</span><br><span class="line">        console.log(&#x27;error&#x27;);</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">getCountryData(&#x27;Taiwan&#x27;);</span><br></pre></td></tr></table></figure>
+<p>不過此法雖然解決callback hell，但是then也變得很長，接下來又有<code>async/await</code>來讓其進化</p>
+]]></content>
+      <categories>
+        <category>Frontend</category>
+      </categories>
+      <tags>
+        <tag>Javascript</tag>
+        <tag>async</tag>
+        <tag>promise</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>vue-react-mvvm-virtualDom的一些筆記</title>
     <url>/andy-tech-note/vue-react-mvvm-virtualDom/</url>
     <content><![CDATA[<h3 id="指令式渲染-imperative-redering"><a href="#指令式渲染-imperative-redering" class="headerlink" title="指令式渲染 imperative redering"></a>指令式渲染 imperative redering</h3><h4 id="jquery"><a href="#jquery" class="headerlink" title="jquery"></a>jquery</h4><p>在框架還沒出來時jquery依舊是非常火紅的，而其對於DOM的渲染方式就是透過<br>選擇器 <code>document.querySelector</code> 去選擇HTML裡面的tag，從而去修改他們的值或是<code> addEventListener</code> 加入事件監聽來獲取使用者的行為，進而在js裡面做一些判斷後再把資料丟到頁面讓使用者看到。</p>
@@ -261,39 +289,13 @@
       </tags>
   </entry>
   <entry>
-    <title>Javascript中的promise - 處理異步</title>
-    <url>/andy-tech-note/promise-async/</url>
-    <content><![CDATA[<h4 id="promise是幹嘛的？"><a href="#promise是幹嘛的？" class="headerlink" title="promise是幹嘛的？"></a>promise是幹嘛的？</h4><p>promise這個方法是ES6時推出的，這個主要可以用來解決非同步中XMLHttpRequest的問題<br>promise不需要監測Event(也就是js中的addEventListener())，而且會在資料回傳時執行callback function，<br>以及處理在做非同步請求時使用callback時所產生的callback hell。<br>之所以會產生callback hell是因為，當多個非同步請求有前後相關性時就會發生，所謂的前後相關性就是<code>C request</code> 需要等到<br><code>B request</code>的結果才能發出請求，B又要等到<code>A request</code>的結果才能發出，這樣就會變成巢狀的結構，會變得非常難以閱讀。</p>
-<h5 id="示意："><a href="#示意：" class="headerlink" title="示意："></a>示意：</h5><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">callback(()=&gt;&#123;</span><br><span class="line">    //在此發出A request</span><br><span class="line">    callback(()=&gt;&#123;</span><br><span class="line">        //在此發出B request    </span><br><span class="line">        callback(()=&gt;&#123;</span><br><span class="line">        //在此發出C request    </span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-<p><img src="./themes/meadow/source/icons/avatar.jpg" data-original="https://res.cloudinary.com/practicaldev/image/fetch/s--c0aEZX7m--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/b8euo2n7twvgh3dbuatd.jpeg" alt="callback hell"></p>
-<h4 id="Promise有什麼？"><a href="#Promise有什麼？" class="headerlink" title="Promise有什麼？"></a>Promise有什麼？</h4><p>如前面提到promise是用來處理異步事件，promise會有三個狀態</p>
-<ul>
-<li>pending : 等待，還沒接到對方的資料回傳，等待中也就是Not Available</li>
-<li>fulfilled : 成功，也就是有資料成功回傳一個值，在這情況下會進入 <code>.then</code></li>
-<li>rejected : 失敗，對方(可能是server)回傳一個錯誤 會進入<code>catch</code>處理錯誤。</li>
-</ul>
-<p><code>舉例</code></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">const getCountryData = (country)=&gt;&#123;</span><br><span class="line">    fetch(`https://restcountries.com/v2/name/$&#123;country&#125;`).then((res)=&gt;&#123;</span><br><span class="line">        return res.json();</span><br><span class="line">    &#125;).then((data)=&gt;&#123;</span><br><span class="line">        console.log(data);</span><br><span class="line">    &#125;).catch(()=&gt;&#123;</span><br><span class="line">        console.log(&#x27;error&#x27;);</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">getCountryData(&#x27;taiwan&#x27;);</span><br></pre></td></tr></table></figure>
-<p>上述例子使用fetch去執行異步向某個server發出資料請求，並在<code>then裡面等待回傳資料</code>，若是<code>回傳錯誤會由catch處理錯誤</code>。<br><code>fetch</code>是一個可以回傳<code>promise</code>的function，而在then裡面經常需要處理資料，而資料經常是JSON格式，若要轉譯JSON格式則必須使用json()這個function，但因為它也是回傳promise，所以必須再透過then處理。</p>
-<h5 id="如何解決callback-hell"><a href="#如何解決callback-hell" class="headerlink" title="如何解決callback hell?"></a>如何解決callback hell?</h5><p>如果會有前後相依的fetch要做，也就是需要等到前一個fetch取得資料後才執行，可以如下，在<code>then</code>裡面 <code>return fetch</code>，如此就可以在後面的then繼續處理第二個fetch的值。</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">const getCountryData = (country)=&gt;&#123;</span><br><span class="line">    fetch(`https://restcountries.com/v2/name/$&#123;country&#125;`).then((res)=&gt;&#123;</span><br><span class="line">        return res.json();</span><br><span class="line">    &#125;).then((data)=&gt;&#123;</span><br><span class="line">        console.log(data);</span><br><span class="line">        return fetch(`https://restcountries.com/v2/name/china`)</span><br><span class="line">    &#125;).then((res)=&gt;&#123;</span><br><span class="line">        return res.json()</span><br><span class="line">    &#125;).then((data)=&gt;&#123;</span><br><span class="line">        console.log(data);</span><br><span class="line">    &#125;).catch(()=&gt;&#123;</span><br><span class="line">        console.log(&#x27;error&#x27;);</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">getCountryData(&#x27;Taiwan&#x27;);</span><br></pre></td></tr></table></figure>
-<p>不過此法雖然解決callback hell，但是then也變得很長，接下來又有<code>async/await</code>來讓其進化</p>
-]]></content>
-      <categories>
-        <category>Frontend</category>
-      </categories>
-      <tags>
-        <tag>Javascript</tag>
-        <tag>async</tag>
-        <tag>promise</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>CSS中的px-em-rem</title>
-    <url>/andy-tech-note/px-em-rem/</url>
-    <content><![CDATA[<h3 id="這是關於長度單位"><a href="#這是關於長度單位" class="headerlink" title="這是關於長度單位"></a>這是關於長度單位</h3><h4 id="px"><a href="#px" class="headerlink" title="px"></a>px</h4><p>是一個絕對長度的單位，是以螢幕pixel為基準。</p>
-<h4 id="em"><a href="#em" class="headerlink" title="em"></a>em</h4><p>是一個相對長度單位，是依照當下所在的element其parent element的大小來當作倍數計算，舉例如果是把em設定在font-size，如果當下font-size是以10px，而在child 設定的font-size是設定<code>1ex</code> &#x3D;&gt;也就是 <code>10px</code> ，若是<code>2ex</code> &#x3D;&gt;<code>20px</code></p>
-<h4 id="rem"><a href="#rem" class="headerlink" title="rem"></a>rem</h4><p>這也是相對長度單位，但是以root的大小當作依據來算倍數，所以若是root size設定為<code>12px</code>，而當下的size設定為<code>3rem</code> &#x3D;&gt; <code>36px</code></p>
+    <title>CSS的Box-model</title>
+    <url>/andy-tech-note/box-model/</url>
+    <content><![CDATA[<h4 id="什麼是Box-model"><a href="#什麼是Box-model" class="headerlink" title="什麼是Box model"></a>什麼是Box model</h4><p>在網頁中每個element都被看作一個box，每個box可以有內容content、邊界border、內外空間。<br>所以box會有padding &#x2F; marging&#x2F; border&#x2F; content</p>
+<h4 id="Padding"><a href="#Padding" class="headerlink" title="Padding"></a>Padding</h4><p>padding是content與border的距離</p>
+<h4 id="Margin"><a href="#Margin" class="headerlink" title="Margin"></a>Margin</h4><p>margin是物件與其他物件的距離，可以使用margin來產生空白與其他element產生一段距離</p>
+<p><img src="./themes/meadow/source/icons/avatar.jpg" data-original="https://developer.mozilla.org/en-US/docs/Learn/CSS/Building_blocks/The_box_model/box-model.png" alt="來源MDN"></p>
+<h4 id="Width-x2F-Height"><a href="#Width-x2F-Height" class="headerlink" title="Width&#x2F;Height"></a>Width&#x2F;Height</h4><p>在box中可以設定寬度與高度(width &amp; Height)，現在的CSS寬度是指content的寬度，所以在製作layout時要注意寬度要再加上border+padding+margin才是最終寬度或是高度。<br><img src="./themes/meadow/source/icons/avatar.jpg" data-original="https://developer.mozilla.org/en-US/docs/Learn/CSS/Building_blocks/The_box_model/standard-box-model.png" alt="設定高寬"></p>
 ]]></content>
       <categories>
         <category>Frontend</category>
@@ -317,41 +319,32 @@
       </tags>
   </entry>
   <entry>
-    <title>Javascript中的JSON格式</title>
-    <url>/andy-tech-note/JOSN-formate/</url>
-    <content><![CDATA[<h3 id="什麼是JSON"><a href="#什麼是JSON" class="headerlink" title="什麼是JSON"></a>什麼是JSON</h3><p>JSON(JavaScript Object Notation)是一種數據交換格式，不論是用在前後端透過RESTful API傳遞資料、function之間使用，都是很方便的，而要把資料轉換成JSON格式則是透過 <code>JSON.strinify(data)</code>，把<code>data</code>轉換成JSON格式。<br>他是以一對大括號以及裡面的東西，這些東西則是以Key與Value組成的KEY-Value Pair(其實與object的格式是一樣的)，不過JSON是字符串，而object則是物件(廢話)，用typeof可以看到JSON字符串是string。</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&#x27;&#123;</span><br><span class="line">    &quot;name&quot;:&quot;Andy&quot;,</span><br><span class="line">    &quot;age&quot;:10,</span><br><span class="line">    &quot;skill&quot;:[JS,CSS,HTML,Vue,React]</span><br><span class="line">&#125;&#x27;</span><br></pre></td></tr></table></figure>
-
-
-<h4 id="JSON-stringify-data"><a href="#JSON-stringify-data" class="headerlink" title="JSON.stringify(data)"></a>JSON.stringify(data)</h4><p>把object轉換成JSON的格式的function</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">let obj = &#123;name: &quot;John&quot;, age: 30&#125;;</span><br><span class="line">let jsonStr = JSON.stringify(obj);</span><br></pre></td></tr></table></figure>
-
-<h4 id="JSON-parse-jsonString"><a href="#JSON-parse-jsonString" class="headerlink" title="JSON.parse(jsonString)"></a>JSON.parse(jsonString)</h4><p>接收到JSON格式的字串時需要透過JSON.parse去轉譯才能變成數值或是object</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//延續上面的變數</span><br><span class="line">let obj = JSON.parse(jsonStr)</span><br></pre></td></tr></table></figure>
-<p><a href="https://codepen.io/jean-hao-chen/pen/NWLJQYx?editors=1112">動手試試看</a></p>
-]]></content>
-      <categories>
-        <category>Frontend</category>
-      </categories>
-      <tags>
-        <tag>Javascript</tag>
-        <tag>JSON</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>CSS的Box-model</title>
-    <url>/andy-tech-note/box-model/</url>
-    <content><![CDATA[<h4 id="什麼是Box-model"><a href="#什麼是Box-model" class="headerlink" title="什麼是Box model"></a>什麼是Box model</h4><p>在網頁中每個element都被看作一個box，每個box可以有內容content、邊界border、內外空間。<br>所以box會有padding &#x2F; marging&#x2F; border&#x2F; content</p>
-<h4 id="Padding"><a href="#Padding" class="headerlink" title="Padding"></a>Padding</h4><p>padding是content與border的距離</p>
-<h4 id="Margin"><a href="#Margin" class="headerlink" title="Margin"></a>Margin</h4><p>margin是物件與其他物件的距離，可以使用margin來產生空白與其他element產生一段距離</p>
-<p><img src="./themes/meadow/source/icons/avatar.jpg" data-original="https://developer.mozilla.org/en-US/docs/Learn/CSS/Building_blocks/The_box_model/box-model.png" alt="來源MDN"></p>
-<h4 id="Width-x2F-Height"><a href="#Width-x2F-Height" class="headerlink" title="Width&#x2F;Height"></a>Width&#x2F;Height</h4><p>在box中可以設定寬度與高度(width &amp; Height)，現在的CSS寬度是指content的寬度，所以在製作layout時要注意寬度要再加上border+padding+margin才是最終寬度或是高度。<br><img src="./themes/meadow/source/icons/avatar.jpg" data-original="https://developer.mozilla.org/en-US/docs/Learn/CSS/Building_blocks/The_box_model/standard-box-model.png" alt="設定高寬"></p>
+    <title>CSS中的px-em-rem</title>
+    <url>/andy-tech-note/px-em-rem/</url>
+    <content><![CDATA[<h3 id="這是關於長度單位"><a href="#這是關於長度單位" class="headerlink" title="這是關於長度單位"></a>這是關於長度單位</h3><h4 id="px"><a href="#px" class="headerlink" title="px"></a>px</h4><p>是一個絕對長度的單位，是以螢幕pixel為基準。</p>
+<h4 id="em"><a href="#em" class="headerlink" title="em"></a>em</h4><p>是一個相對長度單位，是依照當下所在的element其parent element的大小來當作倍數計算，舉例如果是把em設定在font-size，如果當下font-size是以10px，而在child 設定的font-size是設定<code>1ex</code> &#x3D;&gt;也就是 <code>10px</code> ，若是<code>2ex</code> &#x3D;&gt;<code>20px</code></p>
+<h4 id="rem"><a href="#rem" class="headerlink" title="rem"></a>rem</h4><p>這也是相對長度單位，但是以root的大小當作依據來算倍數，所以若是root size設定為<code>12px</code>，而當下的size設定為<code>3rem</code> &#x3D;&gt; <code>36px</code></p>
 ]]></content>
       <categories>
         <category>Frontend</category>
       </categories>
       <tags>
         <tag>CSS</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>nextTick in Vue3</title>
+    <url>/andy-tech-note/nextTick-in-Vue3/</url>
+    <content><![CDATA[<h4 id="什麼是nextTick-？"><a href="#什麼是nextTick-？" class="headerlink" title="什麼是nextTick()？"></a>什麼是nextTick()？</h4><h6 id="官方定義"><a href="#官方定義" class="headerlink" title="官方定義"></a>官方定義</h6><p><code>在下次 DOM 更新循环结束之后执行延迟回调。在修改数据之后立即使用这个方法，获取更新后的 DOM</code></p>
+<h4 id="實際應用場景"><a href="#實際應用場景" class="headerlink" title="實際應用場景"></a>實際應用場景</h4><p>版主在Vue3的 project中有一個<code>child componet</code> 跟 <code>parent component</code>，在child component中有使用 <code>Primevue</code>的 <code>Checkbox</code>，而我希望在勾選Checkbox時可以觸發emit，所以使用watch監聽Checkbox 綁定的一個<code>ref</code>的變數，所以在watch監聽該變數，當有變化就發出emit，而parent收到emit的會依照回傳的值做一些array的過濾，在這裡因為過濾會花點時間。</p>
+<p>於此同時Checkbox不會馬上被改變打勾或是非打勾的狀態，需要等到parent計算完才會被更新DOM，所以我認為是parent中的filter造成DOM的延遲更新，所以就使用nextTick()，先讓Checkbox可以先被渲染，再執行emit。</p>
+<p>程式碼如下</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">watch(destination, () =&gt; &#123;</span><br><span class="line">    nextTick(()=&gt; &#123;</span><br><span class="line">        emit(&#x27;filterCondiction&#x27;, &#123;date: [&#123;index: &#x27;1&#x27;, date: &quot;20240201&quot;&#125;], location: [&#123;index: props.airport.location.split(&#x27; &#x27;)[1], destination: destination.value&#125;]&#125;);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>請忽略傳遞的參數ＸＤ</p>
+<p>在這裡會看到emit會在DOM完成更新後才執行，這樣就不會有覺得為什麼點擊Chenckbox後卻沒有馬上被打勾的問題。</p>
+]]></content>
+      <tags>
+        <tag>Vue</tag>
       </tags>
   </entry>
   <entry>
@@ -370,21 +363,6 @@
         <tag>Javascript</tag>
         <tag>async</tag>
         <tag>promise</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>nextTick in Vue3</title>
-    <url>/andy-tech-note/nextTick-in-Vue3/</url>
-    <content><![CDATA[<h4 id="什麼是nextTick-？"><a href="#什麼是nextTick-？" class="headerlink" title="什麼是nextTick()？"></a>什麼是nextTick()？</h4><h6 id="官方定義"><a href="#官方定義" class="headerlink" title="官方定義"></a>官方定義</h6><p><code>在下次 DOM 更新循环结束之后执行延迟回调。在修改数据之后立即使用这个方法，获取更新后的 DOM</code></p>
-<h4 id="實際應用場景"><a href="#實際應用場景" class="headerlink" title="實際應用場景"></a>實際應用場景</h4><p>版主在Vue3的 project中有一個<code>child componet</code> 跟 <code>parent component</code>，在child component中有使用 <code>Primevue</code>的 <code>Checkbox</code>，而我希望在勾選Checkbox時可以觸發emit，所以使用watch監聽Checkbox 綁定的一個<code>ref</code>的變數，所以在watch監聽該變數，當有變化就發出emit，而parent收到emit的會依照回傳的值做一些array的過濾，在這裡因為過濾會花點時間。</p>
-<p>於此同時Checkbox不會馬上被改變打勾或是非打勾的狀態，需要等到parent計算完才會被更新DOM，所以我認為是parent中的filter造成DOM的延遲更新，所以就使用nextTick()，先讓Checkbox可以先被渲染，再執行emit。</p>
-<p>程式碼如下</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">watch(destination, () =&gt; &#123;</span><br><span class="line">    nextTick(()=&gt; &#123;</span><br><span class="line">        emit(&#x27;filterCondiction&#x27;, &#123;date: [&#123;index: &#x27;1&#x27;, date: &quot;20240201&quot;&#125;], location: [&#123;index: props.airport.location.split(&#x27; &#x27;)[1], destination: destination.value&#125;]&#125;);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-<p>請忽略傳遞的參數ＸＤ</p>
-<p>在這裡會看到emit會在DOM完成更新後才執行，這樣就不會有覺得為什麼點擊Chenckbox後卻沒有馬上被打勾的問題。</p>
-]]></content>
-      <tags>
-        <tag>Vue</tag>
       </tags>
   </entry>
   <entry>
@@ -443,22 +421,6 @@
       </tags>
   </entry>
   <entry>
-    <title>git local 及 remote repo 不同步怎麼處理</title>
-    <url>/andy-tech-note/git-remote-repo-%E4%B8%8D%E5%90%8C%E6%AD%A5/</url>
-    <content><![CDATA[<h3 id="Local的commit-與-Remote-的commit-沒有同步"><a href="#Local的commit-與-Remote-的commit-沒有同步" class="headerlink" title="Local的commit 與 Remote 的commit 沒有同步"></a>Local的commit 與 Remote 的commit 沒有同步</h3><p><img src="./themes/meadow/source/icons/avatar.jpg" data-original="/andy-tech-note/git-remote-repo-%E4%B8%8D%E5%90%8C%E6%AD%A5/git.png" alt="git"><br>如圖中所示，會發現 <code>github remote 的 main</code> 跟 <code>local 的 main</code> 分岔了。<br>這是因為在先前在B電腦做了一次 commit &amp; push，也就是圖中岔出去的那個 Remote main，<br>然而在A電腦的commit還停留在B電腦commit的前一個版本，但是我沒發現就繼續開發下去，<br>一路開發下去，直到要push到遠端時才被告知遠端有code沒有同步到。</p>
-<p>查了一下，查到git fetch origin main 似乎是比較安全的，他可以單純把遠端你所有缺少的code抓下來，然後你再透過git status查詢時，git 會告知你 local 的 code 與遠端的 code 差異在哪，然後再透過<code>git merge origin main</code> 或是 <code>git rebase origin main</code>。<br>但要注意，當前如果有code還尚未commit，git會告知你要先commit，並且不會讓你merge，應該是怕你的 code 丟失，若還沒要 commit 可以透過<code>git stage</code> 把 code 存起來以防止不見。</p>
-<p>指令</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git fetch origin main </span><br><span class="line">git merge origin/main</span><br></pre></td></tr></table></figure>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git fetch origin main </span><br><span class="line">git rebase origin/main</span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>dev</category>
-      </categories>
-      <tags>
-        <tag>git</tag>
-        <tag>github</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Wordpress當後端傳文章內容到前端(Vue)</title>
     <url>/andy-tech-note/wordpress%E7%95%B6%E5%BE%8C%E7%AB%AF%E5%82%B3%E6%96%87%E7%AB%A0%E5%85%A7%E5%AE%B9%E5%88%B0%E5%89%8D%E7%AB%AF-Vue/</url>
     <content><![CDATA[<h3 id="以Wordpress為後端傳資料到前端"><a href="#以Wordpress為後端傳資料到前端" class="headerlink" title="以Wordpress為後端傳資料到前端"></a>以Wordpress為後端傳資料到前端</h3><p>wordpress 為後端，前端向後端取得wp中的文章時，我希望直接取得可以呈現的HTML格式，試過使用 WP 中的 function <code>get_post_field</code>，雖然可以取得HTML，但是HTML結構與真正在以WP當作前端呈現的文章的html有些出入，也就是在WP呈現頁面前會對原始的html做特殊格式化，這就要透過 apply_filters   ‘the_content’ 去把取得的html做格式化，這樣才會與wp呈現出來的樣式一樣。</p>
@@ -493,6 +455,45 @@
       </tags>
   </entry>
   <entry>
+    <title>git local 及 remote repo 不同步怎麼處理</title>
+    <url>/andy-tech-note/git-remote-repo-%E4%B8%8D%E5%90%8C%E6%AD%A5/</url>
+    <content><![CDATA[<h3 id="Local的commit-與-Remote-的commit-沒有同步"><a href="#Local的commit-與-Remote-的commit-沒有同步" class="headerlink" title="Local的commit 與 Remote 的commit 沒有同步"></a>Local的commit 與 Remote 的commit 沒有同步</h3><p><img src="./themes/meadow/source/icons/avatar.jpg" data-original="/andy-tech-note/git-remote-repo-%E4%B8%8D%E5%90%8C%E6%AD%A5/git.png" alt="git"><br>如圖中所示，會發現 <code>github remote 的 main</code> 跟 <code>local 的 main</code> 分岔了。<br>這是因為在先前在B電腦做了一次 commit &amp; push，也就是圖中岔出去的那個 Remote main，<br>然而在A電腦的commit還停留在B電腦commit的前一個版本，但是我沒發現就繼續開發下去，<br>一路開發下去，直到要push到遠端時才被告知遠端有code沒有同步到。</p>
+<p>查了一下，查到git fetch origin main 似乎是比較安全的，他可以單純把遠端你所有缺少的code抓下來，然後你再透過git status查詢時，git 會告知你 local 的 code 與遠端的 code 差異在哪，然後再透過<code>git merge origin main</code> 或是 <code>git rebase origin main</code>。<br>但要注意，當前如果有code還尚未commit，git會告知你要先commit，並且不會讓你merge，應該是怕你的 code 丟失，若還沒要 commit 可以透過<code>git stage</code> 把 code 存起來以防止不見。</p>
+<p>指令</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git fetch origin main </span><br><span class="line">git merge origin/main</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git fetch origin main </span><br><span class="line">git rebase origin/main</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>dev</category>
+      </categories>
+      <tags>
+        <tag>git</tag>
+        <tag>github</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Javascript的Map及Set</title>
+    <url>/andy-tech-note/Javascript_Map_Set/</url>
+    <content><![CDATA[<h2 id="Set是什麼？"><a href="#Set是什麼？" class="headerlink" title="Set是什麼？"></a>Set是什麼？</h2><p>Set 是一個構造函式可以建構一個如Array的資料集合，有個特別的地方是，如果傳入的值相同，會把多餘的值移除只剩下一個。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> array1 = [<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>,<span class="number">8</span>,<span class="number">9</span>,<span class="number">10</span>]</span><br><span class="line"><span class="keyword">const</span> array2 = [<span class="number">9</span>,<span class="number">10</span>,<span class="number">11</span>,<span class="number">12</span>,<span class="number">13</span>,<span class="number">14</span>] </span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> set1 = <span class="keyword">new</span> <span class="title class_">Set</span>([...array1,...array2])</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(set1)</span><br><span class="line"><span class="comment">// Set(5,6,7,8,9,10,11,12,13,14)</span></span><br></pre></td></tr></table></figure>
+
+<p>用Set建立好的資料集合要透過他的method來處理，常見的有<code>add</code>, <code>delete</code>, <code>has</code>，其他的可以參考<a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Set/Set">MDN</a>的文件。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">set1.<span class="title function_">add</span>(<span class="number">15</span>);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(set1)</span><br><span class="line"><span class="comment">// Set(5,6,7,8,9,10,11,12,13,14,15)</span></span><br><span class="line"></span><br><span class="line">set1.<span class="title function_">delete</span>(<span class="number">9</span>)</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(set1)</span><br><span class="line"><span class="comment">// Set(5,6,7,8,10,11,12,13,14,15)</span></span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(set1.<span class="title function_">has</span>(<span class="number">5</span>))</span><br><span class="line"><span class="comment">// true</span></span><br><span class="line">set1.<span class="title function_">has</span>(<span class="number">9</span>)</span><br><span class="line"><span class="comment">// false</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="Map是什麼？"><a href="#Map是什麼？" class="headerlink" title="Map是什麼？"></a>Map是什麼？</h2><p>Map 也是一個構建函式，可以建構一個如Object的資料集合，但Map的key值與原始的object不同，原始的object的key只能是字串，而Map可以是任何東西，另外Map的key&#x2F;value是有順序性且可以做迭代處理的，在Object中若要做迭代，得透過<code>Object.keys</code>或是<code>Object.entries</code>搭配<code>forEach</code>或是<code>for of</code>之類的方法來遍歷所有元素，而且該順序不一定與用戶放進去的順序相同。</p>
+<p>常見的有<code>entries</code>, <code>keys</code>, <code>values</code>，其他的可以參考<a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Map/Map">MDN</a>的文件。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> map1 = <span class="keyword">new</span> <span class="title class_">Map</span>([</span><br><span class="line">  [<span class="string">&#x27;a&#x27;</span>, <span class="number">1</span>],</span><br><span class="line">  [<span class="string">&#x27;b&#x27;</span>, <span class="number">2</span>],</span><br><span class="line">  [<span class="string">&#x27;c&#x27;</span>, <span class="number">3</span>],</span><br><span class="line">  [<span class="string">&#x27;d&#x27;</span>, <span class="number">4</span>],</span><br><span class="line">  [<span class="string">&#x27;e&#x27;</span>, <span class="number">5</span>],</span><br><span class="line">  [<span class="string">&#x27;f&#x27;</span>, <span class="number">6</span>],</span><br><span class="line">])</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(map1.<span class="title function_">values</span>().<span class="title function_">forEach</span>(<span class="function"><span class="params">item</span> =&gt;</span> <span class="variable language_">console</span>.<span class="title function_">log</span>(item)))</span><br><span class="line"><span class="comment">// 印出所有的value值</span></span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(map1.<span class="title function_">keys</span>().<span class="title function_">forEach</span>(<span class="function"><span class="params">item</span> =&gt;</span> <span class="variable language_">console</span>.<span class="title function_">log</span>(item)))</span><br><span class="line"><span class="comment">// 印出所有的key值</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">const</span> [key,value] <span class="keyword">of</span> map1.<span class="title function_">entries</span>())&#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(key,value)</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 印出所有的key/value</span></span><br><span class="line"></span><br><span class="line">map1.<span class="title function_">forEach</span>(<span class="function">(<span class="params">i, key</span>)=&gt;</span> &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(i, key)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>用法實在很多元，有興趣的可以去MDN文件看看</p>
+]]></content>
+      <categories>
+        <category>frontend_interview</category>
+      </categories>
+      <tags>
+        <tag>Javascript</tag>
+        <tag>Frontend</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Javascript的map,filter,reduce</title>
     <url>/andy-tech-note/Javascript%E7%9A%84map-filter-reduce/</url>
     <content><![CDATA[<h2 id="什麼是map-filter-reduce"><a href="#什麼是map-filter-reduce" class="headerlink" title="什麼是map, filter, reduce"></a>什麼是map, filter, reduce</h2><p>這三個東西都是ES5推出的Array method，的可以對Array裡面的元素做一些操作。</p>
@@ -510,6 +511,99 @@
 <figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> arr = [<span class="number">1</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>];</span><br><span class="line"><span class="keyword">const</span> result = arr.<span class="title function_">reduce</span>(<span class="function">(<span class="params">acc, item</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> acc + item;</span><br><span class="line">&#125;,<span class="number">0</span>)</span><br><span class="line"><span class="comment">// result = 15</span></span><br></pre></td></tr></table></figure>
 <p>item為arr中的每個元素，acc為reduce的第一個參數，假設想要把所有的值加起來，就可以用reduce來做，把每次值都累加到acc上，然後回傳最終值。</p>
 ]]></content>
+      <categories>
+        <category>frontend_interview</category>
+      </categories>
+      <tags>
+        <tag>Javascript</tag>
+        <tag>Frontend</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Javascript的Event Loop以及Micro  task, Macro task是如何運作的？</title>
+    <url>/andy-tech-note/event-loop-micro-task-macro-task/</url>
+    <content><![CDATA[<h2 id="Event-loop是什麼？"><a href="#Event-loop是什麼？" class="headerlink" title="Event loop是什麼？"></a>Event loop是什麼？</h2><p>在javascript的設計中，javascript runtime是以single Thread單執行在執行程式碼，也就是說程式會順序的執行程式碼，而Javascript 透過 Event Loop 讓程式可以異步執行，也就是I&#x2F;O存取、setTimeout、長時間操作(遠端資料請求)，讓使用者不用在順序執行的程式流一直在等待，那這些在被執行完的異步行為的後續程式碼要如何讓他繼續被執行後續的程式碼呢，這就要透過Event loop來做調配。</p>
+<h2 id="Event-loop角色"><a href="#Event-loop角色" class="headerlink" title="Event loop角色"></a>Event loop角色</h2><ul>
+<li>Call stack</li>
+<li>micro task</li>
+<li>macro task</li>
+</ul>
+<h3 id="程式執行順序"><a href="#程式執行順序" class="headerlink" title="程式執行順序"></a>程式執行順序</h3><p>依照程式碼一路順序執行，執行的方式就是會把程式碼逐個放進到call stack中執行，當碰到如setTimeout、I&#x2F;O存取、Fetch、Promise時，會開始執行且將其變成異步執行，也就是說原先的程式碼會繼續執行，當setTimeout、檔案讀取完成，Event loop就會將如setTimeout的callback function放進到task queue(micro task or macro task)中，等待被執行。</p>
+<p>什麼時候執行task中的callback function呢？當call stack沒有程式碼要被執行時就會來檢查task queue裡面是否有task要被執行，若有則開始執行，在這裡會有執行的優先順序，會先執行Micro task queue，直到Micro task queue為空時才會去檢查Macro task queue，Event loop會從Macro task中取出一個task來執行，執行完後再檢查Micro Task，若沒有才會再進到Macro task取出一個task執行。</p>
+<p><img src="./themes/meadow/source/icons/avatar.jpg" data-original="/andy-tech-note/event-loop-micro-task-macro-task/eventloop.png"></p>
+<h3 id="誰會進入Macro-x2F-Micro-task呢？"><a href="#誰會進入Macro-x2F-Micro-task呢？" class="headerlink" title="誰會進入Macro &#x2F; Micro task呢？"></a>誰會進入Macro &#x2F; Micro task呢？</h3><ul>
+<li>Macro : <strong>setTimeout, setInterval, I&#x2F;O操作, UI渲染…</strong></li>
+<li>Micro : <strong>Promise.then, Promise.catch, Promise.finally, MutationObserver,  process.nextTick()(屬於Node.js)</strong></li>
+</ul>
+<p>首先先來基本題，我們先把macro task跟 micro task 看成同一個Queue</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;First&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;Second&#x27;</span>);</span><br><span class="line">&#125;, <span class="number">0</span>);</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;Third&#x27;</span>);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>上述會怎麼執行呢？</p>
+<p>順序:<br> First<br>Third<br>Sencond</p>
+<p>一開始碰到setTimeout被設為0，看似會馬上執行callback function，依照流程此callback function會被放到task queue中等待被執行，而在setTimeout後面還有程式碼要被放到call stack執行，所以得等到他被執行完才會去到Queue把 console.log(‘Second’); 拿出來執行。</p>
+<p>進階題</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;Start&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;Timeout&#x27;</span>);</span><br><span class="line">&#125;, <span class="number">0</span>);</span><br><span class="line"></span><br><span class="line"><span class="title class_">Promise</span>.<span class="title function_">resolve</span>().<span class="title function_">then</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;Promise 1&#x27;</span>);</span><br><span class="line">&#125;).<span class="title function_">then</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;Promise 2&#x27;</span>);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="keyword">async</span> <span class="keyword">function</span> <span class="title function_">asyncFunction</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;Async Function Start&#x27;</span>);</span><br><span class="line">  <span class="keyword">await</span> <span class="literal">null</span>; </span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;Async Function End&#x27;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="title function_">asyncFunction</span>();</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;End&#x27;</span>);</span><br></pre></td></tr></table></figure>
+
+<p>執行順序：</p>
+<p><a href="https://codepen.io/jean-hao-chen/pen/bGJxqbO">玩玩看</a></p>
+<p><code>console.log(&#39;Start&#39;)</code>會先被執行，再來碰到<code>setTimeout</code>會進到背景去執行，而<code>console.log(&#39;Timeout&#39;)</code>callback function不會馬上被執行，即便setTimeout是設定0秒，還是會被放到Macro Task等待被執行，接下來Promise.resolve()會被執行，它後面有帶.then，所以<code>console.log(&#39;Promise 1&#39;)</code>會被放到micro task等待執行，再來則是執行<code>asyncFunction()</code>的<code> console.log(&#39;Async Function Start&#39;)</code> 以及 <code>await null</code>，在這裡碰到await 不管await執行的function是否為異步其後面的程式碼都會被包起來放到micro task等待被執行，接下來則執行 <code>console.log(&#39;End&#39;);</code>。</p>
+<p>到此synchronize的 code 已經沒有需要被放到 call stack，接下來檢查micro task，開始執行，<code>console.log(&#39;Promise 1&#39;)</code> 而後又有.then，這個<code> console.log(&#39;Promise 2&#39;)</code> callback function會被放到micro task中，再來執行<code>console.log(&#39;Async Function End&#39;)</code>，接下來因為<code>console.log(&#39;Promise 2&#39;)</code>還在micro task，所以會先被執行，最後才是執行macro task的<code>console.log(&#39;Timeout&#39;)</code>;</p>
+<p>順序<br>‘Start’<br>‘Async Function Start’<br>‘End’<br>‘Promise 1’<br>‘Async Function End’<br>‘Promise 2’<br>‘Timeout’</p>
+<p>以上就是Event loop的執行流程。</p>
+<p>參考資料：</p>
+<ul>
+<li><p>Lydia Hallie <a href="https://www.youtube.com/watch?v=eiC58R16hb8">JavaScript Visualized - Event Loop, Web APIs, (Micro)task Queue</a></p>
+</li>
+<li><p>ExplainThis <a href="https://www.explainthis.io/zh-hant/swe/js-event-loop-questions">最常見的事件循環 (Event Loop) 面試題目彙整</a></p>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>frontend_interview</category>
+      </categories>
+      <tags>
+        <tag>Javascript</tag>
+        <tag>Frontend</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Javascript建構子函式繼承及ES6的class方式的繼承</title>
+    <url>/andy-tech-note/Javascript-constructor-function-inheritance_es6_class/</url>
+    <content><![CDATA[<h2 id="如何以建構函式的方式達到繼承"><a href="#如何以建構函式的方式達到繼承" class="headerlink" title="如何以建構函式的方式達到繼承"></a>如何以建構函式的方式達到繼承</h2><p>繼承在OOP物件導向的語言中很常見，而在Javascript中並不是真正的物件導向的語言，所以在Javascript中繼承的方式就不一樣，這裡用建構子函式的方式來實作繼承。</p>
+<h3 id="建構子函式的繼承"><a href="#建構子函式的繼承" class="headerlink" title="建構子函式的繼承"></a>建構子函式的繼承</h3><p>在Javascript中，我們可以用建構子函式的方式達到繼承，如果現在有一個Vehicle的父建構函式(父類別)而後我要建立一個Car子建構函式(子類別)，而若是我希望繼承Vehicle裡面的property，可以如下操作：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">//建立父建構函式及其prototype</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">Vehicle</span>(<span class="params">type, length, width</span>) &#123;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">type</span> =  type;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">length</span> = length;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">width</span> = width;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 建立一個method</span></span><br><span class="line"><span class="title class_">Vehicle</span>.<span class="property"><span class="keyword">prototype</span></span>.<span class="property">start</span> = <span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;start&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//繼承Vehicle的prototype</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">Car</span>(<span class="params">type, length, width, color</span>) &#123;</span><br><span class="line">    <span class="title class_">Vehicle</span>.<span class="title function_">call</span>(<span class="variable language_">this</span>, type, length, width);</span><br><span class="line">    <span class="comment">//把Vehicle的prototype的property繼承到Car的prototype constructor中</span></span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">color</span> = color;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//建立一個與Vehicle相同的prototype給Car.prototype</span></span><br><span class="line"><span class="title class_">Car</span>.<span class="property"><span class="keyword">prototype</span></span> = <span class="title class_">Object</span>.<span class="title function_">create</span>(<span class="title class_">Vehicle</span>.<span class="property"><span class="keyword">prototype</span></span>); </span><br><span class="line"></span><br><span class="line"><span class="comment">// 但因為其constructor是希望使用Car自己的也就是this.color這些自訂的property，所以我們要把Car.prototype.constructor指向Car  </span></span><br><span class="line"><span class="title class_">Car</span>.<span class="property"><span class="keyword">prototype</span></span>.<span class="property">constructor</span> = <span class="title class_">Car</span>;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//建立一個Car的instance</span></span><br><span class="line"><span class="keyword">const</span> myCar = <span class="keyword">new</span> <span class="title class_">Car</span>(<span class="string">&quot;BMW&quot;</span>, <span class="number">150</span>, <span class="number">100</span>, <span class="string">&quot;red&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//使用繼承vehicle的method  </span></span><br><span class="line">myCar.<span class="title function_">start</span>();</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(myCar.<span class="property">color</span>);</span><br><span class="line"><span class="comment">// red</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 而若是要在Car新增method，可以這沒做</span></span><br><span class="line"><span class="title class_">Car</span>.<span class="property"><span class="keyword">prototype</span></span>.<span class="property">stop</span> = <span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;stop&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">myCar.<span class="title function_">stop</span>();</span><br><span class="line"><span class="comment">// stop</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h3 id="改以ES6的class方式達到繼承"><a href="#改以ES6的class方式達到繼承" class="headerlink" title="改以ES6的class方式達到繼承"></a>改以ES6的class方式達到繼承</h3><p>這樣就清晰易懂的多了，但是Class只是Javascript的語法糖，讓使用者可以更容易實現繼承，但其底層的原理還是以prototype chain的方式達到繼承。範例如下：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Vehicle</span> &#123;</span><br><span class="line">  <span class="title function_">constructor</span>(<span class="params">type, length, width</span>) &#123;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">type</span> = type;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">length</span> = length;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">width</span> = width;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="title function_">start</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;start&quot;</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Car</span> <span class="keyword">extends</span> <span class="title class_ inherited__">Vehicle</span> &#123;</span><br><span class="line">  <span class="title function_">constructor</span>(<span class="params">type, length, width, color</span>) &#123;</span><br><span class="line">    <span class="variable language_">super</span>(type, length, width); <span class="comment">// 把vehicle的constructor繼承過來並且把this指向Car</span></span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">color</span> = color;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="title function_">stop</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;stop&quot;</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> myCar = <span class="keyword">new</span> <span class="title class_">Car</span>(<span class="string">&quot;BMW&quot;</span>, <span class="number">150</span>, <span class="number">100</span>, <span class="string">&quot;red&quot;</span>);</span><br><span class="line"></span><br><span class="line">myCar.<span class="title function_">start</span>();</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(myCar.<span class="property">color</span>); <span class="comment">// red</span></span><br><span class="line">myCar.<span class="title function_">stop</span>();</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>frontend_interview</category>
+      </categories>
+      <tags>
+        <tag>Javascript</tag>
+        <tag>Frontend</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Javascript 的 hoisting關於var,let,const and function</title>
+    <url>/andy-tech-note/hoisting-about-var-let-const-function/</url>
+    <content><![CDATA[<h2 id="什麼是Hoisting-提升"><a href="#什麼是Hoisting-提升" class="headerlink" title="什麼是Hoisting(提升)"></a>什麼是Hoisting(提升)</h2><p>當js在編譯時會把變數宣告以及函式宣告提升到該<code>作用域</code>的最頂端，但實際上不會去改動程式碼，有時候在撰寫程式碼時有沒有發現雖然你的function宣告在後面，卻在前面使用function而不會跳錯，就是這個原因</p>
+<h3 id="變數-var-let-const"><a href="#變數-var-let-const" class="headerlink" title="變數 var, let, const"></a>變數 var, let, const</h3><p>在var宣告變數及使用變數時如果寫成以下狀況，變數a會被提升，在這情況a雖然可以被印出，但不會被賦值，所以會印出undefined。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">exampleFunction</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(a); <span class="comment">// undefined</span></span><br><span class="line">  <span class="keyword">var</span> a = <span class="number">5</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="title function_">exampleFunction</span>();</span><br></pre></td></tr></table></figure>
+
+<p>let, const，若是這樣寫則是會跳出錯誤，<code>Uncaught ReferenceError: Cannot access &#39;a&#39; before initialization</code>，告訴你在尚未初始化前不能使用該變數，該變數會是在<code>暫時死區</code> (temporal dead zone)直到該變數被宣告為止。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">exampleFunction</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(a);</span><br><span class="line">  <span class="keyword">let</span> a = <span class="number">5</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="title function_">exampleFunction</span>();</span><br></pre></td></tr></table></figure>
+
+<h3 id="Function提升"><a href="#Function提升" class="headerlink" title="Function提升"></a>Function提升</h3><p>這裡要分Declaration ,Expressions, Arrow Functions 三種<br>在提升的部分，只有Declaration Function 才會被提升，Expressions Function 和 Arrow Function 都不會被提升，所以哪天在寫程式時發現寫在後面的function無法被前面程式碼使用，通常就是這原因，在js編譯時沒有把它提升上來。</p>
+<p>Declaration Function 如下：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="title function_">exampleFunction</span>()</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">exampleFunction</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">let</span> a = <span class="number">5</span>;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(a);</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Expressions Function 如下：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="title function_">exampleFunction</span>()</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> exampleFunction = <span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">let</span> a = <span class="number">5</span>;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(a);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Arrow Function 如下：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="title function_">exampleFunction</span>()</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="title function_">exampleFunction</span> = (<span class="params"></span>) =&gt; &#123;</span><br><span class="line">  <span class="keyword">let</span> a = <span class="number">5</span>;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(a);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
       <categories>
         <category>frontend_interview</category>
       </categories>
@@ -577,85 +671,11 @@
       </tags>
   </entry>
   <entry>
-    <title>Javascript的Map及Set</title>
-    <url>/andy-tech-note/Javascript_Map_Set/</url>
-    <content><![CDATA[<h2 id="Set是什麼？"><a href="#Set是什麼？" class="headerlink" title="Set是什麼？"></a>Set是什麼？</h2><p>Set 是一個構造函式可以建構一個如Array的資料集合，有個特別的地方是，如果傳入的值相同，會把多餘的值移除只剩下一個。</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> array1 = [<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>,<span class="number">8</span>,<span class="number">9</span>,<span class="number">10</span>]</span><br><span class="line"><span class="keyword">const</span> array2 = [<span class="number">9</span>,<span class="number">10</span>,<span class="number">11</span>,<span class="number">12</span>,<span class="number">13</span>,<span class="number">14</span>] </span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> set1 = <span class="keyword">new</span> <span class="title class_">Set</span>([...array1,...array2])</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(set1)</span><br><span class="line"><span class="comment">// Set(5,6,7,8,9,10,11,12,13,14)</span></span><br></pre></td></tr></table></figure>
-
-<p>用Set建立好的資料集合要透過他的method來處理，常見的有<code>add</code>, <code>delete</code>, <code>has</code>，其他的可以參考<a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Set/Set">MDN</a>的文件。</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">set1.<span class="title function_">add</span>(<span class="number">15</span>);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(set1)</span><br><span class="line"><span class="comment">// Set(5,6,7,8,9,10,11,12,13,14,15)</span></span><br><span class="line"></span><br><span class="line">set1.<span class="title function_">delete</span>(<span class="number">9</span>)</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(set1)</span><br><span class="line"><span class="comment">// Set(5,6,7,8,10,11,12,13,14,15)</span></span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(set1.<span class="title function_">has</span>(<span class="number">5</span>))</span><br><span class="line"><span class="comment">// true</span></span><br><span class="line">set1.<span class="title function_">has</span>(<span class="number">9</span>)</span><br><span class="line"><span class="comment">// false</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="Map是什麼？"><a href="#Map是什麼？" class="headerlink" title="Map是什麼？"></a>Map是什麼？</h2><p>Map 也是一個構建函式，可以建構一個如Object的資料集合，但Map的key值與原始的object不同，原始的object的key只能是字串，而Map可以是任何東西，另外Map的key&#x2F;value是有順序性且可以做迭代處理的，在Object中若要做迭代，得透過<code>Object.keys</code>或是<code>Object.entries</code>搭配<code>forEach</code>或是<code>for of</code>之類的方法來遍歷所有元素，而且該順序不一定與用戶放進去的順序相同。</p>
-<p>常見的有<code>entries</code>, <code>keys</code>, <code>values</code>，其他的可以參考<a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Map/Map">MDN</a>的文件。</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> map1 = <span class="keyword">new</span> <span class="title class_">Map</span>([</span><br><span class="line">  [<span class="string">&#x27;a&#x27;</span>, <span class="number">1</span>],</span><br><span class="line">  [<span class="string">&#x27;b&#x27;</span>, <span class="number">2</span>],</span><br><span class="line">  [<span class="string">&#x27;c&#x27;</span>, <span class="number">3</span>],</span><br><span class="line">  [<span class="string">&#x27;d&#x27;</span>, <span class="number">4</span>],</span><br><span class="line">  [<span class="string">&#x27;e&#x27;</span>, <span class="number">5</span>],</span><br><span class="line">  [<span class="string">&#x27;f&#x27;</span>, <span class="number">6</span>],</span><br><span class="line">])</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(map1.<span class="title function_">values</span>().<span class="title function_">forEach</span>(<span class="function"><span class="params">item</span> =&gt;</span> <span class="variable language_">console</span>.<span class="title function_">log</span>(item)))</span><br><span class="line"><span class="comment">// 印出所有的value值</span></span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(map1.<span class="title function_">keys</span>().<span class="title function_">forEach</span>(<span class="function"><span class="params">item</span> =&gt;</span> <span class="variable language_">console</span>.<span class="title function_">log</span>(item)))</span><br><span class="line"><span class="comment">// 印出所有的key值</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">const</span> [key,value] <span class="keyword">of</span> map1.<span class="title function_">entries</span>())&#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(key,value)</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 印出所有的key/value</span></span><br><span class="line"></span><br><span class="line">map1.<span class="title function_">forEach</span>(<span class="function">(<span class="params">i, key</span>)=&gt;</span> &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(i, key)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-
-<p>用法實在很多元，有興趣的可以去MDN文件看看</p>
-]]></content>
-      <categories>
-        <category>frontend_interview</category>
-      </categories>
-      <tags>
-        <tag>Javascript</tag>
-        <tag>Frontend</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Javascript建構子函式繼承及ES6的class方式的繼承</title>
-    <url>/andy-tech-note/Javascript-constructor-function-inheritance_es6_class/</url>
-    <content><![CDATA[<h2 id="如何以建構函式的方式達到繼承"><a href="#如何以建構函式的方式達到繼承" class="headerlink" title="如何以建構函式的方式達到繼承"></a>如何以建構函式的方式達到繼承</h2><p>繼承在OOP物件導向的語言中很常見，而在Javascript中並不是真正的物件導向的語言，所以在Javascript中繼承的方式就不一樣，這裡用建構子函式的方式來實作繼承。</p>
-<h3 id="建構子函式的繼承"><a href="#建構子函式的繼承" class="headerlink" title="建構子函式的繼承"></a>建構子函式的繼承</h3><p>在Javascript中，我們可以用建構子函式的方式達到繼承，如果現在有一個Vehicle的父建構函式(父類別)而後我要建立一個Car子建構函式(子類別)，而若是我希望繼承Vehicle裡面的property，可以如下操作：</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">//建立父建構函式及其prototype</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">Vehicle</span>(<span class="params">type, length, width</span>) &#123;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">type</span> =  type;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">length</span> = length;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">width</span> = width;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 建立一個method</span></span><br><span class="line"><span class="title class_">Vehicle</span>.<span class="property"><span class="keyword">prototype</span></span>.<span class="property">start</span> = <span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;start&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//繼承Vehicle的prototype</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">Car</span>(<span class="params">type, length, width, color</span>) &#123;</span><br><span class="line">    <span class="title class_">Vehicle</span>.<span class="title function_">call</span>(<span class="variable language_">this</span>, type, length, width);</span><br><span class="line">    <span class="comment">//把Vehicle的prototype的property繼承到Car的prototype constructor中</span></span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">color</span> = color;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//建立一個與Vehicle相同的prototype給Car.prototype</span></span><br><span class="line"><span class="title class_">Car</span>.<span class="property"><span class="keyword">prototype</span></span> = <span class="title class_">Object</span>.<span class="title function_">create</span>(<span class="title class_">Vehicle</span>.<span class="property"><span class="keyword">prototype</span></span>); </span><br><span class="line"></span><br><span class="line"><span class="comment">// 但因為其constructor是希望使用Car自己的也就是this.color這些自訂的property，所以我們要把Car.prototype.constructor指向Car  </span></span><br><span class="line"><span class="title class_">Car</span>.<span class="property"><span class="keyword">prototype</span></span>.<span class="property">constructor</span> = <span class="title class_">Car</span>;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//建立一個Car的instance</span></span><br><span class="line"><span class="keyword">const</span> myCar = <span class="keyword">new</span> <span class="title class_">Car</span>(<span class="string">&quot;BMW&quot;</span>, <span class="number">150</span>, <span class="number">100</span>, <span class="string">&quot;red&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//使用繼承vehicle的method  </span></span><br><span class="line">myCar.<span class="title function_">start</span>();</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(myCar.<span class="property">color</span>);</span><br><span class="line"><span class="comment">// red</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 而若是要在Car新增method，可以這沒做</span></span><br><span class="line"><span class="title class_">Car</span>.<span class="property"><span class="keyword">prototype</span></span>.<span class="property">stop</span> = <span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;stop&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">myCar.<span class="title function_">stop</span>();</span><br><span class="line"><span class="comment">// stop</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h3 id="改以ES6的class方式達到繼承"><a href="#改以ES6的class方式達到繼承" class="headerlink" title="改以ES6的class方式達到繼承"></a>改以ES6的class方式達到繼承</h3><p>這樣就清晰易懂的多了，但是Class只是Javascript的語法糖，讓使用者可以更容易實現繼承，但其底層的原理還是以prototype chain的方式達到繼承。範例如下：</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Vehicle</span> &#123;</span><br><span class="line">  <span class="title function_">constructor</span>(<span class="params">type, length, width</span>) &#123;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">type</span> = type;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">length</span> = length;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">width</span> = width;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="title function_">start</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;start&quot;</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Car</span> <span class="keyword">extends</span> <span class="title class_ inherited__">Vehicle</span> &#123;</span><br><span class="line">  <span class="title function_">constructor</span>(<span class="params">type, length, width, color</span>) &#123;</span><br><span class="line">    <span class="variable language_">super</span>(type, length, width); <span class="comment">// 把vehicle的constructor繼承過來並且把this指向Car</span></span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">color</span> = color;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="title function_">stop</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;stop&quot;</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> myCar = <span class="keyword">new</span> <span class="title class_">Car</span>(<span class="string">&quot;BMW&quot;</span>, <span class="number">150</span>, <span class="number">100</span>, <span class="string">&quot;red&quot;</span>);</span><br><span class="line"></span><br><span class="line">myCar.<span class="title function_">start</span>();</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(myCar.<span class="property">color</span>); <span class="comment">// red</span></span><br><span class="line">myCar.<span class="title function_">stop</span>();</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <categories>
-        <category>frontend_interview</category>
-      </categories>
-      <tags>
-        <tag>Javascript</tag>
-        <tag>Frontend</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Javascript的Event Loop以及Micro  task, Macro task是如何運作的？</title>
-    <url>/andy-tech-note/event-loop-micro-task-macro-task/</url>
-    <content><![CDATA[<h2 id="Event-loop是什麼？"><a href="#Event-loop是什麼？" class="headerlink" title="Event loop是什麼？"></a>Event loop是什麼？</h2><p>在javascript的設計中，javascript runtime是以single Thread單執行在執行程式碼，也就是說程式會順序的執行程式碼，而Javascript 透過 Event Loop 讓程式可以異步執行，也就是I&#x2F;O存取、setTimeout、長時間操作(遠端資料請求)，讓使用者不用在順序執行的程式流一直在等待，那這些在被執行完的異步行為的後續程式碼要如何讓他繼續被執行後續的程式碼呢，這就要透過Event loop來做調配。</p>
-<h2 id="Event-loop角色"><a href="#Event-loop角色" class="headerlink" title="Event loop角色"></a>Event loop角色</h2><ul>
-<li>Call stack</li>
-<li>micro task</li>
-<li>macro task</li>
-</ul>
-<h3 id="程式執行順序"><a href="#程式執行順序" class="headerlink" title="程式執行順序"></a>程式執行順序</h3><p>依照程式碼一路順序執行，執行的方式就是會把程式碼逐個放進到call stack中執行，當碰到如setTimeout、I&#x2F;O存取、Fetch、Promise時，會開始執行且將其變成異步執行，也就是說原先的程式碼會繼續執行，當setTimeout、檔案讀取完成，Event loop就會將如setTimeout的callback function放進到task queue(micro task or macro task)中，等待被執行。</p>
-<p>什麼時候執行task中的callback function呢？當call stack沒有程式碼要被執行時就會來檢查task queue裡面是否有task要被執行，若有則開始執行，在這裡會有執行的優先順序，會先執行Micro task queue，直到Micro task queue為空時才會去檢查Macro task queue，Event loop會從Macro task中取出一個task來執行，執行完後再檢查Micro Task，若沒有才會再進到Macro task取出一個task執行。</p>
-<p><img src="./themes/meadow/source/icons/avatar.jpg" data-original="/andy-tech-note/event-loop-micro-task-macro-task/eventloop.png"></p>
-<h3 id="誰會進入Macro-x2F-Micro-task呢？"><a href="#誰會進入Macro-x2F-Micro-task呢？" class="headerlink" title="誰會進入Macro &#x2F; Micro task呢？"></a>誰會進入Macro &#x2F; Micro task呢？</h3><ul>
-<li>Macro : <strong>setTimeout, setInterval, I&#x2F;O操作, UI渲染…</strong></li>
-<li>Micro : <strong>Promise.then, Promise.catch, Promise.finally, MutationObserver,  process.nextTick()(屬於Node.js)</strong></li>
-</ul>
-<p>首先先來基本題，我們先把macro task跟 micro task 看成同一個Queue</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;First&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;Second&#x27;</span>);</span><br><span class="line">&#125;, <span class="number">0</span>);</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;Third&#x27;</span>);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p>上述會怎麼執行呢？</p>
-<p>順序:<br> First<br>Third<br>Sencond</p>
-<p>一開始碰到setTimeout被設為0，看似會馬上執行callback function，依照流程此callback function會被放到task queue中等待被執行，而在setTimeout後面還有程式碼要被放到call stack執行，所以得等到他被執行完才會去到Queue把 console.log(‘Second’); 拿出來執行。</p>
-<p>進階題</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;Start&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;Timeout&#x27;</span>);</span><br><span class="line">&#125;, <span class="number">0</span>);</span><br><span class="line"></span><br><span class="line"><span class="title class_">Promise</span>.<span class="title function_">resolve</span>().<span class="title function_">then</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;Promise 1&#x27;</span>);</span><br><span class="line">&#125;).<span class="title function_">then</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;Promise 2&#x27;</span>);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="keyword">async</span> <span class="keyword">function</span> <span class="title function_">asyncFunction</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;Async Function Start&#x27;</span>);</span><br><span class="line">  <span class="keyword">await</span> <span class="literal">null</span>; </span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;Async Function End&#x27;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="title function_">asyncFunction</span>();</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;End&#x27;</span>);</span><br></pre></td></tr></table></figure>
-
-<p>執行順序：</p>
-<p><a href="https://codepen.io/jean-hao-chen/pen/bGJxqbO">玩玩看</a></p>
-<p><code>console.log(&#39;Start&#39;)</code>會先被執行，再來碰到<code>setTimeout</code>會進到背景去執行，而<code>console.log(&#39;Timeout&#39;)</code>callback function不會馬上被執行，即便setTimeout是設定0秒，還是會被放到Macro Task等待被執行，接下來Promise.resolve()會被執行，它後面有帶.then，所以<code>console.log(&#39;Promise 1&#39;)</code>會被放到micro task等待執行，再來則是執行<code>asyncFunction()</code>的<code> console.log(&#39;Async Function Start&#39;)</code> 以及 <code>await null</code>，在這裡碰到await 不管await執行的function是否為異步其後面的程式碼都會被包起來放到micro task等待被執行，接下來則執行 <code>console.log(&#39;End&#39;);</code>。</p>
-<p>到此synchronize的 code 已經沒有需要被放到 call stack，接下來檢查micro task，開始執行，<code>console.log(&#39;Promise 1&#39;)</code> 而後又有.then，這個<code> console.log(&#39;Promise 2&#39;)</code> callback function會被放到micro task中，再來執行<code>console.log(&#39;Async Function End&#39;)</code>，接下來因為<code>console.log(&#39;Promise 2&#39;)</code>還在micro task，所以會先被執行，最後才是執行macro task的<code>console.log(&#39;Timeout&#39;)</code>;</p>
-<p>順序<br>‘Start’<br>‘Async Function Start’<br>‘End’<br>‘Promise 1’<br>‘Async Function End’<br>‘Promise 2’<br>‘Timeout’</p>
-<p>以上就是Event loop的執行流程。</p>
-<p>參考資料：</p>
-<ul>
-<li><p>Lydia Hallie <a href="https://www.youtube.com/watch?v=eiC58R16hb8">JavaScript Visualized - Event Loop, Web APIs, (Micro)task Queue</a></p>
-</li>
-<li><p>ExplainThis <a href="https://www.explainthis.io/zh-hant/swe/js-event-loop-questions">最常見的事件循環 (Event Loop) 面試題目彙整</a></p>
-</li>
-</ul>
+    <title>Javascript事件冒泡Event Bubbling</title>
+    <url>/andy-tech-note/javascript-event-bubbling/</url>
+    <content><![CDATA[<h2 id="事件冒泡Event-Bubbling"><a href="#事件冒泡Event-Bubbling" class="headerlink" title="事件冒泡Event Bubbling"></a>事件冒泡Event Bubbling</h2><p>事件冒泡是DOM中對事件處理的一種機制。當在DOM中的某個元素（例如，一個按鈕）發生事件（如點擊）時，這個事件不僅在該元素上觸發，還會沿著DOM樹向上冒泡，依次觸發其父元素、父元素的父元素，一直到最頂層的document物件，這一路上的元素都可以收到事件觸發。</p>
+<p>例子：假設你希望在一個容器（div）內的所有元素被點擊時執行相同的操作(console.log(‘click’))，你可以在這個容器上設置一個事件監聽器（<code>event listener</code>）。當容器內的任何一個元素被點擊時，點擊事件會通過事件冒泡機制向上傳遞，最終抵達這個容器。一旦事件到達容器，就會觸發設置在容器上的callback function(這裡設定console.log(‘click’))。</p>
+<p>上面的例子稱作<code>事件委託</code>，它利用了事件冒泡的特性來簡化對多個元素的事件處理，同時提升程式效能，也不需要每個元素都去設定事件監聽。特別是對於動態加入到容器中的新元素，無需單獨為它們綁定事件監聽器，事件委託可以自動地管理它們的事件。</p>
 ]]></content>
       <categories>
         <category>frontend_interview</category>
@@ -684,45 +704,25 @@
       </tags>
   </entry>
   <entry>
-    <title>Javascript 的 hoisting關於var,let,const and function</title>
-    <url>/andy-tech-note/hoisting-about-var-let-const-function/</url>
-    <content><![CDATA[<h2 id="什麼是Hoisting-提升"><a href="#什麼是Hoisting-提升" class="headerlink" title="什麼是Hoisting(提升)"></a>什麼是Hoisting(提升)</h2><p>當js在編譯時會把變數宣告以及函式宣告提升到該<code>作用域</code>的最頂端，但實際上不會去改動程式碼，有時候在撰寫程式碼時有沒有發現雖然你的function宣告在後面，卻在前面使用function而不會跳錯，就是這個原因</p>
-<h3 id="變數-var-let-const"><a href="#變數-var-let-const" class="headerlink" title="變數 var, let, const"></a>變數 var, let, const</h3><p>在var宣告變數及使用變數時如果寫成以下狀況，變數a會被提升，在這情況a雖然可以被印出，但不會被賦值，所以會印出undefined。</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">exampleFunction</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(a); <span class="comment">// undefined</span></span><br><span class="line">  <span class="keyword">var</span> a = <span class="number">5</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="title function_">exampleFunction</span>();</span><br></pre></td></tr></table></figure>
+    <title>Javascript中的JSON格式</title>
+    <url>/andy-tech-note/JOSN-formate/</url>
+    <content><![CDATA[<h3 id="什麼是JSON"><a href="#什麼是JSON" class="headerlink" title="什麼是JSON"></a>什麼是JSON</h3><p>JSON(JavaScript Object Notation)是一種數據交換格式，不論是用在前後端透過RESTful API傳遞資料、function之間使用，都是很方便的，而要把資料轉換成JSON格式則是透過 <code>JSON.strinify(data)</code>，把<code>data</code>轉換成JSON格式。<br>他是以一對大括號以及裡面的東西，這些東西則是以Key與Value組成的KEY-Value Pair(其實與object的格式是一樣的)，不過JSON是字符串，而object則是物件(廢話)，用typeof可以看到JSON字符串是string。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&#x27;&#123;</span><br><span class="line">    &quot;name&quot;:&quot;Andy&quot;,</span><br><span class="line">    &quot;age&quot;:10,</span><br><span class="line">    &quot;skill&quot;:[JS,CSS,HTML,Vue,React]</span><br><span class="line">&#125;&#x27;</span><br></pre></td></tr></table></figure>
 
-<p>let, const，若是這樣寫則是會跳出錯誤，<code>Uncaught ReferenceError: Cannot access &#39;a&#39; before initialization</code>，告訴你在尚未初始化前不能使用該變數，該變數會是在<code>暫時死區</code> (temporal dead zone)直到該變數被宣告為止。</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">exampleFunction</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(a);</span><br><span class="line">  <span class="keyword">let</span> a = <span class="number">5</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="title function_">exampleFunction</span>();</span><br></pre></td></tr></table></figure>
 
-<h3 id="Function提升"><a href="#Function提升" class="headerlink" title="Function提升"></a>Function提升</h3><p>這裡要分Declaration ,Expressions, Arrow Functions 三種<br>在提升的部分，只有Declaration Function 才會被提升，Expressions Function 和 Arrow Function 都不會被提升，所以哪天在寫程式時發現寫在後面的function無法被前面程式碼使用，通常就是這原因，在js編譯時沒有把它提升上來。</p>
-<p>Declaration Function 如下：</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="title function_">exampleFunction</span>()</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">exampleFunction</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">let</span> a = <span class="number">5</span>;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(a);</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="JSON-stringify-data"><a href="#JSON-stringify-data" class="headerlink" title="JSON.stringify(data)"></a>JSON.stringify(data)</h4><p>把object轉換成JSON的格式的function</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">let obj = &#123;name: &quot;John&quot;, age: 30&#125;;</span><br><span class="line">let jsonStr = JSON.stringify(obj);</span><br></pre></td></tr></table></figure>
 
-<p>Expressions Function 如下：</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="title function_">exampleFunction</span>()</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> exampleFunction = <span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">let</span> a = <span class="number">5</span>;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(a);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>Arrow Function 如下：</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="title function_">exampleFunction</span>()</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="title function_">exampleFunction</span> = (<span class="params"></span>) =&gt; &#123;</span><br><span class="line">  <span class="keyword">let</span> a = <span class="number">5</span>;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(a);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>frontend_interview</category>
-      </categories>
-      <tags>
-        <tag>Javascript</tag>
-        <tag>Frontend</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Javascript事件冒泡Event Bubbling</title>
-    <url>/andy-tech-note/javascript-event-bubbling/</url>
-    <content><![CDATA[<h2 id="事件冒泡Event-Bubbling"><a href="#事件冒泡Event-Bubbling" class="headerlink" title="事件冒泡Event Bubbling"></a>事件冒泡Event Bubbling</h2><p>事件冒泡是DOM中對事件處理的一種機制。當在DOM中的某個元素（例如，一個按鈕）發生事件（如點擊）時，這個事件不僅在該元素上觸發，還會沿著DOM樹向上冒泡，依次觸發其父元素、父元素的父元素，一直到最頂層的document物件，這一路上的元素都可以收到事件觸發。</p>
-<p>例子：假設你希望在一個容器（div）內的所有元素被點擊時執行相同的操作(console.log(‘click’))，你可以在這個容器上設置一個事件監聽器（<code>event listener</code>）。當容器內的任何一個元素被點擊時，點擊事件會通過事件冒泡機制向上傳遞，最終抵達這個容器。一旦事件到達容器，就會觸發設置在容器上的callback function(這裡設定console.log(‘click’))。</p>
-<p>上面的例子稱作<code>事件委託</code>，它利用了事件冒泡的特性來簡化對多個元素的事件處理，同時提升程式效能，也不需要每個元素都去設定事件監聽。特別是對於動態加入到容器中的新元素，無需單獨為它們綁定事件監聽器，事件委託可以自動地管理它們的事件。</p>
+<h4 id="JSON-parse-jsonString"><a href="#JSON-parse-jsonString" class="headerlink" title="JSON.parse(jsonString)"></a>JSON.parse(jsonString)</h4><p>接收到JSON格式的字串時需要透過JSON.parse去轉譯才能變成數值或是object</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//延續上面的變數</span><br><span class="line">let obj = JSON.parse(jsonStr)</span><br></pre></td></tr></table></figure>
+<p><a href="https://codepen.io/jean-hao-chen/pen/NWLJQYx?editors=1112">動手試試看</a></p>
 ]]></content>
       <categories>
-        <category>frontend_interview</category>
+        <category>Frontend</category>
       </categories>
       <tags>
         <tag>Javascript</tag>
-        <tag>Frontend</tag>
+        <tag>JSON</tag>
       </tags>
   </entry>
 </search>

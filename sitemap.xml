@@ -374,6 +374,13 @@
   </url>
   
   <url>
+    <loc>http://crazycjh.github.io/andy-tech-note/tags/npm/</loc>
+    <lastmod>2024-04-18</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>http://crazycjh.github.io/andy-tech-note/tags/codemirror/</loc>
     <lastmod>2024-04-18</lastmod>
     <changefreq>weekly</changefreq>
@@ -382,13 +389,6 @@
   
   <url>
     <loc>http://crazycjh.github.io/andy-tech-note/tags/Wordpress/</loc>
-    <lastmod>2024-04-18</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>http://crazycjh.github.io/andy-tech-note/tags/npm/</loc>
     <lastmod>2024-04-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -416,14 +416,14 @@
   </url>
   
   <url>
-    <loc>http://crazycjh.github.io/andy-tech-note/tags/promise/</loc>
+    <loc>http://crazycjh.github.io/andy-tech-note/tags/Firebase/</loc>
     <lastmod>2024-04-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>http://crazycjh.github.io/andy-tech-note/tags/Firebase/</loc>
+    <loc>http://crazycjh.github.io/andy-tech-note/tags/promise/</loc>
     <lastmod>2024-04-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -444,13 +444,6 @@
   </url>
   
   <url>
-    <loc>http://crazycjh.github.io/andy-tech-note/tags/Frontend/</loc>
-    <lastmod>2024-04-18</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>http://crazycjh.github.io/andy-tech-note/tags/git/</loc>
     <lastmod>2024-04-18</lastmod>
     <changefreq>weekly</changefreq>
@@ -459,6 +452,13 @@
   
   <url>
     <loc>http://crazycjh.github.io/andy-tech-note/tags/github/</loc>
+    <lastmod>2024-04-18</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://crazycjh.github.io/andy-tech-note/tags/Frontend/</loc>
     <lastmod>2024-04-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -502,14 +502,14 @@
   </url>
   
   <url>
-    <loc>http://crazycjh.github.io/andy-tech-note/categories/frontend-interview/</loc>
+    <loc>http://crazycjh.github.io/andy-tech-note/categories/dev/</loc>
     <lastmod>2024-04-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>http://crazycjh.github.io/andy-tech-note/categories/dev/</loc>
+    <loc>http://crazycjh.github.io/andy-tech-note/categories/frontend-interview/</loc>
     <lastmod>2024-04-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>

@@ -1,6 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>JS中的Async/Sync</title>
+    <url>/andy-tech-note/Javascript-async-sync/</url>
+    <content><![CDATA[<h2 id="同步與非同步？"><a href="#同步與非同步？" class="headerlink" title="同步與非同步？"></a>同步與非同步？</h2><h4 id="什麼是同步"><a href="#什麼是同步" class="headerlink" title="什麼是同步"></a>什麼是同步</h4><p>一般來說JS都是以 <code>同步synchronous</code> 的方式執行程式碼，以圖中左邊來說，由上而下的時間軸順序執行程式碼，每次只做一件事，<br>以<code>同步</code>的字面上來說很像是同時做很多件事，但其實是一次只執行一件事。</p>
+<h4 id="什麼是非同步"><a href="#什麼是非同步" class="headerlink" title="什麼是非同步"></a>什麼是非同步</h4><p>什麼又是 <code>非同步</code> ，上面提到的一次只能一次做一件，以下圖來看的意思就是，某些時候會有些運算或是網路請求耗時會較長，但我們又不希望整個程式碼因為要等待某個function執行完畢才往下繼續執行，這時候就需要非同步。<br>想像一下，你在正瀏覽某個網頁，因為點擊某個按鈕，而這按鈕因為需要做些費時較長的功能，而因為這樣頁面就卡住無法瀏覽，這樣使用者體驗應該會很差吧？</p>
+<ul>
+<li>舉例：JS中有個function <code>setTimeout()</code> 是可以在這裡面寫一個callback function，在設定的倒數時間到之後執行它，那如果現在他是以同步的方式執行，這樣程式碼會卡在那邊等到時間到才能往下繼續執行，那如果是非同步，程式碼會繼續往下執行之外同時在背景還會繼續倒數直到時間到執行設定好的callback function。</li>
+</ul>
+<p><img src="./themes/meadow/source/icons/avatar.jpg" data-original="https://www.freecodecamp.org/news/content/images/2021/09/freeCodeCamp-Cover-2.png" alt="async"></p>
+]]></content>
+      <categories>
+        <category>Frontend</category>
+      </categories>
+      <tags>
+        <tag>Javascript</tag>
+        <tag>async</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>如何在vue上建立codemirror編輯器</title>
     <url>/andy-tech-note/how-to-create-codemirror/</url>
     <content><![CDATA[<h3 id="什麼是codemirror"><a href="#什麼是codemirror" class="headerlink" title="什麼是codemirror"></a>什麼是codemirror</h3><p>codemirror是一個可以應用在web頁面的程式碼編輯器。</p>
@@ -19,22 +37,10 @@
 <p>不過在文件中有提到 <em>Methods prefixed with doc. can, unless otherwise specified, be called both on CodeMirror (editor) instances and CodeMirror.Doc instances. Methods prefixed with cm. are only available on CodeMirror instances.</em><br>所以可以直接以 <code>CodeMirror instance 取代 CodeMirror.Doc instance，不過兩者都可以使用</code> </p>
 ]]></content>
       <categories>
-        <category>javascript</category>
-      </categories>
-      <tags>
-        <tag>Javascript</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>如何修改NPM下載的程式碼</title>
-    <url>/andy-tech-note/how-to-edit-sourcecode-installed-by-npm-nodemodule/</url>
-    <content><![CDATA[<p>嘗試對npm下載的node_modules裡面的套件的code做修改，但是發現不論怎麼改都不會生效。<br>才發現在vite &amp; vue3的環境下，vite把一些預先編譯好的東西放到<code>node_modules/.vite</code>中，<br>所以需要手動刪除這個資料夾去讓編譯器去編譯修改過的程式碼，又或者透過 <code>npm run dev --force</code></p>
-]]></content>
-      <categories>
         <category>Frontend</category>
       </categories>
       <tags>
-        <tag>npm</tag>
+        <tag>javascript</tag>
       </tags>
   </entry>
   <entry>
@@ -48,8 +54,20 @@
         <category>Frontend</category>
       </categories>
       <tags>
-        <tag>Javascript</tag>
-        <tag>Vue</tag>
+        <tag>javascript</tag>
+        <tag>vue</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>如何修改NPM下載的程式碼</title>
+    <url>/andy-tech-note/how-to-edit-sourcecode-installed-by-npm-nodemodule/</url>
+    <content><![CDATA[<p>嘗試對npm下載的node_modules裡面的套件的code做修改，但是發現不論怎麼改都不會生效。<br>才發現在vite &amp; vue3的環境下，vite把一些預先編譯好的東西放到<code>node_modules/.vite</code>中，<br>所以需要手動刪除這個資料夾去讓編譯器去編譯修改過的程式碼，又或者透過 <code>npm run dev --force</code></p>
+]]></content>
+      <categories>
+        <category>Frontend</category>
+      </categories>
+      <tags>
+        <tag>npm</tag>
       </tags>
   </entry>
   <entry>
@@ -117,24 +135,6 @@
       </categories>
       <tags>
         <tag>codemirror</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>JS中的Async/Sync</title>
-    <url>/andy-tech-note/Javascript-async-sync/</url>
-    <content><![CDATA[<h2 id="同步與非同步？"><a href="#同步與非同步？" class="headerlink" title="同步與非同步？"></a>同步與非同步？</h2><h4 id="什麼是同步"><a href="#什麼是同步" class="headerlink" title="什麼是同步"></a>什麼是同步</h4><p>一般來說JS都是以 <code>同步synchronous</code> 的方式執行程式碼，以圖中左邊來說，由上而下的時間軸順序執行程式碼，每次只做一件事，<br>以<code>同步</code>的字面上來說很像是同時做很多件事，但其實是一次只執行一件事。</p>
-<h4 id="什麼是非同步"><a href="#什麼是非同步" class="headerlink" title="什麼是非同步"></a>什麼是非同步</h4><p>什麼又是 <code>非同步</code> ，上面提到的一次只能一次做一件，以下圖來看的意思就是，某些時候會有些運算或是網路請求耗時會較長，但我們又不希望整個程式碼因為要等待某個function執行完畢才往下繼續執行，這時候就需要非同步。<br>想像一下，你在正瀏覽某個網頁，因為點擊某個按鈕，而這按鈕因為需要做些費時較長的功能，而因為這樣頁面就卡住無法瀏覽，這樣使用者體驗應該會很差吧？</p>
-<ul>
-<li>舉例：JS中有個function <code>setTimeout()</code> 是可以在這裡面寫一個callback function，在設定的倒數時間到之後執行它，那如果現在他是以同步的方式執行，這樣程式碼會卡在那邊等到時間到才能往下繼續執行，那如果是非同步，程式碼會繼續往下執行之外同時在背景還會繼續倒數直到時間到執行設定好的callback function。</li>
-</ul>
-<p><img src="./themes/meadow/source/icons/avatar.jpg" data-original="https://www.freecodecamp.org/news/content/images/2021/09/freeCodeCamp-Cover-2.png" alt="async"></p>
-]]></content>
-      <categories>
-        <category>javascript</category>
-      </categories>
-      <tags>
-        <tag>Javascript</tag>
-        <tag>async</tag>
       </tags>
   </entry>
   <entry>
@@ -206,10 +206,10 @@
 <p>這個狀況其實在狀況2是沒有作用的，雖然是div下的第一個p，但是在div下面的第一個element是 div而非 p ，所以不會成功</p>
 ]]></content>
       <categories>
-        <category>CSS</category>
+        <category>css</category>
       </categories>
       <tags>
-        <tag>CSS</tag>
+        <tag>css</tag>
       </tags>
   </entry>
   <entry>
@@ -234,6 +234,30 @@
       <tags>
         <tag>Vue</tag>
         <tag>React</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>如何使用Google的firebase裡面的驗證功能(login/logout)</title>
+    <url>/andy-tech-note/firebase-auth/</url>
+    <content><![CDATA[<h4 id="Google-Firebase"><a href="#Google-Firebase" class="headerlink" title="Google Firebase"></a>Google Firebase</h4><p>Google的Firebase是個前端工程師很好用的工具，他可以讓前端工程師省去後端資料庫的建立而可以專注在前端的開發，這裡面有身份驗證、realtime資料庫等好用的功能，只要是拿來做開發，而流量不大的話，通常你都不會達到需要付費流量。</p>
+<h4 id="Firebase-auth-以Email-x2F-password-為例"><a href="#Firebase-auth-以Email-x2F-password-為例" class="headerlink" title="Firebase auth 以Email&#x2F;password 為例"></a>Firebase auth 以Email&#x2F;password 為例</h4><p>可以先到firebase官網看一下的 <a href="https://firebase.google.com/docs/auth/web/start">Authentication</a> 頁面，<code>Get start </code>中有提供範例code</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">import &#123; initializeApp &#125; from &quot;firebase/app&quot;;</span><br><span class="line">import &#123; getAuth &#125; from &quot;firebase/auth&quot;;</span><br><span class="line"></span><br><span class="line">// TODO: Replace the following with your app&#x27;s Firebase project configuration</span><br><span class="line">// See: https://firebase.google.com/docs/web/learn-more#config-object</span><br><span class="line">const firebaseConfig = &#123;</span><br><span class="line">  // ...這裡面呢放上的東西可以參考上面那行網址，</span><br><span class="line">  簡單來說就是你在firebase(https://firebase.google.com/)</span><br><span class="line">  建立新專案時並且建立後會出現的一些資料，按照這些資料填入即可</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">// Initialize Firebase</span><br><span class="line">const app = initializeApp(firebaseConfig);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">// Initialize Firebase Authentication and get a reference to the service</span><br><span class="line">const auth = getAuth(app);</span><br><span class="line">//</span><br></pre></td></tr></table></figure>
+<p>要如何找到firebaseConfig裡面的資料？點到下圖的這個地方，右邊拉到底，新增一個<code>網頁應用程式</code>後就會出現相對應的api key。<br><img src="./themes/meadow/source/icons/avatar.jpg" data-original="/andy-tech-note/firebase-auth/SCR-20230216-t2w.png"><br>而後記得在左側的<code>建構</code>建立一個authication服務，然後在右側sign-in method去新增供應商，選擇電子郵件&#x2F;密碼後在左邊users設定你想要登入的帳號密碼(這是比較陽春的方式，你可以在網路上找一下透過網頁要求建立帳號密碼)<br><img src="./themes/meadow/source/icons/avatar.jpg" data-original="/andy-tech-note/firebase-auth/SCR-20230216-t7l.png"></p>
+<p>而剛剛上面的code，只是把firebase先初始化以及把auth資訊先準備好，接下來要呼叫登入的API。<br><a href="https://firebase.google.com/docs/auth/web/password-auth">email&#x2F;password登入</a></p>
+<h5 id="登入"><a href="#登入" class="headerlink" title="登入"></a>登入</h5><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">import &#123; getAuth, signInWithEmailAndPassword &#125; from &quot;firebase/auth&quot;;</span><br><span class="line"></span><br><span class="line">const auth = getAuth();</span><br><span class="line">signInWithEmailAndPassword(auth, email, password)</span><br><span class="line">  .then((userCredential) =&gt; &#123;</span><br><span class="line">    // Signed in </span><br><span class="line">    const user = userCredential.user;</span><br><span class="line">    // ...</span><br><span class="line">  &#125;)</span><br><span class="line">  .catch((error) =&gt; &#123;</span><br><span class="line">    const errorCode = error.code;</span><br><span class="line">    const errorMessage = error.message;</span><br><span class="line">  &#125;);</span><br></pre></td></tr></table></figure>
+
+<p>如果有需要創建帳號的code，在同個網頁也有</p>
+<h5 id="創建帳號"><a href="#創建帳號" class="headerlink" title="創建帳號"></a>創建帳號</h5><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">import &#123; getAuth, createUserWithEmailAndPassword &#125; from &quot;firebase/auth&quot;;</span><br><span class="line"></span><br><span class="line">const auth = getAuth();</span><br><span class="line">createUserWithEmailAndPassword(auth, email, password)</span><br><span class="line">  .then((userCredential) =&gt; &#123;</span><br><span class="line">    // Signed in </span><br><span class="line">    const user = userCredential.user;</span><br><span class="line">    // ...</span><br><span class="line">  &#125;)</span><br><span class="line">  .catch((error) =&gt; &#123;</span><br><span class="line">    const errorCode = error.code;</span><br><span class="line">    const errorMessage = error.message;</span><br><span class="line">    // ..</span><br><span class="line">  &#125;);</span><br></pre></td></tr></table></figure>
+
+<h5 id="登出"><a href="#登出" class="headerlink" title="登出"></a>登出</h5><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">import &#123; getAuth, signOut &#125; from &quot;firebase/auth&quot;;</span><br><span class="line"></span><br><span class="line">const auth = getAuth();</span><br><span class="line">signOut(auth).then(() =&gt; &#123;</span><br><span class="line">  // Sign-out successful.</span><br><span class="line">&#125;).catch((error) =&gt; &#123;</span><br><span class="line">  // An error happened.</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<h4 id="登入後"><a href="#登入後" class="headerlink" title="登入後"></a>登入後</h4><p>執行完登入後，要怎麼知道是不是真正登入？<br>可以點開瀏覽器的開發者工具裡面的儲存空間如下，如果再相對應的位置有找到寫有你之前填入的API Key就代表登入成功，而且他還幫你存在暫存裡面。<br><img src="./themes/meadow/source/icons/avatar.jpg" data-original="/andy-tech-note/firebase-auth/SCR-20230216-to3.png"></p>
+]]></content>
+      <categories>
+        <category>Frontend</category>
+      </categories>
+      <tags>
+        <tag>Firebase</tag>
       </tags>
   </entry>
   <entry>
@@ -277,7 +301,7 @@
         <category>Frontend</category>
       </categories>
       <tags>
-        <tag>CSS</tag>
+        <tag>css</tag>
       </tags>
   </entry>
   <entry>
@@ -291,31 +315,7 @@
         <category>Frontend</category>
       </categories>
       <tags>
-        <tag>CSS</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>如何使用Google的firebase裡面的驗證功能(login/logout)</title>
-    <url>/andy-tech-note/firebase-auth/</url>
-    <content><![CDATA[<h4 id="Google-Firebase"><a href="#Google-Firebase" class="headerlink" title="Google Firebase"></a>Google Firebase</h4><p>Google的Firebase是個前端工程師很好用的工具，他可以讓前端工程師省去後端資料庫的建立而可以專注在前端的開發，這裡面有身份驗證、realtime資料庫等好用的功能，只要是拿來做開發，而流量不大的話，通常你都不會達到需要付費流量。</p>
-<h4 id="Firebase-auth-以Email-x2F-password-為例"><a href="#Firebase-auth-以Email-x2F-password-為例" class="headerlink" title="Firebase auth 以Email&#x2F;password 為例"></a>Firebase auth 以Email&#x2F;password 為例</h4><p>可以先到firebase官網看一下的 <a href="https://firebase.google.com/docs/auth/web/start">Authentication</a> 頁面，<code>Get start </code>中有提供範例code</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">import &#123; initializeApp &#125; from &quot;firebase/app&quot;;</span><br><span class="line">import &#123; getAuth &#125; from &quot;firebase/auth&quot;;</span><br><span class="line"></span><br><span class="line">// TODO: Replace the following with your app&#x27;s Firebase project configuration</span><br><span class="line">// See: https://firebase.google.com/docs/web/learn-more#config-object</span><br><span class="line">const firebaseConfig = &#123;</span><br><span class="line">  // ...這裡面呢放上的東西可以參考上面那行網址，</span><br><span class="line">  簡單來說就是你在firebase(https://firebase.google.com/)</span><br><span class="line">  建立新專案時並且建立後會出現的一些資料，按照這些資料填入即可</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">// Initialize Firebase</span><br><span class="line">const app = initializeApp(firebaseConfig);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">// Initialize Firebase Authentication and get a reference to the service</span><br><span class="line">const auth = getAuth(app);</span><br><span class="line">//</span><br></pre></td></tr></table></figure>
-<p>要如何找到firebaseConfig裡面的資料？點到下圖的這個地方，右邊拉到底，新增一個<code>網頁應用程式</code>後就會出現相對應的api key。<br><img src="./themes/meadow/source/icons/avatar.jpg" data-original="/andy-tech-note/firebase-auth/SCR-20230216-t2w.png"><br>而後記得在左側的<code>建構</code>建立一個authication服務，然後在右側sign-in method去新增供應商，選擇電子郵件&#x2F;密碼後在左邊users設定你想要登入的帳號密碼(這是比較陽春的方式，你可以在網路上找一下透過網頁要求建立帳號密碼)<br><img src="./themes/meadow/source/icons/avatar.jpg" data-original="/andy-tech-note/firebase-auth/SCR-20230216-t7l.png"></p>
-<p>而剛剛上面的code，只是把firebase先初始化以及把auth資訊先準備好，接下來要呼叫登入的API。<br><a href="https://firebase.google.com/docs/auth/web/password-auth">email&#x2F;password登入</a></p>
-<h5 id="登入"><a href="#登入" class="headerlink" title="登入"></a>登入</h5><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">import &#123; getAuth, signInWithEmailAndPassword &#125; from &quot;firebase/auth&quot;;</span><br><span class="line"></span><br><span class="line">const auth = getAuth();</span><br><span class="line">signInWithEmailAndPassword(auth, email, password)</span><br><span class="line">  .then((userCredential) =&gt; &#123;</span><br><span class="line">    // Signed in </span><br><span class="line">    const user = userCredential.user;</span><br><span class="line">    // ...</span><br><span class="line">  &#125;)</span><br><span class="line">  .catch((error) =&gt; &#123;</span><br><span class="line">    const errorCode = error.code;</span><br><span class="line">    const errorMessage = error.message;</span><br><span class="line">  &#125;);</span><br></pre></td></tr></table></figure>
-
-<p>如果有需要創建帳號的code，在同個網頁也有</p>
-<h5 id="創建帳號"><a href="#創建帳號" class="headerlink" title="創建帳號"></a>創建帳號</h5><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">import &#123; getAuth, createUserWithEmailAndPassword &#125; from &quot;firebase/auth&quot;;</span><br><span class="line"></span><br><span class="line">const auth = getAuth();</span><br><span class="line">createUserWithEmailAndPassword(auth, email, password)</span><br><span class="line">  .then((userCredential) =&gt; &#123;</span><br><span class="line">    // Signed in </span><br><span class="line">    const user = userCredential.user;</span><br><span class="line">    // ...</span><br><span class="line">  &#125;)</span><br><span class="line">  .catch((error) =&gt; &#123;</span><br><span class="line">    const errorCode = error.code;</span><br><span class="line">    const errorMessage = error.message;</span><br><span class="line">    // ..</span><br><span class="line">  &#125;);</span><br></pre></td></tr></table></figure>
-
-<h5 id="登出"><a href="#登出" class="headerlink" title="登出"></a>登出</h5><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">import &#123; getAuth, signOut &#125; from &quot;firebase/auth&quot;;</span><br><span class="line"></span><br><span class="line">const auth = getAuth();</span><br><span class="line">signOut(auth).then(() =&gt; &#123;</span><br><span class="line">  // Sign-out successful.</span><br><span class="line">&#125;).catch((error) =&gt; &#123;</span><br><span class="line">  // An error happened.</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-
-<h4 id="登入後"><a href="#登入後" class="headerlink" title="登入後"></a>登入後</h4><p>執行完登入後，要怎麼知道是不是真正登入？<br>可以點開瀏覽器的開發者工具裡面的儲存空間如下，如果再相對應的位置有找到寫有你之前填入的API Key就代表登入成功，而且他還幫你存在暫存裡面。<br><img src="./themes/meadow/source/icons/avatar.jpg" data-original="/andy-tech-note/firebase-auth/SCR-20230216-to3.png"></p>
-]]></content>
-      <categories>
-        <category>Frontend</category>
-      </categories>
-      <tags>
-        <tag>Firebase</tag>
+        <tag>css</tag>
       </tags>
   </entry>
   <entry>
@@ -330,24 +330,6 @@
       </categories>
       <tags>
         <tag>CSS</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>在Javacript建立promise</title>
-    <url>/andy-tech-note/how-to-create-promise/</url>
-    <content><![CDATA[<h4 id="建立promise"><a href="#建立promise" class="headerlink" title="建立promise"></a>建立promise</h4><p>延續前一篇關於promise的文章，來試試看要怎麼建立一個Promise。</p>
-<h4 id="promise初版"><a href="#promise初版" class="headerlink" title="promise初版"></a>promise初版</h4><p>製作一個樂透功能的promise</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">const lotteryPromise = new Promise(function(resolve,reject)&#123;</span><br><span class="line">    if(Math.random() &gt;= 0.5)&#123;</span><br><span class="line">        resolve(&#x27;You Win the Lottery&#x27;); //fulfilled</span><br><span class="line">    &#125;else&#123;</span><br><span class="line">        reject(&quot;loser la&quot;); //reject</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">lotteryPromise.then((res)=&gt;&#123;</span><br><span class="line">    console.log(res) //印出You Win the Lottery</span><br><span class="line">&#125;).catch((err)=&gt;&#123;</span><br><span class="line">    console.log(err) //印出loser la</span><br><span class="line">&#125;)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h4 id="有async效果的promise版本"><a href="#有async效果的promise版本" class="headerlink" title="有async效果的promise版本"></a>有async效果的promise版本</h4><p><code>以上不是async</code>所以加入setTimeout來實現延遲</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">const lotteryPromise = new Promise(function(resolve,reject)&#123;</span><br><span class="line">    setTimeout(()=&gt;&#123;</span><br><span class="line">        if(Math.random() &gt;= 0.5)&#123;</span><br><span class="line">            resolve(&#x27;You Win the Lottery&#x27;);</span><br><span class="line">        &#125;else&#123;</span><br><span class="line">            reject(&quot;loser la&quot;);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,2000) //等2秒才執行</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">lotteryPromise.then((res)=&gt;&#123;</span><br><span class="line">    console.log(res) //印出You Win the Lottery</span><br><span class="line">&#125;).catch((err)=&gt;&#123;</span><br><span class="line">    console.log(err) //印出loser la</span><br><span class="line">&#125;)</span><br><span class="line"></span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>Frontend</category>
-      </categories>
-      <tags>
-        <tag>Javascript</tag>
-        <tag>async</tag>
-        <tag>promise</tag>
       </tags>
   </entry>
   <entry>
@@ -373,6 +355,24 @@
       </tags>
   </entry>
   <entry>
+    <title>在Javacript建立promise</title>
+    <url>/andy-tech-note/how-to-create-promise/</url>
+    <content><![CDATA[<h4 id="建立promise"><a href="#建立promise" class="headerlink" title="建立promise"></a>建立promise</h4><p>延續前一篇關於promise的文章，來試試看要怎麼建立一個Promise。</p>
+<h4 id="promise初版"><a href="#promise初版" class="headerlink" title="promise初版"></a>promise初版</h4><p>製作一個樂透功能的promise</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">const lotteryPromise = new Promise(function(resolve,reject)&#123;</span><br><span class="line">    if(Math.random() &gt;= 0.5)&#123;</span><br><span class="line">        resolve(&#x27;You Win the Lottery&#x27;); //fulfilled</span><br><span class="line">    &#125;else&#123;</span><br><span class="line">        reject(&quot;loser la&quot;); //reject</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">lotteryPromise.then((res)=&gt;&#123;</span><br><span class="line">    console.log(res) //印出You Win the Lottery</span><br><span class="line">&#125;).catch((err)=&gt;&#123;</span><br><span class="line">    console.log(err) //印出loser la</span><br><span class="line">&#125;)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h4 id="有async效果的promise版本"><a href="#有async效果的promise版本" class="headerlink" title="有async效果的promise版本"></a>有async效果的promise版本</h4><p><code>以上不是async</code>所以加入setTimeout來實現延遲</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">const lotteryPromise = new Promise(function(resolve,reject)&#123;</span><br><span class="line">    setTimeout(()=&gt;&#123;</span><br><span class="line">        if(Math.random() &gt;= 0.5)&#123;</span><br><span class="line">            resolve(&#x27;You Win the Lottery&#x27;);</span><br><span class="line">        &#125;else&#123;</span><br><span class="line">            reject(&quot;loser la&quot;);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,2000) //等2秒才執行</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">lotteryPromise.then((res)=&gt;&#123;</span><br><span class="line">    console.log(res) //印出You Win the Lottery</span><br><span class="line">&#125;).catch((err)=&gt;&#123;</span><br><span class="line">    console.log(err) //印出loser la</span><br><span class="line">&#125;)</span><br><span class="line"></span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>Frontend</category>
+      </categories>
+      <tags>
+        <tag>Javascript</tag>
+        <tag>async</tag>
+        <tag>promise</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>nextTick in Vue3</title>
     <url>/andy-tech-note/nextTick-in-Vue3/</url>
     <content><![CDATA[<h4 id="什麼是nextTick-？"><a href="#什麼是nextTick-？" class="headerlink" title="什麼是nextTick()？"></a>什麼是nextTick()？</h4><h6 id="官方定義"><a href="#官方定義" class="headerlink" title="官方定義"></a>官方定義</h6><p><code>在下次 DOM 更新循环结束之后执行延迟回调。在修改数据之后立即使用这个方法，获取更新后的 DOM</code></p>
@@ -383,6 +383,9 @@
 <p>請忽略傳遞的參數ＸＤ</p>
 <p>在這裡會看到emit會在DOM完成更新後才執行，這樣就不會有覺得為什麼點擊Chenckbox後卻沒有馬上被打勾的問題。</p>
 ]]></content>
+      <categories>
+        <category>Frontend</category>
+      </categories>
       <tags>
         <tag>Vue</tag>
       </tags>
@@ -400,22 +403,6 @@
       </categories>
       <tags>
         <tag>Javascript</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>git local 及 remote repo 不同步怎麼處理</title>
-    <url>/andy-tech-note/git-remote-repo-%E4%B8%8D%E5%90%8C%E6%AD%A5/</url>
-    <content><![CDATA[<h3 id="Local的commit-與-Remote-的commit-沒有同步"><a href="#Local的commit-與-Remote-的commit-沒有同步" class="headerlink" title="Local的commit 與 Remote 的commit 沒有同步"></a>Local的commit 與 Remote 的commit 沒有同步</h3><p><img src="./themes/meadow/source/icons/avatar.jpg" data-original="/andy-tech-note/git-remote-repo-%E4%B8%8D%E5%90%8C%E6%AD%A5/git.png" alt="git"><br>如圖中所示，會發現 <code>github remote 的 main</code> 跟 <code>local 的 main</code> 分岔了。<br>這是因為在先前在B電腦做了一次 commit &amp; push，也就是圖中岔出去的那個 Remote main，<br>然而在A電腦的commit還停留在B電腦commit的前一個版本，但是我沒發現就繼續開發下去，<br>一路開發下去，直到要push到遠端時才被告知遠端有code沒有同步到。</p>
-<p>查了一下，查到git fetch origin main 似乎是比較安全的，他可以單純把遠端你所有缺少的code抓下來，然後你再透過git status查詢時，git 會告知你 local 的 code 與遠端的 code 差異在哪，然後再透過<code>git merge origin main</code> 或是 <code>git rebase origin main</code>。<br>但要注意，當前如果有code還尚未commit，git會告知你要先commit，並且不會讓你merge，應該是怕你的 code 丟失，若還沒要 commit 可以透過<code>git stage</code> 把 code 存起來以防止不見。</p>
-<p>指令</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git fetch origin main </span><br><span class="line">git merge origin/main</span><br></pre></td></tr></table></figure>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git fetch origin main </span><br><span class="line">git rebase origin/main</span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>dev</category>
-      </categories>
-      <tags>
-        <tag>git</tag>
-        <tag>github</tag>
       </tags>
   </entry>
   <entry>
@@ -455,7 +442,59 @@
         <category>Frontend</category>
       </categories>
       <tags>
-        <tag>auth</tag>
+        <tag>Auth</tag>
+        <tag>Google</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>git local 及 remote repo 不同步怎麼處理</title>
+    <url>/andy-tech-note/git-remote-repo-%E4%B8%8D%E5%90%8C%E6%AD%A5/</url>
+    <content><![CDATA[<h3 id="Local的commit-與-Remote-的commit-沒有同步"><a href="#Local的commit-與-Remote-的commit-沒有同步" class="headerlink" title="Local的commit 與 Remote 的commit 沒有同步"></a>Local的commit 與 Remote 的commit 沒有同步</h3><p><img src="./themes/meadow/source/icons/avatar.jpg" data-original="/andy-tech-note/git-remote-repo-%E4%B8%8D%E5%90%8C%E6%AD%A5/git.png" alt="git"><br>如圖中所示，會發現 <code>github remote 的 main</code> 跟 <code>local 的 main</code> 分岔了。<br>這是因為在先前在B電腦做了一次 commit &amp; push，也就是圖中岔出去的那個 Remote main，<br>然而在A電腦的commit還停留在B電腦commit的前一個版本，但是我沒發現就繼續開發下去，<br>一路開發下去，直到要push到遠端時才被告知遠端有code沒有同步到。</p>
+<p>查了一下，查到git fetch origin main 似乎是比較安全的，他可以單純把遠端你所有缺少的code抓下來，然後你再透過git status查詢時，git 會告知你 local 的 code 與遠端的 code 差異在哪，然後再透過<code>git merge origin main</code> 或是 <code>git rebase origin main</code>。<br>但要注意，當前如果有code還尚未commit，git會告知你要先commit，並且不會讓你merge，應該是怕你的 code 丟失，若還沒要 commit 可以透過<code>git stage</code> 把 code 存起來以防止不見。</p>
+<p>指令</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git fetch origin main </span><br><span class="line">git merge origin/main</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git fetch origin main </span><br><span class="line">git rebase origin/main</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>Frontend</category>
+      </categories>
+      <tags>
+        <tag>git</tag>
+        <tag>github</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Wordpress當後端傳文章內容到前端(Vue)</title>
+    <url>/andy-tech-note/wordpress%E7%95%B6%E5%BE%8C%E7%AB%AF%E5%82%B3%E6%96%87%E7%AB%A0%E5%85%A7%E5%AE%B9%E5%88%B0%E5%89%8D%E7%AB%AF-Vue/</url>
+    <content><![CDATA[<h3 id="以Wordpress為後端傳資料到前端"><a href="#以Wordpress為後端傳資料到前端" class="headerlink" title="以Wordpress為後端傳資料到前端"></a>以Wordpress為後端傳資料到前端</h3><p>wordpress 為後端，前端向後端取得wp中的文章時，我希望直接取得可以呈現的HTML格式，試過使用 WP 中的 function <code>get_post_field</code>，雖然可以取得HTML，但是HTML結構與真正在以WP當作前端呈現的文章的html有些出入，也就是在WP呈現頁面前會對原始的html做特殊格式化，這就要透過 apply_filters   ‘the_content’ 去把取得的html做格式化，這樣才會與wp呈現出來的樣式一樣。</p>
+<p>範例如下</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">apply_filters(&#x27;the_content&#x27;, get_post_field(&#x27;post_content&#x27;, $latest_id))</span><br></pre></td></tr></table></figure>
+
+<p>如此一來在 Vue 中就可以透過 v-html 把取得的html呈現在前端。</p>
+]]></content>
+      <categories>
+        <category>Frontend</category>
+      </categories>
+      <tags>
+        <tag>Wordpress</tag>
+        <tag>Frontend</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Javascript中&lt;script&gt;的async與defer</title>
+    <url>/andy-tech-note/js-script-async-defer/</url>
+    <content><![CDATA[<h2 id="什麼是async-x2F-defer"><a href="#什麼是async-x2F-defer" class="headerlink" title="什麼是async&#x2F;defer"></a>什麼是async&#x2F;defer</h2><h3 id="HTML做些什麼事？"><a href="#HTML做些什麼事？" class="headerlink" title="HTML做些什麼事？"></a>HTML做些什麼事？</h3><p>在瀏覽器執行解析網頁時如果碰到<code>&lt;script&gt;</code>標籤，會先執行該script中的行為，而如果需要下載檔案則會執行下載，而此時若是執行下載時，整個網頁的解析就會停下來，等到檔案被下載後才會繼續解析，這樣有一個很大的問題，也就是當使用者瀏覽網頁時就會有些元素不是馬上出現在使用者面前，就是因為在等待JS檔案的下載，這就有關UX了。</p>
+<p>但是又有些JS檔案是要盡可能提早被下載到<code>client</code>端，如果讓<code>script</code> 在解析完<code>DOM</code>才執行就會有問題，因為當頁面解析完後會馬傷需要使用<code>JS</code>中的功能，所以就有了<code>async/defer</code>的概念。</p>
+<h4 id="解決方法"><a href="#解決方法" class="headerlink" title="解決方法"></a>解決方法</h4><p>上述問題就可以透過<code>async/defer</code>解決，這兩個主要都是讓<code>script</code>可以在背景執行，但是有個主要差異如下：</p>
+<h5 id="async"><a href="#async" class="headerlink" title="async"></a>async</h5><p>會在背景下載也就是異步的方式執行，在同時 HTML 解析會繼續執行，而當js檔案被下載後會被立即執行，不必等到 DOM 被全部解析。</p>
+<h5 id="defer"><a href="#defer" class="headerlink" title="defer"></a>defer</h5><p>也同是在背景下載不影響<code>DOM</code>的解析，但是他會等到<code>DOM</code>完全解析完才執行，而若是有多個js有互相依賴的行為可以以 <code>defer</code> 方式執行，只要按照執行順序去寫<code>script</code>即可</p>
+]]></content>
+      <categories>
+        <category>frontend_interview</category>
+        <category>Frontend</category>
+      </categories>
+      <tags>
+        <tag>Javascript</tag>
+        <tag>Frontend</tag>
       </tags>
   </entry>
   <entry>
@@ -485,19 +524,29 @@
       </tags>
   </entry>
   <entry>
-    <title>Javascript中&lt;script&gt;的async與defer</title>
-    <url>/andy-tech-note/js-script-async-defer/</url>
-    <content><![CDATA[<h2 id="什麼是async-x2F-defer"><a href="#什麼是async-x2F-defer" class="headerlink" title="什麼是async&#x2F;defer"></a>什麼是async&#x2F;defer</h2><h3 id="HTML做些什麼事？"><a href="#HTML做些什麼事？" class="headerlink" title="HTML做些什麼事？"></a>HTML做些什麼事？</h3><p>在瀏覽器執行解析網頁時如果碰到<code>&lt;script&gt;</code>標籤，會先執行該script中的行為，而如果需要下載檔案則會執行下載，而此時若是執行下載時，整個網頁的解析就會停下來，等到檔案被下載後才會繼續解析，這樣有一個很大的問題，也就是當使用者瀏覽網頁時就會有些元素不是馬上出現在使用者面前，就是因為在等待JS檔案的下載，這就有關UX了。</p>
-<p>但是又有些JS檔案是要盡可能提早被下載到<code>client</code>端，如果讓<code>script</code> 在解析完<code>DOM</code>才執行就會有問題，因為當頁面解析完後會馬傷需要使用<code>JS</code>中的功能，所以就有了<code>async/defer</code>的概念。</p>
-<h4 id="解決方法"><a href="#解決方法" class="headerlink" title="解決方法"></a>解決方法</h4><p>上述問題就可以透過<code>async/defer</code>解決，這兩個主要都是讓<code>script</code>可以在背景執行，但是有個主要差異如下：</p>
-<h5 id="async"><a href="#async" class="headerlink" title="async"></a>async</h5><p>會在背景下載也就是異步的方式執行，在同時 HTML 解析會繼續執行，而當js檔案被下載後會被立即執行，不必等到 DOM 被全部解析。</p>
-<h5 id="defer"><a href="#defer" class="headerlink" title="defer"></a>defer</h5><p>也同是在背景下載不影響<code>DOM</code>的解析，但是他會等到<code>DOM</code>完全解析完才執行，而若是有多個js有互相依賴的行為可以以 <code>defer</code> 方式執行，只要按照執行順序去寫<code>script</code>即可</p>
+    <title>CSS的的selector的權重</title>
+    <url>/andy-tech-note/about-CSS-selector-priority/</url>
+    <content><![CDATA[<h3 id="selector是什麼？"><a href="#selector是什麼？" class="headerlink" title="selector是什麼？"></a>selector是什麼？</h3><p>是用來選擇HTML tag並設定寬、高、顏色、背景圖等等(如：H1,p,div)，選擇器不僅限於標籤(div, p, span)，還包含class及id。</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.className</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>:blue;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">div</span> &#123;</span><br><span class="line">    <span class="attribute">font-size</span>:<span class="number">16px</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="權重可以幹嘛？"><a href="#權重可以幹嘛？" class="headerlink" title="權重可以幹嘛？"></a>權重可以幹嘛？</h3><p>在selector有四個權重，依序是 <code>inline style &gt; id &gt; class &gt; tag</code>，這意思是說如果你對某些元素設定屬性時，權重會依照這個來做處理，也就是說如果在<code>class及inline style</code>裡面都設定 <code>color</code>，而最終HTML顯示的顏色會是由inline設定的為主，這是因為權重大小的關係。<br>而這四個權重會是這樣寫(0,0,0,0)對應的順序(inline, id, class, tag)，所以這樣就可以看出誰的權重比較大。</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">style</span>=<span class="string">&quot;color=yellow&quot;</span> <span class="attr">class</span>=<span class="string">&quot;className&quot;</span>&gt;</span><span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.className</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>=blue</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在這裡顏色就會是yellow，因為inline權重大於class</p>
+<h3 id="權重計算方式"><a href="#權重計算方式" class="headerlink" title="權重計算方式"></a>權重計算方式</h3><figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.className1</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>:blue;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><code>(0,0,1,0)</code></p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.className1</span><span class="selector-class">.className2</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>:yellow;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><code>(0,0,2,0)</code><br>上面這個會把兩個class加起來，這是要該元素同時有這兩個class存在</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.className2</span> <span class="selector-tag">div</span> <span class="selector-tag">p</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>:yellow;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><code>(0,0,1,2)</code></p>
+<h3 id="important"><a href="#important" class="headerlink" title="!important"></a>!important</h3><p>這個大魔王，在某些情況希望直接覆蓋掉該元素的屬性，可以在 該屬性後面加上 <code>!important</code>，但是不建議太常使用，會在開發上容易造成不要的困擾。</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.className2</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>:yellow <span class="meta">!important</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 ]]></content>
       <categories>
         <category>frontend_interview</category>
       </categories>
       <tags>
-        <tag>Javascript</tag>
+        <tag>CSS</tag>
         <tag>Frontend</tag>
       </tags>
   </entry>
@@ -533,6 +582,29 @@
       </tags>
   </entry>
   <entry>
+    <title>Javascript的Map及Set</title>
+    <url>/andy-tech-note/Javascript_Map_Set/</url>
+    <content><![CDATA[<h2 id="Set是什麼？"><a href="#Set是什麼？" class="headerlink" title="Set是什麼？"></a>Set是什麼？</h2><p>Set 是一個構造函式可以建構一個如Array的資料集合，有個特別的地方是，如果傳入的值相同，會把多餘的值移除只剩下一個。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> array1 = [<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>,<span class="number">8</span>,<span class="number">9</span>,<span class="number">10</span>]</span><br><span class="line"><span class="keyword">const</span> array2 = [<span class="number">9</span>,<span class="number">10</span>,<span class="number">11</span>,<span class="number">12</span>,<span class="number">13</span>,<span class="number">14</span>] </span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> set1 = <span class="keyword">new</span> <span class="title class_">Set</span>([...array1,...array2])</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(set1)</span><br><span class="line"><span class="comment">// Set(5,6,7,8,9,10,11,12,13,14)</span></span><br></pre></td></tr></table></figure>
+
+<p>用Set建立好的資料集合要透過他的method來處理，常見的有<code>add</code>, <code>delete</code>, <code>has</code>，其他的可以參考<a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Set/Set">MDN</a>的文件。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">set1.<span class="title function_">add</span>(<span class="number">15</span>);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(set1)</span><br><span class="line"><span class="comment">// Set(5,6,7,8,9,10,11,12,13,14,15)</span></span><br><span class="line"></span><br><span class="line">set1.<span class="title function_">delete</span>(<span class="number">9</span>)</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(set1)</span><br><span class="line"><span class="comment">// Set(5,6,7,8,10,11,12,13,14,15)</span></span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(set1.<span class="title function_">has</span>(<span class="number">5</span>))</span><br><span class="line"><span class="comment">// true</span></span><br><span class="line">set1.<span class="title function_">has</span>(<span class="number">9</span>)</span><br><span class="line"><span class="comment">// false</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="Map是什麼？"><a href="#Map是什麼？" class="headerlink" title="Map是什麼？"></a>Map是什麼？</h2><p>Map 也是一個構建函式，可以建構一個如Object的資料集合，但Map的key值與原始的object不同，原始的object的key只能是字串，而Map可以是任何東西，另外Map的key&#x2F;value是有順序性且可以做迭代處理的，在Object中若要做迭代，得透過<code>Object.keys</code>或是<code>Object.entries</code>搭配<code>forEach</code>或是<code>for of</code>之類的方法來遍歷所有元素，而且該順序不一定與用戶放進去的順序相同。</p>
+<p>常見的有<code>entries</code>, <code>keys</code>, <code>values</code>，其他的可以參考<a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Map/Map">MDN</a>的文件。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> map1 = <span class="keyword">new</span> <span class="title class_">Map</span>([</span><br><span class="line">  [<span class="string">&#x27;a&#x27;</span>, <span class="number">1</span>],</span><br><span class="line">  [<span class="string">&#x27;b&#x27;</span>, <span class="number">2</span>],</span><br><span class="line">  [<span class="string">&#x27;c&#x27;</span>, <span class="number">3</span>],</span><br><span class="line">  [<span class="string">&#x27;d&#x27;</span>, <span class="number">4</span>],</span><br><span class="line">  [<span class="string">&#x27;e&#x27;</span>, <span class="number">5</span>],</span><br><span class="line">  [<span class="string">&#x27;f&#x27;</span>, <span class="number">6</span>],</span><br><span class="line">])</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(map1.<span class="title function_">values</span>().<span class="title function_">forEach</span>(<span class="function"><span class="params">item</span> =&gt;</span> <span class="variable language_">console</span>.<span class="title function_">log</span>(item)))</span><br><span class="line"><span class="comment">// 印出所有的value值</span></span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(map1.<span class="title function_">keys</span>().<span class="title function_">forEach</span>(<span class="function"><span class="params">item</span> =&gt;</span> <span class="variable language_">console</span>.<span class="title function_">log</span>(item)))</span><br><span class="line"><span class="comment">// 印出所有的key值</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">const</span> [key,value] <span class="keyword">of</span> map1.<span class="title function_">entries</span>())&#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(key,value)</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 印出所有的key/value</span></span><br><span class="line"></span><br><span class="line">map1.<span class="title function_">forEach</span>(<span class="function">(<span class="params">i, key</span>)=&gt;</span> &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(i, key)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>用法實在很多元，有興趣的可以去MDN文件看看</p>
+]]></content>
+      <categories>
+        <category>frontend_interview</category>
+      </categories>
+      <tags>
+        <tag>Javascript</tag>
+        <tag>Frontend</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Javascript建構子函式繼承及ES6的class方式的繼承</title>
     <url>/andy-tech-note/Javascript-constructor-function-inheritance_es6_class/</url>
     <content><![CDATA[<h2 id="如何以建構函式的方式達到繼承"><a href="#如何以建構函式的方式達到繼承" class="headerlink" title="如何以建構函式的方式達到繼承"></a>如何以建構函式的方式達到繼承</h2><p>繼承在OOP物件導向的語言中很常見，而在Javascript中並不是真正的物件導向的語言，所以在Javascript中繼承的方式就不一樣，這裡用建構子函式的方式來實作繼承。</p>
@@ -552,29 +624,49 @@
       </tags>
   </entry>
   <entry>
-    <title>CSS的的selector的權重</title>
-    <url>/andy-tech-note/about-CSS-selector-priority/</url>
-    <content><![CDATA[<h3 id="selector是什麼？"><a href="#selector是什麼？" class="headerlink" title="selector是什麼？"></a>selector是什麼？</h3><p>是用來選擇HTML tag並設定寬、高、顏色、背景圖等等(如：H1,p,div)，選擇器不僅限於標籤(div, p, span)，還包含class及id。</p>
-<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.className</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>:blue;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">div</span> &#123;</span><br><span class="line">    <span class="attribute">font-size</span>:<span class="number">16px</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+    <title>Javascript的Event Loop以及Micro  task, Macro task是如何運作的？</title>
+    <url>/andy-tech-note/event-loop-micro-task-macro-task/</url>
+    <content><![CDATA[<h2 id="Event-loop是什麼？"><a href="#Event-loop是什麼？" class="headerlink" title="Event loop是什麼？"></a>Event loop是什麼？</h2><p>在javascript的設計中，javascript runtime是以single Thread單執行在執行程式碼，也就是說程式會順序的執行程式碼，而Javascript 透過 Event Loop 讓程式可以異步執行，也就是I&#x2F;O存取、setTimeout、長時間操作(遠端資料請求)，讓使用者不用在順序執行的程式流一直在等待，那這些在被執行完的異步行為的後續程式碼要如何讓他繼續被執行後續的程式碼呢，這就要透過Event loop來做調配。</p>
+<h2 id="Event-loop角色"><a href="#Event-loop角色" class="headerlink" title="Event loop角色"></a>Event loop角色</h2><ul>
+<li>Call stack</li>
+<li>micro task</li>
+<li>macro task</li>
+</ul>
+<h3 id="程式執行順序"><a href="#程式執行順序" class="headerlink" title="程式執行順序"></a>程式執行順序</h3><p>依照程式碼一路順序執行，執行的方式就是會把程式碼逐個放進到call stack中執行，當碰到如setTimeout、I&#x2F;O存取、Fetch、Promise時，會開始執行且將其變成異步執行，也就是說原先的程式碼會繼續執行，當setTimeout、檔案讀取完成，Event loop就會將如setTimeout的callback function放進到task queue(micro task or macro task)中，等待被執行。</p>
+<p>什麼時候執行task中的callback function呢？當call stack沒有程式碼要被執行時就會來檢查task queue裡面是否有task要被執行，若有則開始執行，在這裡會有執行的優先順序，會先執行Micro task queue，直到Micro task queue為空時才會去檢查Macro task queue，Event loop會從Macro task中取出一個task來執行，執行完後再檢查Micro Task，若沒有才會再進到Macro task取出一個task執行。</p>
+<p><img src="./themes/meadow/source/icons/avatar.jpg" data-original="/andy-tech-note/event-loop-micro-task-macro-task/eventloop.png"></p>
+<h3 id="誰會進入Macro-x2F-Micro-task呢？"><a href="#誰會進入Macro-x2F-Micro-task呢？" class="headerlink" title="誰會進入Macro &#x2F; Micro task呢？"></a>誰會進入Macro &#x2F; Micro task呢？</h3><ul>
+<li>Macro : <strong>setTimeout, setInterval, I&#x2F;O操作, UI渲染…</strong></li>
+<li>Micro : <strong>Promise.then, Promise.catch, Promise.finally, MutationObserver,  process.nextTick()(屬於Node.js)</strong></li>
+</ul>
+<p>首先先來基本題，我們先把macro task跟 micro task 看成同一個Queue</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;First&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;Second&#x27;</span>);</span><br><span class="line">&#125;, <span class="number">0</span>);</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;Third&#x27;</span>);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
-<h3 id="權重可以幹嘛？"><a href="#權重可以幹嘛？" class="headerlink" title="權重可以幹嘛？"></a>權重可以幹嘛？</h3><p>在selector有四個權重，依序是 <code>inline style &gt; id &gt; class &gt; tag</code>，這意思是說如果你對某些元素設定屬性時，權重會依照這個來做處理，也就是說如果在<code>class及inline style</code>裡面都設定 <code>color</code>，而最終HTML顯示的顏色會是由inline設定的為主，這是因為權重大小的關係。<br>而這四個權重會是這樣寫(0,0,0,0)對應的順序(inline, id, class, tag)，所以這樣就可以看出誰的權重比較大。</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">style</span>=<span class="string">&quot;color=yellow&quot;</span> <span class="attr">class</span>=<span class="string">&quot;className&quot;</span>&gt;</span><span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.className</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>=blue</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>在這裡顏色就會是yellow，因為inline權重大於class</p>
-<h3 id="權重計算方式"><a href="#權重計算方式" class="headerlink" title="權重計算方式"></a>權重計算方式</h3><figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.className1</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>:blue;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><code>(0,0,1,0)</code></p>
-<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.className1</span><span class="selector-class">.className2</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>:yellow;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><code>(0,0,2,0)</code><br>上面這個會把兩個class加起來，這是要該元素同時有這兩個class存在</p>
-<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.className2</span> <span class="selector-tag">div</span> <span class="selector-tag">p</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>:yellow;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><code>(0,0,1,2)</code></p>
-<h3 id="important"><a href="#important" class="headerlink" title="!important"></a>!important</h3><p>這個大魔王，在某些情況希望直接覆蓋掉該元素的屬性，可以在 該屬性後面加上 <code>!important</code>，但是不建議太常使用，會在開發上容易造成不要的困擾。</p>
-<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.className2</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>:yellow <span class="meta">!important</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>上述會怎麼執行呢？</p>
+<p>順序:<br> First<br>Third<br>Sencond</p>
+<p>一開始碰到setTimeout被設為0，看似會馬上執行callback function，依照流程此callback function會被放到task queue中等待被執行，而在setTimeout後面還有程式碼要被放到call stack執行，所以得等到他被執行完才會去到Queue把 console.log(‘Second’); 拿出來執行。</p>
+<p>進階題</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;Start&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;Timeout&#x27;</span>);</span><br><span class="line">&#125;, <span class="number">0</span>);</span><br><span class="line"></span><br><span class="line"><span class="title class_">Promise</span>.<span class="title function_">resolve</span>().<span class="title function_">then</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;Promise 1&#x27;</span>);</span><br><span class="line">&#125;).<span class="title function_">then</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;Promise 2&#x27;</span>);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="keyword">async</span> <span class="keyword">function</span> <span class="title function_">asyncFunction</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;Async Function Start&#x27;</span>);</span><br><span class="line">  <span class="keyword">await</span> <span class="literal">null</span>; </span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;Async Function End&#x27;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="title function_">asyncFunction</span>();</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;End&#x27;</span>);</span><br></pre></td></tr></table></figure>
+
+<p>執行順序：</p>
+<p><a href="https://codepen.io/jean-hao-chen/pen/bGJxqbO">玩玩看</a></p>
+<p><code>console.log(&#39;Start&#39;)</code>會先被執行，再來碰到<code>setTimeout</code>會進到背景去執行，而<code>console.log(&#39;Timeout&#39;)</code>callback function不會馬上被執行，即便setTimeout是設定0秒，還是會被放到Macro Task等待被執行，接下來Promise.resolve()會被執行，它後面有帶.then，所以<code>console.log(&#39;Promise 1&#39;)</code>會被放到micro task等待執行，再來則是執行<code>asyncFunction()</code>的<code> console.log(&#39;Async Function Start&#39;)</code> 以及 <code>await null</code>，ㄈ在這裡碰到await 不管await執行的function是否為異步其後面的程式碼都會被包起來放到micro task等待被執行，接下來則執行 <code>console.log(&#39;End&#39;);</code>。</p>
+<p>到此synchronize的 code 已經沒有需要被放到 call stack，接下來檢查micro task，開始執行，<code>console.log(&#39;Promise 1&#39;)</code> 而後又有.then，這個<code> console.log(&#39;Promise 2&#39;)</code> callback function會被放到micro task中，再來執行<code>console.log(&#39;Async Function End&#39;)</code>，接下來因為<code>console.log(&#39;Promise 2&#39;)</code>還在micro task，所以會先被執行，最後才是執行macro task的<code>console.log(&#39;Timeout&#39;)</code>;</p>
+<p>順序<br>‘Start’<br>‘Async Function Start’<br>‘End’<br>‘Promise 1’<br>‘Async Function End’<br>‘Promise 2’<br>‘Timeout’</p>
+<p>以上就是Event loop的執行流程。</p>
+<p>參考資料：</p>
+<ul>
+<li><p>Lydia Hallie <a href="https://www.youtube.com/watch?v=eiC58R16hb8">JavaScript Visualized - Event Loop, Web APIs, (Micro)task Queue</a></p>
+</li>
+<li><p>ExplainThis <a href="https://www.explainthis.io/zh-hant/swe/js-event-loop-questions">最常見的事件循環 (Event Loop) 面試題目彙整</a></p>
+</li>
+</ul>
 ]]></content>
       <categories>
         <category>frontend_interview</category>
       </categories>
       <tags>
-        <tag>CSS</tag>
+        <tag>Javascript</tag>
         <tag>Frontend</tag>
       </tags>
   </entry>
@@ -624,98 +716,11 @@
       </tags>
   </entry>
   <entry>
-    <title>Wordpress當後端傳文章內容到前端(Vue)</title>
-    <url>/andy-tech-note/wordpress%E7%95%B6%E5%BE%8C%E7%AB%AF%E5%82%B3%E6%96%87%E7%AB%A0%E5%85%A7%E5%AE%B9%E5%88%B0%E5%89%8D%E7%AB%AF-Vue/</url>
-    <content><![CDATA[<h3 id="以Wordpress為後端傳資料到前端"><a href="#以Wordpress為後端傳資料到前端" class="headerlink" title="以Wordpress為後端傳資料到前端"></a>以Wordpress為後端傳資料到前端</h3><p>wordpress 為後端，前端向後端取得wp中的文章時，我希望直接取得可以呈現的HTML格式，試過使用 WP 中的 function <code>get_post_field</code>，雖然可以取得HTML，但是HTML結構與真正在以WP當作前端呈現的文章的html有些出入，也就是在WP呈現頁面前會對原始的html做特殊格式化，這就要透過 apply_filters   ‘the_content’ 去把取得的html做格式化，這樣才會與wp呈現出來的樣式一樣。</p>
-<p>範例如下</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">apply_filters(&#x27;the_content&#x27;, get_post_field(&#x27;post_content&#x27;, $latest_id))</span><br></pre></td></tr></table></figure>
-
-<p>如此一來在 Vue 中就可以透過 v-html 把取得的html呈現在前端。</p>
-]]></content>
-      <categories>
-        <category>Wordpress</category>
-      </categories>
-      <tags>
-        <tag>Wordpress</tag>
-        <tag>Frontend</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Javascript的Event Loop以及Micro  task, Macro task是如何運作的？</title>
-    <url>/andy-tech-note/event-loop-micro-task-macro-task/</url>
-    <content><![CDATA[<h2 id="Event-loop是什麼？"><a href="#Event-loop是什麼？" class="headerlink" title="Event loop是什麼？"></a>Event loop是什麼？</h2><p>在javascript的設計中，javascript runtime是以single Thread單執行在執行程式碼，也就是說程式會順序的執行程式碼，而Javascript 透過 Event Loop 讓程式可以異步執行，也就是I&#x2F;O存取、setTimeout、長時間操作(遠端資料請求)，讓使用者不用在順序執行的程式流一直在等待，那這些在被執行完的異步行為的後續程式碼要如何讓他繼續被執行後續的程式碼呢，這就要透過Event loop來做調配。</p>
-<h2 id="Event-loop角色"><a href="#Event-loop角色" class="headerlink" title="Event loop角色"></a>Event loop角色</h2><ul>
-<li>Call stack</li>
-<li>micro task</li>
-<li>macro task</li>
-</ul>
-<h3 id="程式執行順序"><a href="#程式執行順序" class="headerlink" title="程式執行順序"></a>程式執行順序</h3><p>依照程式碼一路順序執行，執行的方式就是會把程式碼逐個放進到call stack中執行，當碰到如setTimeout、I&#x2F;O存取、Fetch、Promise時，會開始執行且將其變成異步執行，也就是說原先的程式碼會繼續執行，當setTimeout、檔案讀取完成，Event loop就會將如setTimeout的callback function放進到task queue(micro task or macro task)中，等待被執行。</p>
-<p>什麼時候執行task中的callback function呢？當call stack沒有程式碼要被執行時就會來檢查task queue裡面是否有task要被執行，若有則開始執行，在這裡會有執行的優先順序，會先執行Micro task queue，直到Micro task queue為空時才會去檢查Macro task queue，Event loop會從Macro task中取出一個task來執行，執行完後再檢查Micro Task，若沒有才會再進到Macro task取出一個task執行。</p>
-<p><img src="./themes/meadow/source/icons/avatar.jpg" data-original="/andy-tech-note/event-loop-micro-task-macro-task/eventloop.png"></p>
-<h3 id="誰會進入Macro-x2F-Micro-task呢？"><a href="#誰會進入Macro-x2F-Micro-task呢？" class="headerlink" title="誰會進入Macro &#x2F; Micro task呢？"></a>誰會進入Macro &#x2F; Micro task呢？</h3><ul>
-<li>Macro : <strong>setTimeout, setInterval, I&#x2F;O操作, UI渲染…</strong></li>
-<li>Micro : <strong>Promise.then, Promise.catch, Promise.finally, MutationObserver,  process.nextTick()(屬於Node.js)</strong></li>
-</ul>
-<p>首先先來基本題，我們先把macro task跟 micro task 看成同一個Queue</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;First&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;Second&#x27;</span>);</span><br><span class="line">&#125;, <span class="number">0</span>);</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;Third&#x27;</span>);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p>上述會怎麼執行呢？</p>
-<p>順序:<br> First<br>Third<br>Sencond</p>
-<p>一開始碰到setTimeout被設為0，看似會馬上執行callback function，依照流程此callback function會被放到task queue中等待被執行，而在setTimeout後面還有程式碼要被放到call stack執行，所以得等到他被執行完才會去到Queue把 console.log(‘Second’); 拿出來執行。</p>
-<p>進階題</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;Start&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;Timeout&#x27;</span>);</span><br><span class="line">&#125;, <span class="number">0</span>);</span><br><span class="line"></span><br><span class="line"><span class="title class_">Promise</span>.<span class="title function_">resolve</span>().<span class="title function_">then</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;Promise 1&#x27;</span>);</span><br><span class="line">&#125;).<span class="title function_">then</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;Promise 2&#x27;</span>);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="keyword">async</span> <span class="keyword">function</span> <span class="title function_">asyncFunction</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;Async Function Start&#x27;</span>);</span><br><span class="line">  <span class="keyword">await</span> <span class="literal">null</span>; </span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;Async Function End&#x27;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="title function_">asyncFunction</span>();</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;End&#x27;</span>);</span><br></pre></td></tr></table></figure>
-
-<p>執行順序：</p>
-<p><a href="https://codepen.io/jean-hao-chen/pen/bGJxqbO">玩玩看</a></p>
-<p><code>console.log(&#39;Start&#39;)</code>會先被執行，再來碰到<code>setTimeout</code>會進到背景去執行，而<code>console.log(&#39;Timeout&#39;)</code>callback function不會馬上被執行，即便setTimeout是設定0秒，還是會被放到Macro Task等待被執行，接下來Promise.resolve()會被執行，它後面有帶.then，所以<code>console.log(&#39;Promise 1&#39;)</code>會被放到micro task等待執行，再來則是執行<code>asyncFunction()</code>的<code> console.log(&#39;Async Function Start&#39;)</code> 以及 <code>await null</code>，在這裡碰到await 不管await執行的function是否為異步其後面的程式碼都會被包起來放到micro task等待被執行，接下來則執行 <code>console.log(&#39;End&#39;);</code>。</p>
-<p>到此synchronize的 code 已經沒有需要被放到 call stack，接下來檢查micro task，開始執行，<code>console.log(&#39;Promise 1&#39;)</code> 而後又有.then，這個<code> console.log(&#39;Promise 2&#39;)</code> callback function會被放到micro task中，再來執行<code>console.log(&#39;Async Function End&#39;)</code>，接下來因為<code>console.log(&#39;Promise 2&#39;)</code>還在micro task，所以會先被執行，最後才是執行macro task的<code>console.log(&#39;Timeout&#39;)</code>;</p>
-<p>順序<br>‘Start’<br>‘Async Function Start’<br>‘End’<br>‘Promise 1’<br>‘Async Function End’<br>‘Promise 2’<br>‘Timeout’</p>
-<p>以上就是Event loop的執行流程。</p>
-<p>參考資料：</p>
-<ul>
-<li><p>Lydia Hallie <a href="https://www.youtube.com/watch?v=eiC58R16hb8">JavaScript Visualized - Event Loop, Web APIs, (Micro)task Queue</a></p>
-</li>
-<li><p>ExplainThis <a href="https://www.explainthis.io/zh-hant/swe/js-event-loop-questions">最常見的事件循環 (Event Loop) 面試題目彙整</a></p>
-</li>
-</ul>
-]]></content>
-      <categories>
-        <category>frontend_interview</category>
-      </categories>
-      <tags>
-        <tag>Javascript</tag>
-        <tag>Frontend</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Javascript事件冒泡Event Bubbling</title>
     <url>/andy-tech-note/javascript-event-bubbling/</url>
     <content><![CDATA[<h2 id="事件冒泡Event-Bubbling"><a href="#事件冒泡Event-Bubbling" class="headerlink" title="事件冒泡Event Bubbling"></a>事件冒泡Event Bubbling</h2><p>事件冒泡是DOM中對事件處理的一種機制。<br>當在DOM中的某個元素（例如，一個按鈕）發生事件（如點擊）時，這個事件不僅在該元素上觸發，還會沿著DOM樹向上冒泡，依次觸發其父元素、父元素的父元素，一直到最頂層的document物件，這一路上的元素都可以收到事件觸發。</p>
 <p>例子：假設你希望在一個容器（div）內的所有元素被點擊時執行相同的操作(console.log(‘click’))，你可以在這個容器上設置一個事件監聽器（<code>event listener</code>）。<br>當容器內的任何一個元素被點擊時，點擊事件會通過事件冒泡機制向上傳遞，最終抵達這個容器。一旦事件到達容器，就會觸發設置在容器上的callback function(這裡設定console.log(‘click’))。</p>
 <p>上面的例子稱作<code>事件委託</code>，它利用了事件冒泡的特性來簡化對多個元素的事件處理，同時提升程式效能，也不需要每個元素都去設定事件監聽。特別是對於動態加入到容器中的新元素，無需單獨為它們綁定事件監聽器，事件委託可以自動地管理它們的事件。</p>
-]]></content>
-      <categories>
-        <category>frontend_interview</category>
-      </categories>
-      <tags>
-        <tag>Javascript</tag>
-        <tag>Frontend</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Javascript的Map及Set</title>
-    <url>/andy-tech-note/Javascript_Map_Set/</url>
-    <content><![CDATA[<h2 id="Set是什麼？"><a href="#Set是什麼？" class="headerlink" title="Set是什麼？"></a>Set是什麼？</h2><p>Set 是一個構造函式可以建構一個如Array的資料集合，有個特別的地方是，如果傳入的值相同，會把多餘的值移除只剩下一個。</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> array1 = [<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>,<span class="number">8</span>,<span class="number">9</span>,<span class="number">10</span>]</span><br><span class="line"><span class="keyword">const</span> array2 = [<span class="number">9</span>,<span class="number">10</span>,<span class="number">11</span>,<span class="number">12</span>,<span class="number">13</span>,<span class="number">14</span>] </span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> set1 = <span class="keyword">new</span> <span class="title class_">Set</span>([...array1,...array2])</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(set1)</span><br><span class="line"><span class="comment">// Set(5,6,7,8,9,10,11,12,13,14)</span></span><br></pre></td></tr></table></figure>
-
-<p>用Set建立好的資料集合要透過他的method來處理，常見的有<code>add</code>, <code>delete</code>, <code>has</code>，其他的可以參考<a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Set/Set">MDN</a>的文件。</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">set1.<span class="title function_">add</span>(<span class="number">15</span>);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(set1)</span><br><span class="line"><span class="comment">// Set(5,6,7,8,9,10,11,12,13,14,15)</span></span><br><span class="line"></span><br><span class="line">set1.<span class="title function_">delete</span>(<span class="number">9</span>)</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(set1)</span><br><span class="line"><span class="comment">// Set(5,6,7,8,10,11,12,13,14,15)</span></span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(set1.<span class="title function_">has</span>(<span class="number">5</span>))</span><br><span class="line"><span class="comment">// true</span></span><br><span class="line">set1.<span class="title function_">has</span>(<span class="number">9</span>)</span><br><span class="line"><span class="comment">// false</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="Map是什麼？"><a href="#Map是什麼？" class="headerlink" title="Map是什麼？"></a>Map是什麼？</h2><p>Map 也是一個構建函式，可以建構一個如Object的資料集合，但Map的key值與原始的object不同，原始的object的key只能是字串，而Map可以是任何東西，另外Map的key&#x2F;value是有順序性且可以做迭代處理的，在Object中若要做迭代，得透過<code>Object.keys</code>或是<code>Object.entries</code>搭配<code>forEach</code>或是<code>for of</code>之類的方法來遍歷所有元素，而且該順序不一定與用戶放進去的順序相同。</p>
-<p>常見的有<code>entries</code>, <code>keys</code>, <code>values</code>，其他的可以參考<a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Map/Map">MDN</a>的文件。</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> map1 = <span class="keyword">new</span> <span class="title class_">Map</span>([</span><br><span class="line">  [<span class="string">&#x27;a&#x27;</span>, <span class="number">1</span>],</span><br><span class="line">  [<span class="string">&#x27;b&#x27;</span>, <span class="number">2</span>],</span><br><span class="line">  [<span class="string">&#x27;c&#x27;</span>, <span class="number">3</span>],</span><br><span class="line">  [<span class="string">&#x27;d&#x27;</span>, <span class="number">4</span>],</span><br><span class="line">  [<span class="string">&#x27;e&#x27;</span>, <span class="number">5</span>],</span><br><span class="line">  [<span class="string">&#x27;f&#x27;</span>, <span class="number">6</span>],</span><br><span class="line">])</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(map1.<span class="title function_">values</span>().<span class="title function_">forEach</span>(<span class="function"><span class="params">item</span> =&gt;</span> <span class="variable language_">console</span>.<span class="title function_">log</span>(item)))</span><br><span class="line"><span class="comment">// 印出所有的value值</span></span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(map1.<span class="title function_">keys</span>().<span class="title function_">forEach</span>(<span class="function"><span class="params">item</span> =&gt;</span> <span class="variable language_">console</span>.<span class="title function_">log</span>(item)))</span><br><span class="line"><span class="comment">// 印出所有的key值</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">const</span> [key,value] <span class="keyword">of</span> map1.<span class="title function_">entries</span>())&#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(key,value)</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 印出所有的key/value</span></span><br><span class="line"></span><br><span class="line">map1.<span class="title function_">forEach</span>(<span class="function">(<span class="params">i, key</span>)=&gt;</span> &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(i, key)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-
-<p>用法實在很多元，有興趣的可以去MDN文件看看</p>
 ]]></content>
       <categories>
         <category>frontend_interview</category>

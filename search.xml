@@ -71,6 +71,24 @@
       </tags>
   </entry>
   <entry>
+    <title>在vue中把變數傳進css</title>
+    <url>/andy-tech-note/vue-ref-css-vbind/</url>
+    <content><![CDATA[<p>某些時候會希望動態改變css的樣式高度、寬度、顏色…等等的<br>在vue中可以宣告一個ref變數(composition API)，然後把搭丟到vue檔案中的 <style></style>中，又或者透過inline的方式直接插入到html tag中，舉例如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">setup()&#123;</span><br><span class="line">    const mdSize = ref(&quot;100px&quot;);</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="傳到-lt-style-gt"><a href="#傳到-lt-style-gt" class="headerlink" title="傳到 &lt;style&gt;"></a>傳到 <code>&lt;style&gt;</code></h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;div class=&quot;md-size&quot;&gt;&lt;/div&gt; //在這裏class不需要v-bind</span><br><span class="line">&lt;style&gt;</span><br><span class="line">.md-size&#123;</span><br><span class="line">    height:v-bind(mdSize);</span><br><span class="line">&#125;</span><br><span class="line">&lt;/style&gt;    </span><br></pre></td></tr></table></figure>
+
+<h3 id="以傳值的方式丟到inline"><a href="#以傳值的方式丟到inline" class="headerlink" title="以傳值的方式丟到inline"></a>以傳值的方式丟到inline</h3><p>搭配v-bind 也就是縮寫 “:”<br>把mdSize放進去style</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;button :style=&quot;&#123; height: mdSize &#125;&quot; &gt; 按鈕名稱 &lt;/button&gt;</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>frontend</category>
+      </categories>
+      <tags>
+        <tag>javascript</tag>
+        <tag>vue</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>在JS中複製object-深拷貝/淺拷貝</title>
     <url>/andy-tech-note/deep-copy-Shallow-copy/</url>
     <content><![CDATA[<h3 id="在JS複製object"><a href="#在JS複製object" class="headerlink" title="在JS複製object"></a>在JS複製object</h3><p>在寫code有時候會需要使用某些變數或是object，但是又不希望直接對其做操作，因為可能在其他地方會繼續使用原始的object，<br>這時候就會宣告一個新的變數去把原先的object assign過去。</p>
@@ -98,41 +116,6 @@
       </tags>
   </entry>
   <entry>
-    <title>在vue中把變數傳進css</title>
-    <url>/andy-tech-note/vue-ref-css-vbind/</url>
-    <content><![CDATA[<p>某些時候會希望動態改變css的樣式高度、寬度、顏色…等等的<br>在vue中可以宣告一個ref變數(composition API)，然後把搭丟到vue檔案中的 <style></style>中，又或者透過inline的方式直接插入到html tag中，舉例如下：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">setup()&#123;</span><br><span class="line">    const mdSize = ref(&quot;100px&quot;);</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="傳到-lt-style-gt"><a href="#傳到-lt-style-gt" class="headerlink" title="傳到 &lt;style&gt;"></a>傳到 <code>&lt;style&gt;</code></h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;div class=&quot;md-size&quot;&gt;&lt;/div&gt; //在這裏class不需要v-bind</span><br><span class="line">&lt;style&gt;</span><br><span class="line">.md-size&#123;</span><br><span class="line">    height:v-bind(mdSize);</span><br><span class="line">&#125;</span><br><span class="line">&lt;/style&gt;    </span><br></pre></td></tr></table></figure>
-
-<h3 id="以傳值的方式丟到inline"><a href="#以傳值的方式丟到inline" class="headerlink" title="以傳值的方式丟到inline"></a>以傳值的方式丟到inline</h3><p>搭配v-bind 也就是縮寫 “:”<br>把mdSize放進去style</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;button :style=&quot;&#123; height: mdSize &#125;&quot; &gt; 按鈕名稱 &lt;/button&gt;</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>frontend</category>
-      </categories>
-      <tags>
-        <tag>javascript</tag>
-        <tag>vue</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>codemirror v5 與 v6的差異</title>
-    <url>/andy-tech-note/codemirror-v5-v6-diff/</url>
-    <content><![CDATA[<h3 id="Codemirror-v5"><a href="#Codemirror-v5" class="headerlink" title="Codemirror v5"></a>Codemirror v5</h3><p>版本5 -&gt; 6的資料夾結構變動很大</p>
-<h4 id="v5"><a href="#v5" class="headerlink" title="v5"></a><a href="https://codemirror.net/5/index.html">v5</a></h4><p>v5的所有套件在npm install <code>codemirror</code>時所有功能全部都會幫你下載，所以在node_modules裡面可以找到codemirror資料夾，裡面所有功能都會放在裡面。</p>
-<h4 id="v6"><a href="#v6" class="headerlink" title="v6"></a><a href="https://codemirror.net/">v6</a></h4><p>v6在npm install後，<code>codemirror</code> 的資料夾內容不多，而如果需要使用特定功能需要下指令<br>如下：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">npm install @codemirror/search </span><br></pre></td></tr></table></figure>
-<p>如果需要serch功能，需要先install<br>安裝的功能相關檔案會出現在 @codemirror 資料夾中。</p>
-<p>在查相關資料時要注意是使用v5還是v6版本，否則會發現一直找不到檔案的鬼故事。</p>
-]]></content>
-      <categories>
-        <category>frontend</category>
-      </categories>
-      <tags>
-        <tag>codemirror</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>codemirror 設定(註冊)事件觸發Codemirror.on</title>
     <url>/andy-tech-note/codemirror-set-eventListener/</url>
     <content><![CDATA[<h3 id="codemirror"><a href="#codemirror" class="headerlink" title="codemirror"></a>codemirror</h3><p>什麼是codemirror，它是一款可以實現在前端網頁上的編輯器。<br>如同現在網路上看到的文字編輯器一樣，但你可以去設定當使用者做哪些操作時codemirror做哪些對應的行為。<br><a href="https://codemirror.net/5/">CodeMirror v5</a></p>
@@ -146,6 +129,23 @@
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//建議以下function可以在頁面建立一併執行(如果是馬上要用到)，on的功能可以看成註冊的概念，把這個功能註冊給editor，條件有達到就會執行</span><br><span class="line">editor.on(&quot;change&quot;,(cm,changeObj)=&gt;&#123;                  </span><br><span class="line">    console.log(changeObj.ch);</span><br><span class="line">    console.log(changeObj.line); </span><br><span class="line">    //在change中會有ch(第幾個位元) line第幾行</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
 <p>這裡的cm是指codemirror，在官方頁面中有提到，不管是看到codemirror(簡寫cm)或是doc，在使用上都可以用前面建立好的editor instance(端看使用者怎麼命名)</p>
 <p>on裡面第一的參數 <code>type</code> 也就是 cursorActivity  或者 change 之類的事件，後面callback function裡面的參數，在每個event中都會清楚告訴你有什麼參數可以用。<br>在<code>change</code>中可以使用cm instance以及獲取改變的文字及其相關資訊。</p>
+]]></content>
+      <categories>
+        <category>frontend</category>
+      </categories>
+      <tags>
+        <tag>codemirror</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>codemirror v5 與 v6的差異</title>
+    <url>/andy-tech-note/codemirror-v5-v6-diff/</url>
+    <content><![CDATA[<h3 id="Codemirror-v5"><a href="#Codemirror-v5" class="headerlink" title="Codemirror v5"></a>Codemirror v5</h3><p>版本5 -&gt; 6的資料夾結構變動很大</p>
+<h4 id="v5"><a href="#v5" class="headerlink" title="v5"></a><a href="https://codemirror.net/5/index.html">v5</a></h4><p>v5的所有套件在npm install <code>codemirror</code>時所有功能全部都會幫你下載，所以在node_modules裡面可以找到codemirror資料夾，裡面所有功能都會放在裡面。</p>
+<h4 id="v6"><a href="#v6" class="headerlink" title="v6"></a><a href="https://codemirror.net/">v6</a></h4><p>v6在npm install後，<code>codemirror</code> 的資料夾內容不多，而如果需要使用特定功能需要下指令<br>如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">npm install @codemirror/search </span><br></pre></td></tr></table></figure>
+<p>如果需要serch功能，需要先install<br>安裝的功能相關檔案會出現在 @codemirror 資料夾中。</p>
+<p>在查相關資料時要注意是使用v5還是v6版本，否則會發現一直找不到檔案的鬼故事。</p>
 ]]></content>
       <categories>
         <category>frontend</category>
@@ -175,6 +175,17 @@
       </categories>
       <tags>
         <tag>wordpress</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>chatGPT-想法</title>
+    <url>/andy-tech-note/chatGPT-note/</url>
+    <content><![CDATA[<h3 id="關於chatGPT想法"><a href="#關於chatGPT想法" class="headerlink" title="關於chatGPT想法"></a>關於chatGPT想法</h3><p>網路上有很多人認為chatGPT會造成很多人依賴chatGPT取得資訊，讓人變得更懶。<br>不過我倒不這麼認為，先前在免費時使用過chatGPT，透過他詢問一下關於寫side project的問題，<br>在這過程成會發現如果你對於你的問題沒有具備相應的背景知識時，AI回答給你的答案你根本無從判斷是否有誤，曾經得到的答案發現大方向沒錯，但是小細節是有瑕疵的。</p>
+<p>所以個人認為他可以是輔助人類而非取代人類，至少在寫程式的部分，碰到問題時可以詢問他，有時候他會告訴你某個大方向，而這個方向可能是你在思考時盲點，可以再透過這個方向去找到你需要的答案，這樣可以避免在某個死胡同打轉。</p>
+<h3 id="收費"><a href="#收費" class="headerlink" title="收費"></a>收費</h3><p>2023年2月開始需要收費囉，一個月20美金，以小弟在線上詢問一些問題，而這些問題可能在google可以輕鬆找到，但是有這些問題是有前後關聯的，在google上並不是這麼容易精確的搜尋到答案，chatGPT反而可以接續著前一個問題回答你下一個問題，讓你的思緒更加完整。<br>以一個軟體工程師來說20美元一個月完全值得投資，問幾個問題可以節省更多時間去做別的事，畢竟軟體工程師就是極致懶，可以讓程式完成的事就不想手動完成，當然拉，在這問問題過程中還是要有學到東西才比較好ＸＤ。</p>
+]]></content>
+      <tags>
+        <tag>chatGPT</tag>
       </tags>
   </entry>
   <entry>
@@ -220,17 +231,6 @@
       <tags>
         <tag>vue</tag>
         <tag>react</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>chatGPT-想法</title>
-    <url>/andy-tech-note/chatGPT-note/</url>
-    <content><![CDATA[<h3 id="關於chatGPT想法"><a href="#關於chatGPT想法" class="headerlink" title="關於chatGPT想法"></a>關於chatGPT想法</h3><p>網路上有很多人認為chatGPT會造成很多人依賴chatGPT取得資訊，讓人變得更懶。<br>不過我倒不這麼認為，先前在免費時使用過chatGPT，透過他詢問一下關於寫side project的問題，<br>在這過程成會發現如果你對於你的問題沒有具備相應的背景知識時，AI回答給你的答案你根本無從判斷是否有誤，曾經得到的答案發現大方向沒錯，但是小細節是有瑕疵的。</p>
-<p>所以個人認為他可以是輔助人類而非取代人類，至少在寫程式的部分，碰到問題時可以詢問他，有時候他會告訴你某個大方向，而這個方向可能是你在思考時盲點，可以再透過這個方向去找到你需要的答案，這樣可以避免在某個死胡同打轉。</p>
-<h3 id="收費"><a href="#收費" class="headerlink" title="收費"></a>收費</h3><p>2023年2月開始需要收費囉，一個月20美金，以小弟在線上詢問一些問題，而這些問題可能在google可以輕鬆找到，但是有這些問題是有前後關聯的，在google上並不是這麼容易精確的搜尋到答案，chatGPT反而可以接續著前一個問題回答你下一個問題，讓你的思緒更加完整。<br>以一個軟體工程師來說20美元一個月完全值得投資，問幾個問題可以節省更多時間去做別的事，畢竟軟體工程師就是極致懶，可以讓程式完成的事就不想手動完成，當然拉，在這問問題過程中還是要有學到東西才比較好ＸＤ。</p>
-]]></content>
-      <tags>
-        <tag>chatGPT</tag>
       </tags>
   </entry>
   <entry>
@@ -302,6 +302,20 @@
       </tags>
   </entry>
   <entry>
+    <title>CSS中的px-em-rem</title>
+    <url>/andy-tech-note/px-em-rem/</url>
+    <content><![CDATA[<h3 id="這是關於長度單位"><a href="#這是關於長度單位" class="headerlink" title="這是關於長度單位"></a>這是關於長度單位</h3><h4 id="px"><a href="#px" class="headerlink" title="px"></a>px</h4><p>是一個絕對長度的單位，是以螢幕pixel為基準。</p>
+<h4 id="em"><a href="#em" class="headerlink" title="em"></a>em</h4><p>是一個相對長度單位，是依照當下所在的element其parent element的大小來當作倍數計算，舉例如果是把em設定在font-size，如果當下font-size是以10px，而在child 設定的font-size是設定<code>1ex</code> &#x3D;&gt;也就是 <code>10px</code> ，若是<code>2ex</code> &#x3D;&gt;<code>20px</code></p>
+<h4 id="rem"><a href="#rem" class="headerlink" title="rem"></a>rem</h4><p>這也是相對長度單位，但是以root的大小當作依據來算倍數，所以若是root size設定為<code>12px</code>，而當下的size設定為<code>3rem</code> &#x3D;&gt; <code>36px</code></p>
+]]></content>
+      <categories>
+        <category>frontend</category>
+      </categories>
+      <tags>
+        <tag>css</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>CSS中的inline、block以及inline block</title>
     <url>/andy-tech-note/inline-block/</url>
     <content><![CDATA[<h3 id="element樣式"><a href="#element樣式" class="headerlink" title="element樣式"></a>element樣式</h3><h4 id="block-element"><a href="#block-element" class="headerlink" title="block element"></a>block element</h4><p>這個element是會佔用整個整行的空間(也就是滿版)，即便你的資料沒有這麼多。<br>舉例：<code>&lt;div&gt;</code> <code>&lt;h1&gt;</code> <code>&lt;p&gt;</code><br>不過可以透過設定寬度高度去控制樣式。</p>
@@ -338,17 +352,21 @@
       </tags>
   </entry>
   <entry>
-    <title>CSS中的px-em-rem</title>
-    <url>/andy-tech-note/px-em-rem/</url>
-    <content><![CDATA[<h3 id="這是關於長度單位"><a href="#這是關於長度單位" class="headerlink" title="這是關於長度單位"></a>這是關於長度單位</h3><h4 id="px"><a href="#px" class="headerlink" title="px"></a>px</h4><p>是一個絕對長度的單位，是以螢幕pixel為基準。</p>
-<h4 id="em"><a href="#em" class="headerlink" title="em"></a>em</h4><p>是一個相對長度單位，是依照當下所在的element其parent element的大小來當作倍數計算，舉例如果是把em設定在font-size，如果當下font-size是以10px，而在child 設定的font-size是設定<code>1ex</code> &#x3D;&gt;也就是 <code>10px</code> ，若是<code>2ex</code> &#x3D;&gt;<code>20px</code></p>
-<h4 id="rem"><a href="#rem" class="headerlink" title="rem"></a>rem</h4><p>這也是相對長度單位，但是以root的大小當作依據來算倍數，所以若是root size設定為<code>12px</code>，而當下的size設定為<code>3rem</code> &#x3D;&gt; <code>36px</code></p>
+    <title>nextTick in Vue3</title>
+    <url>/andy-tech-note/nextTick-in-Vue3/</url>
+    <content><![CDATA[<h4 id="什麼是nextTick-？"><a href="#什麼是nextTick-？" class="headerlink" title="什麼是nextTick()？"></a>什麼是nextTick()？</h4><h6 id="官方定義"><a href="#官方定義" class="headerlink" title="官方定義"></a>官方定義</h6><p><code>在下次 DOM 更新循环结束之后执行延迟回调。在修改数据之后立即使用这个方法，获取更新后的 DOM</code></p>
+<h4 id="實際應用場景"><a href="#實際應用場景" class="headerlink" title="實際應用場景"></a>實際應用場景</h4><p>版主在Vue3的 project中有一個<code>child componet</code> 跟 <code>parent component</code>，在child component中有使用 <code>Primevue</code>的 <code>Checkbox</code>，而我希望在勾選Checkbox時可以觸發emit，所以使用watch監聽Checkbox 綁定的一個<code>ref</code>的變數，所以在watch監聽該變數，當有變化就發出emit，而parent收到emit的會依照回傳的值做一些array的過濾，在這裡因為過濾會花點時間。</p>
+<p>於此同時Checkbox不會馬上被改變打勾或是非打勾的狀態，需要等到parent計算完才會被更新DOM，所以我認為是parent中的filter造成DOM的延遲更新，所以就使用nextTick()，先讓Checkbox可以先被渲染，再執行emit。</p>
+<p>程式碼如下</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">watch(destination, () =&gt; &#123;</span><br><span class="line">    nextTick(()=&gt; &#123;</span><br><span class="line">        emit(&#x27;filterCondiction&#x27;, &#123;date: [&#123;index: &#x27;1&#x27;, date: &quot;20240201&quot;&#125;], location: [&#123;index: props.airport.location.split(&#x27; &#x27;)[1], destination: destination.value&#125;]&#125;);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>請忽略傳遞的參數ＸＤ</p>
+<p>在這裡會看到emit會在DOM完成更新後才執行，這樣就不會有覺得為什麼點擊Chenckbox後卻沒有馬上被打勾的問題。</p>
 ]]></content>
       <categories>
         <category>frontend</category>
       </categories>
       <tags>
-        <tag>css</tag>
+        <tag>vue</tag>
       </tags>
   </entry>
   <entry>
@@ -367,21 +385,6 @@
         <tag>javascript</tag>
         <tag>async</tag>
         <tag>promise</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Javascript - 對object(key value)做 filter &amp; map</title>
-    <url>/andy-tech-note/Javascript-object-key-value-filter_map/</url>
-    <content><![CDATA[<h4 id="如何對object做類似filter的行為"><a href="#如何對object做類似filter的行為" class="headerlink" title="如何對object做類似filter的行為"></a>如何對object做類似filter的行為</h4><p>透過Object.keys把key 輸出成 Array，這樣就可以使用filter，把key當作index逐一帶入obj做條件判斷，即可達到過濾效果</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">const obj = &#123;a : 1, b : 2, c : 3&#125;;</span><br><span class="line">const filteredResult = Object.keys(obj)</span><br><span class="line">    .filter((key) =&gt; obj[key] &gt; 1)</span><br></pre></td></tr></table></figure>
-
-
-<h4 id="使用Object-entries及reduce-來對object做一對一的處理來達到map效果"><a href="#使用Object-entries及reduce-來對object做一對一的處理來達到map效果" class="headerlink" title="使用Object.entries及reduce 來對object做一對一的處理來達到map效果"></a>使用Object.entries及reduce 來對object做一對一的處理來達到map效果</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">const obj = &#123;</span><br><span class="line">    a: &#123;name: &#x27;andy&#x27;, b: 2, c: 3&#125;, </span><br><span class="line">    b: &#123;name: &#x27;amy&#x27;, b: 2, c: 3&#125;, </span><br><span class="line">    c: &#123;name: &#x27;john&#x27;, b: 2, c: 3&#125; </span><br><span class="line">    &#125;;</span><br><span class="line">    </span><br><span class="line">const result = Object.entries(obj).reduce((acc, [key, value]) =&gt; &#123;</span><br><span class="line">  acc[key] = value</span><br><span class="line">  acc[key].name = acc[key].name + &#x27; chen&#x27;</span><br><span class="line"></span><br><span class="line">  return acc;</span><br><span class="line"></span><br><span class="line">&#125;, &#123;&#125;)</span><br><span class="line">// 可以對 name的後面全部加上 &quot;chen&quot;的字串</span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>frontend</category>
-      </categories>
-      <tags>
-        <tag>javascript</tag>
       </tags>
   </entry>
   <entry>
@@ -442,6 +445,21 @@
       </tags>
   </entry>
   <entry>
+    <title>Javascript - 對object(key value)做 filter &amp; map</title>
+    <url>/andy-tech-note/Javascript-object-key-value-filter_map/</url>
+    <content><![CDATA[<h4 id="如何對object做類似filter的行為"><a href="#如何對object做類似filter的行為" class="headerlink" title="如何對object做類似filter的行為"></a>如何對object做類似filter的行為</h4><p>透過Object.keys把key 輸出成 Array，這樣就可以使用filter，把key當作index逐一帶入obj做條件判斷，即可達到過濾效果</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">const obj = &#123;a : 1, b : 2, c : 3&#125;;</span><br><span class="line">const filteredResult = Object.keys(obj)</span><br><span class="line">    .filter((key) =&gt; obj[key] &gt; 1)</span><br></pre></td></tr></table></figure>
+
+
+<h4 id="使用Object-entries及reduce-來對object做一對一的處理來達到map效果"><a href="#使用Object-entries及reduce-來對object做一對一的處理來達到map效果" class="headerlink" title="使用Object.entries及reduce 來對object做一對一的處理來達到map效果"></a>使用Object.entries及reduce 來對object做一對一的處理來達到map效果</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">const obj = &#123;</span><br><span class="line">    a: &#123;name: &#x27;andy&#x27;, b: 2, c: 3&#125;, </span><br><span class="line">    b: &#123;name: &#x27;amy&#x27;, b: 2, c: 3&#125;, </span><br><span class="line">    c: &#123;name: &#x27;john&#x27;, b: 2, c: 3&#125; </span><br><span class="line">    &#125;;</span><br><span class="line">    </span><br><span class="line">const result = Object.entries(obj).reduce((acc, [key, value]) =&gt; &#123;</span><br><span class="line">  acc[key] = value</span><br><span class="line">  acc[key].name = acc[key].name + &#x27; chen&#x27;</span><br><span class="line"></span><br><span class="line">  return acc;</span><br><span class="line"></span><br><span class="line">&#125;, &#123;&#125;)</span><br><span class="line">// 可以對 name的後面全部加上 &quot;chen&quot;的字串</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>frontend</category>
+      </categories>
+      <tags>
+        <tag>javascript</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Wordpress當後端傳文章內容到前端(Vue)</title>
     <url>/andy-tech-note/wordpress%E7%95%B6%E5%BE%8C%E7%AB%AF%E5%82%B3%E6%96%87%E7%AB%A0%E5%85%A7%E5%AE%B9%E5%88%B0%E5%89%8D%E7%AB%AF-Vue/</url>
     <content><![CDATA[<h3 id="以Wordpress為後端傳資料到前端"><a href="#以Wordpress為後端傳資料到前端" class="headerlink" title="以Wordpress為後端傳資料到前端"></a>以Wordpress為後端傳資料到前端</h3><p>wordpress 為後端，前端向後端取得wp中的文章時，我希望直接取得可以呈現的HTML格式，試過使用 WP 中的 function <code>get_post_field</code>，雖然可以取得HTML，但是HTML結構與真正在以WP當作前端呈現的文章的html有些出入，也就是在WP呈現頁面前會對原始的html做特殊格式化，這就要透過 apply_filters   ‘the_content’ 去把取得的html做格式化，這樣才會與wp呈現出來的樣式一樣。</p>
@@ -456,24 +474,6 @@
       <tags>
         <tag>wordpress</tag>
         <tag>frontend</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>nextTick in Vue3</title>
-    <url>/andy-tech-note/nextTick-in-Vue3/</url>
-    <content><![CDATA[<h4 id="什麼是nextTick-？"><a href="#什麼是nextTick-？" class="headerlink" title="什麼是nextTick()？"></a>什麼是nextTick()？</h4><h6 id="官方定義"><a href="#官方定義" class="headerlink" title="官方定義"></a>官方定義</h6><p><code>在下次 DOM 更新循环结束之后执行延迟回调。在修改数据之后立即使用这个方法，获取更新后的 DOM</code></p>
-<h4 id="實際應用場景"><a href="#實際應用場景" class="headerlink" title="實際應用場景"></a>實際應用場景</h4><p>版主在Vue3的 project中有一個<code>child componet</code> 跟 <code>parent component</code>，在child component中有使用 <code>Primevue</code>的 <code>Checkbox</code>，而我希望在勾選Checkbox時可以觸發emit，所以使用watch監聽Checkbox 綁定的一個<code>ref</code>的變數，所以在watch監聽該變數，當有變化就發出emit，而parent收到emit的會依照回傳的值做一些array的過濾，在這裡因為過濾會花點時間。</p>
-<p>於此同時Checkbox不會馬上被改變打勾或是非打勾的狀態，需要等到parent計算完才會被更新DOM，所以我認為是parent中的filter造成DOM的延遲更新，所以就使用nextTick()，先讓Checkbox可以先被渲染，再執行emit。</p>
-<p>程式碼如下</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">watch(destination, () =&gt; &#123;</span><br><span class="line">    nextTick(()=&gt; &#123;</span><br><span class="line">        emit(&#x27;filterCondiction&#x27;, &#123;date: [&#123;index: &#x27;1&#x27;, date: &quot;20240201&quot;&#125;], location: [&#123;index: props.airport.location.split(&#x27; &#x27;)[1], destination: destination.value&#125;]&#125;);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-<p>請忽略傳遞的參數ＸＤ</p>
-<p>在這裡會看到emit會在DOM完成更新後才執行，這樣就不會有覺得為什麼點擊Chenckbox後卻沒有馬上被打勾的問題。</p>
-]]></content>
-      <categories>
-        <category>frontend</category>
-      </categories>
-      <tags>
-        <tag>vue</tag>
       </tags>
   </entry>
   <entry>
@@ -521,30 +521,34 @@
       </tags>
   </entry>
   <entry>
-    <title>CSS的的selector的權重</title>
-    <url>/andy-tech-note/about-CSS-selector-priority/</url>
-    <content><![CDATA[<h3 id="selector是什麼？"><a href="#selector是什麼？" class="headerlink" title="selector是什麼？"></a>selector是什麼？</h3><p>是用來選擇HTML tag並設定寬、高、顏色、背景圖等等(如：H1,p,div)，選擇器不僅限於標籤(div, p, span)，還包含class及id。</p>
-<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.className</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>:blue;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">div</span> &#123;</span><br><span class="line">    <span class="attribute">font-size</span>:<span class="number">16px</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+    <title>建構子函式constructor_function</title>
+    <url>/andy-tech-note/constructor-function/</url>
+    <content><![CDATA[<h3 id="什麼是-constructor-function建構子函式"><a href="#什麼是-constructor-function建構子函式" class="headerlink" title="什麼是 constructor function建構子函式"></a>什麼是 constructor function建構子函式</h3><p>建構子函式是一個由普通函式與new關鍵字組合而成的函式，而該函式就像是一個藍圖一樣，要透過new關鍵字才能建立一個真正的instance(object)。<br>其主要用途是用於建立物件，而非一般的函式。</p>
+<p>而建構子函示 <code>.prototype</code> 可以查看透過建構子函式所建立的object的prototype。</p>
+<h3 id="如何建立一個instance"><a href="#如何建立一個instance" class="headerlink" title="如何建立一個instance"></a>如何建立一個instance</h3><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="title class_">Person</span>() &#123;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">name</span> = <span class="string">&#x27;Andy&#x27;</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="title class_">Person</span>.<span class="property"><span class="keyword">prototype</span></span>.<span class="property">sayHello</span> = <span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;Hello, I am &#x27;</span> + <span class="variable language_">this</span>.<span class="property">name</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> person1 = <span class="keyword">new</span> <span class="title class_">Person</span>();</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(person1.<span class="property">__proto__</span>); </span><br><span class="line"><span class="comment">// 透過__proto__可以得到Person.prototype</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title class_">Person</span>.<span class="property"><span class="keyword">prototype</span></span>);</span><br><span class="line"><span class="comment">// 可以得到由Person()定義的prototype</span></span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>可以透過這種方法達到建立多個如person的實例，例如：可以對各個object 實例的name設定不同人名，另外還可以對其prototype設定method，這樣多個實例被創建時就可以使用同一個method，而不用在建構函式中定義method，造成在建立instance時創建多個相同的method。</p>
+<h3 id="new-一個instance的流程"><a href="#new-一個instance的流程" class="headerlink" title="new 一個instance的流程"></a>new 一個instance的流程</h3><ol>
+<li>用new 建立一個空的object</li>
+<li>constructor function(建構子函式)被執行時會把這個函式的this及constructor指向到步驟一的空object中。</li>
+<li>這樣可以在新的object中看到被設定在constructor function中的this.name &#x3D; ‘Andy’(屬性)</li>
+<li>而這個該object會被linked到constructor function的prototype。</li>
+<li>當建立好之後，可以透過 <code>.__proto__</code> 取得這個object的prototype。</li>
+</ol>
+<h3 id="prototype-Chain"><a href="#prototype-Chain" class="headerlink" title="prototype Chain"></a>prototype Chain</h3><p>prototype chain是一個object的連結，在object中可以透過<code>__proto__</code>取得，而該object可以一路透過 <code>__proto__</code> 取得其prototype，而其可以繼承多層的prototype，可以一路透過 <code>__proto___</code> 取得每一層的prototype，並且可以使用其繼承的method。</p>
+<p>以Array來說，當建立一個array之後，可以透過<code>__proto__</code>取得到Array.prototype，然後透過<code>__proto__</code>取得到Object.prototype，最後透過<code>__proto__</code>取得到null，所以可以透過<code>__proto__</code>取得到Object.prototype的所有method。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> arr = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>];</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(arr.<span class="property">__proto__</span>);</span><br><span class="line"><span class="comment">// 可以透過__proto__取得到Array.prototype</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title class_">Array</span>.<span class="property"><span class="keyword">prototype</span></span>);</span><br><span class="line"><span class="comment">// 可以透過__proto__取得到Object.prototype</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title class_">Object</span>.<span class="property"><span class="keyword">prototype</span></span>);</span><br><span class="line"><span class="comment">// 可以透過__proto__取得到null</span></span><br></pre></td></tr></table></figure>
 
-<h3 id="權重可以幹嘛？"><a href="#權重可以幹嘛？" class="headerlink" title="權重可以幹嘛？"></a>權重可以幹嘛？</h3><p>在selector有四個權重，依序是 <code>inline style &gt; id &gt; class &gt; tag</code>，這意思是說如果你對某些元素設定屬性時，權重會依照這個來做處理，也就是說如果在<code>class及inline style</code>裡面都設定 <code>color</code>，而最終HTML顯示的顏色會是由inline設定的為主，這是因為權重大小的關係。<br>而這四個權重會是這樣寫(0,0,0,0)對應的順序(inline, id, class, tag)，所以這樣就可以看出誰的權重比較大。</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">style</span>=<span class="string">&quot;color=yellow&quot;</span> <span class="attr">class</span>=<span class="string">&quot;className&quot;</span>&gt;</span><span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.className</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>=blue</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>在這裡顏色就會是yellow，因為inline權重大於class</p>
-<h3 id="權重計算方式"><a href="#權重計算方式" class="headerlink" title="權重計算方式"></a>權重計算方式</h3><figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.className1</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>:blue;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><code>(0,0,1,0)</code></p>
-<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.className1</span><span class="selector-class">.className2</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>:yellow;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><code>(0,0,2,0)</code><br>上面這個會把兩個class加起來，這是要該元素同時有這兩個class存在</p>
-<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.className2</span> <span class="selector-tag">div</span> <span class="selector-tag">p</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>:yellow;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><code>(0,0,1,2)</code></p>
-<h3 id="important"><a href="#important" class="headerlink" title="!important"></a>!important</h3><p>這個大魔王，在某些情況希望直接覆蓋掉該元素的屬性，可以在 該屬性後面加上 <code>!important</code>，但是不建議太常使用，會在開發上容易造成不要的困擾。</p>
-<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.className2</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>:yellow <span class="meta">!important</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>以Person的例子來說，可以透過<code>__proto__</code>取得到Person.prototype，然後透過多一層<code>__proto__</code>取得到Object.prototype，最後透過<code>__proto__</code>取得到null，所以可以透過<code>__proto__</code>取得到Object.prototype的所有method。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> person = <span class="keyword">new</span> <span class="title class_">Person</span>();</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(person.<span class="property">__proto__</span>);</span><br><span class="line"><span class="comment">// 可以透過__proto__取得到Person.prototype</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(person.<span class="property">__proto__</span>.<span class="property">__proto__</span>);</span><br><span class="line"><span class="comment">// 可以透過__proto__取得到Object.prototype</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(person.<span class="property">__proto__</span>.<span class="property">__proto__</span>.<span class="property">__proto__</span>);</span><br><span class="line"><span class="comment">// 可以透過__proto__取得到null</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title class_">Person</span>.<span class="property"><span class="keyword">prototype</span></span>);</span><br><span class="line"><span class="comment">// 可以透過 .prototype 取得到Person.prototype</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title class_">Object</span>.<span class="property"><span class="keyword">prototype</span></span>);</span><br></pre></td></tr></table></figure>
+<p>所以這些object都是以prototype chain的方式來繼承的，所以可以透過<code>__proto__</code>取得Object.prototype的所有method。</p>
+<h4 id="參考資料"><a href="#參考資料" class="headerlink" title="參考資料"></a>參考資料</h4><p><a href="https://hackmd.io/@peggyted0129/r1lNDojWu">JS 核心 – 使用建構式自定義原型</a><br><a href="https://pjchender.blogspot.com/2016/06/javascriptfunction-constructornew.html">[筆記] 談談 JavaScript 中的 function constructor 和關鍵字 new</a></p>
 ]]></content>
       <categories>
         <category>frontend_interview</category>
         <category>frontend</category>
       </categories>
       <tags>
-        <tag>css</tag>
+        <tag>javascript</tag>
         <tag>frontend</tag>
       </tags>
   </entry>
@@ -660,38 +664,6 @@
       </tags>
   </entry>
   <entry>
-    <title>建構子函式constructor_function</title>
-    <url>/andy-tech-note/constructor-function/</url>
-    <content><![CDATA[<h3 id="什麼是-constructor-function建構子函式"><a href="#什麼是-constructor-function建構子函式" class="headerlink" title="什麼是 constructor function建構子函式"></a>什麼是 constructor function建構子函式</h3><p>建構子函式是一個由普通函式與new關鍵字組合而成的函式，而該函式就像是一個藍圖一樣，要透過new關鍵字才能建立一個真正的instance(object)。<br>其主要用途是用於建立物件，而非一般的函式。</p>
-<p>而建構子函示 <code>.prototype</code> 可以查看透過建構子函式所建立的object的prototype。</p>
-<h3 id="如何建立一個instance"><a href="#如何建立一個instance" class="headerlink" title="如何建立一個instance"></a>如何建立一個instance</h3><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="title class_">Person</span>() &#123;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">name</span> = <span class="string">&#x27;Andy&#x27;</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="title class_">Person</span>.<span class="property"><span class="keyword">prototype</span></span>.<span class="property">sayHello</span> = <span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;Hello, I am &#x27;</span> + <span class="variable language_">this</span>.<span class="property">name</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> person1 = <span class="keyword">new</span> <span class="title class_">Person</span>();</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(person1.<span class="property">__proto__</span>); </span><br><span class="line"><span class="comment">// 透過__proto__可以得到Person.prototype</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title class_">Person</span>.<span class="property"><span class="keyword">prototype</span></span>);</span><br><span class="line"><span class="comment">// 可以得到由Person()定義的prototype</span></span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p>可以透過這種方法達到建立多個如person的實例，例如：可以對各個object 實例的name設定不同人名，另外還可以對其prototype設定method，這樣多個實例被創建時就可以使用同一個method，而不用在建構函式中定義method，造成在建立instance時創建多個相同的method。</p>
-<h3 id="new-一個instance的流程"><a href="#new-一個instance的流程" class="headerlink" title="new 一個instance的流程"></a>new 一個instance的流程</h3><ol>
-<li>用new 建立一個空的object</li>
-<li>constructor function(建構子函式)被執行時會把這個函式的this及constructor指向到步驟一的空object中。</li>
-<li>這樣可以在新的object中看到被設定在constructor function中的this.name &#x3D; ‘Andy’(屬性)</li>
-<li>而這個該object會被linked到constructor function的prototype。</li>
-<li>當建立好之後，可以透過 <code>.__proto__</code> 取得這個object的prototype。</li>
-</ol>
-<h3 id="prototype-Chain"><a href="#prototype-Chain" class="headerlink" title="prototype Chain"></a>prototype Chain</h3><p>prototype chain是一個object的連結，在object中可以透過<code>__proto__</code>取得，而該object可以一路透過 <code>__proto__</code> 取得其prototype，而其可以繼承多層的prototype，可以一路透過 <code>__proto___</code> 取得每一層的prototype，並且可以使用其繼承的method。</p>
-<p>以Array來說，當建立一個array之後，可以透過<code>__proto__</code>取得到Array.prototype，然後透過<code>__proto__</code>取得到Object.prototype，最後透過<code>__proto__</code>取得到null，所以可以透過<code>__proto__</code>取得到Object.prototype的所有method。</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> arr = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>];</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(arr.<span class="property">__proto__</span>);</span><br><span class="line"><span class="comment">// 可以透過__proto__取得到Array.prototype</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title class_">Array</span>.<span class="property"><span class="keyword">prototype</span></span>);</span><br><span class="line"><span class="comment">// 可以透過__proto__取得到Object.prototype</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title class_">Object</span>.<span class="property"><span class="keyword">prototype</span></span>);</span><br><span class="line"><span class="comment">// 可以透過__proto__取得到null</span></span><br></pre></td></tr></table></figure>
-
-<p>以Person的例子來說，可以透過<code>__proto__</code>取得到Person.prototype，然後透過多一層<code>__proto__</code>取得到Object.prototype，最後透過<code>__proto__</code>取得到null，所以可以透過<code>__proto__</code>取得到Object.prototype的所有method。</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> person = <span class="keyword">new</span> <span class="title class_">Person</span>();</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(person.<span class="property">__proto__</span>);</span><br><span class="line"><span class="comment">// 可以透過__proto__取得到Person.prototype</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(person.<span class="property">__proto__</span>.<span class="property">__proto__</span>);</span><br><span class="line"><span class="comment">// 可以透過__proto__取得到Object.prototype</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(person.<span class="property">__proto__</span>.<span class="property">__proto__</span>.<span class="property">__proto__</span>);</span><br><span class="line"><span class="comment">// 可以透過__proto__取得到null</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title class_">Person</span>.<span class="property"><span class="keyword">prototype</span></span>);</span><br><span class="line"><span class="comment">// 可以透過 .prototype 取得到Person.prototype</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title class_">Object</span>.<span class="property"><span class="keyword">prototype</span></span>);</span><br></pre></td></tr></table></figure>
-<p>所以這些object都是以prototype chain的方式來繼承的，所以可以透過<code>__proto__</code>取得Object.prototype的所有method。</p>
-<h4 id="參考資料"><a href="#參考資料" class="headerlink" title="參考資料"></a>參考資料</h4><p><a href="https://hackmd.io/@peggyted0129/r1lNDojWu">JS 核心 – 使用建構式自定義原型</a><br><a href="https://pjchender.blogspot.com/2016/06/javascriptfunction-constructornew.html">[筆記] 談談 JavaScript 中的 function constructor 和關鍵字 new</a></p>
-]]></content>
-      <categories>
-        <category>frontend_interview</category>
-        <category>frontend</category>
-      </categories>
-      <tags>
-        <tag>javascript</tag>
-        <tag>frontend</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Javascript 的 hoisting關於var,let,const and function</title>
     <url>/andy-tech-note/hoisting-about-var-let-const-function/</url>
     <content><![CDATA[<h2 id="什麼是Hoisting-提升"><a href="#什麼是Hoisting-提升" class="headerlink" title="什麼是Hoisting(提升)"></a>什麼是Hoisting(提升)</h2><p>當js在編譯時會把變數宣告以及函式宣告提升到該<code>作用域</code>的最頂端，但實際上不會去改動程式碼，有時候在撰寫程式碼時有沒有發現雖然你的function宣告在後面，卻在前面使用function而不會跳錯，就是這個原因</p>
@@ -732,6 +704,34 @@
       </categories>
       <tags>
         <tag>javascript</tag>
+        <tag>frontend</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>CSS的的selector的權重</title>
+    <url>/andy-tech-note/about-CSS-selector-priority/</url>
+    <content><![CDATA[<h3 id="selector是什麼？"><a href="#selector是什麼？" class="headerlink" title="selector是什麼？"></a>selector是什麼？</h3><p>是用來選擇HTML tag並設定寬、高、顏色、背景圖等等(如：H1,p,div)，選擇器不僅限於標籤(div, p, span)，還包含class及id。</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.className</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>:blue;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">div</span> &#123;</span><br><span class="line">    <span class="attribute">font-size</span>:<span class="number">16px</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="權重可以幹嘛？"><a href="#權重可以幹嘛？" class="headerlink" title="權重可以幹嘛？"></a>權重可以幹嘛？</h3><p>在selector有四個權重，依序是 <code>inline style &gt; id &gt; class &gt; tag</code>，這意思是說如果你對某些元素設定屬性時，權重會依照這個來做處理，也就是說如果在<code>class及inline style</code>裡面都設定 <code>color</code>，而最終HTML顯示的顏色會是由inline設定的為主，這是因為權重大小的關係。<br>而這四個權重會是這樣寫(0,0,0,0)對應的順序(inline, id, class, tag)，所以這樣就可以看出誰的權重比較大。</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">style</span>=<span class="string">&quot;color=yellow&quot;</span> <span class="attr">class</span>=<span class="string">&quot;className&quot;</span>&gt;</span><span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.className</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>=blue</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在這裡顏色就會是yellow，因為inline權重大於class</p>
+<h3 id="權重計算方式"><a href="#權重計算方式" class="headerlink" title="權重計算方式"></a>權重計算方式</h3><figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.className1</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>:blue;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><code>(0,0,1,0)</code></p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.className1</span><span class="selector-class">.className2</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>:yellow;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><code>(0,0,2,0)</code><br>上面這個會把兩個class加起來，這是要該元素同時有這兩個class存在</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.className2</span> <span class="selector-tag">div</span> <span class="selector-tag">p</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>:yellow;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><code>(0,0,1,2)</code></p>
+<h3 id="important"><a href="#important" class="headerlink" title="!important"></a>!important</h3><p>這個大魔王，在某些情況希望直接覆蓋掉該元素的屬性，可以在 該屬性後面加上 <code>!important</code>，但是不建議太常使用，會在開發上容易造成不要的困擾。</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.className2</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>:yellow <span class="meta">!important</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>frontend_interview</category>
+        <category>frontend</category>
+      </categories>
+      <tags>
+        <tag>css</tag>
         <tag>frontend</tag>
       </tags>
   </entry>

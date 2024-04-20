@@ -71,33 +71,6 @@
       </tags>
   </entry>
   <entry>
-    <title>在JS中複製object-深拷貝/淺拷貝</title>
-    <url>/andy-tech-note/deep-copy-Shallow-copy/</url>
-    <content><![CDATA[<h3 id="在JS複製object"><a href="#在JS複製object" class="headerlink" title="在JS複製object"></a>在JS複製object</h3><p>在寫code有時候會需要使用某些變數或是object，但是又不希望直接對其做操作，因為可能在其他地方會繼續使用原始的object，<br>這時候就會宣告一個新的變數去把原先的object assign過去。</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">const source = &#123;name:&#x27;Andy&#x27;,coutry:&#x27;Taiwan&#x27;,phone:&#x27;0911-111-111&#x27;&#125;</span><br><span class="line">//原始資料</span><br><span class="line"></span><br><span class="line">const destination = source </span><br><span class="line">//新變數</span><br><span class="line">destination.name = &#x27;Rendy&#x27;;</span><br><span class="line"></span><br><span class="line">console.log(destination.name);  //結果: Rendy</span><br><span class="line">console.log(source.name);       //結果: Rendy</span><br></pre></td></tr></table></figure>
-
-<p>會發現，變更 <code>destination</code> 同時也變更 <code>source</code> 裡面的值。<br>這就要提到 call by value 以及 call by reference</p>
-<h3 id="call-by-value-x2F-call-by-object"><a href="#call-by-value-x2F-call-by-object" class="headerlink" title="call by value &#x2F; call by object"></a>call by value &#x2F; call by object</h3><h4 id="什麼是call-by-value"><a href="#什麼是call-by-value" class="headerlink" title="什麼是call by value?"></a>什麼是call by value?</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">let x =1;</span><br><span class="line">let y = x;</span><br><span class="line"></span><br><span class="line">console.log(y); // 結果:1</span><br><span class="line">y=10;</span><br><span class="line">console.log(y); //結果:10</span><br><span class="line">console.log(x); //結果:1</span><br></pre></td></tr></table></figure>
-<p>以一般變數assign來說，是以call by value，也就是說直接把 <code>x</code> 的值傳給 <code>y</code></p>
-<h4 id="什麼又是-call-by-reference"><a href="#什麼又是-call-by-reference" class="headerlink" title="什麼又是 call by reference?"></a>什麼又是 call by reference?</h4><p>在一開始的object assign方法就是 call by reference，意思就是說 <code>source</code> 這個變數在assign給 <code>destination</code> 時，他是以傳遞記憶體位址方式給<code>destination</code>，可以想像 <code>destination</code> 就是儲存一個記憶體位置，當程式要讀取資料時就會透過這個位置去存取這個記憶體位置實際儲存的值。</p>
-<p>所以這樣就可以很明確的瞭解為什麼改變object的值的時候，<code>source</code> <code>destination</code> 裡面的值會被同步更動，因為兩者都是指到同一個記憶體位置。</p>
-<h4 id="要怎麼做才能不更動-source-的值"><a href="#要怎麼做才能不更動-source-的值" class="headerlink" title="要怎麼做才能不更動 source 的值"></a>要怎麼做才能不更動 source 的值</h4><p>不更動的方式有兩種： <em>淺拷貝跟深拷貝</em></p>
-<h4 id="淺拷貝"><a href="#淺拷貝" class="headerlink" title="淺拷貝"></a>淺拷貝</h4><p>字面意思就是比較淺，<br>這時候就會使用Object.assign <a href="https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Global_Objects/Object/assign">MDN介紹</a><br>舉例：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//Object.assign()</span><br><span class="line">const source = &#123;name:&#x27;Andy&#x27;,coutry:&#x27;Taiwan&#x27;,phone:&#x27;0911-111-111&#x27;,detail:&#123;age:10, job:&#x27;photographer&#x27;&#125;&#125;</span><br><span class="line">//原始資料</span><br><span class="line"></span><br><span class="line">const destination = &#123;&#125; </span><br><span class="line">Object.assign(destination,source);  //把objec assign 給 destination</span><br><span class="line"></span><br><span class="line">destination.name=&#x27;rendy&#x27;;</span><br><span class="line">console.log(destination.name,source.name) //結果 Rendy Andy 互不影響</span><br><span class="line"></span><br><span class="line">destination.detail.age=100;</span><br><span class="line">console.log(destination.detail.age,source.detail.age) //結果: 100 100</span><br></pre></td></tr></table></figure>
-<p>在這裡會發現修改 <code>name</code> 時資料互不影響，但在修改detail.age時又互相影響了，這是因為使用的是淺拷貝，這個copy只有單純複製第一層的資料，第二層以下的都還是以call by reference，所以當你修改detail.age時兩邊同時都會被修改。</p>
-<h4 id="以深拷貝來解決淺拷貝的問題"><a href="#以深拷貝來解決淺拷貝的問題" class="headerlink" title="以深拷貝來解決淺拷貝的問題"></a>以深拷貝來解決淺拷貝的問題</h4><p>使用 JSON.parse(JSON.stringify())，用這個方法就可以把淺拷貝碰到裡面有多層的問題解決。</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">const destination = JSON.parse(JSON.stringify(source));</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<h4 id="JSON-stringify-amp-JSON-parse"><a href="#JSON-stringify-amp-JSON-parse" class="headerlink" title="JSON.stringify &amp; JSON.parse"></a>JSON.stringify &amp; JSON.parse</h4><p>以MDN解釋，透過這個function可以把js value轉換成JSON string。<br>而parse可以把JSON字串轉成js value，這樣一來一往就可以把js object深層的值給取出來，而不是取得他的reference</p>
-<p>相關參考<br><a href="https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Global_Objects/Object/assign">參考1</a><br><a href="https://jamie-life-coding.site/2021/10/javascript-copy-object/">參考2</a></p>
-]]></content>
-      <categories>
-        <category>frontend</category>
-      </categories>
-      <tags>
-        <tag>Javascript</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>在vue中把變數傳進css</title>
     <url>/andy-tech-note/vue-ref-css-vbind/</url>
     <content><![CDATA[<p>某些時候會希望動態改變css的樣式高度、寬度、顏色…等等的<br>在vue中可以宣告一個ref變數(composition API)，然後把搭丟到vue檔案中的 <style></style>中，又或者透過inline的方式直接插入到html tag中，舉例如下：</p>
@@ -155,6 +128,33 @@
       </tags>
   </entry>
   <entry>
+    <title>在JS中複製object-深拷貝/淺拷貝</title>
+    <url>/andy-tech-note/deep-copy-Shallow-copy/</url>
+    <content><![CDATA[<h3 id="在JS複製object"><a href="#在JS複製object" class="headerlink" title="在JS複製object"></a>在JS複製object</h3><p>在寫code有時候會需要使用某些變數或是object，但是又不希望直接對其做操作，因為可能在其他地方會繼續使用原始的object，<br>這時候就會宣告一個新的變數去把原先的object assign過去。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">const source = &#123;name:&#x27;Andy&#x27;,coutry:&#x27;Taiwan&#x27;,phone:&#x27;0911-111-111&#x27;&#125;</span><br><span class="line">//原始資料</span><br><span class="line"></span><br><span class="line">const destination = source </span><br><span class="line">//新變數</span><br><span class="line">destination.name = &#x27;Rendy&#x27;;</span><br><span class="line"></span><br><span class="line">console.log(destination.name);  //結果: Rendy</span><br><span class="line">console.log(source.name);       //結果: Rendy</span><br></pre></td></tr></table></figure>
+
+<p>會發現，變更 <code>destination</code> 同時也變更 <code>source</code> 裡面的值。<br>這就要提到 call by value 以及 call by reference</p>
+<h3 id="call-by-value-x2F-call-by-object"><a href="#call-by-value-x2F-call-by-object" class="headerlink" title="call by value &#x2F; call by object"></a>call by value &#x2F; call by object</h3><h4 id="什麼是call-by-value"><a href="#什麼是call-by-value" class="headerlink" title="什麼是call by value?"></a>什麼是call by value?</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">let x =1;</span><br><span class="line">let y = x;</span><br><span class="line"></span><br><span class="line">console.log(y); // 結果:1</span><br><span class="line">y=10;</span><br><span class="line">console.log(y); //結果:10</span><br><span class="line">console.log(x); //結果:1</span><br></pre></td></tr></table></figure>
+<p>以一般變數assign來說，是以call by value，也就是說直接把 <code>x</code> 的值傳給 <code>y</code></p>
+<h4 id="什麼又是-call-by-reference"><a href="#什麼又是-call-by-reference" class="headerlink" title="什麼又是 call by reference?"></a>什麼又是 call by reference?</h4><p>在一開始的object assign方法就是 call by reference，意思就是說 <code>source</code> 這個變數在assign給 <code>destination</code> 時，他是以傳遞記憶體位址方式給<code>destination</code>，可以想像 <code>destination</code> 就是儲存一個記憶體位置，當程式要讀取資料時就會透過這個位置去存取這個記憶體位置實際儲存的值。</p>
+<p>所以這樣就可以很明確的瞭解為什麼改變object的值的時候，<code>source</code> <code>destination</code> 裡面的值會被同步更動，因為兩者都是指到同一個記憶體位置。</p>
+<h4 id="要怎麼做才能不更動-source-的值"><a href="#要怎麼做才能不更動-source-的值" class="headerlink" title="要怎麼做才能不更動 source 的值"></a>要怎麼做才能不更動 source 的值</h4><p>不更動的方式有兩種： <em>淺拷貝跟深拷貝</em></p>
+<h4 id="淺拷貝"><a href="#淺拷貝" class="headerlink" title="淺拷貝"></a>淺拷貝</h4><p>字面意思就是比較淺，<br>這時候就會使用Object.assign <a href="https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Global_Objects/Object/assign">MDN介紹</a><br>舉例：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//Object.assign()</span><br><span class="line">const source = &#123;name:&#x27;Andy&#x27;,coutry:&#x27;Taiwan&#x27;,phone:&#x27;0911-111-111&#x27;,detail:&#123;age:10, job:&#x27;photographer&#x27;&#125;&#125;</span><br><span class="line">//原始資料</span><br><span class="line"></span><br><span class="line">const destination = &#123;&#125; </span><br><span class="line">Object.assign(destination,source);  //把objec assign 給 destination</span><br><span class="line"></span><br><span class="line">destination.name=&#x27;rendy&#x27;;</span><br><span class="line">console.log(destination.name,source.name) //結果 Rendy Andy 互不影響</span><br><span class="line"></span><br><span class="line">destination.detail.age=100;</span><br><span class="line">console.log(destination.detail.age,source.detail.age) //結果: 100 100</span><br></pre></td></tr></table></figure>
+<p>在這裡會發現修改 <code>name</code> 時資料互不影響，但在修改detail.age時又互相影響了，這是因為使用的是淺拷貝，這個copy只有單純複製第一層的資料，第二層以下的都還是以call by reference，所以當你修改detail.age時兩邊同時都會被修改。</p>
+<h4 id="以深拷貝來解決淺拷貝的問題"><a href="#以深拷貝來解決淺拷貝的問題" class="headerlink" title="以深拷貝來解決淺拷貝的問題"></a>以深拷貝來解決淺拷貝的問題</h4><p>使用 JSON.parse(JSON.stringify())，用這個方法就可以把淺拷貝碰到裡面有多層的問題解決。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">const destination = JSON.parse(JSON.stringify(source));</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h4 id="JSON-stringify-amp-JSON-parse"><a href="#JSON-stringify-amp-JSON-parse" class="headerlink" title="JSON.stringify &amp; JSON.parse"></a>JSON.stringify &amp; JSON.parse</h4><p>以MDN解釋，透過這個function可以把js value轉換成JSON string。<br>而parse可以把JSON字串轉成js value，這樣一來一往就可以把js object深層的值給取出來，而不是取得他的reference</p>
+<p>相關參考<br><a href="https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Global_Objects/Object/assign">參考1</a><br><a href="https://jamie-life-coding.site/2021/10/javascript-copy-object/">參考2</a></p>
+]]></content>
+      <categories>
+        <category>frontend</category>
+      </categories>
+      <tags>
+        <tag>Javascript</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>在Wordpress-使用Elementor建立部落格文章版型</title>
     <url>/andy-tech-note/wordpress-elementor/</url>
     <content><![CDATA[<h4 id="Wordpress版型"><a href="#Wordpress版型" class="headerlink" title="Wordpress版型"></a>Wordpress版型</h4><p>很多人使用wordpress都會希望有自己的喜歡的頁面或版型，網路上找到的版型通常找到某些功能很喜歡，<br>但是某些頁面的設定不是很滿意，這時候可以選擇Elementor這個套件來設定頁面排版等等。</p>
@@ -189,27 +189,6 @@
       </tags>
   </entry>
   <entry>
-    <title>CSS中的偽類-pseudo-class</title>
-    <url>/andy-tech-note/pseudo-class/</url>
-    <content><![CDATA[<h3 id="情境1"><a href="#情境1" class="headerlink" title="情境1"></a>情境1</h3><p>直接範例解釋</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;ul&gt;</span><br><span class="line">  &lt;li class=&quot;first-li&quot;&gt;1&lt;/li&gt;</span><br><span class="line">  &lt;li&gt;2&lt;/li&gt;</span><br><span class="line">  &lt;li&gt;3&lt;/li&gt;</span><br><span class="line">&lt;/ul&gt;</span><br><span class="line">&lt;ul&gt;</span><br><span class="line">  &lt;li&gt;1&lt;/li&gt;</span><br><span class="line">  &lt;li&gt;2&lt;/li&gt;</span><br><span class="line">  &lt;li&gt;3&lt;/li&gt;</span><br><span class="line">&lt;/ul&gt;  </span><br><span class="line"></span><br><span class="line">  </span><br></pre></td></tr></table></figure>
-<p>一般來說如果想對 <code>&lt;li&gt; </code>裡面的字做變色、粗體、斜體，可以透過建立一個class去操作，<br>舉例：想把所有的第一個li的變粗體，這樣需要如下面class寫法，以及需要在html裡面把所有的第一個li都加上class&#x3D;’first-li’</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//css檔案</span><br><span class="line">.first-li &#123;</span><br><span class="line">    font-weight:bold;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//pseudo class </span><br><span class="line">li:first-child &#123;</span><br><span class="line">    font-weight:bold;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">li:last-child&#123;</span><br><span class="line">    font-weight:bold;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">li:nth-child(2)&#123; //全部第二個</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">li:nth-child(even)&#123; //偶數或奇數 odd</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>若是pseudo class則可以寫成上面這樣，還可以有最後一個、指定特定位置、偶數、奇數。</p>
-<hr>
-<h3 id="情境2"><a href="#情境2" class="headerlink" title="情境2"></a>情境2</h3><p>在這裡還可以是以下狀況</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">//狀況1</span><br><span class="line">&lt;div&gt;</span><br><span class="line">    &lt;p&gt;1&lt;/p&gt;</span><br><span class="line">    &lt;div&gt;2&lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line"></span><br><span class="line">//狀況2</span><br><span class="line">&lt;div&gt;</span><br><span class="line">    &lt;div&gt;0&lt;/div&gt;</span><br><span class="line">    &lt;p&gt;1&lt;/p&gt;</span><br><span class="line">    &lt;div&gt;2&lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line"></span><br><span class="line">//css</span><br><span class="line">div p:first-child&#123; // div下的第一個p</span><br><span class="line">    font-weight:bold;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>這個狀況其實在狀況2是沒有作用的，雖然是div下的第一個p，但是在div下面的第一個element是 div而非 p ，所以不會成功</p>
-]]></content>
-      <categories>
-        <category>frontend</category>
-      </categories>
-      <tags>
-        <tag>css</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>vue-react-mvvm-virtualDom的一些筆記</title>
     <url>/andy-tech-note/vue-react-mvvm-virtualDom/</url>
     <content><![CDATA[<h3 id="指令式渲染-imperative-redering"><a href="#指令式渲染-imperative-redering" class="headerlink" title="指令式渲染 imperative redering"></a>指令式渲染 imperative redering</h3><h4 id="jquery"><a href="#jquery" class="headerlink" title="jquery"></a>jquery</h4><p>在框架還沒出來時jquery依舊是非常火紅的，而其對於DOM的渲染方式就是透過<br>選擇器 <code>document.querySelector</code> 去選擇HTML裡面的tag，從而去修改他們的值或是<code> addEventListener</code> 加入事件監聽來獲取使用者的行為，進而在js裡面做一些判斷後再把資料丟到頁面讓使用者看到。</p>
@@ -231,30 +210,6 @@
       <tags>
         <tag>vue</tag>
         <tag>react</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>如何使用Google的firebase裡面的驗證功能(login/logout)</title>
-    <url>/andy-tech-note/firebase-auth/</url>
-    <content><![CDATA[<h4 id="Google-Firebase"><a href="#Google-Firebase" class="headerlink" title="Google Firebase"></a>Google Firebase</h4><p>Google的Firebase是個前端工程師很好用的工具，他可以讓前端工程師省去後端資料庫的建立而可以專注在前端的開發，這裡面有身份驗證、realtime資料庫等好用的功能，只要是拿來做開發，而流量不大的話，通常你都不會達到需要付費流量。</p>
-<h4 id="Firebase-auth-以Email-x2F-password-為例"><a href="#Firebase-auth-以Email-x2F-password-為例" class="headerlink" title="Firebase auth 以Email&#x2F;password 為例"></a>Firebase auth 以Email&#x2F;password 為例</h4><p>可以先到firebase官網看一下的 <a href="https://firebase.google.com/docs/auth/web/start">Authentication</a> 頁面，<code>Get start </code>中有提供範例code</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">import &#123; initializeApp &#125; from &quot;firebase/app&quot;;</span><br><span class="line">import &#123; getAuth &#125; from &quot;firebase/auth&quot;;</span><br><span class="line"></span><br><span class="line">// TODO: Replace the following with your app&#x27;s Firebase project configuration</span><br><span class="line">// See: https://firebase.google.com/docs/web/learn-more#config-object</span><br><span class="line">const firebaseConfig = &#123;</span><br><span class="line">  // ...這裡面呢放上的東西可以參考上面那行網址，</span><br><span class="line">  簡單來說就是你在firebase(https://firebase.google.com/)</span><br><span class="line">  建立新專案時並且建立後會出現的一些資料，按照這些資料填入即可</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">// Initialize Firebase</span><br><span class="line">const app = initializeApp(firebaseConfig);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">// Initialize Firebase Authentication and get a reference to the service</span><br><span class="line">const auth = getAuth(app);</span><br><span class="line">//</span><br></pre></td></tr></table></figure>
-<p>要如何找到firebaseConfig裡面的資料？點到下圖的這個地方，右邊拉到底，新增一個<code>網頁應用程式</code>後就會出現相對應的api key。<br><img src="./themes/meadow/source/icons/avatar.jpg" data-original="/andy-tech-note/firebase-auth/SCR-20230216-t2w.png"><br>而後記得在左側的<code>建構</code>建立一個authication服務，然後在右側sign-in method去新增供應商，選擇電子郵件&#x2F;密碼後在左邊users設定你想要登入的帳號密碼(這是比較陽春的方式，你可以在網路上找一下透過網頁要求建立帳號密碼)<br><img src="./themes/meadow/source/icons/avatar.jpg" data-original="/andy-tech-note/firebase-auth/SCR-20230216-t7l.png"></p>
-<p>而剛剛上面的code，只是把firebase先初始化以及把auth資訊先準備好，接下來要呼叫登入的API。<br><a href="https://firebase.google.com/docs/auth/web/password-auth">email&#x2F;password登入</a></p>
-<h5 id="登入"><a href="#登入" class="headerlink" title="登入"></a>登入</h5><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">import &#123; getAuth, signInWithEmailAndPassword &#125; from &quot;firebase/auth&quot;;</span><br><span class="line"></span><br><span class="line">const auth = getAuth();</span><br><span class="line">signInWithEmailAndPassword(auth, email, password)</span><br><span class="line">  .then((userCredential) =&gt; &#123;</span><br><span class="line">    // Signed in </span><br><span class="line">    const user = userCredential.user;</span><br><span class="line">    // ...</span><br><span class="line">  &#125;)</span><br><span class="line">  .catch((error) =&gt; &#123;</span><br><span class="line">    const errorCode = error.code;</span><br><span class="line">    const errorMessage = error.message;</span><br><span class="line">  &#125;);</span><br></pre></td></tr></table></figure>
-
-<p>如果有需要創建帳號的code，在同個網頁也有</p>
-<h5 id="創建帳號"><a href="#創建帳號" class="headerlink" title="創建帳號"></a>創建帳號</h5><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">import &#123; getAuth, createUserWithEmailAndPassword &#125; from &quot;firebase/auth&quot;;</span><br><span class="line"></span><br><span class="line">const auth = getAuth();</span><br><span class="line">createUserWithEmailAndPassword(auth, email, password)</span><br><span class="line">  .then((userCredential) =&gt; &#123;</span><br><span class="line">    // Signed in </span><br><span class="line">    const user = userCredential.user;</span><br><span class="line">    // ...</span><br><span class="line">  &#125;)</span><br><span class="line">  .catch((error) =&gt; &#123;</span><br><span class="line">    const errorCode = error.code;</span><br><span class="line">    const errorMessage = error.message;</span><br><span class="line">    // ..</span><br><span class="line">  &#125;);</span><br></pre></td></tr></table></figure>
-
-<h5 id="登出"><a href="#登出" class="headerlink" title="登出"></a>登出</h5><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">import &#123; getAuth, signOut &#125; from &quot;firebase/auth&quot;;</span><br><span class="line"></span><br><span class="line">const auth = getAuth();</span><br><span class="line">signOut(auth).then(() =&gt; &#123;</span><br><span class="line">  // Sign-out successful.</span><br><span class="line">&#125;).catch((error) =&gt; &#123;</span><br><span class="line">  // An error happened.</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-
-<h4 id="登入後"><a href="#登入後" class="headerlink" title="登入後"></a>登入後</h4><p>執行完登入後，要怎麼知道是不是真正登入？<br>可以點開瀏覽器的開發者工具裡面的儲存空間如下，如果再相對應的位置有找到寫有你之前填入的API Key就代表登入成功，而且他還幫你存在暫存裡面。<br><img src="./themes/meadow/source/icons/avatar.jpg" data-original="/andy-tech-note/firebase-auth/SCR-20230216-to3.png"></p>
-]]></content>
-      <categories>
-        <category>frontend</category>
-      </categories>
-      <tags>
-        <tag>firebase</tag>
       </tags>
   </entry>
   <entry>
@@ -286,6 +241,51 @@
       </tags>
   </entry>
   <entry>
+    <title>如何使用Google的firebase裡面的驗證功能(login/logout)</title>
+    <url>/andy-tech-note/firebase-auth/</url>
+    <content><![CDATA[<h4 id="Google-Firebase"><a href="#Google-Firebase" class="headerlink" title="Google Firebase"></a>Google Firebase</h4><p>Google的Firebase是個前端工程師很好用的工具，他可以讓前端工程師省去後端資料庫的建立而可以專注在前端的開發，這裡面有身份驗證、realtime資料庫等好用的功能，只要是拿來做開發，而流量不大的話，通常你都不會達到需要付費流量。</p>
+<h4 id="Firebase-auth-以Email-x2F-password-為例"><a href="#Firebase-auth-以Email-x2F-password-為例" class="headerlink" title="Firebase auth 以Email&#x2F;password 為例"></a>Firebase auth 以Email&#x2F;password 為例</h4><p>可以先到firebase官網看一下的 <a href="https://firebase.google.com/docs/auth/web/start">Authentication</a> 頁面，<code>Get start </code>中有提供範例code</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">import &#123; initializeApp &#125; from &quot;firebase/app&quot;;</span><br><span class="line">import &#123; getAuth &#125; from &quot;firebase/auth&quot;;</span><br><span class="line"></span><br><span class="line">// TODO: Replace the following with your app&#x27;s Firebase project configuration</span><br><span class="line">// See: https://firebase.google.com/docs/web/learn-more#config-object</span><br><span class="line">const firebaseConfig = &#123;</span><br><span class="line">  // ...這裡面呢放上的東西可以參考上面那行網址，</span><br><span class="line">  簡單來說就是你在firebase(https://firebase.google.com/)</span><br><span class="line">  建立新專案時並且建立後會出現的一些資料，按照這些資料填入即可</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">// Initialize Firebase</span><br><span class="line">const app = initializeApp(firebaseConfig);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">// Initialize Firebase Authentication and get a reference to the service</span><br><span class="line">const auth = getAuth(app);</span><br><span class="line">//</span><br></pre></td></tr></table></figure>
+<p>要如何找到firebaseConfig裡面的資料？點到下圖的這個地方，右邊拉到底，新增一個<code>網頁應用程式</code>後就會出現相對應的api key。<br><img src="./themes/meadow/source/icons/avatar.jpg" data-original="/andy-tech-note/firebase-auth/SCR-20230216-t2w.png"><br>而後記得在左側的<code>建構</code>建立一個authication服務，然後在右側sign-in method去新增供應商，選擇電子郵件&#x2F;密碼後在左邊users設定你想要登入的帳號密碼(這是比較陽春的方式，你可以在網路上找一下透過網頁要求建立帳號密碼)<br><img src="./themes/meadow/source/icons/avatar.jpg" data-original="/andy-tech-note/firebase-auth/SCR-20230216-t7l.png"></p>
+<p>而剛剛上面的code，只是把firebase先初始化以及把auth資訊先準備好，接下來要呼叫登入的API。<br><a href="https://firebase.google.com/docs/auth/web/password-auth">email&#x2F;password登入</a></p>
+<h5 id="登入"><a href="#登入" class="headerlink" title="登入"></a>登入</h5><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">import &#123; getAuth, signInWithEmailAndPassword &#125; from &quot;firebase/auth&quot;;</span><br><span class="line"></span><br><span class="line">const auth = getAuth();</span><br><span class="line">signInWithEmailAndPassword(auth, email, password)</span><br><span class="line">  .then((userCredential) =&gt; &#123;</span><br><span class="line">    // Signed in </span><br><span class="line">    const user = userCredential.user;</span><br><span class="line">    // ...</span><br><span class="line">  &#125;)</span><br><span class="line">  .catch((error) =&gt; &#123;</span><br><span class="line">    const errorCode = error.code;</span><br><span class="line">    const errorMessage = error.message;</span><br><span class="line">  &#125;);</span><br></pre></td></tr></table></figure>
+
+<p>如果有需要創建帳號的code，在同個網頁也有</p>
+<h5 id="創建帳號"><a href="#創建帳號" class="headerlink" title="創建帳號"></a>創建帳號</h5><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">import &#123; getAuth, createUserWithEmailAndPassword &#125; from &quot;firebase/auth&quot;;</span><br><span class="line"></span><br><span class="line">const auth = getAuth();</span><br><span class="line">createUserWithEmailAndPassword(auth, email, password)</span><br><span class="line">  .then((userCredential) =&gt; &#123;</span><br><span class="line">    // Signed in </span><br><span class="line">    const user = userCredential.user;</span><br><span class="line">    // ...</span><br><span class="line">  &#125;)</span><br><span class="line">  .catch((error) =&gt; &#123;</span><br><span class="line">    const errorCode = error.code;</span><br><span class="line">    const errorMessage = error.message;</span><br><span class="line">    // ..</span><br><span class="line">  &#125;);</span><br></pre></td></tr></table></figure>
+
+<h5 id="登出"><a href="#登出" class="headerlink" title="登出"></a>登出</h5><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">import &#123; getAuth, signOut &#125; from &quot;firebase/auth&quot;;</span><br><span class="line"></span><br><span class="line">const auth = getAuth();</span><br><span class="line">signOut(auth).then(() =&gt; &#123;</span><br><span class="line">  // Sign-out successful.</span><br><span class="line">&#125;).catch((error) =&gt; &#123;</span><br><span class="line">  // An error happened.</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<h4 id="登入後"><a href="#登入後" class="headerlink" title="登入後"></a>登入後</h4><p>執行完登入後，要怎麼知道是不是真正登入？<br>可以點開瀏覽器的開發者工具裡面的儲存空間如下，如果再相對應的位置有找到寫有你之前填入的API Key就代表登入成功，而且他還幫你存在暫存裡面。<br><img src="./themes/meadow/source/icons/avatar.jpg" data-original="/andy-tech-note/firebase-auth/SCR-20230216-to3.png"></p>
+]]></content>
+      <categories>
+        <category>frontend</category>
+      </categories>
+      <tags>
+        <tag>firebase</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>CSS中的偽類-pseudo-class</title>
+    <url>/andy-tech-note/pseudo-class/</url>
+    <content><![CDATA[<h3 id="情境1"><a href="#情境1" class="headerlink" title="情境1"></a>情境1</h3><p>直接範例解釋</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;ul&gt;</span><br><span class="line">  &lt;li class=&quot;first-li&quot;&gt;1&lt;/li&gt;</span><br><span class="line">  &lt;li&gt;2&lt;/li&gt;</span><br><span class="line">  &lt;li&gt;3&lt;/li&gt;</span><br><span class="line">&lt;/ul&gt;</span><br><span class="line">&lt;ul&gt;</span><br><span class="line">  &lt;li&gt;1&lt;/li&gt;</span><br><span class="line">  &lt;li&gt;2&lt;/li&gt;</span><br><span class="line">  &lt;li&gt;3&lt;/li&gt;</span><br><span class="line">&lt;/ul&gt;  </span><br><span class="line"></span><br><span class="line">  </span><br></pre></td></tr></table></figure>
+<p>一般來說如果想對 <code>&lt;li&gt; </code>裡面的字做變色、粗體、斜體，可以透過建立一個class去操作，<br>舉例：想把所有的第一個li的變粗體，這樣需要如下面class寫法，以及需要在html裡面把所有的第一個li都加上class&#x3D;’first-li’</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//css檔案</span><br><span class="line">.first-li &#123;</span><br><span class="line">    font-weight:bold;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//pseudo class </span><br><span class="line">li:first-child &#123;</span><br><span class="line">    font-weight:bold;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">li:last-child&#123;</span><br><span class="line">    font-weight:bold;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">li:nth-child(2)&#123; //全部第二個</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">li:nth-child(even)&#123; //偶數或奇數 odd</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>若是pseudo class則可以寫成上面這樣，還可以有最後一個、指定特定位置、偶數、奇數。</p>
+<hr>
+<h3 id="情境2"><a href="#情境2" class="headerlink" title="情境2"></a>情境2</h3><p>在這裡還可以是以下狀況</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">//狀況1</span><br><span class="line">&lt;div&gt;</span><br><span class="line">    &lt;p&gt;1&lt;/p&gt;</span><br><span class="line">    &lt;div&gt;2&lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line"></span><br><span class="line">//狀況2</span><br><span class="line">&lt;div&gt;</span><br><span class="line">    &lt;div&gt;0&lt;/div&gt;</span><br><span class="line">    &lt;p&gt;1&lt;/p&gt;</span><br><span class="line">    &lt;div&gt;2&lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line"></span><br><span class="line">//css</span><br><span class="line">div p:first-child&#123; // div下的第一個p</span><br><span class="line">    font-weight:bold;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>這個狀況其實在狀況2是沒有作用的，雖然是div下的第一個p，但是在div下面的第一個element是 div而非 p ，所以不會成功</p>
+]]></content>
+      <categories>
+        <category>frontend</category>
+      </categories>
+      <tags>
+        <tag>css</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>CSS的Box-model</title>
     <url>/andy-tech-note/box-model/</url>
     <content><![CDATA[<h4 id="什麼是Box-model"><a href="#什麼是Box-model" class="headerlink" title="什麼是Box model"></a>什麼是Box model</h4><p>在網頁中每個element都被看作一個box，每個box可以有內容content、邊界border、內外空間。<br>所以box會有padding &#x2F; marging&#x2F; border&#x2F; content</p>
@@ -299,56 +299,6 @@
       </categories>
       <tags>
         <tag>css</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>CSS中的px-em-rem</title>
-    <url>/andy-tech-note/px-em-rem/</url>
-    <content><![CDATA[<h3 id="這是關於長度單位"><a href="#這是關於長度單位" class="headerlink" title="這是關於長度單位"></a>這是關於長度單位</h3><h4 id="px"><a href="#px" class="headerlink" title="px"></a>px</h4><p>是一個絕對長度的單位，是以螢幕pixel為基準。</p>
-<h4 id="em"><a href="#em" class="headerlink" title="em"></a>em</h4><p>是一個相對長度單位，是依照當下所在的element其parent element的大小來當作倍數計算，舉例如果是把em設定在font-size，如果當下font-size是以10px，而在child 設定的font-size是設定<code>1ex</code> &#x3D;&gt;也就是 <code>10px</code> ，若是<code>2ex</code> &#x3D;&gt;<code>20px</code></p>
-<h4 id="rem"><a href="#rem" class="headerlink" title="rem"></a>rem</h4><p>這也是相對長度單位，但是以root的大小當作依據來算倍數，所以若是root size設定為<code>12px</code>，而當下的size設定為<code>3rem</code> &#x3D;&gt; <code>36px</code></p>
-]]></content>
-      <categories>
-        <category>frontend</category>
-      </categories>
-      <tags>
-        <tag>css</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>CSS中的inline、block以及inline block</title>
-    <url>/andy-tech-note/inline-block/</url>
-    <content><![CDATA[<h3 id="element樣式"><a href="#element樣式" class="headerlink" title="element樣式"></a>element樣式</h3><h4 id="block-element"><a href="#block-element" class="headerlink" title="block element"></a>block element</h4><p>這個element是會佔用整個整行的空間(也就是滿版)，即便你的資料沒有這麼多。<br>舉例：<code>&lt;div&gt;</code> <code>&lt;h1&gt;</code> <code>&lt;p&gt;</code><br>不過可以透過設定寬度高度去控制樣式。</p>
-<h4 id="inline-element"><a href="#inline-element" class="headerlink" title="inline element"></a>inline element</h4><p>依照inline element的內容去調整整個element的寬度，<br>舉例：<code>&lt;a&gt; &lt;br&gt; &lt;input&gt;</code><br>但是無法修改寬度與高度，即便加入margin與padding。</p>
-<h4 id="inline-block"><a href="#inline-block" class="headerlink" title="inline-block"></a>inline-block</h4><p>可以在display中設定inline-block<br><code>display:inline-block;</code><br>這樣就可以讓block不佔用滿版，但還可以控制其寬度與高度。</p>
-]]></content>
-      <categories>
-        <category>frontend</category>
-      </categories>
-      <tags>
-        <tag>css</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Javascript中的JSON格式</title>
-    <url>/andy-tech-note/JOSN-formate/</url>
-    <content><![CDATA[<h3 id="什麼是JSON"><a href="#什麼是JSON" class="headerlink" title="什麼是JSON"></a>什麼是JSON</h3><p>JSON(JavaScript Object Notation)是一種數據交換格式，不論是用在前後端透過RESTful API傳遞資料、function之間使用，都是很方便的，而要把資料轉換成JSON格式則是透過 <code>JSON.strinify(data)</code>，把<code>data</code>轉換成JSON格式。<br>他是以一對大括號以及裡面的東西，這些東西則是以Key與Value組成的KEY-Value Pair(其實與object的格式是一樣的)，不過JSON是字符串，而object則是物件(廢話)，用typeof可以看到JSON字符串是string。</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&#x27;&#123;</span><br><span class="line">    &quot;name&quot;:&quot;Andy&quot;,</span><br><span class="line">    &quot;age&quot;:10,</span><br><span class="line">    &quot;skill&quot;:[JS,CSS,HTML,Vue,React]</span><br><span class="line">&#125;&#x27;</span><br></pre></td></tr></table></figure>
-
-
-<h4 id="JSON-stringify-data"><a href="#JSON-stringify-data" class="headerlink" title="JSON.stringify(data)"></a>JSON.stringify(data)</h4><p>把object轉換成JSON的格式的function</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">let obj = &#123;name: &quot;John&quot;, age: 30&#125;;</span><br><span class="line">let jsonStr = JSON.stringify(obj);</span><br></pre></td></tr></table></figure>
-
-<h4 id="JSON-parse-jsonString"><a href="#JSON-parse-jsonString" class="headerlink" title="JSON.parse(jsonString)"></a>JSON.parse(jsonString)</h4><p>接收到JSON格式的字串時需要透過JSON.parse去轉譯才能變成數值或是object</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//延續上面的變數</span><br><span class="line">let obj = JSON.parse(jsonStr)</span><br></pre></td></tr></table></figure>
-<p><a href="https://codepen.io/jean-hao-chen/pen/NWLJQYx?editors=1112">動手試試看</a></p>
-]]></content>
-      <categories>
-        <category>frontend</category>
-      </categories>
-      <tags>
-        <tag>Javascript</tag>
-        <tag>JSON</tag>
       </tags>
   </entry>
   <entry>
@@ -403,6 +353,101 @@
       </tags>
   </entry>
   <entry>
+    <title>CSS中的inline、block以及inline block</title>
+    <url>/andy-tech-note/inline-block/</url>
+    <content><![CDATA[<h3 id="element樣式"><a href="#element樣式" class="headerlink" title="element樣式"></a>element樣式</h3><h4 id="block-element"><a href="#block-element" class="headerlink" title="block element"></a>block element</h4><p>這個element是會佔用整個整行的空間(也就是滿版)，即便你的資料沒有這麼多。<br>舉例：<code>&lt;div&gt;</code> <code>&lt;h1&gt;</code> <code>&lt;p&gt;</code><br>不過可以透過設定寬度高度去控制樣式。</p>
+<h4 id="inline-element"><a href="#inline-element" class="headerlink" title="inline element"></a>inline element</h4><p>依照inline element的內容去調整整個element的寬度，<br>舉例：<code>&lt;a&gt; &lt;br&gt; &lt;input&gt;</code><br>但是無法修改寬度與高度，即便加入margin與padding。</p>
+<h4 id="inline-block"><a href="#inline-block" class="headerlink" title="inline-block"></a>inline-block</h4><p>可以在display中設定inline-block<br><code>display:inline-block;</code><br>這樣就可以讓block不佔用滿版，但還可以控制其寬度與高度。</p>
+]]></content>
+      <categories>
+        <category>frontend</category>
+      </categories>
+      <tags>
+        <tag>css</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Javascript中的JSON格式</title>
+    <url>/andy-tech-note/JOSN-formate/</url>
+    <content><![CDATA[<h3 id="什麼是JSON"><a href="#什麼是JSON" class="headerlink" title="什麼是JSON"></a>什麼是JSON</h3><p>JSON(JavaScript Object Notation)是一種數據交換格式，不論是用在前後端透過RESTful API傳遞資料、function之間使用，都是很方便的，而要把資料轉換成JSON格式則是透過 <code>JSON.strinify(data)</code>，把<code>data</code>轉換成JSON格式。<br>他是以一對大括號以及裡面的東西，這些東西則是以Key與Value組成的KEY-Value Pair(其實與object的格式是一樣的)，不過JSON是字符串，而object則是物件(廢話)，用typeof可以看到JSON字符串是string。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&#x27;&#123;</span><br><span class="line">    &quot;name&quot;:&quot;Andy&quot;,</span><br><span class="line">    &quot;age&quot;:10,</span><br><span class="line">    &quot;skill&quot;:[JS,CSS,HTML,Vue,React]</span><br><span class="line">&#125;&#x27;</span><br></pre></td></tr></table></figure>
+
+
+<h4 id="JSON-stringify-data"><a href="#JSON-stringify-data" class="headerlink" title="JSON.stringify(data)"></a>JSON.stringify(data)</h4><p>把object轉換成JSON的格式的function</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">let obj = &#123;name: &quot;John&quot;, age: 30&#125;;</span><br><span class="line">let jsonStr = JSON.stringify(obj);</span><br></pre></td></tr></table></figure>
+
+<h4 id="JSON-parse-jsonString"><a href="#JSON-parse-jsonString" class="headerlink" title="JSON.parse(jsonString)"></a>JSON.parse(jsonString)</h4><p>接收到JSON格式的字串時需要透過JSON.parse去轉譯才能變成數值或是object</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//延續上面的變數</span><br><span class="line">let obj = JSON.parse(jsonStr)</span><br></pre></td></tr></table></figure>
+<p><a href="https://codepen.io/jean-hao-chen/pen/NWLJQYx?editors=1112">動手試試看</a></p>
+]]></content>
+      <categories>
+        <category>frontend</category>
+      </categories>
+      <tags>
+        <tag>Javascript</tag>
+        <tag>JSON</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>git local 及 remote repo 不同步怎麼處理</title>
+    <url>/andy-tech-note/git-remote-repo-%E4%B8%8D%E5%90%8C%E6%AD%A5/</url>
+    <content><![CDATA[<h3 id="Local的commit-與-Remote-的commit-沒有同步"><a href="#Local的commit-與-Remote-的commit-沒有同步" class="headerlink" title="Local的commit 與 Remote 的commit 沒有同步"></a>Local的commit 與 Remote 的commit 沒有同步</h3><p><img src="./themes/meadow/source/icons/avatar.jpg" data-original="/andy-tech-note/git-remote-repo-%E4%B8%8D%E5%90%8C%E6%AD%A5/git.png" alt="git"><br>如圖中所示，會發現 <code>github remote 的 main</code> 跟 <code>local 的 main</code> 分岔了。<br>這是因為在先前在B電腦做了一次 commit &amp; push，也就是圖中岔出去的那個 Remote main，<br>然而在A電腦的commit還停留在B電腦commit的前一個版本，但是我沒發現就繼續開發下去，<br>一路開發下去，直到要push到遠端時才被告知遠端有code沒有同步到。</p>
+<p>查了一下，查到git fetch origin main 似乎是比較安全的，他可以單純把遠端你所有缺少的code抓下來，然後你再透過git status查詢時，git 會告知你 local 的 code 與遠端的 code 差異在哪，然後再透過<code>git merge origin main</code> 或是 <code>git rebase origin main</code>。<br>但要注意，當前如果有code還尚未commit，git會告知你要先commit，並且不會讓你merge，應該是怕你的 code 丟失，若還沒要 commit 可以透過<code>git stage</code> 把 code 存起來以防止不見。</p>
+<p>指令</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git fetch origin main </span><br><span class="line">git merge origin/main</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git fetch origin main </span><br><span class="line">git rebase origin/main</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>frontend</category>
+      </categories>
+      <tags>
+        <tag>git</tag>
+        <tag>github</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Wordpress當後端傳文章內容到前端(Vue)</title>
+    <url>/andy-tech-note/wordpress%E7%95%B6%E5%BE%8C%E7%AB%AF%E5%82%B3%E6%96%87%E7%AB%A0%E5%85%A7%E5%AE%B9%E5%88%B0%E5%89%8D%E7%AB%AF-Vue/</url>
+    <content><![CDATA[<h3 id="以Wordpress為後端傳資料到前端"><a href="#以Wordpress為後端傳資料到前端" class="headerlink" title="以Wordpress為後端傳資料到前端"></a>以Wordpress為後端傳資料到前端</h3><p>wordpress 為後端，前端向後端取得wp中的文章時，我希望直接取得可以呈現的HTML格式，試過使用 WP 中的 function <code>get_post_field</code>，雖然可以取得HTML，但是HTML結構與真正在以WP當作前端呈現的文章的html有些出入，也就是在WP呈現頁面前會對原始的html做特殊格式化，這就要透過 apply_filters   ‘the_content’ 去把取得的html做格式化，這樣才會與wp呈現出來的樣式一樣。</p>
+<p>範例如下</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">apply_filters(&#x27;the_content&#x27;, get_post_field(&#x27;post_content&#x27;, $latest_id))</span><br></pre></td></tr></table></figure>
+
+<p>如此一來在 Vue 中就可以透過 v-html 把取得的html呈現在前端。</p>
+]]></content>
+      <categories>
+        <category>frontend</category>
+      </categories>
+      <tags>
+        <tag>wordpress</tag>
+        <tag>Frontend</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Javascript的map,filter,reduce</title>
+    <url>/andy-tech-note/Javascript%E7%9A%84map-filter-reduce/</url>
+    <content><![CDATA[<h2 id="什麼是map-filter-reduce"><a href="#什麼是map-filter-reduce" class="headerlink" title="什麼是map, filter, reduce"></a>什麼是map, filter, reduce</h2><p>這三個東西都是ES5推出的Array method，的可以對Array裡面的元素做一些操作。</p>
+<h3 id="map"><a href="#map" class="headerlink" title="map"></a>map</h3><ul>
+<li>會回傳一個新的array</li>
+<li>在map裡面用callback function對每個element 逐一做操作後回傳</li>
+</ul>
+<p>map不會影響到原先的array，也不必用for之類的迴圈去一個一個處理後存回去，更多資訊可以查看<a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array/map">MDN</a></p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> arr = [<span class="number">1</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>];</span><br><span class="line"><span class="keyword">const</span> result = arr.<span class="title function_">map</span>(<span class="function">(<span class="params">item</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> item * <span class="number">2</span>;</span><br><span class="line">&#125;);</span><br><span class="line"><span class="comment">// result = [2,6,8,10]</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="filter"><a href="#filter" class="headerlink" title="filter"></a>filter</h3><p>可以用來過濾不符合callback function判斷式的元素，也就是在callback function中需要return true or false來決定是否要保留這個元素。<br>這個也是會回傳一個新的array，查看<a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array/filter">MDN</a></p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> arr = [<span class="number">1</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>];</span><br><span class="line"><span class="keyword">const</span> result = arr.<span class="title function_">filter</span>(<span class="function">(<span class="params">item</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> item &lt; <span class="number">4</span>;</span><br><span class="line">&#125;);</span><br><span class="line"><span class="comment">// result = [1,3]</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="reduce"><a href="#reduce" class="headerlink" title="reduce"></a>reduce</h3><p>可以傳入一個acc，然後在callback function中會依次回傳acc和每個元素的一些操作，最後會回傳最終的value。<br>也就是每回合把acc和每個元素的值相加，最後就會回傳最終的value，而若是在reduce最後面一個參數帶上init value，就會被帶到acc當作初始值做累加。<br>參考 <a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce">MDN</a></p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> arr = [<span class="number">1</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>];</span><br><span class="line"><span class="keyword">const</span> result = arr.<span class="title function_">reduce</span>(<span class="function">(<span class="params">acc, item</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> acc + item;</span><br><span class="line">&#125;,<span class="number">0</span>)</span><br><span class="line"><span class="comment">// result = 15</span></span><br></pre></td></tr></table></figure>
+<p>item為arr中的每個元素，acc為reduce的第一個參數，假設想要把所有的值加起來，就可以用reduce來做，把每次值都累加到acc上，然後回傳最終值。</p>
+]]></content>
+      <categories>
+        <category>frontend_interview</category>
+      </categories>
+      <tags>
+        <tag>Javascript</tag>
+        <tag>Frontend</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>google_oauth2_flow</title>
     <url>/andy-tech-note/google-oauth2-flow/</url>
     <content><![CDATA[<h2 id="google-oauth2-的流程"><a href="#google-oauth2-的流程" class="headerlink" title="google oauth2 的流程"></a>google oauth2 的流程</h2><h4 id="一般人視角"><a href="#一般人視角" class="headerlink" title="一般人視角"></a>一般人視角</h4><p>以一般人視角來思考oauth2的驗證的流程，在一個網頁點擊登入頁面，選擇google登入，<br>會跳出一個是否要同意網站取用你的google資料用來登入，點擊同意後，就會回到該網站的頁面(會員中心、首頁…等等)</p>
@@ -444,82 +489,6 @@
       </tags>
   </entry>
   <entry>
-    <title>git local 及 remote repo 不同步怎麼處理</title>
-    <url>/andy-tech-note/git-remote-repo-%E4%B8%8D%E5%90%8C%E6%AD%A5/</url>
-    <content><![CDATA[<h3 id="Local的commit-與-Remote-的commit-沒有同步"><a href="#Local的commit-與-Remote-的commit-沒有同步" class="headerlink" title="Local的commit 與 Remote 的commit 沒有同步"></a>Local的commit 與 Remote 的commit 沒有同步</h3><p><img src="./themes/meadow/source/icons/avatar.jpg" data-original="/andy-tech-note/git-remote-repo-%E4%B8%8D%E5%90%8C%E6%AD%A5/git.png" alt="git"><br>如圖中所示，會發現 <code>github remote 的 main</code> 跟 <code>local 的 main</code> 分岔了。<br>這是因為在先前在B電腦做了一次 commit &amp; push，也就是圖中岔出去的那個 Remote main，<br>然而在A電腦的commit還停留在B電腦commit的前一個版本，但是我沒發現就繼續開發下去，<br>一路開發下去，直到要push到遠端時才被告知遠端有code沒有同步到。</p>
-<p>查了一下，查到git fetch origin main 似乎是比較安全的，他可以單純把遠端你所有缺少的code抓下來，然後你再透過git status查詢時，git 會告知你 local 的 code 與遠端的 code 差異在哪，然後再透過<code>git merge origin main</code> 或是 <code>git rebase origin main</code>。<br>但要注意，當前如果有code還尚未commit，git會告知你要先commit，並且不會讓你merge，應該是怕你的 code 丟失，若還沒要 commit 可以透過<code>git stage</code> 把 code 存起來以防止不見。</p>
-<p>指令</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git fetch origin main </span><br><span class="line">git merge origin/main</span><br></pre></td></tr></table></figure>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git fetch origin main </span><br><span class="line">git rebase origin/main</span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>frontend</category>
-      </categories>
-      <tags>
-        <tag>git</tag>
-        <tag>github</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Wordpress當後端傳文章內容到前端(Vue)</title>
-    <url>/andy-tech-note/wordpress%E7%95%B6%E5%BE%8C%E7%AB%AF%E5%82%B3%E6%96%87%E7%AB%A0%E5%85%A7%E5%AE%B9%E5%88%B0%E5%89%8D%E7%AB%AF-Vue/</url>
-    <content><![CDATA[<h3 id="以Wordpress為後端傳資料到前端"><a href="#以Wordpress為後端傳資料到前端" class="headerlink" title="以Wordpress為後端傳資料到前端"></a>以Wordpress為後端傳資料到前端</h3><p>wordpress 為後端，前端向後端取得wp中的文章時，我希望直接取得可以呈現的HTML格式，試過使用 WP 中的 function <code>get_post_field</code>，雖然可以取得HTML，但是HTML結構與真正在以WP當作前端呈現的文章的html有些出入，也就是在WP呈現頁面前會對原始的html做特殊格式化，這就要透過 apply_filters   ‘the_content’ 去把取得的html做格式化，這樣才會與wp呈現出來的樣式一樣。</p>
-<p>範例如下</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">apply_filters(&#x27;the_content&#x27;, get_post_field(&#x27;post_content&#x27;, $latest_id))</span><br></pre></td></tr></table></figure>
-
-<p>如此一來在 Vue 中就可以透過 v-html 把取得的html呈現在前端。</p>
-]]></content>
-      <categories>
-        <category>frontend</category>
-      </categories>
-      <tags>
-        <tag>wordpress</tag>
-        <tag>frontend</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Javascript中&lt;script&gt;的async與defer</title>
-    <url>/andy-tech-note/js-script-async-defer/</url>
-    <content><![CDATA[<h2 id="什麼是async-x2F-defer"><a href="#什麼是async-x2F-defer" class="headerlink" title="什麼是async&#x2F;defer"></a>什麼是async&#x2F;defer</h2><h3 id="HTML做些什麼事？"><a href="#HTML做些什麼事？" class="headerlink" title="HTML做些什麼事？"></a>HTML做些什麼事？</h3><p>在瀏覽器執行解析網頁時如果碰到<code>&lt;script&gt;</code>標籤，會先執行該script中的行為，而如果需要下載檔案則會執行下載，而此時若是執行下載時，整個網頁的解析就會停下來，等到檔案被下載後才會繼續解析，這樣有一個很大的問題，也就是當使用者瀏覽網頁時就會有些元素不是馬上出現在使用者面前，就是因為在等待JS檔案的下載，這就有關UX了。</p>
-<p>但是又有些JS檔案是要盡可能提早被下載到<code>client</code>端，如果讓<code>script</code> 在解析完<code>DOM</code>才執行就會有問題，因為當頁面解析完後會馬傷需要使用<code>JS</code>中的功能，所以就有了<code>async/defer</code>的概念。</p>
-<h4 id="解決方法"><a href="#解決方法" class="headerlink" title="解決方法"></a>解決方法</h4><p>上述問題就可以透過<code>async/defer</code>解決，這兩個主要都是讓<code>script</code>可以在背景執行，但是有個主要差異如下：</p>
-<h5 id="async"><a href="#async" class="headerlink" title="async"></a>async</h5><p>會在背景下載也就是異步的方式執行，在同時 HTML 解析會繼續執行，而當js檔案被下載後會被立即執行，不必等到 DOM 被全部解析。</p>
-<h5 id="defer"><a href="#defer" class="headerlink" title="defer"></a>defer</h5><p>也同是在背景下載不影響<code>DOM</code>的解析，但是他會等到<code>DOM</code>完全解析完才執行，而若是有多個js有互相依賴的行為可以以 <code>defer</code> 方式執行，只要按照執行順序去寫<code>script</code>即可</p>
-]]></content>
-      <categories>
-        <category>frontend_interview</category>
-      </categories>
-      <tags>
-        <tag>Javascript</tag>
-        <tag>frontend</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Javascript的map,filter,reduce</title>
-    <url>/andy-tech-note/Javascript%E7%9A%84map-filter-reduce/</url>
-    <content><![CDATA[<h2 id="什麼是map-filter-reduce"><a href="#什麼是map-filter-reduce" class="headerlink" title="什麼是map, filter, reduce"></a>什麼是map, filter, reduce</h2><p>這三個東西都是ES5推出的Array method，的可以對Array裡面的元素做一些操作。</p>
-<h3 id="map"><a href="#map" class="headerlink" title="map"></a>map</h3><ul>
-<li>會回傳一個新的array</li>
-<li>在map裡面用callback function對每個element 逐一做操作後回傳</li>
-</ul>
-<p>map不會影響到原先的array，也不必用for之類的迴圈去一個一個處理後存回去，更多資訊可以查看<a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array/map">MDN</a></p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> arr = [<span class="number">1</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>];</span><br><span class="line"><span class="keyword">const</span> result = arr.<span class="title function_">map</span>(<span class="function">(<span class="params">item</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> item * <span class="number">2</span>;</span><br><span class="line">&#125;);</span><br><span class="line"><span class="comment">// result = [2,6,8,10]</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="filter"><a href="#filter" class="headerlink" title="filter"></a>filter</h3><p>可以用來過濾不符合callback function判斷式的元素，也就是在callback function中需要return true or false來決定是否要保留這個元素。<br>這個也是會回傳一個新的array，查看<a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array/filter">MDN</a></p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> arr = [<span class="number">1</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>];</span><br><span class="line"><span class="keyword">const</span> result = arr.<span class="title function_">filter</span>(<span class="function">(<span class="params">item</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> item &lt; <span class="number">4</span>;</span><br><span class="line">&#125;);</span><br><span class="line"><span class="comment">// result = [1,3]</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="reduce"><a href="#reduce" class="headerlink" title="reduce"></a>reduce</h3><p>可以傳入一個acc，然後在callback function中會依次回傳acc和每個元素的一些操作，最後會回傳最終的value。<br>也就是每回合把acc和每個元素的值相加，最後就會回傳最終的value，而若是在reduce最後面一個參數帶上init value，就會被帶到acc當作初始值做累加。<br>參考 <a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce">MDN</a></p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> arr = [<span class="number">1</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>];</span><br><span class="line"><span class="keyword">const</span> result = arr.<span class="title function_">reduce</span>(<span class="function">(<span class="params">acc, item</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> acc + item;</span><br><span class="line">&#125;,<span class="number">0</span>)</span><br><span class="line"><span class="comment">// result = 15</span></span><br></pre></td></tr></table></figure>
-<p>item為arr中的每個元素，acc為reduce的第一個參數，假設想要把所有的值加起來，就可以用reduce來做，把每次值都累加到acc上，然後回傳最終值。</p>
-]]></content>
-      <categories>
-        <category>frontend_interview</category>
-      </categories>
-      <tags>
-        <tag>Javascript</tag>
-        <tag>frontend</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>建構子函式constructor_function</title>
     <url>/andy-tech-note/constructor-function/</url>
     <content><![CDATA[<h3 id="什麼是-constructor-function建構子函式"><a href="#什麼是-constructor-function建構子函式" class="headerlink" title="什麼是 constructor function建構子函式"></a>什麼是 constructor function建構子函式</h3><p>建構子函式是一個由普通函式與new關鍵字組合而成的函式，而該函式就像是一個藍圖一樣，要透過new關鍵字才能建立一個真正的instance(object)。<br>其主要用途是用於建立物件，而非一般的函式。</p>
@@ -547,34 +516,7 @@
       </categories>
       <tags>
         <tag>Javascript</tag>
-        <tag>frontend</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>CSS的的selector的權重</title>
-    <url>/andy-tech-note/about-CSS-selector-priority/</url>
-    <content><![CDATA[<h3 id="selector是什麼？"><a href="#selector是什麼？" class="headerlink" title="selector是什麼？"></a>selector是什麼？</h3><p>是用來選擇HTML tag並設定寬、高、顏色、背景圖等等(如：H1,p,div)，選擇器不僅限於標籤(div, p, span)，還包含class及id。</p>
-<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.className</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>:blue;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">div</span> &#123;</span><br><span class="line">    <span class="attribute">font-size</span>:<span class="number">16px</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="權重可以幹嘛？"><a href="#權重可以幹嘛？" class="headerlink" title="權重可以幹嘛？"></a>權重可以幹嘛？</h3><p>在selector有四個權重，依序是 <code>inline style &gt; id &gt; class &gt; tag</code>，這意思是說如果你對某些元素設定屬性時，權重會依照這個來做處理，也就是說如果在<code>class及inline style</code>裡面都設定 <code>color</code>，而最終HTML顯示的顏色會是由inline設定的為主，這是因為權重大小的關係。<br>而這四個權重會是這樣寫(0,0,0,0)對應的順序(inline, id, class, tag)，所以這樣就可以看出誰的權重比較大。</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">style</span>=<span class="string">&quot;color=yellow&quot;</span> <span class="attr">class</span>=<span class="string">&quot;className&quot;</span>&gt;</span><span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.className</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>=blue</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>在這裡顏色就會是yellow，因為inline權重大於class</p>
-<h3 id="權重計算方式"><a href="#權重計算方式" class="headerlink" title="權重計算方式"></a>權重計算方式</h3><figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.className1</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>:blue;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><code>(0,0,1,0)</code></p>
-<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.className1</span><span class="selector-class">.className2</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>:yellow;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><code>(0,0,2,0)</code><br>上面這個會把兩個class加起來，這是要該元素同時有這兩個class存在</p>
-<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.className2</span> <span class="selector-tag">div</span> <span class="selector-tag">p</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>:yellow;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><code>(0,0,1,2)</code></p>
-<h3 id="important"><a href="#important" class="headerlink" title="!important"></a>!important</h3><p>這個大魔王，在某些情況希望直接覆蓋掉該元素的屬性，可以在 該屬性後面加上 <code>!important</code>，但是不建議太常使用，會在開發上容易造成不要的困擾。</p>
-<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.className2</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>:yellow <span class="meta">!important</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>frontend_interview</category>
-      </categories>
-      <tags>
-        <tag>css</tag>
-        <tag>frontend</tag>
+        <tag>Frontend</tag>
       </tags>
   </entry>
   <entry>
@@ -597,26 +539,7 @@
       </categories>
       <tags>
         <tag>Javascript</tag>
-        <tag>frontend</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Javascript建構子函式繼承及ES6的class方式的繼承</title>
-    <url>/andy-tech-note/Javascript-constructor-function-inheritance_es6_class/</url>
-    <content><![CDATA[<h2 id="如何以建構函式的方式達到繼承"><a href="#如何以建構函式的方式達到繼承" class="headerlink" title="如何以建構函式的方式達到繼承"></a>如何以建構函式的方式達到繼承</h2><p>繼承在OOP物件導向的語言中很常見，而在Javascript中並不是真正的物件導向的語言，所以在Javascript中繼承的方式就不一樣，這裡用建構子函式的方式來實作繼承。</p>
-<h3 id="建構子函式的繼承"><a href="#建構子函式的繼承" class="headerlink" title="建構子函式的繼承"></a>建構子函式的繼承</h3><p>在Javascript中，我們可以用建構子函式的方式達到繼承，如果現在有一個Vehicle的父建構函式(父類別)而後我要建立一個Car子建構函式(子類別)，而若是我希望繼承Vehicle裡面的property，可以如下操作：</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">//建立父建構函式及其prototype</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">Vehicle</span>(<span class="params">type, length, width</span>) &#123;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">type</span> =  type;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">length</span> = length;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">width</span> = width;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 建立一個method</span></span><br><span class="line"><span class="title class_">Vehicle</span>.<span class="property"><span class="keyword">prototype</span></span>.<span class="property">start</span> = <span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;start&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//繼承Vehicle的prototype</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">Car</span>(<span class="params">type, length, width, color</span>) &#123;</span><br><span class="line">    <span class="title class_">Vehicle</span>.<span class="title function_">call</span>(<span class="variable language_">this</span>, type, length, width);</span><br><span class="line">    <span class="comment">//把Vehicle的prototype的property繼承到Car的prototype constructor中</span></span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">color</span> = color;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//建立一個與Vehicle相同的prototype給Car.prototype</span></span><br><span class="line"><span class="title class_">Car</span>.<span class="property"><span class="keyword">prototype</span></span> = <span class="title class_">Object</span>.<span class="title function_">create</span>(<span class="title class_">Vehicle</span>.<span class="property"><span class="keyword">prototype</span></span>); </span><br><span class="line"></span><br><span class="line"><span class="comment">// 但因為其constructor是希望使用Car自己的也就是this.color這些自訂的property，所以我們要把Car.prototype.constructor指向Car  </span></span><br><span class="line"><span class="title class_">Car</span>.<span class="property"><span class="keyword">prototype</span></span>.<span class="property">constructor</span> = <span class="title class_">Car</span>;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//建立一個Car的instance</span></span><br><span class="line"><span class="keyword">const</span> myCar = <span class="keyword">new</span> <span class="title class_">Car</span>(<span class="string">&quot;BMW&quot;</span>, <span class="number">150</span>, <span class="number">100</span>, <span class="string">&quot;red&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//使用繼承vehicle的method  </span></span><br><span class="line">myCar.<span class="title function_">start</span>();</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(myCar.<span class="property">color</span>);</span><br><span class="line"><span class="comment">// red</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 而若是要在Car新增method，可以這沒做</span></span><br><span class="line"><span class="title class_">Car</span>.<span class="property"><span class="keyword">prototype</span></span>.<span class="property">stop</span> = <span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;stop&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">myCar.<span class="title function_">stop</span>();</span><br><span class="line"><span class="comment">// stop</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h3 id="改以ES6的class方式達到繼承"><a href="#改以ES6的class方式達到繼承" class="headerlink" title="改以ES6的class方式達到繼承"></a>改以ES6的class方式達到繼承</h3><p>這樣就清晰易懂的多了，但是Class只是Javascript的語法糖，讓使用者可以更容易實現繼承，但其底層的原理還是以prototype chain的方式達到繼承。範例如下：</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Vehicle</span> &#123;</span><br><span class="line">  <span class="title function_">constructor</span>(<span class="params">type, length, width</span>) &#123;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">type</span> = type;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">length</span> = length;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">width</span> = width;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="title function_">start</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;start&quot;</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Car</span> <span class="keyword">extends</span> <span class="title class_ inherited__">Vehicle</span> &#123;</span><br><span class="line">  <span class="title function_">constructor</span>(<span class="params">type, length, width, color</span>) &#123;</span><br><span class="line">    <span class="variable language_">super</span>(type, length, width); <span class="comment">// 把vehicle的constructor繼承過來並且把this指向Car</span></span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">color</span> = color;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="title function_">stop</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;stop&quot;</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> myCar = <span class="keyword">new</span> <span class="title class_">Car</span>(<span class="string">&quot;BMW&quot;</span>, <span class="number">150</span>, <span class="number">100</span>, <span class="string">&quot;red&quot;</span>);</span><br><span class="line"></span><br><span class="line">myCar.<span class="title function_">start</span>();</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(myCar.<span class="property">color</span>); <span class="comment">// red</span></span><br><span class="line">myCar.<span class="title function_">stop</span>();</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <categories>
-        <category>frontend_interview</category>
-      </categories>
-      <tags>
-        <tag>Javascript</tag>
-        <tag>frontend</tag>
+        <tag>Frontend</tag>
       </tags>
   </entry>
   <entry>
@@ -663,25 +586,51 @@
       </categories>
       <tags>
         <tag>Javascript</tag>
-        <tag>frontend</tag>
+        <tag>Frontend</tag>
       </tags>
   </entry>
   <entry>
-    <title>Javascript中使用structuredClone做深拷貝</title>
-    <url>/andy-tech-note/structuredClone-deep-clone/</url>
-    <content><![CDATA[<h2 id="深拷貝是什麼？"><a href="#深拷貝是什麼？" class="headerlink" title="深拷貝是什麼？"></a>深拷貝是什麼？</h2><p>先前有寫過如何處理深拷貝，深拷貝是要幹嘛？<br>簡單的說就是當有個物件他裡面有巢狀結構，不只有一層，如果直接以變數assign的方式賦值給一個新的變數，這時候在第二層開始的元素會是指向原先的物件，所以當使用者在對新的物件第二層的元素操作時就會修改到舊有的物件的值，這時候就需要深拷貝來處理，詳細請參閱👇</p>
-<p><a href="https://crazycjh.github.io/andy-tech-note/deep-copy-Shallow-copy/">在JS中複製object-深拷貝&#x2F;淺拷貝</a>。</p>
-<h3 id="進階版structuredClone"><a href="#進階版structuredClone" class="headerlink" title="進階版structuredClone"></a>進階版structuredClone</h3><p>先前都是使用JSON.stringify &amp; JSON.parse來組合處理，現在只要透過structuredClone來處理，這個有什麼差異呢？<br>舊有的方法只能準確地處理 primitive Value，若是碰到Map, Set 非primitive的物件就會被變成空object{}，也就會造成資料的不完整。</p>
-<p>可以看以下程式碼 或是<a href="https://codepen.io/jean-hao-chen/pen/KKYxPOe">玩玩看</a></p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> obj = &#123;</span><br><span class="line">  <span class="string">&#x27;name&#x27;</span>: <span class="string">&#x27;Andy&#x27;</span>, </span><br><span class="line">  <span class="string">&#x27;profile&#x27;</span>: &#123;</span><br><span class="line">    <span class="attr">height</span>:<span class="number">182</span>,</span><br><span class="line">    <span class="attr">age</span>:<span class="number">18</span>,</span><br><span class="line">    <span class="attr">fn</span>: <span class="keyword">new</span> <span class="title class_">Set</span>([<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>])</span><br><span class="line">    </span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> objStructuredClone = <span class="title function_">structuredClone</span>(obj);</span><br><span class="line"><span class="keyword">const</span> objJson = <span class="title class_">JSON</span>.<span class="title function_">parse</span>(<span class="title class_">JSON</span>.<span class="title function_">stringify</span>(obj))</span><br><span class="line"></span><br><span class="line">objStructuredClone[<span class="string">&#x27;profile&#x27;</span>][<span class="string">&#x27;age&#x27;</span>] = <span class="number">35</span>;</span><br><span class="line">objStructuredClone[<span class="string">&#x27;profile&#x27;</span>][<span class="string">&#x27;fn&#x27;</span>].<span class="title function_">add</span>(<span class="number">5</span>);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(objStructuredClone[<span class="string">&#x27;profile&#x27;</span>][<span class="string">&#x27;fn&#x27;</span>]);</span><br><span class="line"><span class="comment">// Set(4) &#123;1, 2, 3, 5&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(obj[<span class="string">&#x27;profile&#x27;</span>][<span class="string">&#x27;fn&#x27;</span>]);</span><br><span class="line"><span class="comment">// Set(3) &#123;1, 2, 3&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(objJson[<span class="string">&#x27;profile&#x27;</span>][<span class="string">&#x27;fn&#x27;</span>])</span><br><span class="line"><span class="comment">// &#123;&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(objStructuredClone[<span class="string">&#x27;profile&#x27;</span>]);</span><br><span class="line"><span class="comment">// &#123;height: 182, age: 35, fn: Set(4) &#123;1, 2, 3, 5&#125;&#125;</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(obj[<span class="string">&#x27;profile&#x27;</span>]);</span><br><span class="line"><span class="comment">// &#123;height: 182, age: 18, fn: Set(3) &#123;1, 2, 3&#125;&#125;</span></span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
+    <title>Javascript中&lt;script&gt;的async與defer</title>
+    <url>/andy-tech-note/js-script-async-defer/</url>
+    <content><![CDATA[<h2 id="什麼是async-x2F-defer"><a href="#什麼是async-x2F-defer" class="headerlink" title="什麼是async&#x2F;defer"></a>什麼是async&#x2F;defer</h2><h3 id="HTML做些什麼事？"><a href="#HTML做些什麼事？" class="headerlink" title="HTML做些什麼事？"></a>HTML做些什麼事？</h3><p>在瀏覽器執行解析網頁時如果碰到<code>&lt;script&gt;</code>標籤，會先執行該script中的行為，而如果需要下載檔案則會執行下載，而此時若是執行下載時，整個網頁的解析就會停下來，等到檔案被下載後才會繼續解析，這樣有一個很大的問題，也就是當使用者瀏覽網頁時就會有些元素不是馬上出現在使用者面前，就是因為在等待JS檔案的下載，這就有關UX了。</p>
+<p>但是又有些JS檔案是要盡可能提早被下載到<code>client</code>端，如果讓<code>script</code> 在解析完<code>DOM</code>才執行就會有問題，因為當頁面解析完後會馬傷需要使用<code>JS</code>中的功能，所以就有了<code>async/defer</code>的概念。</p>
+<h4 id="解決方法"><a href="#解決方法" class="headerlink" title="解決方法"></a>解決方法</h4><p>上述問題就可以透過<code>async/defer</code>解決，這兩個主要都是讓<code>script</code>可以在背景執行，但是有個主要差異如下：</p>
+<h5 id="async"><a href="#async" class="headerlink" title="async"></a>async</h5><p>會在背景下載也就是異步的方式執行，在同時 HTML 解析會繼續執行，而當js檔案被下載後會被立即執行，不必等到 DOM 被全部解析。</p>
+<h5 id="defer"><a href="#defer" class="headerlink" title="defer"></a>defer</h5><p>也同是在背景下載不影響<code>DOM</code>的解析，但是他會等到<code>DOM</code>完全解析完才執行，而若是有多個js有互相依賴的行為可以以 <code>defer</code> 方式執行，只要按照執行順序去寫<code>script</code>即可</p>
 ]]></content>
       <categories>
         <category>frontend_interview</category>
       </categories>
       <tags>
         <tag>Javascript</tag>
-        <tag>frontend</tag>
+        <tag>Frontend</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>CSS的的selector的權重</title>
+    <url>/andy-tech-note/about-CSS-selector-priority/</url>
+    <content><![CDATA[<h3 id="selector是什麼？"><a href="#selector是什麼？" class="headerlink" title="selector是什麼？"></a>selector是什麼？</h3><p>是用來選擇HTML tag並設定寬、高、顏色、背景圖等等(如：H1,p,div)，選擇器不僅限於標籤(div, p, span)，還包含class及id。</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.className</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>:blue;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">div</span> &#123;</span><br><span class="line">    <span class="attribute">font-size</span>:<span class="number">16px</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="權重可以幹嘛？"><a href="#權重可以幹嘛？" class="headerlink" title="權重可以幹嘛？"></a>權重可以幹嘛？</h3><p>在selector有四個權重，依序是 <code>inline style &gt; id &gt; class &gt; tag</code>，這意思是說如果你對某些元素設定屬性時，權重會依照這個來做處理，也就是說如果在<code>class及inline style</code>裡面都設定 <code>color</code>，而最終HTML顯示的顏色會是由inline設定的為主，這是因為權重大小的關係。<br>而這四個權重會是這樣寫(0,0,0,0)對應的順序(inline, id, class, tag)，所以這樣就可以看出誰的權重比較大。</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">style</span>=<span class="string">&quot;color=yellow&quot;</span> <span class="attr">class</span>=<span class="string">&quot;className&quot;</span>&gt;</span><span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.className</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>=blue</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在這裡顏色就會是yellow，因為inline權重大於class</p>
+<h3 id="權重計算方式"><a href="#權重計算方式" class="headerlink" title="權重計算方式"></a>權重計算方式</h3><figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.className1</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>:blue;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><code>(0,0,1,0)</code></p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.className1</span><span class="selector-class">.className2</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>:yellow;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><code>(0,0,2,0)</code><br>上面這個會把兩個class加起來，這是要該元素同時有這兩個class存在</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.className2</span> <span class="selector-tag">div</span> <span class="selector-tag">p</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>:yellow;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><code>(0,0,1,2)</code></p>
+<h3 id="important"><a href="#important" class="headerlink" title="!important"></a>!important</h3><p>這個大魔王，在某些情況希望直接覆蓋掉該元素的屬性，可以在 該屬性後面加上 <code>!important</code>，但是不建議太常使用，會在開發上容易造成不要的困擾。</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.className2</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>:yellow <span class="meta">!important</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>frontend_interview</category>
+      </categories>
+      <tags>
+        <tag>css</tag>
+        <tag>Frontend</tag>
       </tags>
   </entry>
   <entry>
@@ -708,7 +657,7 @@
       </categories>
       <tags>
         <tag>Javascript</tag>
-        <tag>frontend</tag>
+        <tag>Frontend</tag>
       </tags>
   </entry>
   <entry>
@@ -723,7 +672,58 @@
       </categories>
       <tags>
         <tag>Javascript</tag>
-        <tag>frontend</tag>
+        <tag>Frontend</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Javascript中使用structuredClone做深拷貝</title>
+    <url>/andy-tech-note/structuredClone-deep-clone/</url>
+    <content><![CDATA[<h2 id="深拷貝是什麼？"><a href="#深拷貝是什麼？" class="headerlink" title="深拷貝是什麼？"></a>深拷貝是什麼？</h2><p>先前有寫過如何處理深拷貝，深拷貝是要幹嘛？<br>簡單的說就是當有個物件他裡面有巢狀結構，不只有一層，如果直接以變數assign的方式賦值給一個新的變數，這時候在第二層開始的元素會是指向原先的物件，所以當使用者在對新的物件第二層的元素操作時就會修改到舊有的物件的值，這時候就需要深拷貝來處理，詳細請參閱👇</p>
+<p><a href="https://crazycjh.github.io/andy-tech-note/deep-copy-Shallow-copy/">在JS中複製object-深拷貝&#x2F;淺拷貝</a>。</p>
+<h3 id="進階版structuredClone"><a href="#進階版structuredClone" class="headerlink" title="進階版structuredClone"></a>進階版structuredClone</h3><p>先前都是使用JSON.stringify &amp; JSON.parse來組合處理，現在只要透過structuredClone來處理，這個有什麼差異呢？<br>舊有的方法只能準確地處理 primitive Value，若是碰到Map, Set 非primitive的物件就會被變成空object{}，也就會造成資料的不完整。</p>
+<p>可以看以下程式碼 或是<a href="https://codepen.io/jean-hao-chen/pen/KKYxPOe">玩玩看</a></p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> obj = &#123;</span><br><span class="line">  <span class="string">&#x27;name&#x27;</span>: <span class="string">&#x27;Andy&#x27;</span>, </span><br><span class="line">  <span class="string">&#x27;profile&#x27;</span>: &#123;</span><br><span class="line">    <span class="attr">height</span>:<span class="number">182</span>,</span><br><span class="line">    <span class="attr">age</span>:<span class="number">18</span>,</span><br><span class="line">    <span class="attr">fn</span>: <span class="keyword">new</span> <span class="title class_">Set</span>([<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>])</span><br><span class="line">    </span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> objStructuredClone = <span class="title function_">structuredClone</span>(obj);</span><br><span class="line"><span class="keyword">const</span> objJson = <span class="title class_">JSON</span>.<span class="title function_">parse</span>(<span class="title class_">JSON</span>.<span class="title function_">stringify</span>(obj))</span><br><span class="line"></span><br><span class="line">objStructuredClone[<span class="string">&#x27;profile&#x27;</span>][<span class="string">&#x27;age&#x27;</span>] = <span class="number">35</span>;</span><br><span class="line">objStructuredClone[<span class="string">&#x27;profile&#x27;</span>][<span class="string">&#x27;fn&#x27;</span>].<span class="title function_">add</span>(<span class="number">5</span>);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(objStructuredClone[<span class="string">&#x27;profile&#x27;</span>][<span class="string">&#x27;fn&#x27;</span>]);</span><br><span class="line"><span class="comment">// Set(4) &#123;1, 2, 3, 5&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(obj[<span class="string">&#x27;profile&#x27;</span>][<span class="string">&#x27;fn&#x27;</span>]);</span><br><span class="line"><span class="comment">// Set(3) &#123;1, 2, 3&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(objJson[<span class="string">&#x27;profile&#x27;</span>][<span class="string">&#x27;fn&#x27;</span>])</span><br><span class="line"><span class="comment">// &#123;&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(objStructuredClone[<span class="string">&#x27;profile&#x27;</span>]);</span><br><span class="line"><span class="comment">// &#123;height: 182, age: 35, fn: Set(4) &#123;1, 2, 3, 5&#125;&#125;</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(obj[<span class="string">&#x27;profile&#x27;</span>]);</span><br><span class="line"><span class="comment">// &#123;height: 182, age: 18, fn: Set(3) &#123;1, 2, 3&#125;&#125;</span></span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>frontend_interview</category>
+      </categories>
+      <tags>
+        <tag>Javascript</tag>
+        <tag>Frontend</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Javascript建構子函式繼承及ES6的class方式的繼承</title>
+    <url>/andy-tech-note/Javascript-constructor-function-inheritance_es6_class/</url>
+    <content><![CDATA[<h2 id="如何以建構函式的方式達到繼承"><a href="#如何以建構函式的方式達到繼承" class="headerlink" title="如何以建構函式的方式達到繼承"></a>如何以建構函式的方式達到繼承</h2><p>繼承在OOP物件導向的語言中很常見，而在Javascript中並不是真正的物件導向的語言，所以在Javascript中繼承的方式就不一樣，這裡用建構子函式的方式來實作繼承。</p>
+<h3 id="建構子函式的繼承"><a href="#建構子函式的繼承" class="headerlink" title="建構子函式的繼承"></a>建構子函式的繼承</h3><p>在Javascript中，我們可以用建構子函式的方式達到繼承，如果現在有一個Vehicle的父建構函式(父類別)而後我要建立一個Car子建構函式(子類別)，而若是我希望繼承Vehicle裡面的property，可以如下操作：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">//建立父建構函式及其prototype</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">Vehicle</span>(<span class="params">type, length, width</span>) &#123;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">type</span> =  type;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">length</span> = length;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">width</span> = width;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 建立一個method</span></span><br><span class="line"><span class="title class_">Vehicle</span>.<span class="property"><span class="keyword">prototype</span></span>.<span class="property">start</span> = <span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;start&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//繼承Vehicle的prototype</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">Car</span>(<span class="params">type, length, width, color</span>) &#123;</span><br><span class="line">    <span class="title class_">Vehicle</span>.<span class="title function_">call</span>(<span class="variable language_">this</span>, type, length, width);</span><br><span class="line">    <span class="comment">//把Vehicle的prototype的property繼承到Car的prototype constructor中</span></span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">color</span> = color;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//建立一個與Vehicle相同的prototype給Car.prototype</span></span><br><span class="line"><span class="title class_">Car</span>.<span class="property"><span class="keyword">prototype</span></span> = <span class="title class_">Object</span>.<span class="title function_">create</span>(<span class="title class_">Vehicle</span>.<span class="property"><span class="keyword">prototype</span></span>); </span><br><span class="line"></span><br><span class="line"><span class="comment">// 但因為其constructor是希望使用Car自己的也就是this.color這些自訂的property，所以我們要把Car.prototype.constructor指向Car  </span></span><br><span class="line"><span class="title class_">Car</span>.<span class="property"><span class="keyword">prototype</span></span>.<span class="property">constructor</span> = <span class="title class_">Car</span>;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//建立一個Car的instance</span></span><br><span class="line"><span class="keyword">const</span> myCar = <span class="keyword">new</span> <span class="title class_">Car</span>(<span class="string">&quot;BMW&quot;</span>, <span class="number">150</span>, <span class="number">100</span>, <span class="string">&quot;red&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//使用繼承vehicle的method  </span></span><br><span class="line">myCar.<span class="title function_">start</span>();</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(myCar.<span class="property">color</span>);</span><br><span class="line"><span class="comment">// red</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 而若是要在Car新增method，可以這沒做</span></span><br><span class="line"><span class="title class_">Car</span>.<span class="property"><span class="keyword">prototype</span></span>.<span class="property">stop</span> = <span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;stop&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">myCar.<span class="title function_">stop</span>();</span><br><span class="line"><span class="comment">// stop</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h3 id="改以ES6的class方式達到繼承"><a href="#改以ES6的class方式達到繼承" class="headerlink" title="改以ES6的class方式達到繼承"></a>改以ES6的class方式達到繼承</h3><p>這樣就清晰易懂的多了，但是Class只是Javascript的語法糖，讓使用者可以更容易實現繼承，但其底層的原理還是以prototype chain的方式達到繼承。範例如下：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Vehicle</span> &#123;</span><br><span class="line">  <span class="title function_">constructor</span>(<span class="params">type, length, width</span>) &#123;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">type</span> = type;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">length</span> = length;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">width</span> = width;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="title function_">start</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;start&quot;</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Car</span> <span class="keyword">extends</span> <span class="title class_ inherited__">Vehicle</span> &#123;</span><br><span class="line">  <span class="title function_">constructor</span>(<span class="params">type, length, width, color</span>) &#123;</span><br><span class="line">    <span class="variable language_">super</span>(type, length, width); <span class="comment">// 把vehicle的constructor繼承過來並且把this指向Car</span></span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">color</span> = color;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="title function_">stop</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;stop&quot;</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> myCar = <span class="keyword">new</span> <span class="title class_">Car</span>(<span class="string">&quot;BMW&quot;</span>, <span class="number">150</span>, <span class="number">100</span>, <span class="string">&quot;red&quot;</span>);</span><br><span class="line"></span><br><span class="line">myCar.<span class="title function_">start</span>();</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(myCar.<span class="property">color</span>); <span class="comment">// red</span></span><br><span class="line">myCar.<span class="title function_">stop</span>();</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>frontend_interview</category>
+      </categories>
+      <tags>
+        <tag>Javascript</tag>
+        <tag>Frontend</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>CSS中的px-em-rem</title>
+    <url>/andy-tech-note/px-em-rem/</url>
+    <content><![CDATA[<h3 id="這是關於長度單位"><a href="#這是關於長度單位" class="headerlink" title="這是關於長度單位"></a>這是關於長度單位</h3><h4 id="px"><a href="#px" class="headerlink" title="px"></a>px</h4><p>是一個絕對長度的單位，是以螢幕pixel為基準。</p>
+<h4 id="em"><a href="#em" class="headerlink" title="em"></a>em</h4><p>是一個相對長度單位，是依照當下所在的element其parent element的大小來當作倍數計算，舉例如果是把em設定在font-size，如果當下font-size是以10px，而在child 設定的font-size是設定<code>1ex</code> &#x3D;&gt;也就是 <code>10px</code> ，若是<code>2ex</code> &#x3D;&gt;<code>20px</code></p>
+<h4 id="rem"><a href="#rem" class="headerlink" title="rem"></a>rem</h4><p>這也是相對長度單位，但是以root的大小當作依據來算倍數，所以若是root size設定為<code>12px</code>，而當下的size設定為<code>3rem</code> &#x3D;&gt; <code>36px</code></p>
+]]></content>
+      <categories>
+        <category>frontend</category>
+      </categories>
+      <tags>
+        <tag>css</tag>
       </tags>
   </entry>
 </search>

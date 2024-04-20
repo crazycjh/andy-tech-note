@@ -98,19 +98,32 @@
       </tags>
   </entry>
   <entry>
-    <title>codemirror 設定(註冊)事件觸發Codemirror.on</title>
-    <url>/andy-tech-note/codemirror-set-eventListener/</url>
-    <content><![CDATA[<h3 id="codemirror"><a href="#codemirror" class="headerlink" title="codemirror"></a>codemirror</h3><p>什麼是codemirror，它是一款可以實現在前端網頁上的編輯器。<br>如同現在網路上看到的文字編輯器一樣，但你可以去設定當使用者做哪些操作時codemirror做哪些對應的行為。<br><a href="https://codemirror.net/5/">CodeMirror v5</a></p>
-<h3 id="如何在codemirror編輯器設定事件觸發"><a href="#如何在codemirror編輯器設定事件觸發" class="headerlink" title="如何在codemirror編輯器設定事件觸發"></a>如何在codemirror編輯器設定事件觸發</h3><p><a href="https://codemirror.net/5/doc/manual.html#events">Event列表</a></p>
-<p>使用 const editor &#x3D; CodeMirror.fromTextArea()建立編輯器instance後<br>在透過這個instance去呼叫 <code>on</code> 這個function</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">editor.on(&quot;change&quot;,(cm,changeObj)=&gt;&#123;                  </span><br><span class="line">    //這個意思是當editor文字有改變時就執行callback function</span><br><span class="line">    </span><br><span class="line">    //do something，這裡也可以加入其他CodeMirror的function執行</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-<p>要怎麼使用on呢？ <a href="https://codemirror.net/5/doc/manual.html#on">官方介紹</a></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cm.on(type: string, func: (...args))</span><br></pre></td></tr></table></figure>
+    <title>在vue中把變數傳進css</title>
+    <url>/andy-tech-note/vue-ref-css-vbind/</url>
+    <content><![CDATA[<p>某些時候會希望動態改變css的樣式高度、寬度、顏色…等等的<br>在vue中可以宣告一個ref變數(composition API)，然後把搭丟到vue檔案中的 <style></style>中，又或者透過inline的方式直接插入到html tag中，舉例如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">setup()&#123;</span><br><span class="line">    const mdSize = ref(&quot;100px&quot;);</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="傳到-lt-style-gt"><a href="#傳到-lt-style-gt" class="headerlink" title="傳到 &lt;style&gt;"></a>傳到 <code>&lt;style&gt;</code></h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;div class=&quot;md-size&quot;&gt;&lt;/div&gt; //在這裏class不需要v-bind</span><br><span class="line">&lt;style&gt;</span><br><span class="line">.md-size&#123;</span><br><span class="line">    height:v-bind(mdSize);</span><br><span class="line">&#125;</span><br><span class="line">&lt;/style&gt;    </span><br></pre></td></tr></table></figure>
 
-<p>舉例：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//建議以下function可以在頁面建立一併執行(如果是馬上要用到)，on的功能可以看成註冊的概念，把這個功能註冊給editor，條件有達到就會執行</span><br><span class="line">editor.on(&quot;change&quot;,(cm,changeObj)=&gt;&#123;                  </span><br><span class="line">    console.log(changeObj.ch);</span><br><span class="line">    console.log(changeObj.line); </span><br><span class="line">    //在change中會有ch(第幾個位元) line第幾行</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-<p>這裡的cm是指codemirror，在官方頁面中有提到，不管是看到codemirror(簡寫cm)或是doc，在使用上都可以用前面建立好的editor instance(端看使用者怎麼命名)</p>
-<p>on裡面第一的參數 <code>type</code> 也就是 cursorActivity  或者 change 之類的事件，後面callback function裡面的參數，在每個event中都會清楚告訴你有什麼參數可以用。<br>在<code>change</code>中可以使用cm instance以及獲取改變的文字及其相關資訊。</p>
+<h3 id="以傳值的方式丟到inline"><a href="#以傳值的方式丟到inline" class="headerlink" title="以傳值的方式丟到inline"></a>以傳值的方式丟到inline</h3><p>搭配v-bind 也就是縮寫 “:”<br>把mdSize放進去style</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;button :style=&quot;&#123; height: mdSize &#125;&quot; &gt; 按鈕名稱 &lt;/button&gt;</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>Frontend</category>
+      </categories>
+      <tags>
+        <tag>Javascript</tag>
+        <tag>Vue</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>codemirror v5 與 v6的差異</title>
+    <url>/andy-tech-note/codemirror-v5-v6-diff/</url>
+    <content><![CDATA[<h3 id="Codemirror-v5"><a href="#Codemirror-v5" class="headerlink" title="Codemirror v5"></a>Codemirror v5</h3><p>版本5 -&gt; 6的資料夾結構變動很大</p>
+<h4 id="v5"><a href="#v5" class="headerlink" title="v5"></a><a href="https://codemirror.net/5/index.html">v5</a></h4><p>v5的所有套件在npm install <code>codemirror</code>時所有功能全部都會幫你下載，所以在node_modules裡面可以找到codemirror資料夾，裡面所有功能都會放在裡面。</p>
+<h4 id="v6"><a href="#v6" class="headerlink" title="v6"></a><a href="https://codemirror.net/">v6</a></h4><p>v6在npm install後，<code>codemirror</code> 的資料夾內容不多，而如果需要使用特定功能需要下指令<br>如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">npm install @codemirror/search </span><br></pre></td></tr></table></figure>
+<p>如果需要serch功能，需要先install<br>安裝的功能相關檔案會出現在 @codemirror 資料夾中。</p>
+<p>在查相關資料時要注意是使用v5還是v6版本，否則會發現一直找不到檔案的鬼故事。</p>
 ]]></content>
       <categories>
         <category>Frontend</category>
@@ -143,97 +156,25 @@
       </tags>
   </entry>
   <entry>
-    <title>在vue中把變數傳進css</title>
-    <url>/andy-tech-note/vue-ref-css-vbind/</url>
-    <content><![CDATA[<p>某些時候會希望動態改變css的樣式高度、寬度、顏色…等等的<br>在vue中可以宣告一個ref變數(composition API)，然後把搭丟到vue檔案中的 <style></style>中，又或者透過inline的方式直接插入到html tag中，舉例如下：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">setup()&#123;</span><br><span class="line">    const mdSize = ref(&quot;100px&quot;);</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="傳到-lt-style-gt"><a href="#傳到-lt-style-gt" class="headerlink" title="傳到 &lt;style&gt;"></a>傳到 <code>&lt;style&gt;</code></h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;div class=&quot;md-size&quot;&gt;&lt;/div&gt; //在這裏class不需要v-bind</span><br><span class="line">&lt;style&gt;</span><br><span class="line">.md-size&#123;</span><br><span class="line">    height:v-bind(mdSize);</span><br><span class="line">&#125;</span><br><span class="line">&lt;/style&gt;    </span><br></pre></td></tr></table></figure>
+    <title>codemirror 設定(註冊)事件觸發Codemirror.on</title>
+    <url>/andy-tech-note/codemirror-set-eventListener/</url>
+    <content><![CDATA[<h3 id="codemirror"><a href="#codemirror" class="headerlink" title="codemirror"></a>codemirror</h3><p>什麼是codemirror，它是一款可以實現在前端網頁上的編輯器。<br>如同現在網路上看到的文字編輯器一樣，但你可以去設定當使用者做哪些操作時codemirror做哪些對應的行為。<br><a href="https://codemirror.net/5/">CodeMirror v5</a></p>
+<h3 id="如何在codemirror編輯器設定事件觸發"><a href="#如何在codemirror編輯器設定事件觸發" class="headerlink" title="如何在codemirror編輯器設定事件觸發"></a>如何在codemirror編輯器設定事件觸發</h3><p><a href="https://codemirror.net/5/doc/manual.html#events">Event列表</a></p>
+<p>使用 const editor &#x3D; CodeMirror.fromTextArea()建立編輯器instance後<br>在透過這個instance去呼叫 <code>on</code> 這個function</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">editor.on(&quot;change&quot;,(cm,changeObj)=&gt;&#123;                  </span><br><span class="line">    //這個意思是當editor文字有改變時就執行callback function</span><br><span class="line">    </span><br><span class="line">    //do something，這裡也可以加入其他CodeMirror的function執行</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>要怎麼使用on呢？ <a href="https://codemirror.net/5/doc/manual.html#on">官方介紹</a></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cm.on(type: string, func: (...args))</span><br></pre></td></tr></table></figure>
 
-<h3 id="以傳值的方式丟到inline"><a href="#以傳值的方式丟到inline" class="headerlink" title="以傳值的方式丟到inline"></a>以傳值的方式丟到inline</h3><p>搭配v-bind 也就是縮寫 “:”<br>把mdSize放進去style</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;button :style=&quot;&#123; height: mdSize &#125;&quot; &gt; 按鈕名稱 &lt;/button&gt;</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>Frontend</category>
-      </categories>
-      <tags>
-        <tag>Javascript</tag>
-        <tag>Vue</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>chatGPT-想法</title>
-    <url>/andy-tech-note/chatGPT-note/</url>
-    <content><![CDATA[<h3 id="關於chatGPT想法"><a href="#關於chatGPT想法" class="headerlink" title="關於chatGPT想法"></a>關於chatGPT想法</h3><p>網路上有很多人認為chatGPT會造成很多人依賴chatGPT取得資訊，讓人變得更懶。<br>不過我倒不這麼認為，先前在免費時使用過chatGPT，透過他詢問一下關於寫side project的問題，<br>在這過程成會發現如果你對於你的問題沒有具備相應的背景知識時，AI回答給你的答案你根本無從判斷是否有誤，曾經得到的答案發現大方向沒錯，但是小細節是有瑕疵的。</p>
-<p>所以個人認為他可以是輔助人類而非取代人類，至少在寫程式的部分，碰到問題時可以詢問他，有時候他會告訴你某個大方向，而這個方向可能是你在思考時盲點，可以再透過這個方向去找到你需要的答案，這樣可以避免在某個死胡同打轉。</p>
-<h3 id="收費"><a href="#收費" class="headerlink" title="收費"></a>收費</h3><p>2023年2月開始需要收費囉，一個月20美金，以小弟在線上詢問一些問題，而這些問題可能在google可以輕鬆找到，但是有這些問題是有前後關聯的，在google上並不是這麼容易精確的搜尋到答案，chatGPT反而可以接續著前一個問題回答你下一個問題，讓你的思緒更加完整。<br>以一個軟體工程師來說20美元一個月完全值得投資，問幾個問題可以節省更多時間去做別的事，畢竟軟體工程師就是極致懶，可以讓程式完成的事就不想手動完成，當然拉，在這問問題過程中還是要有學到東西才比較好ＸＤ。</p>
-]]></content>
-      <categories>
-        <category>軟體雜記</category>
-      </categories>
-      <tags>
-        <tag>chatGPT</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>vue-react-mvvm-virtualDom的一些筆記</title>
-    <url>/andy-tech-note/vue-react-mvvm-virtualDom/</url>
-    <content><![CDATA[<h3 id="指令式渲染-imperative-redering"><a href="#指令式渲染-imperative-redering" class="headerlink" title="指令式渲染 imperative redering"></a>指令式渲染 imperative redering</h3><h4 id="jquery"><a href="#jquery" class="headerlink" title="jquery"></a>jquery</h4><p>在框架還沒出來時jquery依舊是非常火紅的，而其對於DOM的渲染方式就是透過<br>選擇器 <code>document.querySelector</code> 去選擇HTML裡面的tag，從而去修改他們的值或是<code> addEventListener</code> 加入事件監聽來獲取使用者的行為，進而在js裡面做一些判斷後再把資料丟到頁面讓使用者看到。</p>
-<p>而這些都是指令式渲染，也就是直接透過指令直接對DOM做操作，而當整個程式架構變得很大時，對於這些變數或是事件的管理就會變得相對困難(東一塊西一塊的選擇器，也就是你會看到一堆的querySelector以及addEventListener)，易讀性也會很差，因為沒有一個集中管理的地方。</p>
-<h3 id="宣告式渲染-declarative-rendering"><a href="#宣告式渲染-declarative-rendering" class="headerlink" title="宣告式渲染 declarative rendering"></a>宣告式渲染 declarative rendering</h3><h4 id="Vue-MVVM"><a href="#Vue-MVVM" class="headerlink" title="Vue MVVM"></a>Vue MVVM</h4><p>以例子來說：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;div id=&#x27;app&#x27;&gt;</span><br><span class="line">    &lt;div&gt;&#123;&#123;data&#125;&#125;&lt;/div&gt;</span><br><span class="line">    &lt;inpup v-model=&quot;data&quot; /&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">const app = createApp(&#123;</span><br><span class="line">    data()&#123;</span><br><span class="line">        return &#123;</span><br><span class="line">            data:&#x27;hello world&#x27;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;).mount(&#x27;#app&#x27;)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p>透過以上寫法可以把createApp裡面的data的值傳遞到html 裡面大括號 <code>&#123;&#123;&#125;&#125;</code> 框起來的data中顯示在畫面上。<br>在vue中如果有多個地方需要用到data這個變數，只需用大括號及可以讓其值顯示在html，不需要像是jquery透過選擇器的方式去綁定資料，畫面也相對簡潔。</p>
-<h5 id="MVVM-MVC"><a href="#MVVM-MVC" class="headerlink" title="MVVM MVC"></a>MVVM MVC</h5><p>MVVC是由Model &#x2F; View &#x2F; ViewModel組成，早期微軟提出的是把網頁分成model層與view層，也就是把畫面與狀態分離(MVC)，Vue則是加入viewModel，也就是在view與model之間插入viewModel去把model層的資料綁定以及監聽view層的事件。<br><img src="./themes/meadow/source/icons/avatar.jpg" data-original="/andy-tech-note/vue-react-mvvm-virtualDom/mvvm.png" alt="MVVM"></p>
-<h4 id="React-Virtual-DOM"><a href="#React-Virtual-DOM" class="headerlink" title="React Virtual DOM"></a>React Virtual DOM</h4><p>React會先複製一份DOM物件(稱之為Virtual DOM)，而在React中是使用useState去改變想顯示在view上的值，當這些state被改變時他會去修改virtual dom，而後再去與先前的dom做比較，找出差異的地方再去對DOM做渲染，而這個渲染單純只有渲染被修改的，其他沒有變化的部分不會影響，如此一來不會因為要重新渲染整個畫面而造成效能低落。</p>
-<p>應該還有很多細節部分沒提到，未來有碰到更多再來補充更完整。</p>
-<p>參考資料 : <a href="https://book.vue.tw/CH1/1-1-introduction.html">重新認識 Vue.js | Kuro Hsu </a></p>
-]]></content>
-      <categories>
-        <category>Frontend</category>
-      </categories>
-      <tags>
-        <tag>Vue</tag>
-        <tag>React</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>codemirror v5 與 v6的差異</title>
-    <url>/andy-tech-note/codemirror-v5-v6-diff/</url>
-    <content><![CDATA[<h3 id="Codemirror-v5"><a href="#Codemirror-v5" class="headerlink" title="Codemirror v5"></a>Codemirror v5</h3><p>版本5 -&gt; 6的資料夾結構變動很大</p>
-<h4 id="v5"><a href="#v5" class="headerlink" title="v5"></a><a href="https://codemirror.net/5/index.html">v5</a></h4><p>v5的所有套件在npm install <code>codemirror</code>時所有功能全部都會幫你下載，所以在node_modules裡面可以找到codemirror資料夾，裡面所有功能都會放在裡面。</p>
-<h4 id="v6"><a href="#v6" class="headerlink" title="v6"></a><a href="https://codemirror.net/">v6</a></h4><p>v6在npm install後，<code>codemirror</code> 的資料夾內容不多，而如果需要使用特定功能需要下指令<br>如下：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">npm install @codemirror/search </span><br></pre></td></tr></table></figure>
-<p>如果需要serch功能，需要先install<br>安裝的功能相關檔案會出現在 @codemirror 資料夾中。</p>
-<p>在查相關資料時要注意是使用v5還是v6版本，否則會發現一直找不到檔案的鬼故事。</p>
+<p>舉例：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//建議以下function可以在頁面建立一併執行(如果是馬上要用到)，on的功能可以看成註冊的概念，把這個功能註冊給editor，條件有達到就會執行</span><br><span class="line">editor.on(&quot;change&quot;,(cm,changeObj)=&gt;&#123;                  </span><br><span class="line">    console.log(changeObj.ch);</span><br><span class="line">    console.log(changeObj.line); </span><br><span class="line">    //在change中會有ch(第幾個位元) line第幾行</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>這裡的cm是指codemirror，在官方頁面中有提到，不管是看到codemirror(簡寫cm)或是doc，在使用上都可以用前面建立好的editor instance(端看使用者怎麼命名)</p>
+<p>on裡面第一的參數 <code>type</code> 也就是 cursorActivity  或者 change 之類的事件，後面callback function裡面的參數，在每個event中都會清楚告訴你有什麼參數可以用。<br>在<code>change</code>中可以使用cm instance以及獲取改變的文字及其相關資訊。</p>
 ]]></content>
       <categories>
         <category>Frontend</category>
       </categories>
       <tags>
         <tag>codemirror</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>CSS中的偽類-pseudo-class</title>
-    <url>/andy-tech-note/pseudo-class/</url>
-    <content><![CDATA[<h3 id="情境1"><a href="#情境1" class="headerlink" title="情境1"></a>情境1</h3><p>直接範例解釋</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;ul&gt;</span><br><span class="line">  &lt;li class=&quot;first-li&quot;&gt;1&lt;/li&gt;</span><br><span class="line">  &lt;li&gt;2&lt;/li&gt;</span><br><span class="line">  &lt;li&gt;3&lt;/li&gt;</span><br><span class="line">&lt;/ul&gt;</span><br><span class="line">&lt;ul&gt;</span><br><span class="line">  &lt;li&gt;1&lt;/li&gt;</span><br><span class="line">  &lt;li&gt;2&lt;/li&gt;</span><br><span class="line">  &lt;li&gt;3&lt;/li&gt;</span><br><span class="line">&lt;/ul&gt;  </span><br><span class="line"></span><br><span class="line">  </span><br></pre></td></tr></table></figure>
-<p>一般來說如果想對 <code>&lt;li&gt; </code>裡面的字做變色、粗體、斜體，可以透過建立一個class去操作，<br>舉例：想把所有的第一個li的變粗體，這樣需要如下面class寫法，以及需要在html裡面把所有的第一個li都加上class&#x3D;’first-li’</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//css檔案</span><br><span class="line">.first-li &#123;</span><br><span class="line">    font-weight:bold;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//pseudo class </span><br><span class="line">li:first-child &#123;</span><br><span class="line">    font-weight:bold;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">li:last-child&#123;</span><br><span class="line">    font-weight:bold;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">li:nth-child(2)&#123; //全部第二個</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">li:nth-child(even)&#123; //偶數或奇數 odd</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>若是pseudo class則可以寫成上面這樣，還可以有最後一個、指定特定位置、偶數、奇數。</p>
-<hr>
-<h3 id="情境2"><a href="#情境2" class="headerlink" title="情境2"></a>情境2</h3><p>在這裡還可以是以下狀況</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">//狀況1</span><br><span class="line">&lt;div&gt;</span><br><span class="line">    &lt;p&gt;1&lt;/p&gt;</span><br><span class="line">    &lt;div&gt;2&lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line"></span><br><span class="line">//狀況2</span><br><span class="line">&lt;div&gt;</span><br><span class="line">    &lt;div&gt;0&lt;/div&gt;</span><br><span class="line">    &lt;p&gt;1&lt;/p&gt;</span><br><span class="line">    &lt;div&gt;2&lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line"></span><br><span class="line">//css</span><br><span class="line">div p:first-child&#123; // div下的第一個p</span><br><span class="line">    font-weight:bold;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>這個狀況其實在狀況2是沒有作用的，雖然是div下的第一個p，但是在div下面的第一個element是 div而非 p ，所以不會成功</p>
-]]></content>
-      <categories>
-        <category>CSS</category>
-      </categories>
-      <tags>
-        <tag>CSS</tag>
       </tags>
   </entry>
   <entry>
@@ -258,6 +199,20 @@
       </categories>
       <tags>
         <tag>Firebase</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>chatGPT-想法</title>
+    <url>/andy-tech-note/chatGPT-note/</url>
+    <content><![CDATA[<h3 id="關於chatGPT想法"><a href="#關於chatGPT想法" class="headerlink" title="關於chatGPT想法"></a>關於chatGPT想法</h3><p>網路上有很多人認為chatGPT會造成很多人依賴chatGPT取得資訊，讓人變得更懶。<br>不過我倒不這麼認為，先前在免費時使用過chatGPT，透過他詢問一下關於寫side project的問題，<br>在這過程成會發現如果你對於你的問題沒有具備相應的背景知識時，AI回答給你的答案你根本無從判斷是否有誤，曾經得到的答案發現大方向沒錯，但是小細節是有瑕疵的。</p>
+<p>所以個人認為他可以是輔助人類而非取代人類，至少在寫程式的部分，碰到問題時可以詢問他，有時候他會告訴你某個大方向，而這個方向可能是你在思考時盲點，可以再透過這個方向去找到你需要的答案，這樣可以避免在某個死胡同打轉。</p>
+<h3 id="收費"><a href="#收費" class="headerlink" title="收費"></a>收費</h3><p>2023年2月開始需要收費囉，一個月20美金，以小弟在線上詢問一些問題，而這些問題可能在google可以輕鬆找到，但是有這些問題是有前後關聯的，在google上並不是這麼容易精確的搜尋到答案，chatGPT反而可以接續著前一個問題回答你下一個問題，讓你的思緒更加完整。<br>以一個軟體工程師來說20美元一個月完全值得投資，問幾個問題可以節省更多時間去做別的事，畢竟軟體工程師就是極致懶，可以讓程式完成的事就不想手動完成，當然拉，在這問問題過程中還是要有學到東西才比較好ＸＤ。</p>
+]]></content>
+      <categories>
+        <category>軟體雜記</category>
+      </categories>
+      <tags>
+        <tag>chatGPT</tag>
       </tags>
   </entry>
   <entry>
@@ -305,25 +260,35 @@
       </tags>
   </entry>
   <entry>
-    <title>CSS中的px-em-rem</title>
-    <url>/andy-tech-note/px-em-rem/</url>
-    <content><![CDATA[<h3 id="這是關於長度單位"><a href="#這是關於長度單位" class="headerlink" title="這是關於長度單位"></a>這是關於長度單位</h3><h4 id="px"><a href="#px" class="headerlink" title="px"></a>px</h4><p>是一個絕對長度的單位，是以螢幕pixel為基準。</p>
-<h4 id="em"><a href="#em" class="headerlink" title="em"></a>em</h4><p>是一個相對長度單位，是依照當下所在的element其parent element的大小來當作倍數計算，舉例如果是把em設定在font-size，如果當下font-size是以10px，而在child 設定的font-size是設定<code>1ex</code> &#x3D;&gt;也就是 <code>10px</code> ，若是<code>2ex</code> &#x3D;&gt;<code>20px</code></p>
-<h4 id="rem"><a href="#rem" class="headerlink" title="rem"></a>rem</h4><p>這也是相對長度單位，但是以root的大小當作依據來算倍數，所以若是root size設定為<code>12px</code>，而當下的size設定為<code>3rem</code> &#x3D;&gt; <code>36px</code></p>
+    <title>vue-react-mvvm-virtualDom的一些筆記</title>
+    <url>/andy-tech-note/vue-react-mvvm-virtualDom/</url>
+    <content><![CDATA[<h3 id="指令式渲染-imperative-redering"><a href="#指令式渲染-imperative-redering" class="headerlink" title="指令式渲染 imperative redering"></a>指令式渲染 imperative redering</h3><h4 id="jquery"><a href="#jquery" class="headerlink" title="jquery"></a>jquery</h4><p>在框架還沒出來時jquery依舊是非常火紅的，而其對於DOM的渲染方式就是透過<br>選擇器 <code>document.querySelector</code> 去選擇HTML裡面的tag，從而去修改他們的值或是<code> addEventListener</code> 加入事件監聽來獲取使用者的行為，進而在js裡面做一些判斷後再把資料丟到頁面讓使用者看到。</p>
+<p>而這些都是指令式渲染，也就是直接透過指令直接對DOM做操作，而當整個程式架構變得很大時，對於這些變數或是事件的管理就會變得相對困難(東一塊西一塊的選擇器，也就是你會看到一堆的querySelector以及addEventListener)，易讀性也會很差，因為沒有一個集中管理的地方。</p>
+<h3 id="宣告式渲染-declarative-rendering"><a href="#宣告式渲染-declarative-rendering" class="headerlink" title="宣告式渲染 declarative rendering"></a>宣告式渲染 declarative rendering</h3><h4 id="Vue-MVVM"><a href="#Vue-MVVM" class="headerlink" title="Vue MVVM"></a>Vue MVVM</h4><p>以例子來說：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;div id=&#x27;app&#x27;&gt;</span><br><span class="line">    &lt;div&gt;&#123;&#123;data&#125;&#125;&lt;/div&gt;</span><br><span class="line">    &lt;inpup v-model=&quot;data&quot; /&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">const app = createApp(&#123;</span><br><span class="line">    data()&#123;</span><br><span class="line">        return &#123;</span><br><span class="line">            data:&#x27;hello world&#x27;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;).mount(&#x27;#app&#x27;)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>透過以上寫法可以把createApp裡面的data的值傳遞到html 裡面大括號 <code>&#123;&#123;&#125;&#125;</code> 框起來的data中顯示在畫面上。<br>在vue中如果有多個地方需要用到data這個變數，只需用大括號及可以讓其值顯示在html，不需要像是jquery透過選擇器的方式去綁定資料，畫面也相對簡潔。</p>
+<h5 id="MVVM-MVC"><a href="#MVVM-MVC" class="headerlink" title="MVVM MVC"></a>MVVM MVC</h5><p>MVVC是由Model &#x2F; View &#x2F; ViewModel組成，早期微軟提出的是把網頁分成model層與view層，也就是把畫面與狀態分離(MVC)，Vue則是加入viewModel，也就是在view與model之間插入viewModel去把model層的資料綁定以及監聽view層的事件。<br><img src="./themes/meadow/source/icons/avatar.jpg" data-original="/andy-tech-note/vue-react-mvvm-virtualDom/mvvm.png" alt="MVVM"></p>
+<h4 id="React-Virtual-DOM"><a href="#React-Virtual-DOM" class="headerlink" title="React Virtual DOM"></a>React Virtual DOM</h4><p>React會先複製一份DOM物件(稱之為Virtual DOM)，而在React中是使用useState去改變想顯示在view上的值，當這些state被改變時他會去修改virtual dom，而後再去與先前的dom做比較，找出差異的地方再去對DOM做渲染，而這個渲染單純只有渲染被修改的，其他沒有變化的部分不會影響，如此一來不會因為要重新渲染整個畫面而造成效能低落。</p>
+<p>應該還有很多細節部分沒提到，未來有碰到更多再來補充更完整。</p>
+<p>參考資料 : <a href="https://book.vue.tw/CH1/1-1-introduction.html">重新認識 Vue.js | Kuro Hsu </a></p>
 ]]></content>
       <categories>
         <category>Frontend</category>
       </categories>
       <tags>
-        <tag>CSS</tag>
+        <tag>Vue</tag>
+        <tag>React</tag>
       </tags>
   </entry>
   <entry>
-    <title>CSS中的inline、block以及inline block</title>
-    <url>/andy-tech-note/inline-block/</url>
-    <content><![CDATA[<h3 id="element樣式"><a href="#element樣式" class="headerlink" title="element樣式"></a>element樣式</h3><h4 id="block-element"><a href="#block-element" class="headerlink" title="block element"></a>block element</h4><p>這個element是會佔用整個整行的空間(也就是滿版)，即便你的資料沒有這麼多。<br>舉例：<code>&lt;div&gt;</code> <code>&lt;h1&gt;</code> <code>&lt;p&gt;</code><br>不過可以透過設定寬度高度去控制樣式。</p>
-<h4 id="inline-element"><a href="#inline-element" class="headerlink" title="inline element"></a>inline element</h4><p>依照inline element的內容去調整整個element的寬度，<br>舉例：<code>&lt;a&gt; &lt;br&gt; &lt;input&gt;</code><br>但是無法修改寬度與高度，即便加入margin與padding。</p>
-<h4 id="inline-block"><a href="#inline-block" class="headerlink" title="inline-block"></a>inline-block</h4><p>可以在display中設定inline-block<br><code>display:inline-block;</code><br>這樣就可以讓block不佔用滿版，但還可以控制其寬度與高度。</p>
+    <title>CSS中的px-em-rem</title>
+    <url>/andy-tech-note/px-em-rem/</url>
+    <content><![CDATA[<h3 id="這是關於長度單位"><a href="#這是關於長度單位" class="headerlink" title="這是關於長度單位"></a>這是關於長度單位</h3><h4 id="px"><a href="#px" class="headerlink" title="px"></a>px</h4><p>是一個絕對長度的單位，是以螢幕pixel為基準。</p>
+<h4 id="em"><a href="#em" class="headerlink" title="em"></a>em</h4><p>是一個相對長度單位，是依照當下所在的element其parent element的大小來當作倍數計算，舉例如果是把em設定在font-size，如果當下font-size是以10px，而在child 設定的font-size是設定<code>1ex</code> &#x3D;&gt;也就是 <code>10px</code> ，若是<code>2ex</code> &#x3D;&gt;<code>20px</code></p>
+<h4 id="rem"><a href="#rem" class="headerlink" title="rem"></a>rem</h4><p>這也是相對長度單位，但是以root的大小當作依據來算倍數，所以若是root size設定為<code>12px</code>，而當下的size設定為<code>3rem</code> &#x3D;&gt; <code>36px</code></p>
 ]]></content>
       <categories>
         <category>Frontend</category>
@@ -352,6 +317,20 @@
       <tags>
         <tag>Javascript</tag>
         <tag>JSON</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>CSS中的inline、block以及inline block</title>
+    <url>/andy-tech-note/inline-block/</url>
+    <content><![CDATA[<h3 id="element樣式"><a href="#element樣式" class="headerlink" title="element樣式"></a>element樣式</h3><h4 id="block-element"><a href="#block-element" class="headerlink" title="block element"></a>block element</h4><p>這個element是會佔用整個整行的空間(也就是滿版)，即便你的資料沒有這麼多。<br>舉例：<code>&lt;div&gt;</code> <code>&lt;h1&gt;</code> <code>&lt;p&gt;</code><br>不過可以透過設定寬度高度去控制樣式。</p>
+<h4 id="inline-element"><a href="#inline-element" class="headerlink" title="inline element"></a>inline element</h4><p>依照inline element的內容去調整整個element的寬度，<br>舉例：<code>&lt;a&gt; &lt;br&gt; &lt;input&gt;</code><br>但是無法修改寬度與高度，即便加入margin與padding。</p>
+<h4 id="inline-block"><a href="#inline-block" class="headerlink" title="inline-block"></a>inline-block</h4><p>可以在display中設定inline-block<br><code>display:inline-block;</code><br>這樣就可以讓block不佔用滿版，但還可以控制其寬度與高度。</p>
+]]></content>
+      <categories>
+        <category>Frontend</category>
+      </categories>
+      <tags>
+        <tag>CSS</tag>
       </tags>
   </entry>
   <entry>
@@ -459,23 +438,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Wordpress當後端傳文章內容到前端(Vue)</title>
-    <url>/andy-tech-note/wordpress%E7%95%B6%E5%BE%8C%E7%AB%AF%E5%82%B3%E6%96%87%E7%AB%A0%E5%85%A7%E5%AE%B9%E5%88%B0%E5%89%8D%E7%AB%AF-Vue/</url>
-    <content><![CDATA[<h3 id="以Wordpress為後端傳資料到前端"><a href="#以Wordpress為後端傳資料到前端" class="headerlink" title="以Wordpress為後端傳資料到前端"></a>以Wordpress為後端傳資料到前端</h3><p>wordpress 為後端，前端向後端取得wp中的文章時，我希望直接取得可以呈現的HTML格式，試過使用 WP 中的 function <code>get_post_field</code>，雖然可以取得HTML，但是HTML結構與真正在以WP當作前端呈現的文章的html有些出入，也就是在WP呈現頁面前會對原始的html做特殊格式化，這就要透過 apply_filters   ‘the_content’ 去把取得的html做格式化，這樣才會與wp呈現出來的樣式一樣。</p>
-<p>範例如下</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">apply_filters(&#x27;the_content&#x27;, get_post_field(&#x27;post_content&#x27;, $latest_id))</span><br></pre></td></tr></table></figure>
-
-<p>如此一來在 Vue 中就可以透過 v-html 把取得的html呈現在前端。</p>
-]]></content>
-      <categories>
-        <category>Wordpress</category>
-      </categories>
-      <tags>
-        <tag>Wordpress</tag>
-        <tag>Frontend</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Javascript的map,filter,reduce</title>
     <url>/andy-tech-note/Javascript%E7%9A%84map-filter-reduce/</url>
     <content><![CDATA[<h2 id="什麼是map-filter-reduce"><a href="#什麼是map-filter-reduce" class="headerlink" title="什麼是map, filter, reduce"></a>什麼是map, filter, reduce</h2><p>這三個東西都是ES5推出的Array method，的可以對Array裡面的元素做一些操作。</p>
@@ -529,23 +491,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Javascript中&lt;script&gt;的async與defer</title>
-    <url>/andy-tech-note/js-script-async-defer/</url>
-    <content><![CDATA[<h2 id="什麼是async-x2F-defer"><a href="#什麼是async-x2F-defer" class="headerlink" title="什麼是async&#x2F;defer"></a>什麼是async&#x2F;defer</h2><h3 id="HTML做些什麼事？"><a href="#HTML做些什麼事？" class="headerlink" title="HTML做些什麼事？"></a>HTML做些什麼事？</h3><p>在瀏覽器執行解析網頁時如果碰到<code>&lt;script&gt;</code>標籤，會先執行該script中的行為，而如果需要下載檔案則會執行下載，而此時若是執行下載時，整個網頁的解析就會停下來，等到檔案被下載後才會繼續解析，這樣有一個很大的問題，也就是當使用者瀏覽網頁時就會有些元素不是馬上出現在使用者面前，就是因為在等待JS檔案的下載，這就有關UX了。</p>
-<p>但是又有些JS檔案是要盡可能提早被下載到<code>client</code>端，如果讓<code>script</code> 在解析完<code>DOM</code>才執行就會有問題，因為當頁面解析完後會馬傷需要使用<code>JS</code>中的功能，所以就有了<code>async/defer</code>的概念。</p>
-<h4 id="解決方法"><a href="#解決方法" class="headerlink" title="解決方法"></a>解決方法</h4><p>上述問題就可以透過<code>async/defer</code>解決，這兩個主要都是讓<code>script</code>可以在背景執行，但是有個主要差異如下：</p>
-<h5 id="async"><a href="#async" class="headerlink" title="async"></a>async</h5><p>會在背景下載也就是異步的方式執行，在同時 HTML 解析會繼續執行，而當js檔案被下載後會被立即執行，不必等到 DOM 被全部解析。</p>
-<h5 id="defer"><a href="#defer" class="headerlink" title="defer"></a>defer</h5><p>也同是在背景下載不影響<code>DOM</code>的解析，但是他會等到<code>DOM</code>完全解析完才執行，而若是有多個js有互相依賴的行為可以以 <code>defer</code> 方式執行，只要按照執行順序去寫<code>script</code>即可</p>
-]]></content>
-      <categories>
-        <category>frontend_interview</category>
-      </categories>
-      <tags>
-        <tag>Javascript</tag>
-        <tag>Frontend</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>建構子函式constructor_function</title>
     <url>/andy-tech-note/constructor-function/</url>
     <content><![CDATA[<h3 id="什麼是-constructor-function建構子函式"><a href="#什麼是-constructor-function建構子函式" class="headerlink" title="什麼是 constructor function建構子函式"></a>什麼是 constructor function建構子函式</h3><p>建構子函式是一個由普通函式與new關鍵字組合而成的函式，而該函式就像是一個藍圖一樣，要透過new關鍵字才能建立一個真正的instance(object)。<br>其主要用途是用於建立物件，而非一般的函式。</p>
@@ -590,6 +535,40 @@
 <figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> map1 = <span class="keyword">new</span> <span class="title class_">Map</span>([</span><br><span class="line">  [<span class="string">&#x27;a&#x27;</span>, <span class="number">1</span>],</span><br><span class="line">  [<span class="string">&#x27;b&#x27;</span>, <span class="number">2</span>],</span><br><span class="line">  [<span class="string">&#x27;c&#x27;</span>, <span class="number">3</span>],</span><br><span class="line">  [<span class="string">&#x27;d&#x27;</span>, <span class="number">4</span>],</span><br><span class="line">  [<span class="string">&#x27;e&#x27;</span>, <span class="number">5</span>],</span><br><span class="line">  [<span class="string">&#x27;f&#x27;</span>, <span class="number">6</span>],</span><br><span class="line">])</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(map1.<span class="title function_">values</span>().<span class="title function_">forEach</span>(<span class="function"><span class="params">item</span> =&gt;</span> <span class="variable language_">console</span>.<span class="title function_">log</span>(item)))</span><br><span class="line"><span class="comment">// 印出所有的value值</span></span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(map1.<span class="title function_">keys</span>().<span class="title function_">forEach</span>(<span class="function"><span class="params">item</span> =&gt;</span> <span class="variable language_">console</span>.<span class="title function_">log</span>(item)))</span><br><span class="line"><span class="comment">// 印出所有的key值</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">const</span> [key,value] <span class="keyword">of</span> map1.<span class="title function_">entries</span>())&#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(key,value)</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 印出所有的key/value</span></span><br><span class="line"></span><br><span class="line">map1.<span class="title function_">forEach</span>(<span class="function">(<span class="params">i, key</span>)=&gt;</span> &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(i, key)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
 
 <p>用法實在很多元，有興趣的可以去MDN文件看看</p>
+]]></content>
+      <categories>
+        <category>frontend_interview</category>
+      </categories>
+      <tags>
+        <tag>Javascript</tag>
+        <tag>Frontend</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Wordpress當後端傳文章內容到前端(Vue)</title>
+    <url>/andy-tech-note/wordpress%E7%95%B6%E5%BE%8C%E7%AB%AF%E5%82%B3%E6%96%87%E7%AB%A0%E5%85%A7%E5%AE%B9%E5%88%B0%E5%89%8D%E7%AB%AF-Vue/</url>
+    <content><![CDATA[<h3 id="以Wordpress為後端傳資料到前端"><a href="#以Wordpress為後端傳資料到前端" class="headerlink" title="以Wordpress為後端傳資料到前端"></a>以Wordpress為後端傳資料到前端</h3><p>wordpress 為後端，前端向後端取得wp中的文章時，我希望直接取得可以呈現的HTML格式，試過使用 WP 中的 function <code>get_post_field</code>，雖然可以取得HTML，但是HTML結構與真正在以WP當作前端呈現的文章的html有些出入，也就是在WP呈現頁面前會對原始的html做特殊格式化，這就要透過 apply_filters   ‘the_content’ 去把取得的html做格式化，這樣才會與wp呈現出來的樣式一樣。</p>
+<p>範例如下</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">apply_filters(&#x27;the_content&#x27;, get_post_field(&#x27;post_content&#x27;, $latest_id))</span><br></pre></td></tr></table></figure>
+
+<p>如此一來在 Vue 中就可以透過 v-html 把取得的html呈現在前端。</p>
+]]></content>
+      <categories>
+        <category>Wordpress</category>
+      </categories>
+      <tags>
+        <tag>Wordpress</tag>
+        <tag>Frontend</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Javascript中&lt;script&gt;的async與defer</title>
+    <url>/andy-tech-note/js-script-async-defer/</url>
+    <content><![CDATA[<h2 id="什麼是async-x2F-defer"><a href="#什麼是async-x2F-defer" class="headerlink" title="什麼是async&#x2F;defer"></a>什麼是async&#x2F;defer</h2><h3 id="HTML做些什麼事？"><a href="#HTML做些什麼事？" class="headerlink" title="HTML做些什麼事？"></a>HTML做些什麼事？</h3><p>在瀏覽器執行解析網頁時如果碰到<code>&lt;script&gt;</code>標籤，會先執行該script中的行為，而如果需要下載檔案則會執行下載，而此時若是執行下載時，整個網頁的解析就會停下來，等到檔案被下載後才會繼續解析，這樣有一個很大的問題，也就是當使用者瀏覽網頁時就會有些元素不是馬上出現在使用者面前，就是因為在等待JS檔案的下載，這就有關UX了。</p>
+<p>但是又有些JS檔案是要盡可能提早被下載到<code>client</code>端，如果讓<code>script</code> 在解析完<code>DOM</code>才執行就會有問題，因為當頁面解析完後會馬傷需要使用<code>JS</code>中的功能，所以就有了<code>async/defer</code>的概念。</p>
+<h4 id="解決方法"><a href="#解決方法" class="headerlink" title="解決方法"></a>解決方法</h4><p>上述問題就可以透過<code>async/defer</code>解決，這兩個主要都是讓<code>script</code>可以在背景執行，但是有個主要差異如下：</p>
+<h5 id="async"><a href="#async" class="headerlink" title="async"></a>async</h5><p>會在背景下載也就是異步的方式執行，在同時 HTML 解析會繼續執行，而當js檔案被下載後會被立即執行，不必等到 DOM 被全部解析。</p>
+<h5 id="defer"><a href="#defer" class="headerlink" title="defer"></a>defer</h5><p>也同是在背景下載不影響<code>DOM</code>的解析，但是他會等到<code>DOM</code>完全解析完才執行，而若是有多個js有互相依賴的行為可以以 <code>defer</code> 方式執行，只要按照執行順序去寫<code>script</code>即可</p>
 ]]></content>
       <categories>
         <category>frontend_interview</category>
@@ -684,21 +663,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Javascript事件冒泡Event Bubbling</title>
-    <url>/andy-tech-note/javascript-event-bubbling/</url>
-    <content><![CDATA[<h2 id="事件冒泡Event-Bubbling"><a href="#事件冒泡Event-Bubbling" class="headerlink" title="事件冒泡Event Bubbling"></a>事件冒泡Event Bubbling</h2><p>事件冒泡是DOM中對事件處理的一種機制。<br>當在DOM中的某個元素（例如，一個按鈕）發生事件（如點擊）時，這個事件不僅在該元素上觸發，還會沿著DOM樹向上冒泡，依次觸發其父元素、父元素的父元素，一直到最頂層的document物件，這一路上的元素都可以收到事件觸發。</p>
-<p>例子：假設你希望在一個容器（div）內的所有元素被點擊時執行相同的操作(console.log(‘click’))，你可以在這個容器上設置一個事件監聽器（<code>event listener</code>）。<br>當容器內的任何一個元素被點擊時，點擊事件會通過事件冒泡機制向上傳遞，最終抵達這個容器。一旦事件到達容器，就會觸發設置在容器上的callback function(這裡設定console.log(‘click’))。</p>
-<p>上面的例子稱作<code>事件委託</code>，它利用了事件冒泡的特性來簡化對多個元素的事件處理，同時提升程式效能，也不需要每個元素都去設定事件監聽。特別是對於動態加入到容器中的新元素，無需單獨為它們綁定事件監聽器，事件委託可以自動地管理它們的事件。</p>
-]]></content>
-      <categories>
-        <category>frontend_interview</category>
-      </categories>
-      <tags>
-        <tag>Javascript</tag>
-        <tag>Frontend</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Javascript 的 hoisting關於var,let,const and function</title>
     <url>/andy-tech-note/hoisting-about-var-let-const-function/</url>
     <content><![CDATA[<h2 id="什麼是Hoisting-提升"><a href="#什麼是Hoisting-提升" class="headerlink" title="什麼是Hoisting(提升)"></a>什麼是Hoisting(提升)</h2><p>當js在編譯時會把變數宣告以及函式宣告提升到該<code>作用域</code>的最頂端，但實際上不會去改動程式碼，有時候在撰寫程式碼時有沒有發現雖然你的function宣告在後面，卻在前面使用function而不會跳錯，就是這個原因</p>
@@ -723,6 +687,42 @@
       <tags>
         <tag>Javascript</tag>
         <tag>Frontend</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Javascript事件冒泡Event Bubbling</title>
+    <url>/andy-tech-note/javascript-event-bubbling/</url>
+    <content><![CDATA[<h2 id="事件冒泡Event-Bubbling"><a href="#事件冒泡Event-Bubbling" class="headerlink" title="事件冒泡Event Bubbling"></a>事件冒泡Event Bubbling</h2><p>事件冒泡是DOM中對事件處理的一種機制。<br>當在DOM中的某個元素（例如，一個按鈕）發生事件（如點擊）時，這個事件不僅在該元素上觸發，還會沿著DOM樹向上冒泡，依次觸發其父元素、父元素的父元素，一直到最頂層的document物件，這一路上的元素都可以收到事件觸發。</p>
+<p>例子：假設你希望在一個容器（div）內的所有元素被點擊時執行相同的操作(console.log(‘click’))，你可以在這個容器上設置一個事件監聽器（<code>event listener</code>）。<br>當容器內的任何一個元素被點擊時，點擊事件會通過事件冒泡機制向上傳遞，最終抵達這個容器。一旦事件到達容器，就會觸發設置在容器上的callback function(這裡設定console.log(‘click’))。</p>
+<p>上面的例子稱作<code>事件委託</code>，它利用了事件冒泡的特性來簡化對多個元素的事件處理，同時提升程式效能，也不需要每個元素都去設定事件監聽。特別是對於動態加入到容器中的新元素，無需單獨為它們綁定事件監聽器，事件委託可以自動地管理它們的事件。</p>
+]]></content>
+      <categories>
+        <category>frontend_interview</category>
+      </categories>
+      <tags>
+        <tag>Javascript</tag>
+        <tag>Frontend</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>CSS中的偽類-pseudo-class</title>
+    <url>/andy-tech-note/pseudo-class/</url>
+    <content><![CDATA[<h3 id="情境1"><a href="#情境1" class="headerlink" title="情境1"></a>情境1</h3><p>直接範例解釋</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;ul&gt;</span><br><span class="line">  &lt;li class=&quot;first-li&quot;&gt;1&lt;/li&gt;</span><br><span class="line">  &lt;li&gt;2&lt;/li&gt;</span><br><span class="line">  &lt;li&gt;3&lt;/li&gt;</span><br><span class="line">&lt;/ul&gt;</span><br><span class="line">&lt;ul&gt;</span><br><span class="line">  &lt;li&gt;1&lt;/li&gt;</span><br><span class="line">  &lt;li&gt;2&lt;/li&gt;</span><br><span class="line">  &lt;li&gt;3&lt;/li&gt;</span><br><span class="line">&lt;/ul&gt;  </span><br><span class="line"></span><br><span class="line">  </span><br></pre></td></tr></table></figure>
+<p>一般來說如果想對 <code>&lt;li&gt; </code>裡面的字做變色、粗體、斜體，可以透過建立一個class去操作，<br>舉例：想把所有的第一個li的變粗體，這樣需要如下面class寫法，以及需要在html裡面把所有的第一個li都加上class&#x3D;’first-li’</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//css檔案</span><br><span class="line">.first-li &#123;</span><br><span class="line">    font-weight:bold;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//pseudo class </span><br><span class="line">li:first-child &#123;</span><br><span class="line">    font-weight:bold;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">li:last-child&#123;</span><br><span class="line">    font-weight:bold;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">li:nth-child(2)&#123; //全部第二個</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">li:nth-child(even)&#123; //偶數或奇數 odd</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>若是pseudo class則可以寫成上面這樣，還可以有最後一個、指定特定位置、偶數、奇數。</p>
+<hr>
+<h3 id="情境2"><a href="#情境2" class="headerlink" title="情境2"></a>情境2</h3><p>在這裡還可以是以下狀況</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">//狀況1</span><br><span class="line">&lt;div&gt;</span><br><span class="line">    &lt;p&gt;1&lt;/p&gt;</span><br><span class="line">    &lt;div&gt;2&lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line"></span><br><span class="line">//狀況2</span><br><span class="line">&lt;div&gt;</span><br><span class="line">    &lt;div&gt;0&lt;/div&gt;</span><br><span class="line">    &lt;p&gt;1&lt;/p&gt;</span><br><span class="line">    &lt;div&gt;2&lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line"></span><br><span class="line">//css</span><br><span class="line">div p:first-child&#123; // div下的第一個p</span><br><span class="line">    font-weight:bold;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>這個狀況其實在狀況2是沒有作用的，雖然是div下的第一個p，但是在div下面的第一個element是 div而非 p ，所以不會成功</p>
+]]></content>
+      <categories>
+        <category>CSS</category>
+      </categories>
+      <tags>
+        <tag>CSS</tag>
       </tags>
   </entry>
 </search>

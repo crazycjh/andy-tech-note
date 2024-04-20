@@ -2,7 +2,7 @@
 if(typeof mdui.$ === "function"){
   var $$ = mdui.$;
 } else if(typeof mdui.$ === "undefined"){
-  var $$ = mdui.JQ;
+  var $$ = mduwei.JQ;
 } else {
   console.error("MDUI JS Not Found!");
 };

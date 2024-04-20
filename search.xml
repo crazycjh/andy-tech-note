@@ -14,23 +14,8 @@
         <category>frontend</category>
       </categories>
       <tags>
-        <tag>javascript</tag>
+        <tag>Javascript</tag>
         <tag>async</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>在vue中一次watch多個變數</title>
-    <url>/andy-tech-note/vue-watch-multiple-value/</url>
-    <content><![CDATA[<h4 id="在Vue3-amp-Composition下，想一次watch多個變數的實現方法"><a href="#在Vue3-amp-Composition下，想一次watch多個變數的實現方法" class="headerlink" title="在Vue3 &amp; Composition下，想一次watch多個變數的實現方法"></a>在Vue3 &amp; Composition下，想一次watch多個變數的實現方法</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">setup()&#123;</span><br><span class="line">    const message = ref(&#x27;&#x27;);</span><br><span class="line">    const name = ref(&#x27;&#x27;);</span><br><span class="line">    watch([message,name],([newValueMessage,newValueName],[oldValueMessage,oldValueName])=&gt;&#123;</span><br><span class="line">        //do something</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<h4 id="watch-vuex裡面的state或是其他reactive裡的某個值"><a href="#watch-vuex裡面的state或是其他reactive裡的某個值" class="headerlink" title="watch vuex裡面的state或是其他reactive裡的某個值"></a>watch vuex裡面的state或是其他reactive裡的某個值</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//假設vuex state中影一個名為msg的值</span><br><span class="line">setup()&#123;</span><br><span class="line">    const message= reactive(&#123;user1:&#x27;&#x27;&#125;)</span><br><span class="line">    watch([()=&gt;message.user1,()=&gt;store.state.msg],()=&gt;&#123;</span><br><span class="line">        //do something</span><br><span class="line"></span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p>使用 <code>()=&gt; arrow</code> function去return reactive的值才能watch</p>
-]]></content>
-      <categories>
-        <category>frontend</category>
-      </categories>
-      <tags>
-        <tag>javascript</tag>
-        <tag>vue</tag>
       </tags>
   </entry>
   <entry>
@@ -55,7 +40,22 @@
         <category>frontend</category>
       </categories>
       <tags>
-        <tag>javascript</tag>
+        <tag>Javascript</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>在vue中一次watch多個變數</title>
+    <url>/andy-tech-note/vue-watch-multiple-value/</url>
+    <content><![CDATA[<h4 id="在Vue3-amp-Composition下，想一次watch多個變數的實現方法"><a href="#在Vue3-amp-Composition下，想一次watch多個變數的實現方法" class="headerlink" title="在Vue3 &amp; Composition下，想一次watch多個變數的實現方法"></a>在Vue3 &amp; Composition下，想一次watch多個變數的實現方法</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">setup()&#123;</span><br><span class="line">    const message = ref(&#x27;&#x27;);</span><br><span class="line">    const name = ref(&#x27;&#x27;);</span><br><span class="line">    watch([message,name],([newValueMessage,newValueName],[oldValueMessage,oldValueName])=&gt;&#123;</span><br><span class="line">        //do something</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h4 id="watch-vuex裡面的state或是其他reactive裡的某個值"><a href="#watch-vuex裡面的state或是其他reactive裡的某個值" class="headerlink" title="watch vuex裡面的state或是其他reactive裡的某個值"></a>watch vuex裡面的state或是其他reactive裡的某個值</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//假設vuex state中影一個名為msg的值</span><br><span class="line">setup()&#123;</span><br><span class="line">    const message= reactive(&#123;user1:&#x27;&#x27;&#125;)</span><br><span class="line">    watch([()=&gt;message.user1,()=&gt;store.state.msg],()=&gt;&#123;</span><br><span class="line">        //do something</span><br><span class="line"></span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>使用 <code>()=&gt; arrow</code> function去return reactive的值才能watch</p>
+]]></content>
+      <categories>
+        <category>frontend</category>
+      </categories>
+      <tags>
+        <tag>Javascript</tag>
+        <tag>vue</tag>
       </tags>
   </entry>
   <entry>
@@ -68,24 +68,6 @@
       </categories>
       <tags>
         <tag>npm</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>在vue中把變數傳進css</title>
-    <url>/andy-tech-note/vue-ref-css-vbind/</url>
-    <content><![CDATA[<p>某些時候會希望動態改變css的樣式高度、寬度、顏色…等等的<br>在vue中可以宣告一個ref變數(composition API)，然後把搭丟到vue檔案中的 <style></style>中，又或者透過inline的方式直接插入到html tag中，舉例如下：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">setup()&#123;</span><br><span class="line">    const mdSize = ref(&quot;100px&quot;);</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="傳到-lt-style-gt"><a href="#傳到-lt-style-gt" class="headerlink" title="傳到 &lt;style&gt;"></a>傳到 <code>&lt;style&gt;</code></h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;div class=&quot;md-size&quot;&gt;&lt;/div&gt; //在這裏class不需要v-bind</span><br><span class="line">&lt;style&gt;</span><br><span class="line">.md-size&#123;</span><br><span class="line">    height:v-bind(mdSize);</span><br><span class="line">&#125;</span><br><span class="line">&lt;/style&gt;    </span><br></pre></td></tr></table></figure>
-
-<h3 id="以傳值的方式丟到inline"><a href="#以傳值的方式丟到inline" class="headerlink" title="以傳值的方式丟到inline"></a>以傳值的方式丟到inline</h3><p>搭配v-bind 也就是縮寫 “:”<br>把mdSize放進去style</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;button :style=&quot;&#123; height: mdSize &#125;&quot; &gt; 按鈕名稱 &lt;/button&gt;</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>frontend</category>
-      </categories>
-      <tags>
-        <tag>javascript</tag>
-        <tag>vue</tag>
       </tags>
   </entry>
   <entry>
@@ -112,7 +94,25 @@
         <category>frontend</category>
       </categories>
       <tags>
-        <tag>javascript</tag>
+        <tag>Javascript</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>在vue中把變數傳進css</title>
+    <url>/andy-tech-note/vue-ref-css-vbind/</url>
+    <content><![CDATA[<p>某些時候會希望動態改變css的樣式高度、寬度、顏色…等等的<br>在vue中可以宣告一個ref變數(composition API)，然後把搭丟到vue檔案中的 <style></style>中，又或者透過inline的方式直接插入到html tag中，舉例如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">setup()&#123;</span><br><span class="line">    const mdSize = ref(&quot;100px&quot;);</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="傳到-lt-style-gt"><a href="#傳到-lt-style-gt" class="headerlink" title="傳到 &lt;style&gt;"></a>傳到 <code>&lt;style&gt;</code></h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;div class=&quot;md-size&quot;&gt;&lt;/div&gt; //在這裏class不需要v-bind</span><br><span class="line">&lt;style&gt;</span><br><span class="line">.md-size&#123;</span><br><span class="line">    height:v-bind(mdSize);</span><br><span class="line">&#125;</span><br><span class="line">&lt;/style&gt;    </span><br></pre></td></tr></table></figure>
+
+<h3 id="以傳值的方式丟到inline"><a href="#以傳值的方式丟到inline" class="headerlink" title="以傳值的方式丟到inline"></a>以傳值的方式丟到inline</h3><p>搭配v-bind 也就是縮寫 “:”<br>把mdSize放進去style</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;button :style=&quot;&#123; height: mdSize &#125;&quot; &gt; 按鈕名稱 &lt;/button&gt;</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>frontend</category>
+      </categories>
+      <tags>
+        <tag>Javascript</tag>
+        <tag>vue</tag>
       </tags>
   </entry>
   <entry>
@@ -280,7 +280,7 @@
         <category>frontend</category>
       </categories>
       <tags>
-        <tag>javascript</tag>
+        <tag>Javascript</tag>
         <tag>async</tag>
         <tag>promise</tag>
       </tags>
@@ -347,8 +347,26 @@
         <category>frontend</category>
       </categories>
       <tags>
-        <tag>javascript</tag>
+        <tag>Javascript</tag>
         <tag>JSON</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>在Javacript建立promise</title>
+    <url>/andy-tech-note/how-to-create-promise/</url>
+    <content><![CDATA[<h4 id="建立promise"><a href="#建立promise" class="headerlink" title="建立promise"></a>建立promise</h4><p>延續前一篇關於promise的文章，來試試看要怎麼建立一個Promise。</p>
+<h4 id="promise初版"><a href="#promise初版" class="headerlink" title="promise初版"></a>promise初版</h4><p>製作一個樂透功能的promise</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">const lotteryPromise = new Promise(function(resolve,reject)&#123;</span><br><span class="line">    if(Math.random() &gt;= 0.5)&#123;</span><br><span class="line">        resolve(&#x27;You Win the Lottery&#x27;); //fulfilled</span><br><span class="line">    &#125;else&#123;</span><br><span class="line">        reject(&quot;loser la&quot;); //reject</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">lotteryPromise.then((res)=&gt;&#123;</span><br><span class="line">    console.log(res) //印出You Win the Lottery</span><br><span class="line">&#125;).catch((err)=&gt;&#123;</span><br><span class="line">    console.log(err) //印出loser la</span><br><span class="line">&#125;)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h4 id="有async效果的promise版本"><a href="#有async效果的promise版本" class="headerlink" title="有async效果的promise版本"></a>有async效果的promise版本</h4><p><code>以上不是async</code>所以加入setTimeout來實現延遲</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">const lotteryPromise = new Promise(function(resolve,reject)&#123;</span><br><span class="line">    setTimeout(()=&gt;&#123;</span><br><span class="line">        if(Math.random() &gt;= 0.5)&#123;</span><br><span class="line">            resolve(&#x27;You Win the Lottery&#x27;);</span><br><span class="line">        &#125;else&#123;</span><br><span class="line">            reject(&quot;loser la&quot;);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,2000) //等2秒才執行</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">lotteryPromise.then((res)=&gt;&#123;</span><br><span class="line">    console.log(res) //印出You Win the Lottery</span><br><span class="line">&#125;).catch((err)=&gt;&#123;</span><br><span class="line">    console.log(err) //印出loser la</span><br><span class="line">&#125;)</span><br><span class="line"></span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>frontend</category>
+      </categories>
+      <tags>
+        <tag>Javascript</tag>
+        <tag>async</tag>
+        <tag>promise</tag>
       </tags>
   </entry>
   <entry>
@@ -370,21 +388,18 @@
       </tags>
   </entry>
   <entry>
-    <title>在Javacript建立promise</title>
-    <url>/andy-tech-note/how-to-create-promise/</url>
-    <content><![CDATA[<h4 id="建立promise"><a href="#建立promise" class="headerlink" title="建立promise"></a>建立promise</h4><p>延續前一篇關於promise的文章，來試試看要怎麼建立一個Promise。</p>
-<h4 id="promise初版"><a href="#promise初版" class="headerlink" title="promise初版"></a>promise初版</h4><p>製作一個樂透功能的promise</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">const lotteryPromise = new Promise(function(resolve,reject)&#123;</span><br><span class="line">    if(Math.random() &gt;= 0.5)&#123;</span><br><span class="line">        resolve(&#x27;You Win the Lottery&#x27;); //fulfilled</span><br><span class="line">    &#125;else&#123;</span><br><span class="line">        reject(&quot;loser la&quot;); //reject</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">lotteryPromise.then((res)=&gt;&#123;</span><br><span class="line">    console.log(res) //印出You Win the Lottery</span><br><span class="line">&#125;).catch((err)=&gt;&#123;</span><br><span class="line">    console.log(err) //印出loser la</span><br><span class="line">&#125;)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+    <title>Javascript - 對object(key value)做 filter &amp; map</title>
+    <url>/andy-tech-note/Javascript-object-key-value-filter_map/</url>
+    <content><![CDATA[<h4 id="如何對object做類似filter的行為"><a href="#如何對object做類似filter的行為" class="headerlink" title="如何對object做類似filter的行為"></a>如何對object做類似filter的行為</h4><p>透過Object.keys把key 輸出成 Array，這樣就可以使用filter，把key當作index逐一帶入obj做條件判斷，即可達到過濾效果</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">const obj = &#123;a : 1, b : 2, c : 3&#125;;</span><br><span class="line">const filteredResult = Object.keys(obj)</span><br><span class="line">    .filter((key) =&gt; obj[key] &gt; 1)</span><br></pre></td></tr></table></figure>
 
-<h4 id="有async效果的promise版本"><a href="#有async效果的promise版本" class="headerlink" title="有async效果的promise版本"></a>有async效果的promise版本</h4><p><code>以上不是async</code>所以加入setTimeout來實現延遲</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">const lotteryPromise = new Promise(function(resolve,reject)&#123;</span><br><span class="line">    setTimeout(()=&gt;&#123;</span><br><span class="line">        if(Math.random() &gt;= 0.5)&#123;</span><br><span class="line">            resolve(&#x27;You Win the Lottery&#x27;);</span><br><span class="line">        &#125;else&#123;</span><br><span class="line">            reject(&quot;loser la&quot;);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,2000) //等2秒才執行</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">lotteryPromise.then((res)=&gt;&#123;</span><br><span class="line">    console.log(res) //印出You Win the Lottery</span><br><span class="line">&#125;).catch((err)=&gt;&#123;</span><br><span class="line">    console.log(err) //印出loser la</span><br><span class="line">&#125;)</span><br><span class="line"></span><br></pre></td></tr></table></figure>]]></content>
+
+<h4 id="使用Object-entries及reduce-來對object做一對一的處理來達到map效果"><a href="#使用Object-entries及reduce-來對object做一對一的處理來達到map效果" class="headerlink" title="使用Object.entries及reduce 來對object做一對一的處理來達到map效果"></a>使用Object.entries及reduce 來對object做一對一的處理來達到map效果</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">const obj = &#123;</span><br><span class="line">    a: &#123;name: &#x27;andy&#x27;, b: 2, c: 3&#125;, </span><br><span class="line">    b: &#123;name: &#x27;amy&#x27;, b: 2, c: 3&#125;, </span><br><span class="line">    c: &#123;name: &#x27;john&#x27;, b: 2, c: 3&#125; </span><br><span class="line">    &#125;;</span><br><span class="line">    </span><br><span class="line">const result = Object.entries(obj).reduce((acc, [key, value]) =&gt; &#123;</span><br><span class="line">  acc[key] = value</span><br><span class="line">  acc[key].name = acc[key].name + &#x27; chen&#x27;</span><br><span class="line"></span><br><span class="line">  return acc;</span><br><span class="line"></span><br><span class="line">&#125;, &#123;&#125;)</span><br><span class="line">// 可以對 name的後面全部加上 &quot;chen&quot;的字串</span><br></pre></td></tr></table></figure>]]></content>
       <categories>
         <category>frontend</category>
       </categories>
       <tags>
-        <tag>javascript</tag>
-        <tag>async</tag>
-        <tag>promise</tag>
+        <tag>Javascript</tag>
       </tags>
   </entry>
   <entry>
@@ -445,21 +460,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Javascript - 對object(key value)做 filter &amp; map</title>
-    <url>/andy-tech-note/Javascript-object-key-value-filter_map/</url>
-    <content><![CDATA[<h4 id="如何對object做類似filter的行為"><a href="#如何對object做類似filter的行為" class="headerlink" title="如何對object做類似filter的行為"></a>如何對object做類似filter的行為</h4><p>透過Object.keys把key 輸出成 Array，這樣就可以使用filter，把key當作index逐一帶入obj做條件判斷，即可達到過濾效果</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">const obj = &#123;a : 1, b : 2, c : 3&#125;;</span><br><span class="line">const filteredResult = Object.keys(obj)</span><br><span class="line">    .filter((key) =&gt; obj[key] &gt; 1)</span><br></pre></td></tr></table></figure>
-
-
-<h4 id="使用Object-entries及reduce-來對object做一對一的處理來達到map效果"><a href="#使用Object-entries及reduce-來對object做一對一的處理來達到map效果" class="headerlink" title="使用Object.entries及reduce 來對object做一對一的處理來達到map效果"></a>使用Object.entries及reduce 來對object做一對一的處理來達到map效果</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">const obj = &#123;</span><br><span class="line">    a: &#123;name: &#x27;andy&#x27;, b: 2, c: 3&#125;, </span><br><span class="line">    b: &#123;name: &#x27;amy&#x27;, b: 2, c: 3&#125;, </span><br><span class="line">    c: &#123;name: &#x27;john&#x27;, b: 2, c: 3&#125; </span><br><span class="line">    &#125;;</span><br><span class="line">    </span><br><span class="line">const result = Object.entries(obj).reduce((acc, [key, value]) =&gt; &#123;</span><br><span class="line">  acc[key] = value</span><br><span class="line">  acc[key].name = acc[key].name + &#x27; chen&#x27;</span><br><span class="line"></span><br><span class="line">  return acc;</span><br><span class="line"></span><br><span class="line">&#125;, &#123;&#125;)</span><br><span class="line">// 可以對 name的後面全部加上 &quot;chen&quot;的字串</span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>frontend</category>
-      </categories>
-      <tags>
-        <tag>javascript</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Wordpress當後端傳文章內容到前端(Vue)</title>
     <url>/andy-tech-note/wordpress%E7%95%B6%E5%BE%8C%E7%AB%AF%E5%82%B3%E6%96%87%E7%AB%A0%E5%85%A7%E5%AE%B9%E5%88%B0%E5%89%8D%E7%AB%AF-Vue/</url>
     <content><![CDATA[<h3 id="以Wordpress為後端傳資料到前端"><a href="#以Wordpress為後端傳資料到前端" class="headerlink" title="以Wordpress為後端傳資料到前端"></a>以Wordpress為後端傳資料到前端</h3><p>wordpress 為後端，前端向後端取得wp中的文章時，我希望直接取得可以呈現的HTML格式，試過使用 WP 中的 function <code>get_post_field</code>，雖然可以取得HTML，但是HTML結構與真正在以WP當作前端呈現的文章的html有些出入，也就是在WP呈現頁面前會對原始的html做特殊格式化，這就要透過 apply_filters   ‘the_content’ 去把取得的html做格式化，這樣才會與wp呈現出來的樣式一樣。</p>
@@ -487,10 +487,10 @@
 ]]></content>
       <categories>
         <category>frontend_interview</category>
-        <category>frontend</category>
       </categories>
       <tags>
-        <tag>javascript</tag>
+        <tag>Javascript</tag>
+        <tag>frontend</tag>
       </tags>
   </entry>
   <entry>
@@ -513,10 +513,9 @@
 ]]></content>
       <categories>
         <category>frontend_interview</category>
-        <category>frontend</category>
       </categories>
       <tags>
-        <tag>javascript</tag>
+        <tag>Javascript</tag>
         <tag>frontend</tag>
       </tags>
   </entry>
@@ -545,10 +544,36 @@
 ]]></content>
       <categories>
         <category>frontend_interview</category>
-        <category>frontend</category>
       </categories>
       <tags>
-        <tag>javascript</tag>
+        <tag>Javascript</tag>
+        <tag>frontend</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>CSS的的selector的權重</title>
+    <url>/andy-tech-note/about-CSS-selector-priority/</url>
+    <content><![CDATA[<h3 id="selector是什麼？"><a href="#selector是什麼？" class="headerlink" title="selector是什麼？"></a>selector是什麼？</h3><p>是用來選擇HTML tag並設定寬、高、顏色、背景圖等等(如：H1,p,div)，選擇器不僅限於標籤(div, p, span)，還包含class及id。</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.className</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>:blue;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">div</span> &#123;</span><br><span class="line">    <span class="attribute">font-size</span>:<span class="number">16px</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="權重可以幹嘛？"><a href="#權重可以幹嘛？" class="headerlink" title="權重可以幹嘛？"></a>權重可以幹嘛？</h3><p>在selector有四個權重，依序是 <code>inline style &gt; id &gt; class &gt; tag</code>，這意思是說如果你對某些元素設定屬性時，權重會依照這個來做處理，也就是說如果在<code>class及inline style</code>裡面都設定 <code>color</code>，而最終HTML顯示的顏色會是由inline設定的為主，這是因為權重大小的關係。<br>而這四個權重會是這樣寫(0,0,0,0)對應的順序(inline, id, class, tag)，所以這樣就可以看出誰的權重比較大。</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">style</span>=<span class="string">&quot;color=yellow&quot;</span> <span class="attr">class</span>=<span class="string">&quot;className&quot;</span>&gt;</span><span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.className</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>=blue</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在這裡顏色就會是yellow，因為inline權重大於class</p>
+<h3 id="權重計算方式"><a href="#權重計算方式" class="headerlink" title="權重計算方式"></a>權重計算方式</h3><figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.className1</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>:blue;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><code>(0,0,1,0)</code></p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.className1</span><span class="selector-class">.className2</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>:yellow;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><code>(0,0,2,0)</code><br>上面這個會把兩個class加起來，這是要該元素同時有這兩個class存在</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.className2</span> <span class="selector-tag">div</span> <span class="selector-tag">p</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>:yellow;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><code>(0,0,1,2)</code></p>
+<h3 id="important"><a href="#important" class="headerlink" title="!important"></a>!important</h3><p>這個大魔王，在某些情況希望直接覆蓋掉該元素的屬性，可以在 該屬性後面加上 <code>!important</code>，但是不建議太常使用，會在開發上容易造成不要的困擾。</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.className2</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>:yellow <span class="meta">!important</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>frontend_interview</category>
+      </categories>
+      <tags>
+        <tag>css</tag>
         <tag>frontend</tag>
       </tags>
   </entry>
@@ -569,10 +594,9 @@
 ]]></content>
       <categories>
         <category>frontend_interview</category>
-        <category>frontend</category>
       </categories>
       <tags>
-        <tag>javascript</tag>
+        <tag>Javascript</tag>
         <tag>frontend</tag>
       </tags>
   </entry>
@@ -589,10 +613,9 @@
 ]]></content>
       <categories>
         <category>frontend_interview</category>
-        <category>frontend</category>
       </categories>
       <tags>
-        <tag>javascript</tag>
+        <tag>Javascript</tag>
         <tag>frontend</tag>
       </tags>
   </entry>
@@ -637,10 +660,9 @@
 ]]></content>
       <categories>
         <category>frontend_interview</category>
-        <category>frontend</category>
       </categories>
       <tags>
-        <tag>javascript</tag>
+        <tag>Javascript</tag>
         <tag>frontend</tag>
       </tags>
   </entry>
@@ -656,10 +678,9 @@
 ]]></content>
       <categories>
         <category>frontend_interview</category>
-        <category>frontend</category>
       </categories>
       <tags>
-        <tag>javascript</tag>
+        <tag>Javascript</tag>
         <tag>frontend</tag>
       </tags>
   </entry>
@@ -684,10 +705,9 @@
 <figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="title function_">exampleFunction</span>()</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="title function_">exampleFunction</span> = (<span class="params"></span>) =&gt; &#123;</span><br><span class="line">  <span class="keyword">let</span> a = <span class="number">5</span>;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(a);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
       <categories>
         <category>frontend_interview</category>
-        <category>frontend</category>
       </categories>
       <tags>
-        <tag>javascript</tag>
+        <tag>Javascript</tag>
         <tag>frontend</tag>
       </tags>
   </entry>
@@ -700,38 +720,9 @@
 ]]></content>
       <categories>
         <category>frontend_interview</category>
-        <category>frontend</category>
       </categories>
       <tags>
-        <tag>javascript</tag>
-        <tag>frontend</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>CSS的的selector的權重</title>
-    <url>/andy-tech-note/about-CSS-selector-priority/</url>
-    <content><![CDATA[<h3 id="selector是什麼？"><a href="#selector是什麼？" class="headerlink" title="selector是什麼？"></a>selector是什麼？</h3><p>是用來選擇HTML tag並設定寬、高、顏色、背景圖等等(如：H1,p,div)，選擇器不僅限於標籤(div, p, span)，還包含class及id。</p>
-<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.className</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>:blue;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">div</span> &#123;</span><br><span class="line">    <span class="attribute">font-size</span>:<span class="number">16px</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="權重可以幹嘛？"><a href="#權重可以幹嘛？" class="headerlink" title="權重可以幹嘛？"></a>權重可以幹嘛？</h3><p>在selector有四個權重，依序是 <code>inline style &gt; id &gt; class &gt; tag</code>，這意思是說如果你對某些元素設定屬性時，權重會依照這個來做處理，也就是說如果在<code>class及inline style</code>裡面都設定 <code>color</code>，而最終HTML顯示的顏色會是由inline設定的為主，這是因為權重大小的關係。<br>而這四個權重會是這樣寫(0,0,0,0)對應的順序(inline, id, class, tag)，所以這樣就可以看出誰的權重比較大。</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">style</span>=<span class="string">&quot;color=yellow&quot;</span> <span class="attr">class</span>=<span class="string">&quot;className&quot;</span>&gt;</span><span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.className</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>=blue</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>在這裡顏色就會是yellow，因為inline權重大於class</p>
-<h3 id="權重計算方式"><a href="#權重計算方式" class="headerlink" title="權重計算方式"></a>權重計算方式</h3><figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.className1</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>:blue;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><code>(0,0,1,0)</code></p>
-<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.className1</span><span class="selector-class">.className2</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>:yellow;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><code>(0,0,2,0)</code><br>上面這個會把兩個class加起來，這是要該元素同時有這兩個class存在</p>
-<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.className2</span> <span class="selector-tag">div</span> <span class="selector-tag">p</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>:yellow;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><code>(0,0,1,2)</code></p>
-<h3 id="important"><a href="#important" class="headerlink" title="!important"></a>!important</h3><p>這個大魔王，在某些情況希望直接覆蓋掉該元素的屬性，可以在 該屬性後面加上 <code>!important</code>，但是不建議太常使用，會在開發上容易造成不要的困擾。</p>
-<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.className2</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>:yellow <span class="meta">!important</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>frontend_interview</category>
-        <category>frontend</category>
-      </categories>
-      <tags>
-        <tag>css</tag>
+        <tag>Javascript</tag>
         <tag>frontend</tag>
       </tags>
   </entry>

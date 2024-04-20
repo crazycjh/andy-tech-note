@@ -59,18 +59,6 @@
       </tags>
   </entry>
   <entry>
-    <title>如何修改NPM下載的程式碼</title>
-    <url>/andy-tech-note/how-to-edit-sourcecode-installed-by-npm-nodemodule/</url>
-    <content><![CDATA[<p>嘗試對npm下載的node_modules裡面的套件的code做修改，但是發現不論怎麼改都不會生效。<br>才發現在vite &amp; vue3的環境下，vite把一些預先編譯好的東西放到<code>node_modules/.vite</code>中，<br>所以需要手動刪除這個資料夾去讓編譯器去編譯修改過的程式碼，又或者透過 <code>npm run dev --force</code></p>
-]]></content>
-      <categories>
-        <category>frontend</category>
-      </categories>
-      <tags>
-        <tag>npm</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>在vue中把變數傳進css</title>
     <url>/andy-tech-note/vue-ref-css-vbind/</url>
     <content><![CDATA[<p>某些時候會希望動態改變css的樣式高度、寬度、顏色…等等的<br>在vue中可以宣告一個ref變數(composition API)，然後把搭丟到vue檔案中的 <style></style>中，又或者透過inline的方式直接插入到html tag中，舉例如下：</p>
@@ -86,45 +74,6 @@
       <tags>
         <tag>Javascript</tag>
         <tag>vue</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>codemirror 設定(註冊)事件觸發Codemirror.on</title>
-    <url>/andy-tech-note/codemirror-set-eventListener/</url>
-    <content><![CDATA[<h3 id="codemirror"><a href="#codemirror" class="headerlink" title="codemirror"></a>codemirror</h3><p>什麼是codemirror，它是一款可以實現在前端網頁上的編輯器。<br>如同現在網路上看到的文字編輯器一樣，但你可以去設定當使用者做哪些操作時codemirror做哪些對應的行為。<br><a href="https://codemirror.net/5/">CodeMirror v5</a></p>
-<h3 id="如何在codemirror編輯器設定事件觸發"><a href="#如何在codemirror編輯器設定事件觸發" class="headerlink" title="如何在codemirror編輯器設定事件觸發"></a>如何在codemirror編輯器設定事件觸發</h3><p><a href="https://codemirror.net/5/doc/manual.html#events">Event列表</a></p>
-<p>使用 const editor &#x3D; CodeMirror.fromTextArea()建立編輯器instance後<br>在透過這個instance去呼叫 <code>on</code> 這個function</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">editor.on(&quot;change&quot;,(cm,changeObj)=&gt;&#123;                  </span><br><span class="line">    //這個意思是當editor文字有改變時就執行callback function</span><br><span class="line">    </span><br><span class="line">    //do something，這裡也可以加入其他CodeMirror的function執行</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-<p>要怎麼使用on呢？ <a href="https://codemirror.net/5/doc/manual.html#on">官方介紹</a></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cm.on(type: string, func: (...args))</span><br></pre></td></tr></table></figure>
-
-<p>舉例：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//建議以下function可以在頁面建立一併執行(如果是馬上要用到)，on的功能可以看成註冊的概念，把這個功能註冊給editor，條件有達到就會執行</span><br><span class="line">editor.on(&quot;change&quot;,(cm,changeObj)=&gt;&#123;                  </span><br><span class="line">    console.log(changeObj.ch);</span><br><span class="line">    console.log(changeObj.line); </span><br><span class="line">    //在change中會有ch(第幾個位元) line第幾行</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-<p>這裡的cm是指codemirror，在官方頁面中有提到，不管是看到codemirror(簡寫cm)或是doc，在使用上都可以用前面建立好的editor instance(端看使用者怎麼命名)</p>
-<p>on裡面第一的參數 <code>type</code> 也就是 cursorActivity  或者 change 之類的事件，後面callback function裡面的參數，在每個event中都會清楚告訴你有什麼參數可以用。<br>在<code>change</code>中可以使用cm instance以及獲取改變的文字及其相關資訊。</p>
-]]></content>
-      <categories>
-        <category>frontend</category>
-      </categories>
-      <tags>
-        <tag>codemirror</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>codemirror v5 與 v6的差異</title>
-    <url>/andy-tech-note/codemirror-v5-v6-diff/</url>
-    <content><![CDATA[<h3 id="Codemirror-v5"><a href="#Codemirror-v5" class="headerlink" title="Codemirror v5"></a>Codemirror v5</h3><p>版本5 -&gt; 6的資料夾結構變動很大</p>
-<h4 id="v5"><a href="#v5" class="headerlink" title="v5"></a><a href="https://codemirror.net/5/index.html">v5</a></h4><p>v5的所有套件在npm install <code>codemirror</code>時所有功能全部都會幫你下載，所以在node_modules裡面可以找到codemirror資料夾，裡面所有功能都會放在裡面。</p>
-<h4 id="v6"><a href="#v6" class="headerlink" title="v6"></a><a href="https://codemirror.net/">v6</a></h4><p>v6在npm install後，<code>codemirror</code> 的資料夾內容不多，而如果需要使用特定功能需要下指令<br>如下：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">npm install @codemirror/search </span><br></pre></td></tr></table></figure>
-<p>如果需要serch功能，需要先install<br>安裝的功能相關檔案會出現在 @codemirror 資料夾中。</p>
-<p>在查相關資料時要注意是使用v5還是v6版本，否則會發現一直找不到檔案的鬼故事。</p>
-]]></content>
-      <categories>
-        <category>frontend</category>
-      </categories>
-      <tags>
-        <tag>codemirror</tag>
       </tags>
   </entry>
   <entry>
@@ -155,6 +104,40 @@
       </tags>
   </entry>
   <entry>
+    <title>如何修改NPM下載的程式碼</title>
+    <url>/andy-tech-note/how-to-edit-sourcecode-installed-by-npm-nodemodule/</url>
+    <content><![CDATA[<p>嘗試對npm下載的node_modules裡面的套件的code做修改，但是發現不論怎麼改都不會生效。<br>才發現在vite &amp; vue3的環境下，vite把一些預先編譯好的東西放到<code>node_modules/.vite</code>中，<br>所以需要手動刪除這個資料夾去讓編譯器去編譯修改過的程式碼，又或者透過 <code>npm run dev --force</code></p>
+]]></content>
+      <categories>
+        <category>frontend</category>
+      </categories>
+      <tags>
+        <tag>npm</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>codemirror 設定(註冊)事件觸發Codemirror.on</title>
+    <url>/andy-tech-note/codemirror-set-eventListener/</url>
+    <content><![CDATA[<h3 id="codemirror"><a href="#codemirror" class="headerlink" title="codemirror"></a>codemirror</h3><p>什麼是codemirror，它是一款可以實現在前端網頁上的編輯器。<br>如同現在網路上看到的文字編輯器一樣，但你可以去設定當使用者做哪些操作時codemirror做哪些對應的行為。<br><a href="https://codemirror.net/5/">CodeMirror v5</a></p>
+<h3 id="如何在codemirror編輯器設定事件觸發"><a href="#如何在codemirror編輯器設定事件觸發" class="headerlink" title="如何在codemirror編輯器設定事件觸發"></a>如何在codemirror編輯器設定事件觸發</h3><p><a href="https://codemirror.net/5/doc/manual.html#events">Event列表</a></p>
+<p>使用 const editor &#x3D; CodeMirror.fromTextArea()建立編輯器instance後<br>在透過這個instance去呼叫 <code>on</code> 這個function</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">editor.on(&quot;change&quot;,(cm,changeObj)=&gt;&#123;                  </span><br><span class="line">    //這個意思是當editor文字有改變時就執行callback function</span><br><span class="line">    </span><br><span class="line">    //do something，這裡也可以加入其他CodeMirror的function執行</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>要怎麼使用on呢？ <a href="https://codemirror.net/5/doc/manual.html#on">官方介紹</a></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cm.on(type: string, func: (...args))</span><br></pre></td></tr></table></figure>
+
+<p>舉例：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//建議以下function可以在頁面建立一併執行(如果是馬上要用到)，on的功能可以看成註冊的概念，把這個功能註冊給editor，條件有達到就會執行</span><br><span class="line">editor.on(&quot;change&quot;,(cm,changeObj)=&gt;&#123;                  </span><br><span class="line">    console.log(changeObj.ch);</span><br><span class="line">    console.log(changeObj.line); </span><br><span class="line">    //在change中會有ch(第幾個位元) line第幾行</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>這裡的cm是指codemirror，在官方頁面中有提到，不管是看到codemirror(簡寫cm)或是doc，在使用上都可以用前面建立好的editor instance(端看使用者怎麼命名)</p>
+<p>on裡面第一的參數 <code>type</code> 也就是 cursorActivity  或者 change 之類的事件，後面callback function裡面的參數，在每個event中都會清楚告訴你有什麼參數可以用。<br>在<code>change</code>中可以使用cm instance以及獲取改變的文字及其相關資訊。</p>
+]]></content>
+      <categories>
+        <category>frontend</category>
+      </categories>
+      <tags>
+        <tag>codemirror</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>在Wordpress-使用Elementor建立部落格文章版型</title>
     <url>/andy-tech-note/wordpress-elementor/</url>
     <content><![CDATA[<h4 id="Wordpress版型"><a href="#Wordpress版型" class="headerlink" title="Wordpress版型"></a>Wordpress版型</h4><p>很多人使用wordpress都會希望有自己的喜歡的頁面或版型，網路上找到的版型通常找到某些功能很喜歡，<br>但是某些頁面的設定不是很滿意，這時候可以選擇Elementor這個套件來設定頁面排版等等。</p>
@@ -178,14 +161,20 @@
       </tags>
   </entry>
   <entry>
-    <title>chatGPT-想法</title>
-    <url>/andy-tech-note/chatGPT-note/</url>
-    <content><![CDATA[<h3 id="關於chatGPT想法"><a href="#關於chatGPT想法" class="headerlink" title="關於chatGPT想法"></a>關於chatGPT想法</h3><p>網路上有很多人認為chatGPT會造成很多人依賴chatGPT取得資訊，讓人變得更懶。<br>不過我倒不這麼認為，先前在免費時使用過chatGPT，透過他詢問一下關於寫side project的問題，<br>在這過程成會發現如果你對於你的問題沒有具備相應的背景知識時，AI回答給你的答案你根本無從判斷是否有誤，曾經得到的答案發現大方向沒錯，但是小細節是有瑕疵的。</p>
-<p>所以個人認為他可以是輔助人類而非取代人類，至少在寫程式的部分，碰到問題時可以詢問他，有時候他會告訴你某個大方向，而這個方向可能是你在思考時盲點，可以再透過這個方向去找到你需要的答案，這樣可以避免在某個死胡同打轉。</p>
-<h3 id="收費"><a href="#收費" class="headerlink" title="收費"></a>收費</h3><p>2023年2月開始需要收費囉，一個月20美金，以小弟在線上詢問一些問題，而這些問題可能在google可以輕鬆找到，但是有這些問題是有前後關聯的，在google上並不是這麼容易精確的搜尋到答案，chatGPT反而可以接續著前一個問題回答你下一個問題，讓你的思緒更加完整。<br>以一個軟體工程師來說20美元一個月完全值得投資，問幾個問題可以節省更多時間去做別的事，畢竟軟體工程師就是極致懶，可以讓程式完成的事就不想手動完成，當然拉，在這問問題過程中還是要有學到東西才比較好ＸＤ。</p>
+    <title>codemirror v5 與 v6的差異</title>
+    <url>/andy-tech-note/codemirror-v5-v6-diff/</url>
+    <content><![CDATA[<h3 id="Codemirror-v5"><a href="#Codemirror-v5" class="headerlink" title="Codemirror v5"></a>Codemirror v5</h3><p>版本5 -&gt; 6的資料夾結構變動很大</p>
+<h4 id="v5"><a href="#v5" class="headerlink" title="v5"></a><a href="https://codemirror.net/5/index.html">v5</a></h4><p>v5的所有套件在npm install <code>codemirror</code>時所有功能全部都會幫你下載，所以在node_modules裡面可以找到codemirror資料夾，裡面所有功能都會放在裡面。</p>
+<h4 id="v6"><a href="#v6" class="headerlink" title="v6"></a><a href="https://codemirror.net/">v6</a></h4><p>v6在npm install後，<code>codemirror</code> 的資料夾內容不多，而如果需要使用特定功能需要下指令<br>如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">npm install @codemirror/search </span><br></pre></td></tr></table></figure>
+<p>如果需要serch功能，需要先install<br>安裝的功能相關檔案會出現在 @codemirror 資料夾中。</p>
+<p>在查相關資料時要注意是使用v5還是v6版本，否則會發現一直找不到檔案的鬼故事。</p>
 ]]></content>
+      <categories>
+        <category>frontend</category>
+      </categories>
       <tags>
-        <tag>chatGPT</tag>
+        <tag>codemirror</tag>
       </tags>
   </entry>
   <entry>
@@ -231,6 +220,17 @@
       <tags>
         <tag>vue</tag>
         <tag>react</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>chatGPT-想法</title>
+    <url>/andy-tech-note/chatGPT-note/</url>
+    <content><![CDATA[<h3 id="關於chatGPT想法"><a href="#關於chatGPT想法" class="headerlink" title="關於chatGPT想法"></a>關於chatGPT想法</h3><p>網路上有很多人認為chatGPT會造成很多人依賴chatGPT取得資訊，讓人變得更懶。<br>不過我倒不這麼認為，先前在免費時使用過chatGPT，透過他詢問一下關於寫side project的問題，<br>在這過程成會發現如果你對於你的問題沒有具備相應的背景知識時，AI回答給你的答案你根本無從判斷是否有誤，曾經得到的答案發現大方向沒錯，但是小細節是有瑕疵的。</p>
+<p>所以個人認為他可以是輔助人類而非取代人類，至少在寫程式的部分，碰到問題時可以詢問他，有時候他會告訴你某個大方向，而這個方向可能是你在思考時盲點，可以再透過這個方向去找到你需要的答案，這樣可以避免在某個死胡同打轉。</p>
+<h3 id="收費"><a href="#收費" class="headerlink" title="收費"></a>收費</h3><p>2023年2月開始需要收費囉，一個月20美金，以小弟在線上詢問一些問題，而這些問題可能在google可以輕鬆找到，但是有這些問題是有前後關聯的，在google上並不是這麼容易精確的搜尋到答案，chatGPT反而可以接續著前一個問題回答你下一個問題，讓你的思緒更加完整。<br>以一個軟體工程師來說20美元一個月完全值得投資，問幾個問題可以節省更多時間去做別的事，畢竟軟體工程師就是極致懶，可以讓程式完成的事就不想手動完成，當然拉，在這問問題過程中還是要有學到東西才比較好ＸＤ。</p>
+]]></content>
+      <tags>
+        <tag>chatGPT</tag>
       </tags>
   </entry>
   <entry>
@@ -486,6 +486,7 @@
 <h5 id="defer"><a href="#defer" class="headerlink" title="defer"></a>defer</h5><p>也同是在背景下載不影響<code>DOM</code>的解析，但是他會等到<code>DOM</code>完全解析完才執行，而若是有多個js有互相依賴的行為可以以 <code>defer</code> 方式執行，只要按照執行順序去寫<code>script</code>即可</p>
 ]]></content>
       <categories>
+        <category>frontend</category>
         <category>frontend_interview</category>
       </categories>
       <tags>
@@ -512,6 +513,7 @@
 <p>item為arr中的每個元素，acc為reduce的第一個參數，假設想要把所有的值加起來，就可以用reduce來做，把每次值都累加到acc上，然後回傳最終值。</p>
 ]]></content>
       <categories>
+        <category>frontend</category>
         <category>frontend_interview</category>
       </categories>
       <tags>
@@ -539,6 +541,7 @@
 <figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.className2</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>:yellow <span class="meta">!important</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 ]]></content>
       <categories>
+        <category>frontend</category>
         <category>frontend_interview</category>
       </categories>
       <tags>
@@ -562,6 +565,27 @@
 <p>用法實在很多元，有興趣的可以去MDN文件看看</p>
 ]]></content>
       <categories>
+        <category>frontend</category>
+        <category>frontend_interview</category>
+      </categories>
+      <tags>
+        <tag>Javascript</tag>
+        <tag>Frontend</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Javascript建構子函式繼承及ES6的class方式的繼承</title>
+    <url>/andy-tech-note/Javascript-constructor-function-inheritance_es6_class/</url>
+    <content><![CDATA[<h2 id="如何以建構函式的方式達到繼承"><a href="#如何以建構函式的方式達到繼承" class="headerlink" title="如何以建構函式的方式達到繼承"></a>如何以建構函式的方式達到繼承</h2><p>繼承在OOP物件導向的語言中很常見，而在Javascript中並不是真正的物件導向的語言，所以在Javascript中繼承的方式就不一樣，這裡用建構子函式的方式來實作繼承。</p>
+<h3 id="建構子函式的繼承"><a href="#建構子函式的繼承" class="headerlink" title="建構子函式的繼承"></a>建構子函式的繼承</h3><p>在Javascript中，我們可以用建構子函式的方式達到繼承，如果現在有一個Vehicle的父建構函式(父類別)而後我要建立一個Car子建構函式(子類別)，而若是我希望繼承Vehicle裡面的property，可以如下操作：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">//建立父建構函式及其prototype</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">Vehicle</span>(<span class="params">type, length, width</span>) &#123;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">type</span> =  type;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">length</span> = length;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">width</span> = width;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 建立一個method</span></span><br><span class="line"><span class="title class_">Vehicle</span>.<span class="property"><span class="keyword">prototype</span></span>.<span class="property">start</span> = <span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;start&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//繼承Vehicle的prototype</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">Car</span>(<span class="params">type, length, width, color</span>) &#123;</span><br><span class="line">    <span class="title class_">Vehicle</span>.<span class="title function_">call</span>(<span class="variable language_">this</span>, type, length, width);</span><br><span class="line">    <span class="comment">//把Vehicle的prototype的property繼承到Car的prototype constructor中</span></span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">color</span> = color;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//建立一個與Vehicle相同的prototype給Car.prototype</span></span><br><span class="line"><span class="title class_">Car</span>.<span class="property"><span class="keyword">prototype</span></span> = <span class="title class_">Object</span>.<span class="title function_">create</span>(<span class="title class_">Vehicle</span>.<span class="property"><span class="keyword">prototype</span></span>); </span><br><span class="line"></span><br><span class="line"><span class="comment">// 但因為其constructor是希望使用Car自己的也就是this.color這些自訂的property，所以我們要把Car.prototype.constructor指向Car  </span></span><br><span class="line"><span class="title class_">Car</span>.<span class="property"><span class="keyword">prototype</span></span>.<span class="property">constructor</span> = <span class="title class_">Car</span>;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//建立一個Car的instance</span></span><br><span class="line"><span class="keyword">const</span> myCar = <span class="keyword">new</span> <span class="title class_">Car</span>(<span class="string">&quot;BMW&quot;</span>, <span class="number">150</span>, <span class="number">100</span>, <span class="string">&quot;red&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//使用繼承vehicle的method  </span></span><br><span class="line">myCar.<span class="title function_">start</span>();</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(myCar.<span class="property">color</span>);</span><br><span class="line"><span class="comment">// red</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 而若是要在Car新增method，可以這沒做</span></span><br><span class="line"><span class="title class_">Car</span>.<span class="property"><span class="keyword">prototype</span></span>.<span class="property">stop</span> = <span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;stop&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">myCar.<span class="title function_">stop</span>();</span><br><span class="line"><span class="comment">// stop</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h3 id="改以ES6的class方式達到繼承"><a href="#改以ES6的class方式達到繼承" class="headerlink" title="改以ES6的class方式達到繼承"></a>改以ES6的class方式達到繼承</h3><p>這樣就清晰易懂的多了，但是Class只是Javascript的語法糖，讓使用者可以更容易實現繼承，但其底層的原理還是以prototype chain的方式達到繼承。範例如下：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Vehicle</span> &#123;</span><br><span class="line">  <span class="title function_">constructor</span>(<span class="params">type, length, width</span>) &#123;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">type</span> = type;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">length</span> = length;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">width</span> = width;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="title function_">start</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;start&quot;</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Car</span> <span class="keyword">extends</span> <span class="title class_ inherited__">Vehicle</span> &#123;</span><br><span class="line">  <span class="title function_">constructor</span>(<span class="params">type, length, width, color</span>) &#123;</span><br><span class="line">    <span class="variable language_">super</span>(type, length, width); <span class="comment">// 把vehicle的constructor繼承過來並且把this指向Car</span></span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">color</span> = color;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="title function_">stop</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;stop&quot;</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> myCar = <span class="keyword">new</span> <span class="title class_">Car</span>(<span class="string">&quot;BMW&quot;</span>, <span class="number">150</span>, <span class="number">100</span>, <span class="string">&quot;red&quot;</span>);</span><br><span class="line"></span><br><span class="line">myCar.<span class="title function_">start</span>();</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(myCar.<span class="property">color</span>); <span class="comment">// red</span></span><br><span class="line">myCar.<span class="title function_">stop</span>();</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>frontend</category>
         <category>frontend_interview</category>
       </categories>
       <tags>
@@ -594,43 +618,6 @@
 ]]></content>
       <categories>
         <category>frontend</category>
-        <category>frontend_interview</category>
-      </categories>
-      <tags>
-        <tag>Javascript</tag>
-        <tag>Frontend</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Javascript中使用structuredClone做深拷貝</title>
-    <url>/andy-tech-note/structuredClone-deep-clone/</url>
-    <content><![CDATA[<h2 id="深拷貝是什麼？"><a href="#深拷貝是什麼？" class="headerlink" title="深拷貝是什麼？"></a>深拷貝是什麼？</h2><p>先前有寫過如何處理深拷貝，深拷貝是要幹嘛？<br>簡單的說就是當有個物件他裡面有巢狀結構，不只有一層，如果直接以變數assign的方式賦值給一個新的變數，這時候在第二層開始的元素會是指向原先的物件，所以當使用者在對新的物件第二層的元素操作時就會修改到舊有的物件的值，這時候就需要深拷貝來處理，詳細請參閱👇</p>
-<p><a href="https://crazycjh.github.io/andy-tech-note/deep-copy-Shallow-copy/">在JS中複製object-深拷貝&#x2F;淺拷貝</a>。</p>
-<h3 id="進階版structuredClone"><a href="#進階版structuredClone" class="headerlink" title="進階版structuredClone"></a>進階版structuredClone</h3><p>先前都是使用JSON.stringify &amp; JSON.parse來組合處理，現在只要透過structuredClone來處理，這個有什麼差異呢？<br>舊有的方法只能準確地處理 primitive Value，若是碰到Map, Set 非primitive的物件就會被變成空object{}，也就會造成資料的不完整。</p>
-<p>可以看以下程式碼 或是<a href="https://codepen.io/jean-hao-chen/pen/KKYxPOe">玩玩看</a></p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> obj = &#123;</span><br><span class="line">  <span class="string">&#x27;name&#x27;</span>: <span class="string">&#x27;Andy&#x27;</span>, </span><br><span class="line">  <span class="string">&#x27;profile&#x27;</span>: &#123;</span><br><span class="line">    <span class="attr">height</span>:<span class="number">182</span>,</span><br><span class="line">    <span class="attr">age</span>:<span class="number">18</span>,</span><br><span class="line">    <span class="attr">fn</span>: <span class="keyword">new</span> <span class="title class_">Set</span>([<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>])</span><br><span class="line">    </span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> objStructuredClone = <span class="title function_">structuredClone</span>(obj);</span><br><span class="line"><span class="keyword">const</span> objJson = <span class="title class_">JSON</span>.<span class="title function_">parse</span>(<span class="title class_">JSON</span>.<span class="title function_">stringify</span>(obj))</span><br><span class="line"></span><br><span class="line">objStructuredClone[<span class="string">&#x27;profile&#x27;</span>][<span class="string">&#x27;age&#x27;</span>] = <span class="number">35</span>;</span><br><span class="line">objStructuredClone[<span class="string">&#x27;profile&#x27;</span>][<span class="string">&#x27;fn&#x27;</span>].<span class="title function_">add</span>(<span class="number">5</span>);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(objStructuredClone[<span class="string">&#x27;profile&#x27;</span>][<span class="string">&#x27;fn&#x27;</span>]);</span><br><span class="line"><span class="comment">// Set(4) &#123;1, 2, 3, 5&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(obj[<span class="string">&#x27;profile&#x27;</span>][<span class="string">&#x27;fn&#x27;</span>]);</span><br><span class="line"><span class="comment">// Set(3) &#123;1, 2, 3&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(objJson[<span class="string">&#x27;profile&#x27;</span>][<span class="string">&#x27;fn&#x27;</span>])</span><br><span class="line"><span class="comment">// &#123;&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(objStructuredClone[<span class="string">&#x27;profile&#x27;</span>]);</span><br><span class="line"><span class="comment">// &#123;height: 182, age: 35, fn: Set(4) &#123;1, 2, 3, 5&#125;&#125;</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(obj[<span class="string">&#x27;profile&#x27;</span>]);</span><br><span class="line"><span class="comment">// &#123;height: 182, age: 18, fn: Set(3) &#123;1, 2, 3&#125;&#125;</span></span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <categories>
-        <category>frontend_interview</category>
-      </categories>
-      <tags>
-        <tag>Javascript</tag>
-        <tag>Frontend</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Javascript建構子函式繼承及ES6的class方式的繼承</title>
-    <url>/andy-tech-note/Javascript-constructor-function-inheritance_es6_class/</url>
-    <content><![CDATA[<h2 id="如何以建構函式的方式達到繼承"><a href="#如何以建構函式的方式達到繼承" class="headerlink" title="如何以建構函式的方式達到繼承"></a>如何以建構函式的方式達到繼承</h2><p>繼承在OOP物件導向的語言中很常見，而在Javascript中並不是真正的物件導向的語言，所以在Javascript中繼承的方式就不一樣，這裡用建構子函式的方式來實作繼承。</p>
-<h3 id="建構子函式的繼承"><a href="#建構子函式的繼承" class="headerlink" title="建構子函式的繼承"></a>建構子函式的繼承</h3><p>在Javascript中，我們可以用建構子函式的方式達到繼承，如果現在有一個Vehicle的父建構函式(父類別)而後我要建立一個Car子建構函式(子類別)，而若是我希望繼承Vehicle裡面的property，可以如下操作：</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">//建立父建構函式及其prototype</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">Vehicle</span>(<span class="params">type, length, width</span>) &#123;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">type</span> =  type;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">length</span> = length;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">width</span> = width;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 建立一個method</span></span><br><span class="line"><span class="title class_">Vehicle</span>.<span class="property"><span class="keyword">prototype</span></span>.<span class="property">start</span> = <span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;start&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//繼承Vehicle的prototype</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">Car</span>(<span class="params">type, length, width, color</span>) &#123;</span><br><span class="line">    <span class="title class_">Vehicle</span>.<span class="title function_">call</span>(<span class="variable language_">this</span>, type, length, width);</span><br><span class="line">    <span class="comment">//把Vehicle的prototype的property繼承到Car的prototype constructor中</span></span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">color</span> = color;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//建立一個與Vehicle相同的prototype給Car.prototype</span></span><br><span class="line"><span class="title class_">Car</span>.<span class="property"><span class="keyword">prototype</span></span> = <span class="title class_">Object</span>.<span class="title function_">create</span>(<span class="title class_">Vehicle</span>.<span class="property"><span class="keyword">prototype</span></span>); </span><br><span class="line"></span><br><span class="line"><span class="comment">// 但因為其constructor是希望使用Car自己的也就是this.color這些自訂的property，所以我們要把Car.prototype.constructor指向Car  </span></span><br><span class="line"><span class="title class_">Car</span>.<span class="property"><span class="keyword">prototype</span></span>.<span class="property">constructor</span> = <span class="title class_">Car</span>;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//建立一個Car的instance</span></span><br><span class="line"><span class="keyword">const</span> myCar = <span class="keyword">new</span> <span class="title class_">Car</span>(<span class="string">&quot;BMW&quot;</span>, <span class="number">150</span>, <span class="number">100</span>, <span class="string">&quot;red&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//使用繼承vehicle的method  </span></span><br><span class="line">myCar.<span class="title function_">start</span>();</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(myCar.<span class="property">color</span>);</span><br><span class="line"><span class="comment">// red</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 而若是要在Car新增method，可以這沒做</span></span><br><span class="line"><span class="title class_">Car</span>.<span class="property"><span class="keyword">prototype</span></span>.<span class="property">stop</span> = <span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;stop&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">myCar.<span class="title function_">stop</span>();</span><br><span class="line"><span class="comment">// stop</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h3 id="改以ES6的class方式達到繼承"><a href="#改以ES6的class方式達到繼承" class="headerlink" title="改以ES6的class方式達到繼承"></a>改以ES6的class方式達到繼承</h3><p>這樣就清晰易懂的多了，但是Class只是Javascript的語法糖，讓使用者可以更容易實現繼承，但其底層的原理還是以prototype chain的方式達到繼承。範例如下：</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Vehicle</span> &#123;</span><br><span class="line">  <span class="title function_">constructor</span>(<span class="params">type, length, width</span>) &#123;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">type</span> = type;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">length</span> = length;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">width</span> = width;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="title function_">start</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;start&quot;</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Car</span> <span class="keyword">extends</span> <span class="title class_ inherited__">Vehicle</span> &#123;</span><br><span class="line">  <span class="title function_">constructor</span>(<span class="params">type, length, width, color</span>) &#123;</span><br><span class="line">    <span class="variable language_">super</span>(type, length, width); <span class="comment">// 把vehicle的constructor繼承過來並且把this指向Car</span></span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">color</span> = color;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="title function_">stop</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;stop&quot;</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> myCar = <span class="keyword">new</span> <span class="title class_">Car</span>(<span class="string">&quot;BMW&quot;</span>, <span class="number">150</span>, <span class="number">100</span>, <span class="string">&quot;red&quot;</span>);</span><br><span class="line"></span><br><span class="line">myCar.<span class="title function_">start</span>();</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(myCar.<span class="property">color</span>); <span class="comment">// red</span></span><br><span class="line">myCar.<span class="title function_">stop</span>();</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <categories>
         <category>frontend_interview</category>
       </categories>
       <tags>
@@ -678,6 +665,42 @@
 </ul>
 ]]></content>
       <categories>
+        <category>frontend</category>
+        <category>frontend_interview</category>
+      </categories>
+      <tags>
+        <tag>Javascript</tag>
+        <tag>Frontend</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Javascript中使用structuredClone做深拷貝</title>
+    <url>/andy-tech-note/structuredClone-deep-clone/</url>
+    <content><![CDATA[<h2 id="深拷貝是什麼？"><a href="#深拷貝是什麼？" class="headerlink" title="深拷貝是什麼？"></a>深拷貝是什麼？</h2><p>先前有寫過如何處理深拷貝，深拷貝是要幹嘛？<br>簡單的說就是當有個物件他裡面有巢狀結構，不只有一層，如果直接以變數assign的方式賦值給一個新的變數，這時候在第二層開始的元素會是指向原先的物件，所以當使用者在對新的物件第二層的元素操作時就會修改到舊有的物件的值，這時候就需要深拷貝來處理，詳細請參閱👇</p>
+<p><a href="https://crazycjh.github.io/andy-tech-note/deep-copy-Shallow-copy/">在JS中複製object-深拷貝&#x2F;淺拷貝</a>。</p>
+<h3 id="進階版structuredClone"><a href="#進階版structuredClone" class="headerlink" title="進階版structuredClone"></a>進階版structuredClone</h3><p>先前都是使用JSON.stringify &amp; JSON.parse來組合處理，現在只要透過structuredClone來處理，這個有什麼差異呢？<br>舊有的方法只能準確地處理 primitive Value，若是碰到Map, Set 非primitive的物件就會被變成空object{}，也就會造成資料的不完整。</p>
+<p>可以看以下程式碼 或是<a href="https://codepen.io/jean-hao-chen/pen/KKYxPOe">玩玩看</a></p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> obj = &#123;</span><br><span class="line">  <span class="string">&#x27;name&#x27;</span>: <span class="string">&#x27;Andy&#x27;</span>, </span><br><span class="line">  <span class="string">&#x27;profile&#x27;</span>: &#123;</span><br><span class="line">    <span class="attr">height</span>:<span class="number">182</span>,</span><br><span class="line">    <span class="attr">age</span>:<span class="number">18</span>,</span><br><span class="line">    <span class="attr">fn</span>: <span class="keyword">new</span> <span class="title class_">Set</span>([<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>])</span><br><span class="line">    </span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> objStructuredClone = <span class="title function_">structuredClone</span>(obj);</span><br><span class="line"><span class="keyword">const</span> objJson = <span class="title class_">JSON</span>.<span class="title function_">parse</span>(<span class="title class_">JSON</span>.<span class="title function_">stringify</span>(obj))</span><br><span class="line"></span><br><span class="line">objStructuredClone[<span class="string">&#x27;profile&#x27;</span>][<span class="string">&#x27;age&#x27;</span>] = <span class="number">35</span>;</span><br><span class="line">objStructuredClone[<span class="string">&#x27;profile&#x27;</span>][<span class="string">&#x27;fn&#x27;</span>].<span class="title function_">add</span>(<span class="number">5</span>);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(objStructuredClone[<span class="string">&#x27;profile&#x27;</span>][<span class="string">&#x27;fn&#x27;</span>]);</span><br><span class="line"><span class="comment">// Set(4) &#123;1, 2, 3, 5&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(obj[<span class="string">&#x27;profile&#x27;</span>][<span class="string">&#x27;fn&#x27;</span>]);</span><br><span class="line"><span class="comment">// Set(3) &#123;1, 2, 3&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(objJson[<span class="string">&#x27;profile&#x27;</span>][<span class="string">&#x27;fn&#x27;</span>])</span><br><span class="line"><span class="comment">// &#123;&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(objStructuredClone[<span class="string">&#x27;profile&#x27;</span>]);</span><br><span class="line"><span class="comment">// &#123;height: 182, age: 35, fn: Set(4) &#123;1, 2, 3, 5&#125;&#125;</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(obj[<span class="string">&#x27;profile&#x27;</span>]);</span><br><span class="line"><span class="comment">// &#123;height: 182, age: 18, fn: Set(3) &#123;1, 2, 3&#125;&#125;</span></span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>frontend</category>
+        <category>frontend_interview</category>
+      </categories>
+      <tags>
+        <tag>Javascript</tag>
+        <tag>Frontend</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Javascript事件冒泡Event Bubbling</title>
+    <url>/andy-tech-note/javascript-event-bubbling/</url>
+    <content><![CDATA[<h2 id="事件冒泡Event-Bubbling"><a href="#事件冒泡Event-Bubbling" class="headerlink" title="事件冒泡Event Bubbling"></a>事件冒泡Event Bubbling</h2><p>事件冒泡是DOM中對事件處理的一種機制。<br>當在DOM中的某個元素（例如，一個按鈕）發生事件（如點擊）時，這個事件不僅在該元素上觸發，還會沿著DOM樹向上冒泡，依次觸發其父元素、父元素的父元素，一直到最頂層的document物件，這一路上的元素都可以收到事件觸發。</p>
+<p>例子：假設你希望在一個容器（div）內的所有元素被點擊時執行相同的操作(console.log(‘click’))，你可以在這個容器上設置一個事件監聽器（<code>event listener</code>）。<br>當容器內的任何一個元素被點擊時，點擊事件會通過事件冒泡機制向上傳遞，最終抵達這個容器。一旦事件到達容器，就會觸發設置在容器上的callback function(這裡設定console.log(‘click’))。</p>
+<p>上面的例子稱作<code>事件委託</code>，它利用了事件冒泡的特性來簡化對多個元素的事件處理，同時提升程式效能，也不需要每個元素都去設定事件監聽。特別是對於動態加入到容器中的新元素，無需單獨為它們綁定事件監聽器，事件委託可以自動地管理它們的事件。</p>
+]]></content>
+      <categories>
+        <category>frontend</category>
         <category>frontend_interview</category>
       </categories>
       <tags>
@@ -705,21 +728,7 @@
 <p>Arrow Function 如下：</p>
 <figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="title function_">exampleFunction</span>()</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="title function_">exampleFunction</span> = (<span class="params"></span>) =&gt; &#123;</span><br><span class="line">  <span class="keyword">let</span> a = <span class="number">5</span>;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(a);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
       <categories>
-        <category>frontend_interview</category>
-      </categories>
-      <tags>
-        <tag>Javascript</tag>
-        <tag>Frontend</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Javascript事件冒泡Event Bubbling</title>
-    <url>/andy-tech-note/javascript-event-bubbling/</url>
-    <content><![CDATA[<h2 id="事件冒泡Event-Bubbling"><a href="#事件冒泡Event-Bubbling" class="headerlink" title="事件冒泡Event Bubbling"></a>事件冒泡Event Bubbling</h2><p>事件冒泡是DOM中對事件處理的一種機制。<br>當在DOM中的某個元素（例如，一個按鈕）發生事件（如點擊）時，這個事件不僅在該元素上觸發，還會沿著DOM樹向上冒泡，依次觸發其父元素、父元素的父元素，一直到最頂層的document物件，這一路上的元素都可以收到事件觸發。</p>
-<p>例子：假設你希望在一個容器（div）內的所有元素被點擊時執行相同的操作(console.log(‘click’))，你可以在這個容器上設置一個事件監聽器（<code>event listener</code>）。<br>當容器內的任何一個元素被點擊時，點擊事件會通過事件冒泡機制向上傳遞，最終抵達這個容器。一旦事件到達容器，就會觸發設置在容器上的callback function(這裡設定console.log(‘click’))。</p>
-<p>上面的例子稱作<code>事件委託</code>，它利用了事件冒泡的特性來簡化對多個元素的事件處理，同時提升程式效能，也不需要每個元素都去設定事件監聽。特別是對於動態加入到容器中的新元素，無需單獨為它們綁定事件監聽器，事件委託可以自動地管理它們的事件。</p>
-]]></content>
-      <categories>
+        <category>frontend</category>
         <category>frontend_interview</category>
       </categories>
       <tags>

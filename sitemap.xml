@@ -2,6 +2,33 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://crazycjh.github.io/andy-tech-note/wordpress-elementor/</loc>
+    
+    <lastmod>2024-04-20</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://crazycjh.github.io/andy-tech-note/promise-async/</loc>
+    
+    <lastmod>2024-04-20</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://crazycjh.github.io/andy-tech-note/codemirror-v5-v6-diff/</loc>
+    
+    <lastmod>2024-04-20</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>http://crazycjh.github.io/andy-tech-note/javascript-event-bubbling/</loc>
     
     <lastmod>2024-04-20</lastmod>
@@ -182,15 +209,6 @@
   </url>
   
   <url>
-    <loc>http://crazycjh.github.io/andy-tech-note/promise-async/</loc>
-    
-    <lastmod>2024-04-20</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>http://crazycjh.github.io/andy-tech-note/firebase-auth/</loc>
     
     <lastmod>2024-04-20</lastmod>
@@ -219,24 +237,6 @@
   
   <url>
     <loc>http://crazycjh.github.io/andy-tech-note/chatGPT-note/</loc>
-    
-    <lastmod>2024-04-20</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://crazycjh.github.io/andy-tech-note/wordpress-elementor/</loc>
-    
-    <lastmod>2024-04-20</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://crazycjh.github.io/andy-tech-note/codemirror-v5-v6-diff/</loc>
     
     <lastmod>2024-04-20</lastmod>
     
@@ -388,21 +388,7 @@
   </url>
   
   <url>
-    <loc>http://crazycjh.github.io/andy-tech-note/tags/Wordpress/</loc>
-    <lastmod>2024-04-20</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>http://crazycjh.github.io/andy-tech-note/tags/chatGPT/</loc>
-    <lastmod>2024-04-20</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>http://crazycjh.github.io/andy-tech-note/tags/react/</loc>
+    <loc>http://crazycjh.github.io/andy-tech-note/tags/wordpress/</loc>
     <lastmod>2024-04-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -416,14 +402,21 @@
   </url>
   
   <url>
-    <loc>http://crazycjh.github.io/andy-tech-note/tags/firebase/</loc>
+    <loc>http://crazycjh.github.io/andy-tech-note/tags/react/</loc>
     <lastmod>2024-04-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>http://crazycjh.github.io/andy-tech-note/tags/Javascript/</loc>
+    <loc>http://crazycjh.github.io/andy-tech-note/tags/chatGPT/</loc>
+    <lastmod>2024-04-20</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://crazycjh.github.io/andy-tech-note/tags/firebase/</loc>
     <lastmod>2024-04-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -472,13 +465,6 @@
   </url>
   
   <url>
-    <loc>http://crazycjh.github.io/andy-tech-note/tags/wordpress/</loc>
-    <lastmod>2024-04-20</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>http://crazycjh.github.io/andy-tech-note/tags/frontend/</loc>
     <lastmod>2024-04-20</lastmod>
     <changefreq>weekly</changefreq>
@@ -495,14 +481,7 @@
   </url>
   
   <url>
-    <loc>http://crazycjh.github.io/andy-tech-note/categories/Frontend/</loc>
-    <lastmod>2024-04-20</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>http://crazycjh.github.io/andy-tech-note/categories/Wordpress/</loc>
+    <loc>http://crazycjh.github.io/andy-tech-note/categories/wordpress/</loc>
     <lastmod>2024-04-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>

@@ -1,6 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>JS中的Async/Sync</title>
+    <url>/andy-tech-note/Javascript-async-sync/</url>
+    <content><![CDATA[<h2 id="同步與非同步？"><a href="#同步與非同步？" class="headerlink" title="同步與非同步？"></a>同步與非同步？</h2><h4 id="什麼是同步"><a href="#什麼是同步" class="headerlink" title="什麼是同步"></a>什麼是同步</h4><p>一般來說JS都是以 <code>同步synchronous</code> 的方式執行程式碼，以圖中左邊來說，由上而下的時間軸順序執行程式碼，每次只做一件事，<br>以<code>同步</code>的字面上來說很像是同時做很多件事，但其實是一次只執行一件事。</p>
+<h4 id="什麼是非同步"><a href="#什麼是非同步" class="headerlink" title="什麼是非同步"></a>什麼是非同步</h4><p>什麼又是 <code>非同步</code> ，上面提到的一次只能一次做一件，以下圖來看的意思就是，某些時候會有些運算或是網路請求耗時會較長，但我們又不希望整個程式碼因為要等待某個function執行完畢才往下繼續執行，這時候就需要非同步。<br>想像一下，你在正瀏覽某個網頁，因為點擊某個按鈕，而這按鈕因為需要做些費時較長的功能，而因為這樣頁面就卡住無法瀏覽，這樣使用者體驗應該會很差吧？</p>
+<ul>
+<li>舉例：JS中有個function <code>setTimeout()</code> 是可以在這裡面寫一個callback function，在設定的倒數時間到之後執行它，那如果現在他是以同步的方式執行，這樣程式碼會卡在那邊等到時間到才能往下繼續執行，那如果是非同步，程式碼會繼續往下執行之外同時在背景還會繼續倒數直到時間到執行設定好的callback function。</li>
+</ul>
+<p><img src="https://crazycjh.github.io/andy-tech-note/icons/avatar.jpg" data-original="https://www.freecodecamp.org/news/content/images/2021/09/freeCodeCamp-Cover-2.png" alt="async"></p>
+]]></content>
+      <categories>
+        <category>frontend</category>
+      </categories>
+      <tags>
+        <tag>async</tag>
+        <tag>Javascript</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>如何在vue上建立codemirror編輯器</title>
     <url>/andy-tech-note/how-to-create-codemirror/</url>
     <content><![CDATA[<h3 id="什麼是codemirror"><a href="#什麼是codemirror" class="headerlink" title="什麼是codemirror"></a>什麼是codemirror</h3><p>codemirror是一個可以應用在web頁面的程式碼編輯器。</p>
@@ -22,24 +40,6 @@
         <category>frontend</category>
       </categories>
       <tags>
-        <tag>Javascript</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>JS中的Async/Sync</title>
-    <url>/andy-tech-note/Javascript-async-sync/</url>
-    <content><![CDATA[<h2 id="同步與非同步？"><a href="#同步與非同步？" class="headerlink" title="同步與非同步？"></a>同步與非同步？</h2><h4 id="什麼是同步"><a href="#什麼是同步" class="headerlink" title="什麼是同步"></a>什麼是同步</h4><p>一般來說JS都是以 <code>同步synchronous</code> 的方式執行程式碼，以圖中左邊來說，由上而下的時間軸順序執行程式碼，每次只做一件事，<br>以<code>同步</code>的字面上來說很像是同時做很多件事，但其實是一次只執行一件事。</p>
-<h4 id="什麼是非同步"><a href="#什麼是非同步" class="headerlink" title="什麼是非同步"></a>什麼是非同步</h4><p>什麼又是 <code>非同步</code> ，上面提到的一次只能一次做一件，以下圖來看的意思就是，某些時候會有些運算或是網路請求耗時會較長，但我們又不希望整個程式碼因為要等待某個function執行完畢才往下繼續執行，這時候就需要非同步。<br>想像一下，你在正瀏覽某個網頁，因為點擊某個按鈕，而這按鈕因為需要做些費時較長的功能，而因為這樣頁面就卡住無法瀏覽，這樣使用者體驗應該會很差吧？</p>
-<ul>
-<li>舉例：JS中有個function <code>setTimeout()</code> 是可以在這裡面寫一個callback function，在設定的倒數時間到之後執行它，那如果現在他是以同步的方式執行，這樣程式碼會卡在那邊等到時間到才能往下繼續執行，那如果是非同步，程式碼會繼續往下執行之外同時在背景還會繼續倒數直到時間到執行設定好的callback function。</li>
-</ul>
-<p><img src="https://crazycjh.github.io/andy-tech-note/icons/avatar.jpg" data-original="https://www.freecodecamp.org/news/content/images/2021/09/freeCodeCamp-Cover-2.png" alt="async"></p>
-]]></content>
-      <categories>
-        <category>frontend</category>
-      </categories>
-      <tags>
-        <tag>async</tag>
         <tag>Javascript</tag>
       </tags>
   </entry>
@@ -71,21 +71,47 @@
       </tags>
   </entry>
   <entry>
-    <title>在vue中把變數傳進css</title>
-    <url>/andy-tech-note/vue-ref-css-vbind/</url>
-    <content><![CDATA[<p>某些時候會希望動態改變css的樣式高度、寬度、顏色…等等的<br>在vue中可以宣告一個ref變數(composition API)，然後把搭丟到vue檔案中的 <style></style>中，又或者透過inline的方式直接插入到html tag中，舉例如下：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">setup()&#123;</span><br><span class="line">    const mdSize = ref(&quot;100px&quot;);</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="傳到-lt-style-gt"><a href="#傳到-lt-style-gt" class="headerlink" title="傳到 &lt;style&gt;"></a>傳到 <code>&lt;style&gt;</code></h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;div class=&quot;md-size&quot;&gt;&lt;/div&gt; //在這裏class不需要v-bind</span><br><span class="line">&lt;style&gt;</span><br><span class="line">.md-size&#123;</span><br><span class="line">    height:v-bind(mdSize);</span><br><span class="line">&#125;</span><br><span class="line">&lt;/style&gt;    </span><br></pre></td></tr></table></figure>
+    <title>在JS中複製object-深拷貝/淺拷貝</title>
+    <url>/andy-tech-note/deep-copy-Shallow-copy/</url>
+    <content><![CDATA[<h3 id="在JS複製object"><a href="#在JS複製object" class="headerlink" title="在JS複製object"></a>在JS複製object</h3><p>在寫code有時候會需要使用某些變數或是object，但是又不希望直接對其做操作，因為可能在其他地方會繼續使用原始的object，<br>這時候就會宣告一個新的變數去把原先的object assign過去。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">const source = &#123;name:&#x27;Andy&#x27;,coutry:&#x27;Taiwan&#x27;,phone:&#x27;0911-111-111&#x27;&#125;</span><br><span class="line">//原始資料</span><br><span class="line"></span><br><span class="line">const destination = source </span><br><span class="line">//新變數</span><br><span class="line">destination.name = &#x27;Rendy&#x27;;</span><br><span class="line"></span><br><span class="line">console.log(destination.name);  //結果: Rendy</span><br><span class="line">console.log(source.name);       //結果: Rendy</span><br></pre></td></tr></table></figure>
 
-<h3 id="以傳值的方式丟到inline"><a href="#以傳值的方式丟到inline" class="headerlink" title="以傳值的方式丟到inline"></a>以傳值的方式丟到inline</h3><p>搭配v-bind 也就是縮寫 “:”<br>把mdSize放進去style</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;button :style=&quot;&#123; height: mdSize &#125;&quot; &gt; 按鈕名稱 &lt;/button&gt;</span><br></pre></td></tr></table></figure>
+<p>會發現，變更 <code>destination</code> 同時也變更 <code>source</code> 裡面的值。<br>這就要提到 call by value 以及 call by reference</p>
+<h3 id="call-by-value-x2F-call-by-object"><a href="#call-by-value-x2F-call-by-object" class="headerlink" title="call by value &#x2F; call by object"></a>call by value &#x2F; call by object</h3><h4 id="什麼是call-by-value"><a href="#什麼是call-by-value" class="headerlink" title="什麼是call by value?"></a>什麼是call by value?</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">let x =1;</span><br><span class="line">let y = x;</span><br><span class="line"></span><br><span class="line">console.log(y); // 結果:1</span><br><span class="line">y=10;</span><br><span class="line">console.log(y); //結果:10</span><br><span class="line">console.log(x); //結果:1</span><br></pre></td></tr></table></figure>
+<p>以一般變數assign來說，是以call by value，也就是說直接把 <code>x</code> 的值傳給 <code>y</code></p>
+<h4 id="什麼又是-call-by-reference"><a href="#什麼又是-call-by-reference" class="headerlink" title="什麼又是 call by reference?"></a>什麼又是 call by reference?</h4><p>在一開始的object assign方法就是 call by reference，意思就是說 <code>source</code> 這個變數在assign給 <code>destination</code> 時，他是以傳遞記憶體位址方式給<code>destination</code>，可以想像 <code>destination</code> 就是儲存一個記憶體位置，當程式要讀取資料時就會透過這個位置去存取這個記憶體位置實際儲存的值。</p>
+<p>所以這樣就可以很明確的瞭解為什麼改變object的值的時候，<code>source</code> <code>destination</code> 裡面的值會被同步更動，因為兩者都是指到同一個記憶體位置。</p>
+<h4 id="要怎麼做才能不更動-source-的值"><a href="#要怎麼做才能不更動-source-的值" class="headerlink" title="要怎麼做才能不更動 source 的值"></a>要怎麼做才能不更動 source 的值</h4><p>不更動的方式有兩種： <em>淺拷貝跟深拷貝</em></p>
+<h4 id="淺拷貝"><a href="#淺拷貝" class="headerlink" title="淺拷貝"></a>淺拷貝</h4><p>字面意思就是比較淺，<br>這時候就會使用Object.assign <a href="https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Global_Objects/Object/assign">MDN介紹</a><br>舉例：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//Object.assign()</span><br><span class="line">const source = &#123;name:&#x27;Andy&#x27;,coutry:&#x27;Taiwan&#x27;,phone:&#x27;0911-111-111&#x27;,detail:&#123;age:10, job:&#x27;photographer&#x27;&#125;&#125;</span><br><span class="line">//原始資料</span><br><span class="line"></span><br><span class="line">const destination = &#123;&#125; </span><br><span class="line">Object.assign(destination,source);  //把objec assign 給 destination</span><br><span class="line"></span><br><span class="line">destination.name=&#x27;rendy&#x27;;</span><br><span class="line">console.log(destination.name,source.name) //結果 Rendy Andy 互不影響</span><br><span class="line"></span><br><span class="line">destination.detail.age=100;</span><br><span class="line">console.log(destination.detail.age,source.detail.age) //結果: 100 100</span><br></pre></td></tr></table></figure>
+<p>在這裡會發現修改 <code>name</code> 時資料互不影響，但在修改detail.age時又互相影響了，這是因為使用的是淺拷貝，這個copy只有單純複製第一層的資料，第二層以下的都還是以call by reference，所以當你修改detail.age時兩邊同時都會被修改。</p>
+<h4 id="以深拷貝來解決淺拷貝的問題"><a href="#以深拷貝來解決淺拷貝的問題" class="headerlink" title="以深拷貝來解決淺拷貝的問題"></a>以深拷貝來解決淺拷貝的問題</h4><p>使用 JSON.parse(JSON.stringify())，用這個方法就可以把淺拷貝碰到裡面有多層的問題解決。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">const destination = JSON.parse(JSON.stringify(source));</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h4 id="JSON-stringify-amp-JSON-parse"><a href="#JSON-stringify-amp-JSON-parse" class="headerlink" title="JSON.stringify &amp; JSON.parse"></a>JSON.stringify &amp; JSON.parse</h4><p>以MDN解釋，透過這個function可以把js value轉換成JSON string。<br>而parse可以把JSON字串轉成js value，這樣一來一往就可以把js object深層的值給取出來，而不是取得他的reference</p>
+<p>相關參考<br><a href="https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Global_Objects/Object/assign">參考1</a><br><a href="https://jamie-life-coding.site/2021/10/javascript-copy-object/">參考2</a></p>
 ]]></content>
       <categories>
         <category>frontend</category>
       </categories>
       <tags>
         <tag>Javascript</tag>
-        <tag>vue</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>codemirror v5 與 v6的差異</title>
+    <url>/andy-tech-note/codemirror-v5-v6-diff/</url>
+    <content><![CDATA[<h3 id="Codemirror-v5"><a href="#Codemirror-v5" class="headerlink" title="Codemirror v5"></a>Codemirror v5</h3><p>版本5 -&gt; 6的資料夾結構變動很大</p>
+<h4 id="v5"><a href="#v5" class="headerlink" title="v5"></a><a href="https://codemirror.net/5/index.html">v5</a></h4><p>v5的所有套件在npm install <code>codemirror</code>時所有功能全部都會幫你下載，所以在node_modules裡面可以找到codemirror資料夾，裡面所有功能都會放在裡面。</p>
+<h4 id="v6"><a href="#v6" class="headerlink" title="v6"></a><a href="https://codemirror.net/">v6</a></h4><p>v6在npm install後，<code>codemirror</code> 的資料夾內容不多，而如果需要使用特定功能需要下指令<br>如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">npm install @codemirror/search </span><br></pre></td></tr></table></figure>
+<p>如果需要serch功能，需要先install<br>安裝的功能相關檔案會出現在 @codemirror 資料夾中。</p>
+<p>在查相關資料時要注意是使用v5還是v6版本，否則會發現一直找不到檔案的鬼故事。</p>
+]]></content>
+      <categories>
+        <category>frontend</category>
+      </categories>
+      <tags>
+        <tag>codemirror</tag>
       </tags>
   </entry>
   <entry>
@@ -111,47 +137,21 @@
       </tags>
   </entry>
   <entry>
-    <title>codemirror v5 與 v6的差異</title>
-    <url>/andy-tech-note/codemirror-v5-v6-diff/</url>
-    <content><![CDATA[<h3 id="Codemirror-v5"><a href="#Codemirror-v5" class="headerlink" title="Codemirror v5"></a>Codemirror v5</h3><p>版本5 -&gt; 6的資料夾結構變動很大</p>
-<h4 id="v5"><a href="#v5" class="headerlink" title="v5"></a><a href="https://codemirror.net/5/index.html">v5</a></h4><p>v5的所有套件在npm install <code>codemirror</code>時所有功能全部都會幫你下載，所以在node_modules裡面可以找到codemirror資料夾，裡面所有功能都會放在裡面。</p>
-<h4 id="v6"><a href="#v6" class="headerlink" title="v6"></a><a href="https://codemirror.net/">v6</a></h4><p>v6在npm install後，<code>codemirror</code> 的資料夾內容不多，而如果需要使用特定功能需要下指令<br>如下：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">npm install @codemirror/search </span><br></pre></td></tr></table></figure>
-<p>如果需要serch功能，需要先install<br>安裝的功能相關檔案會出現在 @codemirror 資料夾中。</p>
-<p>在查相關資料時要注意是使用v5還是v6版本，否則會發現一直找不到檔案的鬼故事。</p>
-]]></content>
-      <categories>
-        <category>frontend</category>
-      </categories>
-      <tags>
-        <tag>codemirror</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>在JS中複製object-深拷貝/淺拷貝</title>
-    <url>/andy-tech-note/deep-copy-Shallow-copy/</url>
-    <content><![CDATA[<h3 id="在JS複製object"><a href="#在JS複製object" class="headerlink" title="在JS複製object"></a>在JS複製object</h3><p>在寫code有時候會需要使用某些變數或是object，但是又不希望直接對其做操作，因為可能在其他地方會繼續使用原始的object，<br>這時候就會宣告一個新的變數去把原先的object assign過去。</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">const source = &#123;name:&#x27;Andy&#x27;,coutry:&#x27;Taiwan&#x27;,phone:&#x27;0911-111-111&#x27;&#125;</span><br><span class="line">//原始資料</span><br><span class="line"></span><br><span class="line">const destination = source </span><br><span class="line">//新變數</span><br><span class="line">destination.name = &#x27;Rendy&#x27;;</span><br><span class="line"></span><br><span class="line">console.log(destination.name);  //結果: Rendy</span><br><span class="line">console.log(source.name);       //結果: Rendy</span><br></pre></td></tr></table></figure>
+    <title>在vue中把變數傳進css</title>
+    <url>/andy-tech-note/vue-ref-css-vbind/</url>
+    <content><![CDATA[<p>某些時候會希望動態改變css的樣式高度、寬度、顏色…等等的<br>在vue中可以宣告一個ref變數(composition API)，然後把搭丟到vue檔案中的 <style></style>中，又或者透過inline的方式直接插入到html tag中，舉例如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">setup()&#123;</span><br><span class="line">    const mdSize = ref(&quot;100px&quot;);</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="傳到-lt-style-gt"><a href="#傳到-lt-style-gt" class="headerlink" title="傳到 &lt;style&gt;"></a>傳到 <code>&lt;style&gt;</code></h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;div class=&quot;md-size&quot;&gt;&lt;/div&gt; //在這裏class不需要v-bind</span><br><span class="line">&lt;style&gt;</span><br><span class="line">.md-size&#123;</span><br><span class="line">    height:v-bind(mdSize);</span><br><span class="line">&#125;</span><br><span class="line">&lt;/style&gt;    </span><br></pre></td></tr></table></figure>
 
-<p>會發現，變更 <code>destination</code> 同時也變更 <code>source</code> 裡面的值。<br>這就要提到 call by value 以及 call by reference</p>
-<h3 id="call-by-value-x2F-call-by-object"><a href="#call-by-value-x2F-call-by-object" class="headerlink" title="call by value &#x2F; call by object"></a>call by value &#x2F; call by object</h3><h4 id="什麼是call-by-value"><a href="#什麼是call-by-value" class="headerlink" title="什麼是call by value?"></a>什麼是call by value?</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">let x =1;</span><br><span class="line">let y = x;</span><br><span class="line"></span><br><span class="line">console.log(y); // 結果:1</span><br><span class="line">y=10;</span><br><span class="line">console.log(y); //結果:10</span><br><span class="line">console.log(x); //結果:1</span><br></pre></td></tr></table></figure>
-<p>以一般變數assign來說，是以call by value，也就是說直接把 <code>x</code> 的值傳給 <code>y</code></p>
-<h4 id="什麼又是-call-by-reference"><a href="#什麼又是-call-by-reference" class="headerlink" title="什麼又是 call by reference?"></a>什麼又是 call by reference?</h4><p>在一開始的object assign方法就是 call by reference，意思就是說 <code>source</code> 這個變數在assign給 <code>destination</code> 時，他是以傳遞記憶體位址方式給<code>destination</code>，可以想像 <code>destination</code> 就是儲存一個記憶體位置，當程式要讀取資料時就會透過這個位置去存取這個記憶體位置實際儲存的值。</p>
-<p>所以這樣就可以很明確的瞭解為什麼改變object的值的時候，<code>source</code> <code>destination</code> 裡面的值會被同步更動，因為兩者都是指到同一個記憶體位置。</p>
-<h4 id="要怎麼做才能不更動-source-的值"><a href="#要怎麼做才能不更動-source-的值" class="headerlink" title="要怎麼做才能不更動 source 的值"></a>要怎麼做才能不更動 source 的值</h4><p>不更動的方式有兩種： <em>淺拷貝跟深拷貝</em></p>
-<h4 id="淺拷貝"><a href="#淺拷貝" class="headerlink" title="淺拷貝"></a>淺拷貝</h4><p>字面意思就是比較淺，<br>這時候就會使用Object.assign <a href="https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Global_Objects/Object/assign">MDN介紹</a><br>舉例：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//Object.assign()</span><br><span class="line">const source = &#123;name:&#x27;Andy&#x27;,coutry:&#x27;Taiwan&#x27;,phone:&#x27;0911-111-111&#x27;,detail:&#123;age:10, job:&#x27;photographer&#x27;&#125;&#125;</span><br><span class="line">//原始資料</span><br><span class="line"></span><br><span class="line">const destination = &#123;&#125; </span><br><span class="line">Object.assign(destination,source);  //把objec assign 給 destination</span><br><span class="line"></span><br><span class="line">destination.name=&#x27;rendy&#x27;;</span><br><span class="line">console.log(destination.name,source.name) //結果 Rendy Andy 互不影響</span><br><span class="line"></span><br><span class="line">destination.detail.age=100;</span><br><span class="line">console.log(destination.detail.age,source.detail.age) //結果: 100 100</span><br></pre></td></tr></table></figure>
-<p>在這裡會發現修改 <code>name</code> 時資料互不影響，但在修改detail.age時又互相影響了，這是因為使用的是淺拷貝，這個copy只有單純複製第一層的資料，第二層以下的都還是以call by reference，所以當你修改detail.age時兩邊同時都會被修改。</p>
-<h4 id="以深拷貝來解決淺拷貝的問題"><a href="#以深拷貝來解決淺拷貝的問題" class="headerlink" title="以深拷貝來解決淺拷貝的問題"></a>以深拷貝來解決淺拷貝的問題</h4><p>使用 JSON.parse(JSON.stringify())，用這個方法就可以把淺拷貝碰到裡面有多層的問題解決。</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">const destination = JSON.parse(JSON.stringify(source));</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<h4 id="JSON-stringify-amp-JSON-parse"><a href="#JSON-stringify-amp-JSON-parse" class="headerlink" title="JSON.stringify &amp; JSON.parse"></a>JSON.stringify &amp; JSON.parse</h4><p>以MDN解釋，透過這個function可以把js value轉換成JSON string。<br>而parse可以把JSON字串轉成js value，這樣一來一往就可以把js object深層的值給取出來，而不是取得他的reference</p>
-<p>相關參考<br><a href="https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Global_Objects/Object/assign">參考1</a><br><a href="https://jamie-life-coding.site/2021/10/javascript-copy-object/">參考2</a></p>
+<h3 id="以傳值的方式丟到inline"><a href="#以傳值的方式丟到inline" class="headerlink" title="以傳值的方式丟到inline"></a>以傳值的方式丟到inline</h3><p>搭配v-bind 也就是縮寫 “:”<br>把mdSize放進去style</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;button :style=&quot;&#123; height: mdSize &#125;&quot; &gt; 按鈕名稱 &lt;/button&gt;</span><br></pre></td></tr></table></figure>
 ]]></content>
       <categories>
         <category>frontend</category>
       </categories>
       <tags>
         <tag>Javascript</tag>
+        <tag>vue</tag>
       </tags>
   </entry>
   <entry>
@@ -199,17 +199,6 @@
       </tags>
   </entry>
   <entry>
-    <title>chatGPT-想法</title>
-    <url>/andy-tech-note/chatGPT-note/</url>
-    <content><![CDATA[<h3 id="關於chatGPT想法"><a href="#關於chatGPT想法" class="headerlink" title="關於chatGPT想法"></a>關於chatGPT想法</h3><p>網路上有很多人認為chatGPT會造成很多人依賴chatGPT取得資訊，讓人變得更懶。<br>不過我倒不這麼認為，先前在免費時使用過chatGPT，透過他詢問一下關於寫side project的問題，<br>在這過程成會發現如果你對於你的問題沒有具備相應的背景知識時，AI回答給你的答案你根本無從判斷是否有誤，曾經得到的答案發現大方向沒錯，但是小細節是有瑕疵的。</p>
-<p>所以個人認為他可以是輔助人類而非取代人類，至少在寫程式的部分，碰到問題時可以詢問他，有時候他會告訴你某個大方向，而這個方向可能是你在思考時盲點，可以再透過這個方向去找到你需要的答案，這樣可以避免在某個死胡同打轉。</p>
-<h3 id="收費"><a href="#收費" class="headerlink" title="收費"></a>收費</h3><p>2023年2月開始需要收費囉，一個月20美金，以小弟在線上詢問一些問題，而這些問題可能在google可以輕鬆找到，但是有這些問題是有前後關聯的，在google上並不是這麼容易精確的搜尋到答案，chatGPT反而可以接續著前一個問題回答你下一個問題，讓你的思緒更加完整。<br>以一個軟體工程師來說20美元一個月完全值得投資，問幾個問題可以節省更多時間去做別的事，畢竟軟體工程師就是極致懶，可以讓程式完成的事就不想手動完成，當然拉，在這問問題過程中還是要有學到東西才比較好ＸＤ。</p>
-]]></content>
-      <tags>
-        <tag>chatGPT</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>vue-react-mvvm-virtualDom的一些筆記</title>
     <url>/andy-tech-note/vue-react-mvvm-virtualDom/</url>
     <content><![CDATA[<h3 id="指令式渲染-imperative-redering"><a href="#指令式渲染-imperative-redering" class="headerlink" title="指令式渲染 imperative redering"></a>指令式渲染 imperative redering</h3><h4 id="jquery"><a href="#jquery" class="headerlink" title="jquery"></a>jquery</h4><p>在框架還沒出來時jquery依舊是非常火紅的，而其對於DOM的渲染方式就是透過<br>選擇器 <code>document.querySelector</code> 去選擇HTML裡面的tag，從而去修改他們的值或是<code> addEventListener</code> 加入事件監聽來獲取使用者的行為，進而在js裡面做一些判斷後再把資料丟到頁面讓使用者看到。</p>
@@ -231,6 +220,17 @@
       <tags>
         <tag>vue</tag>
         <tag>react</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>chatGPT-想法</title>
+    <url>/andy-tech-note/chatGPT-note/</url>
+    <content><![CDATA[<h3 id="關於chatGPT想法"><a href="#關於chatGPT想法" class="headerlink" title="關於chatGPT想法"></a>關於chatGPT想法</h3><p>網路上有很多人認為chatGPT會造成很多人依賴chatGPT取得資訊，讓人變得更懶。<br>不過我倒不這麼認為，先前在免費時使用過chatGPT，透過他詢問一下關於寫side project的問題，<br>在這過程成會發現如果你對於你的問題沒有具備相應的背景知識時，AI回答給你的答案你根本無從判斷是否有誤，曾經得到的答案發現大方向沒錯，但是小細節是有瑕疵的。</p>
+<p>所以個人認為他可以是輔助人類而非取代人類，至少在寫程式的部分，碰到問題時可以詢問他，有時候他會告訴你某個大方向，而這個方向可能是你在思考時盲點，可以再透過這個方向去找到你需要的答案，這樣可以避免在某個死胡同打轉。</p>
+<h3 id="收費"><a href="#收費" class="headerlink" title="收費"></a>收費</h3><p>2023年2月開始需要收費囉，一個月20美金，以小弟在線上詢問一些問題，而這些問題可能在google可以輕鬆找到，但是有這些問題是有前後關聯的，在google上並不是這麼容易精確的搜尋到答案，chatGPT反而可以接續著前一個問題回答你下一個問題，讓你的思緒更加完整。<br>以一個軟體工程師來說20美元一個月完全值得投資，問幾個問題可以節省更多時間去做別的事，畢竟軟體工程師就是極致懶，可以讓程式完成的事就不想手動完成，當然拉，在這問問題過程中還是要有學到東西才比較好ＸＤ。</p>
+]]></content>
+      <tags>
+        <tag>chatGPT</tag>
       </tags>
   </entry>
   <entry>
@@ -286,6 +286,22 @@
       </tags>
   </entry>
   <entry>
+    <title>CSS的Box-model</title>
+    <url>/andy-tech-note/box-model/</url>
+    <content><![CDATA[<h4 id="什麼是Box-model"><a href="#什麼是Box-model" class="headerlink" title="什麼是Box model"></a>什麼是Box model</h4><p>在網頁中每個element都被看作一個box，每個box可以有內容content、邊界border、內外空間。<br>所以box會有padding &#x2F; marging&#x2F; border&#x2F; content</p>
+<h4 id="Padding"><a href="#Padding" class="headerlink" title="Padding"></a>Padding</h4><p>padding是content與border的距離</p>
+<h4 id="Margin"><a href="#Margin" class="headerlink" title="Margin"></a>Margin</h4><p>margin是物件與其他物件的距離，可以使用margin來產生空白與其他element產生一段距離</p>
+<p><img src="https://crazycjh.github.io/andy-tech-note/icons/avatar.jpg" data-original="https://developer.mozilla.org/en-US/docs/Learn/CSS/Building_blocks/The_box_model/box-model.png" alt="來源MDN"></p>
+<h4 id="Width-x2F-Height"><a href="#Width-x2F-Height" class="headerlink" title="Width&#x2F;Height"></a>Width&#x2F;Height</h4><p>在box中可以設定寬度與高度(width &amp; Height)，現在的CSS寬度是指content的寬度，所以在製作layout時要注意寬度要再加上border+padding+margin才是最終寬度或是高度。<br><img src="https://crazycjh.github.io/andy-tech-note/icons/avatar.jpg" data-original="https://developer.mozilla.org/en-US/docs/Learn/CSS/Building_blocks/The_box_model/standard-box-model.png" alt="設定高寬"></p>
+]]></content>
+      <categories>
+        <category>frontend</category>
+      </categories>
+      <tags>
+        <tag>css</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>CSS中的px-em-rem</title>
     <url>/andy-tech-note/px-em-rem/</url>
     <content><![CDATA[<h3 id="這是關於長度單位"><a href="#這是關於長度單位" class="headerlink" title="這是關於長度單位"></a>這是關於長度單位</h3><h4 id="px"><a href="#px" class="headerlink" title="px"></a>px</h4><p>是一個絕對長度的單位，是以螢幕pixel為基準。</p>
@@ -314,22 +330,6 @@
       </tags>
   </entry>
   <entry>
-    <title>CSS的Box-model</title>
-    <url>/andy-tech-note/box-model/</url>
-    <content><![CDATA[<h4 id="什麼是Box-model"><a href="#什麼是Box-model" class="headerlink" title="什麼是Box model"></a>什麼是Box model</h4><p>在網頁中每個element都被看作一個box，每個box可以有內容content、邊界border、內外空間。<br>所以box會有padding &#x2F; marging&#x2F; border&#x2F; content</p>
-<h4 id="Padding"><a href="#Padding" class="headerlink" title="Padding"></a>Padding</h4><p>padding是content與border的距離</p>
-<h4 id="Margin"><a href="#Margin" class="headerlink" title="Margin"></a>Margin</h4><p>margin是物件與其他物件的距離，可以使用margin來產生空白與其他element產生一段距離</p>
-<p><img src="https://crazycjh.github.io/andy-tech-note/icons/avatar.jpg" data-original="https://developer.mozilla.org/en-US/docs/Learn/CSS/Building_blocks/The_box_model/box-model.png" alt="來源MDN"></p>
-<h4 id="Width-x2F-Height"><a href="#Width-x2F-Height" class="headerlink" title="Width&#x2F;Height"></a>Width&#x2F;Height</h4><p>在box中可以設定寬度與高度(width &amp; Height)，現在的CSS寬度是指content的寬度，所以在製作layout時要注意寬度要再加上border+padding+margin才是最終寬度或是高度。<br><img src="https://crazycjh.github.io/andy-tech-note/icons/avatar.jpg" data-original="https://developer.mozilla.org/en-US/docs/Learn/CSS/Building_blocks/The_box_model/standard-box-model.png" alt="設定高寬"></p>
-]]></content>
-      <categories>
-        <category>frontend</category>
-      </categories>
-      <tags>
-        <tag>css</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Javascript中的JSON格式</title>
     <url>/andy-tech-note/JOSN-formate/</url>
     <content><![CDATA[<h3 id="什麼是JSON"><a href="#什麼是JSON" class="headerlink" title="什麼是JSON"></a>什麼是JSON</h3><p>JSON(JavaScript Object Notation)是一種數據交換格式，不論是用在前後端透過RESTful API傳遞資料、function之間使用，都是很方便的，而要把資料轉換成JSON格式則是透過 <code>JSON.strinify(data)</code>，把<code>data</code>轉換成JSON格式。<br>他是以一對大括號以及裡面的東西，這些東西則是以Key與Value組成的KEY-Value Pair(其實與object的格式是一樣的)，不過JSON是字符串，而object則是物件(廢話)，用typeof可以看到JSON字符串是string。</p>
@@ -349,6 +349,24 @@
       <tags>
         <tag>Javascript</tag>
         <tag>JSON</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>在Javacript建立promise</title>
+    <url>/andy-tech-note/how-to-create-promise/</url>
+    <content><![CDATA[<h4 id="建立promise"><a href="#建立promise" class="headerlink" title="建立promise"></a>建立promise</h4><p>延續前一篇關於promise的文章，來試試看要怎麼建立一個Promise。</p>
+<h4 id="promise初版"><a href="#promise初版" class="headerlink" title="promise初版"></a>promise初版</h4><p>製作一個樂透功能的promise</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">const lotteryPromise = new Promise(function(resolve,reject)&#123;</span><br><span class="line">    if(Math.random() &gt;= 0.5)&#123;</span><br><span class="line">        resolve(&#x27;You Win the Lottery&#x27;); //fulfilled</span><br><span class="line">    &#125;else&#123;</span><br><span class="line">        reject(&quot;loser la&quot;); //reject</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">lotteryPromise.then((res)=&gt;&#123;</span><br><span class="line">    console.log(res) //印出You Win the Lottery</span><br><span class="line">&#125;).catch((err)=&gt;&#123;</span><br><span class="line">    console.log(err) //印出loser la</span><br><span class="line">&#125;)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h4 id="有async效果的promise版本"><a href="#有async效果的promise版本" class="headerlink" title="有async效果的promise版本"></a>有async效果的promise版本</h4><p><code>以上不是async</code>所以加入setTimeout來實現延遲</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">const lotteryPromise = new Promise(function(resolve,reject)&#123;</span><br><span class="line">    setTimeout(()=&gt;&#123;</span><br><span class="line">        if(Math.random() &gt;= 0.5)&#123;</span><br><span class="line">            resolve(&#x27;You Win the Lottery&#x27;);</span><br><span class="line">        &#125;else&#123;</span><br><span class="line">            reject(&quot;loser la&quot;);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,2000) //等2秒才執行</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">lotteryPromise.then((res)=&gt;&#123;</span><br><span class="line">    console.log(res) //印出You Win the Lottery</span><br><span class="line">&#125;).catch((err)=&gt;&#123;</span><br><span class="line">    console.log(err) //印出loser la</span><br><span class="line">&#125;)</span><br><span class="line"></span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>frontend</category>
+      </categories>
+      <tags>
+        <tag>async</tag>
+        <tag>Javascript</tag>
+        <tag>promise</tag>
       </tags>
   </entry>
   <entry>
@@ -382,24 +400,6 @@
       </categories>
       <tags>
         <tag>Javascript</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>在Javacript建立promise</title>
-    <url>/andy-tech-note/how-to-create-promise/</url>
-    <content><![CDATA[<h4 id="建立promise"><a href="#建立promise" class="headerlink" title="建立promise"></a>建立promise</h4><p>延續前一篇關於promise的文章，來試試看要怎麼建立一個Promise。</p>
-<h4 id="promise初版"><a href="#promise初版" class="headerlink" title="promise初版"></a>promise初版</h4><p>製作一個樂透功能的promise</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">const lotteryPromise = new Promise(function(resolve,reject)&#123;</span><br><span class="line">    if(Math.random() &gt;= 0.5)&#123;</span><br><span class="line">        resolve(&#x27;You Win the Lottery&#x27;); //fulfilled</span><br><span class="line">    &#125;else&#123;</span><br><span class="line">        reject(&quot;loser la&quot;); //reject</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">lotteryPromise.then((res)=&gt;&#123;</span><br><span class="line">    console.log(res) //印出You Win the Lottery</span><br><span class="line">&#125;).catch((err)=&gt;&#123;</span><br><span class="line">    console.log(err) //印出loser la</span><br><span class="line">&#125;)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h4 id="有async效果的promise版本"><a href="#有async效果的promise版本" class="headerlink" title="有async效果的promise版本"></a>有async效果的promise版本</h4><p><code>以上不是async</code>所以加入setTimeout來實現延遲</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">const lotteryPromise = new Promise(function(resolve,reject)&#123;</span><br><span class="line">    setTimeout(()=&gt;&#123;</span><br><span class="line">        if(Math.random() &gt;= 0.5)&#123;</span><br><span class="line">            resolve(&#x27;You Win the Lottery&#x27;);</span><br><span class="line">        &#125;else&#123;</span><br><span class="line">            reject(&quot;loser la&quot;);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,2000) //等2秒才執行</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">lotteryPromise.then((res)=&gt;&#123;</span><br><span class="line">    console.log(res) //印出You Win the Lottery</span><br><span class="line">&#125;).catch((err)=&gt;&#123;</span><br><span class="line">    console.log(err) //印出loser la</span><br><span class="line">&#125;)</span><br><span class="line"></span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>frontend</category>
-      </categories>
-      <tags>
-        <tag>async</tag>
-        <tag>Javascript</tag>
-        <tag>promise</tag>
       </tags>
   </entry>
   <entry>
@@ -477,24 +477,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Javascript中&lt;script&gt;的async與defer</title>
-    <url>/andy-tech-note/js-script-async-defer/</url>
-    <content><![CDATA[<h2 id="什麼是async-x2F-defer"><a href="#什麼是async-x2F-defer" class="headerlink" title="什麼是async&#x2F;defer"></a>什麼是async&#x2F;defer</h2><h3 id="HTML做些什麼事？"><a href="#HTML做些什麼事？" class="headerlink" title="HTML做些什麼事？"></a>HTML做些什麼事？</h3><p>在瀏覽器執行解析網頁時如果碰到<code>&lt;script&gt;</code>標籤，會先執行該script中的行為，而如果需要下載檔案則會執行下載，而此時若是執行下載時，整個網頁的解析就會停下來，等到檔案被下載後才會繼續解析，這樣有一個很大的問題，也就是當使用者瀏覽網頁時就會有些元素不是馬上出現在使用者面前，就是因為在等待JS檔案的下載，這就有關UX了。</p>
-<p>但是又有些JS檔案是要盡可能提早被下載到<code>client</code>端，如果讓<code>script</code> 在解析完<code>DOM</code>才執行就會有問題，因為當頁面解析完後會馬傷需要使用<code>JS</code>中的功能，所以就有了<code>async/defer</code>的概念。</p>
-<h4 id="解決方法"><a href="#解決方法" class="headerlink" title="解決方法"></a>解決方法</h4><p>上述問題就可以透過<code>async/defer</code>解決，這兩個主要都是讓<code>script</code>可以在背景執行，但是有個主要差異如下：</p>
-<h5 id="async"><a href="#async" class="headerlink" title="async"></a>async</h5><p>會在背景下載也就是異步的方式執行，在同時 HTML 解析會繼續執行，而當js檔案被下載後會被立即執行，不必等到 DOM 被全部解析。</p>
-<h5 id="defer"><a href="#defer" class="headerlink" title="defer"></a>defer</h5><p>也同是在背景下載不影響<code>DOM</code>的解析，但是他會等到<code>DOM</code>完全解析完才執行，而若是有多個js有互相依賴的行為可以以 <code>defer</code> 方式執行，只要按照執行順序去寫<code>script</code>即可</p>
-]]></content>
-      <categories>
-        <category>frontend</category>
-        <category>frontend_interview</category>
-      </categories>
-      <tags>
-        <tag>Javascript</tag>
-        <tag>Frontend</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Javascript的map,filter,reduce</title>
     <url>/andy-tech-note/Javascript%E7%9A%84map-filter-reduce/</url>
     <content><![CDATA[<h2 id="什麼是map-filter-reduce"><a href="#什麼是map-filter-reduce" class="headerlink" title="什麼是map, filter, reduce"></a>什麼是map, filter, reduce</h2><p>這三個東西都是ES5推出的Array method，的可以對Array裡面的元素做一些操作。</p>
@@ -511,6 +493,24 @@
 <h3 id="reduce"><a href="#reduce" class="headerlink" title="reduce"></a>reduce</h3><p>可以傳入一個acc，然後在callback function中會依次回傳acc和每個元素的一些操作，最後會回傳最終的value。<br>也就是每回合把acc和每個元素的值相加，最後就會回傳最終的value，而若是在reduce最後面一個參數帶上init value，就會被帶到acc當作初始值做累加。<br>參考 <a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce">MDN</a></p>
 <figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> arr = [<span class="number">1</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>];</span><br><span class="line"><span class="keyword">const</span> result = arr.<span class="title function_">reduce</span>(<span class="function">(<span class="params">acc, item</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> acc + item;</span><br><span class="line">&#125;,<span class="number">0</span>)</span><br><span class="line"><span class="comment">// result = 15</span></span><br></pre></td></tr></table></figure>
 <p>item為arr中的每個元素，acc為reduce的第一個參數，假設想要把所有的值加起來，就可以用reduce來做，把每次值都累加到acc上，然後回傳最終值。</p>
+]]></content>
+      <categories>
+        <category>frontend</category>
+        <category>frontend_interview</category>
+      </categories>
+      <tags>
+        <tag>Javascript</tag>
+        <tag>Frontend</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Javascript中&lt;script&gt;的async與defer</title>
+    <url>/andy-tech-note/js-script-async-defer/</url>
+    <content><![CDATA[<h2 id="什麼是async-x2F-defer"><a href="#什麼是async-x2F-defer" class="headerlink" title="什麼是async&#x2F;defer"></a>什麼是async&#x2F;defer</h2><h3 id="HTML做些什麼事？"><a href="#HTML做些什麼事？" class="headerlink" title="HTML做些什麼事？"></a>HTML做些什麼事？</h3><p>在瀏覽器執行解析網頁時如果碰到<code>&lt;script&gt;</code>標籤，會先執行該script中的行為，而如果需要下載檔案則會執行下載，而此時若是執行下載時，整個網頁的解析就會停下來，等到檔案被下載後才會繼續解析，這樣有一個很大的問題，也就是當使用者瀏覽網頁時就會有些元素不是馬上出現在使用者面前，就是因為在等待JS檔案的下載，這就有關UX了。</p>
+<p>但是又有些JS檔案是要盡可能提早被下載到<code>client</code>端，如果讓<code>script</code> 在解析完<code>DOM</code>才執行就會有問題，因為當頁面解析完後會馬傷需要使用<code>JS</code>中的功能，所以就有了<code>async/defer</code>的概念。</p>
+<h4 id="解決方法"><a href="#解決方法" class="headerlink" title="解決方法"></a>解決方法</h4><p>上述問題就可以透過<code>async/defer</code>解決，這兩個主要都是讓<code>script</code>可以在背景執行，但是有個主要差異如下：</p>
+<h5 id="async"><a href="#async" class="headerlink" title="async"></a>async</h5><p>會在背景下載也就是異步的方式執行，在同時 HTML 解析會繼續執行，而當js檔案被下載後會被立即執行，不必等到 DOM 被全部解析。</p>
+<h5 id="defer"><a href="#defer" class="headerlink" title="defer"></a>defer</h5><p>也同是在背景下載不影響<code>DOM</code>的解析，但是他會等到<code>DOM</code>完全解析完才執行，而若是有多個js有互相依賴的行為可以以 <code>defer</code> 方式執行，只要按照執行順序去寫<code>script</code>即可</p>
 ]]></content>
       <categories>
         <category>frontend</category>
@@ -546,6 +546,26 @@
       </categories>
       <tags>
         <tag>css</tag>
+        <tag>Frontend</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Javascript建構子函式繼承及ES6的class方式的繼承</title>
+    <url>/andy-tech-note/Javascript-constructor-function-inheritance_es6_class/</url>
+    <content><![CDATA[<h2 id="如何以建構函式的方式達到繼承"><a href="#如何以建構函式的方式達到繼承" class="headerlink" title="如何以建構函式的方式達到繼承"></a>如何以建構函式的方式達到繼承</h2><p>繼承在OOP物件導向的語言中很常見，而在Javascript中並不是真正的物件導向的語言，所以在Javascript中繼承的方式就不一樣，這裡用建構子函式的方式來實作繼承。</p>
+<h3 id="建構子函式的繼承"><a href="#建構子函式的繼承" class="headerlink" title="建構子函式的繼承"></a>建構子函式的繼承</h3><p>在Javascript中，我們可以用建構子函式的方式達到繼承，如果現在有一個Vehicle的父建構函式(父類別)而後我要建立一個Car子建構函式(子類別)，而若是我希望繼承Vehicle裡面的property，可以如下操作：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">//建立父建構函式及其prototype</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">Vehicle</span>(<span class="params">type, length, width</span>) &#123;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">type</span> =  type;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">length</span> = length;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">width</span> = width;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 建立一個method</span></span><br><span class="line"><span class="title class_">Vehicle</span>.<span class="property"><span class="keyword">prototype</span></span>.<span class="property">start</span> = <span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;start&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//繼承Vehicle的prototype</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">Car</span>(<span class="params">type, length, width, color</span>) &#123;</span><br><span class="line">    <span class="title class_">Vehicle</span>.<span class="title function_">call</span>(<span class="variable language_">this</span>, type, length, width);</span><br><span class="line">    <span class="comment">//把Vehicle的prototype的property繼承到Car的prototype constructor中</span></span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">color</span> = color;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//建立一個與Vehicle相同的prototype給Car.prototype</span></span><br><span class="line"><span class="title class_">Car</span>.<span class="property"><span class="keyword">prototype</span></span> = <span class="title class_">Object</span>.<span class="title function_">create</span>(<span class="title class_">Vehicle</span>.<span class="property"><span class="keyword">prototype</span></span>); </span><br><span class="line"></span><br><span class="line"><span class="comment">// 但因為其constructor是希望使用Car自己的也就是this.color這些自訂的property，所以我們要把Car.prototype.constructor指向Car  </span></span><br><span class="line"><span class="title class_">Car</span>.<span class="property"><span class="keyword">prototype</span></span>.<span class="property">constructor</span> = <span class="title class_">Car</span>;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//建立一個Car的instance</span></span><br><span class="line"><span class="keyword">const</span> myCar = <span class="keyword">new</span> <span class="title class_">Car</span>(<span class="string">&quot;BMW&quot;</span>, <span class="number">150</span>, <span class="number">100</span>, <span class="string">&quot;red&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//使用繼承vehicle的method  </span></span><br><span class="line">myCar.<span class="title function_">start</span>();</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(myCar.<span class="property">color</span>);</span><br><span class="line"><span class="comment">// red</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 而若是要在Car新增method，可以這沒做</span></span><br><span class="line"><span class="title class_">Car</span>.<span class="property"><span class="keyword">prototype</span></span>.<span class="property">stop</span> = <span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;stop&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">myCar.<span class="title function_">stop</span>();</span><br><span class="line"><span class="comment">// stop</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h3 id="改以ES6的class方式達到繼承"><a href="#改以ES6的class方式達到繼承" class="headerlink" title="改以ES6的class方式達到繼承"></a>改以ES6的class方式達到繼承</h3><p>這樣就清晰易懂的多了，但是Class只是Javascript的語法糖，讓使用者可以更容易實現繼承，但其底層的原理還是以prototype chain的方式達到繼承。範例如下：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Vehicle</span> &#123;</span><br><span class="line">  <span class="title function_">constructor</span>(<span class="params">type, length, width</span>) &#123;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">type</span> = type;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">length</span> = length;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">width</span> = width;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="title function_">start</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;start&quot;</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Car</span> <span class="keyword">extends</span> <span class="title class_ inherited__">Vehicle</span> &#123;</span><br><span class="line">  <span class="title function_">constructor</span>(<span class="params">type, length, width, color</span>) &#123;</span><br><span class="line">    <span class="variable language_">super</span>(type, length, width); <span class="comment">// 把vehicle的constructor繼承過來並且把this指向Car</span></span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">color</span> = color;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="title function_">stop</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;stop&quot;</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> myCar = <span class="keyword">new</span> <span class="title class_">Car</span>(<span class="string">&quot;BMW&quot;</span>, <span class="number">150</span>, <span class="number">100</span>, <span class="string">&quot;red&quot;</span>);</span><br><span class="line"></span><br><span class="line">myCar.<span class="title function_">start</span>();</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(myCar.<span class="property">color</span>); <span class="comment">// red</span></span><br><span class="line">myCar.<span class="title function_">stop</span>();</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>frontend</category>
+        <category>frontend_interview</category>
+      </categories>
+      <tags>
+        <tag>Javascript</tag>
         <tag>Frontend</tag>
       </tags>
   </entry>
@@ -606,26 +626,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Javascript建構子函式繼承及ES6的class方式的繼承</title>
-    <url>/andy-tech-note/Javascript-constructor-function-inheritance_es6_class/</url>
-    <content><![CDATA[<h2 id="如何以建構函式的方式達到繼承"><a href="#如何以建構函式的方式達到繼承" class="headerlink" title="如何以建構函式的方式達到繼承"></a>如何以建構函式的方式達到繼承</h2><p>繼承在OOP物件導向的語言中很常見，而在Javascript中並不是真正的物件導向的語言，所以在Javascript中繼承的方式就不一樣，這裡用建構子函式的方式來實作繼承。</p>
-<h3 id="建構子函式的繼承"><a href="#建構子函式的繼承" class="headerlink" title="建構子函式的繼承"></a>建構子函式的繼承</h3><p>在Javascript中，我們可以用建構子函式的方式達到繼承，如果現在有一個Vehicle的父建構函式(父類別)而後我要建立一個Car子建構函式(子類別)，而若是我希望繼承Vehicle裡面的property，可以如下操作：</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">//建立父建構函式及其prototype</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">Vehicle</span>(<span class="params">type, length, width</span>) &#123;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">type</span> =  type;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">length</span> = length;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">width</span> = width;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 建立一個method</span></span><br><span class="line"><span class="title class_">Vehicle</span>.<span class="property"><span class="keyword">prototype</span></span>.<span class="property">start</span> = <span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;start&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//繼承Vehicle的prototype</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">Car</span>(<span class="params">type, length, width, color</span>) &#123;</span><br><span class="line">    <span class="title class_">Vehicle</span>.<span class="title function_">call</span>(<span class="variable language_">this</span>, type, length, width);</span><br><span class="line">    <span class="comment">//把Vehicle的prototype的property繼承到Car的prototype constructor中</span></span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">color</span> = color;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//建立一個與Vehicle相同的prototype給Car.prototype</span></span><br><span class="line"><span class="title class_">Car</span>.<span class="property"><span class="keyword">prototype</span></span> = <span class="title class_">Object</span>.<span class="title function_">create</span>(<span class="title class_">Vehicle</span>.<span class="property"><span class="keyword">prototype</span></span>); </span><br><span class="line"></span><br><span class="line"><span class="comment">// 但因為其constructor是希望使用Car自己的也就是this.color這些自訂的property，所以我們要把Car.prototype.constructor指向Car  </span></span><br><span class="line"><span class="title class_">Car</span>.<span class="property"><span class="keyword">prototype</span></span>.<span class="property">constructor</span> = <span class="title class_">Car</span>;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//建立一個Car的instance</span></span><br><span class="line"><span class="keyword">const</span> myCar = <span class="keyword">new</span> <span class="title class_">Car</span>(<span class="string">&quot;BMW&quot;</span>, <span class="number">150</span>, <span class="number">100</span>, <span class="string">&quot;red&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//使用繼承vehicle的method  </span></span><br><span class="line">myCar.<span class="title function_">start</span>();</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(myCar.<span class="property">color</span>);</span><br><span class="line"><span class="comment">// red</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 而若是要在Car新增method，可以這沒做</span></span><br><span class="line"><span class="title class_">Car</span>.<span class="property"><span class="keyword">prototype</span></span>.<span class="property">stop</span> = <span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;stop&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">myCar.<span class="title function_">stop</span>();</span><br><span class="line"><span class="comment">// stop</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h3 id="改以ES6的class方式達到繼承"><a href="#改以ES6的class方式達到繼承" class="headerlink" title="改以ES6的class方式達到繼承"></a>改以ES6的class方式達到繼承</h3><p>這樣就清晰易懂的多了，但是Class只是Javascript的語法糖，讓使用者可以更容易實現繼承，但其底層的原理還是以prototype chain的方式達到繼承。範例如下：</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Vehicle</span> &#123;</span><br><span class="line">  <span class="title function_">constructor</span>(<span class="params">type, length, width</span>) &#123;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">type</span> = type;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">length</span> = length;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">width</span> = width;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="title function_">start</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;start&quot;</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Car</span> <span class="keyword">extends</span> <span class="title class_ inherited__">Vehicle</span> &#123;</span><br><span class="line">  <span class="title function_">constructor</span>(<span class="params">type, length, width, color</span>) &#123;</span><br><span class="line">    <span class="variable language_">super</span>(type, length, width); <span class="comment">// 把vehicle的constructor繼承過來並且把this指向Car</span></span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">color</span> = color;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="title function_">stop</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;stop&quot;</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> myCar = <span class="keyword">new</span> <span class="title class_">Car</span>(<span class="string">&quot;BMW&quot;</span>, <span class="number">150</span>, <span class="number">100</span>, <span class="string">&quot;red&quot;</span>);</span><br><span class="line"></span><br><span class="line">myCar.<span class="title function_">start</span>();</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(myCar.<span class="property">color</span>); <span class="comment">// red</span></span><br><span class="line">myCar.<span class="title function_">stop</span>();</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <categories>
-        <category>frontend</category>
-        <category>frontend_interview</category>
-      </categories>
-      <tags>
-        <tag>Javascript</tag>
-        <tag>Frontend</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Javascript的Event Loop以及Micro  task, Macro task是如何運作的？</title>
     <url>/andy-tech-note/event-loop-micro-task-macro-task/</url>
     <content><![CDATA[<h2 id="Event-loop是什麼？"><a href="#Event-loop是什麼？" class="headerlink" title="Event loop是什麼？"></a>Event loop是什麼？</h2><p>在javascript的設計中，javascript runtime是以single Thread單執行在執行程式碼，也就是說程式會順序的執行程式碼，而Javascript 透過 Event Loop 讓程式可以異步執行，也就是I&#x2F;O存取、setTimeout、長時間操作(遠端資料請求)，讓使用者不用在順序執行的程式流一直在等待，那這些在被執行完的異步行為的後續程式碼要如何讓他繼續被執行後續的程式碼呢，這就要透過Event loop來做調配。</p>
@@ -674,25 +674,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Javascript中使用structuredClone做深拷貝</title>
-    <url>/andy-tech-note/structuredClone-deep-clone/</url>
-    <content><![CDATA[<h2 id="深拷貝是什麼？"><a href="#深拷貝是什麼？" class="headerlink" title="深拷貝是什麼？"></a>深拷貝是什麼？</h2><p>先前有寫過如何處理深拷貝，深拷貝是要幹嘛？<br>簡單的說就是當有個物件他裡面有巢狀結構，不只有一層，如果直接以變數assign的方式賦值給一個新的變數，這時候在第二層開始的元素會是指向原先的物件，所以當使用者在對新的物件第二層的元素操作時就會修改到舊有的物件的值，這時候就需要深拷貝來處理，詳細請參閱👇</p>
-<p><a href="https://crazycjh.github.io/andy-tech-note/deep-copy-Shallow-copy/">在JS中複製object-深拷貝&#x2F;淺拷貝</a>。</p>
-<h3 id="進階版structuredClone"><a href="#進階版structuredClone" class="headerlink" title="進階版structuredClone"></a>進階版structuredClone</h3><p>先前都是使用JSON.stringify &amp; JSON.parse來組合處理，現在只要透過structuredClone來處理，這個有什麼差異呢？<br>舊有的方法只能準確地處理 primitive Value，若是碰到Map, Set 非primitive的物件就會被變成空object{}，也就會造成資料的不完整。</p>
-<p>可以看以下程式碼 或是<a href="https://codepen.io/jean-hao-chen/pen/KKYxPOe">玩玩看</a></p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> obj = &#123;</span><br><span class="line">  <span class="string">&#x27;name&#x27;</span>: <span class="string">&#x27;Andy&#x27;</span>, </span><br><span class="line">  <span class="string">&#x27;profile&#x27;</span>: &#123;</span><br><span class="line">    <span class="attr">height</span>:<span class="number">182</span>,</span><br><span class="line">    <span class="attr">age</span>:<span class="number">18</span>,</span><br><span class="line">    <span class="attr">fn</span>: <span class="keyword">new</span> <span class="title class_">Set</span>([<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>])</span><br><span class="line">    </span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> objStructuredClone = <span class="title function_">structuredClone</span>(obj);</span><br><span class="line"><span class="keyword">const</span> objJson = <span class="title class_">JSON</span>.<span class="title function_">parse</span>(<span class="title class_">JSON</span>.<span class="title function_">stringify</span>(obj))</span><br><span class="line"></span><br><span class="line">objStructuredClone[<span class="string">&#x27;profile&#x27;</span>][<span class="string">&#x27;age&#x27;</span>] = <span class="number">35</span>;</span><br><span class="line">objStructuredClone[<span class="string">&#x27;profile&#x27;</span>][<span class="string">&#x27;fn&#x27;</span>].<span class="title function_">add</span>(<span class="number">5</span>);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(objStructuredClone[<span class="string">&#x27;profile&#x27;</span>][<span class="string">&#x27;fn&#x27;</span>]);</span><br><span class="line"><span class="comment">// Set(4) &#123;1, 2, 3, 5&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(obj[<span class="string">&#x27;profile&#x27;</span>][<span class="string">&#x27;fn&#x27;</span>]);</span><br><span class="line"><span class="comment">// Set(3) &#123;1, 2, 3&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(objJson[<span class="string">&#x27;profile&#x27;</span>][<span class="string">&#x27;fn&#x27;</span>])</span><br><span class="line"><span class="comment">// &#123;&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(objStructuredClone[<span class="string">&#x27;profile&#x27;</span>]);</span><br><span class="line"><span class="comment">// &#123;height: 182, age: 35, fn: Set(4) &#123;1, 2, 3, 5&#125;&#125;</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(obj[<span class="string">&#x27;profile&#x27;</span>]);</span><br><span class="line"><span class="comment">// &#123;height: 182, age: 18, fn: Set(3) &#123;1, 2, 3&#125;&#125;</span></span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <categories>
-        <category>frontend</category>
-        <category>frontend_interview</category>
-      </categories>
-      <tags>
-        <tag>Javascript</tag>
-        <tag>Frontend</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Javascript 的 hoisting關於var,let,const and function</title>
     <url>/andy-tech-note/hoisting-about-var-let-const-function/</url>
     <content><![CDATA[<h2 id="什麼是Hoisting-提升"><a href="#什麼是Hoisting-提升" class="headerlink" title="什麼是Hoisting(提升)"></a>什麼是Hoisting(提升)</h2><p>當js在編譯時會把變數宣告以及函式宣告提升到該<code>作用域</code>的最頂端，但實際上不會去改動程式碼，有時候在撰寫程式碼時有沒有發現雖然你的function宣告在後面，卻在前面使用function而不會跳錯，就是這個原因</p>
@@ -726,6 +707,94 @@
     <content><![CDATA[<h2 id="事件冒泡Event-Bubbling"><a href="#事件冒泡Event-Bubbling" class="headerlink" title="事件冒泡Event Bubbling"></a>事件冒泡Event Bubbling</h2><p>事件冒泡是DOM中對事件處理的一種機制。<br>當在DOM中的某個元素（例如，一個按鈕）發生事件（如點擊）時，這個事件不僅在該元素上觸發，還會沿著DOM樹向上冒泡，依次觸發其父元素、父元素的父元素，一直到最頂層的document物件，這一路上的元素都可以收到事件觸發。</p>
 <p>例子：假設你希望在一個容器（div）內的所有元素被點擊時執行相同的操作(console.log(‘click’))，你可以在這個容器上設置一個事件監聽器（<code>event listener</code>）。<br>當容器內的任何一個元素被點擊時，點擊事件會通過事件冒泡機制向上傳遞，最終抵達這個容器。一旦事件到達容器，就會觸發設置在容器上的callback function(這裡設定console.log(‘click’))。</p>
 <p>上面的例子稱作<code>事件委託</code>，它利用了事件冒泡的特性來簡化對多個元素的事件處理，同時提升程式效能，也不需要每個元素都去設定事件監聽。特別是對於動態加入到容器中的新元素，無需單獨為它們綁定事件監聽器，事件委託可以自動地管理它們的事件。</p>
+]]></content>
+      <categories>
+        <category>frontend</category>
+        <category>frontend_interview</category>
+      </categories>
+      <tags>
+        <tag>Javascript</tag>
+        <tag>Frontend</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>如何不依靠Vue CLI搭建Vue專案</title>
+    <url>/andy-tech-note/webpack-vue-project/</url>
+    <content><![CDATA[<h2 id="Vue-CLI做什麼？"><a href="#Vue-CLI做什麼？" class="headerlink" title="Vue CLI做什麼？"></a>Vue CLI做什麼？</h2><p>在Vite還沒出來前，要建立一個 Vue 專案可以透過Vue CLI，只要下簡單的指令都幫你把專案搭建好，例如安裝Vue,跟一些相依套件, 設定好webpack config…等等</p>
+<h3 id="從-Webpack-開始搭建一個-Vue-專案"><a href="#從-Webpack-開始搭建一個-Vue-專案" class="headerlink" title="從 Webpack 開始搭建一個 Vue 專案"></a>從 Webpack 開始搭建一個 Vue 專案</h3><p>自從開始開發前端網站時就會思考到底Vite, Webpack這類打包工具到底做了哪些事，讓框架或是單純的js, html, css的檔案可以被打包成幾個檔案。</p>
+<h3 id="開始囉"><a href="#開始囉" class="headerlink" title="開始囉"></a>開始囉</h3><p>首先，先初始化npm</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm init -y </span><br><span class="line"><span class="comment">#安裝webpack相關套件 </span></span><br><span class="line">npm install webpack webpack-cli --save-dev</span><br><span class="line"></span><br><span class="line"><span class="comment"># 安裝vue</span></span><br><span class="line">npm install vue@3</span><br><span class="line"></span><br><span class="line"><span class="comment"># 安裝vue相關套件 vue-loader用來解析Vue的在過程中需要後者來處理</span></span><br><span class="line">npm install vue-loader@next @vue/compiler-sfc --save-dev</span><br><span class="line"></span><br><span class="line"><span class="comment"># 處理 style的</span></span><br><span class="line">npm install --save-dev vue-style-loader</span><br><span class="line"></span><br><span class="line"><span class="comment"># html-webpack-plugin 用來處理html </span></span><br><span class="line"><span class="comment"># webpack-dev-server 用來建立一個開發server</span></span><br><span class="line">npm install html-webpack-plugin webpack-dev-server --save-dev</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h5 id="在根目錄建立一個webpack-config-js-設定檔"><a href="#在根目錄建立一個webpack-config-js-設定檔" class="headerlink" title="在根目錄建立一個webpack.config.js 設定檔"></a>在根目錄建立一個<code>webpack.config.js 設定檔</code></h5><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> path = <span class="built_in">require</span>(<span class="string">&#x27;path&#x27;</span>)</span><br><span class="line"><span class="keyword">const</span> &#123; <span class="title class_">VueLoaderPlugin</span> &#125; = <span class="built_in">require</span>(<span class="string">&#x27;vue-loader&#x27;</span>)</span><br><span class="line"><span class="keyword">const</span> <span class="title class_">HtmlWebpackPlugin</span> = <span class="built_in">require</span>(<span class="string">&#x27;html-webpack-plugin&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = &#123;</span><br><span class="line">    <span class="attr">mode</span>: <span class="string">&#x27;development&#x27;</span>,</span><br><span class="line">    <span class="comment">// 設定js的進入點檔案，bundle是輸出檔案的名稱</span></span><br><span class="line">    <span class="attr">entry</span>: &#123;</span><br><span class="line">        <span class="attr">bundle</span>: path.<span class="title function_">resolve</span>(__dirname, <span class="string">&#x27;src/main.js&#x27;</span>),</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="comment">// entry: path.resolve(__dirname, &#x27;src/main.js&#x27;),</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// build完後產生的檔案路徑</span></span><br><span class="line">    <span class="attr">output</span>: &#123;</span><br><span class="line">        <span class="comment">// dist 資料夾為通用名稱，也可以自行取名</span></span><br><span class="line">        <span class="attr">path</span>: path.<span class="title function_">resolve</span>(__dirname, <span class="string">&#x27;dist&#x27;</span>),</span><br><span class="line">        <span class="comment">// 設定輸出的js檔案，而上面有設定bundle name，這裡多社定一個hash值，主要是為了防止重複，讓網頁可以更新，不會因為cache而不更新畫面</span></span><br><span class="line">        <span class="attr">filename</span>: <span class="string">&#x27;[name].[contenthash].js&#x27;</span>,</span><br><span class="line">    &#125;,</span><br><span class="line">   ** <span class="attr">module</span>: &#123;</span><br><span class="line">        <span class="comment">//處理css, Vue檔案，SASS之類的檔案也是在這裡處理</span></span><br><span class="line">        <span class="attr">rules</span>:[</span><br><span class="line">            &#123;</span><br><span class="line">                test : <span class="regexp">/\.vue$/</span>,</span><br><span class="line">                loader : <span class="string">&#x27;vue-loader&#x27;</span>,</span><br><span class="line">            &#125;,</span><br><span class="line">            &#123;</span><br><span class="line">                test : <span class="regexp">/\.css$/</span>,</span><br><span class="line">                use : [</span><br><span class="line">                    <span class="comment">// 有多個loader的時候要寫use，只有單一個loader才能寫loader當作key</span></span><br><span class="line">                    <span class="string">&#x27;vue-style-loader&#x27;</span>,</span><br><span class="line">                    <span class="string">&#x27;css-loader&#x27;</span>,</span><br><span class="line">                ]</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">        ]</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">plugins</span>: [</span><br><span class="line">        <span class="keyword">new</span> <span class="title class_">VueLoaderPlugin</span>(),</span><br><span class="line">        <span class="keyword">new</span> <span class="title class_">HtmlWebpackPlugin</span>(&#123;</span><br><span class="line">            <span class="attr">template</span>: path.<span class="title function_">resolve</span>(__dirname, <span class="string">&#x27;src/index.html&#x27;</span>),</span><br><span class="line">        &#125;),</span><br><span class="line">    ],</span><br><span class="line">    <span class="attr">devServer</span>: &#123;</span><br><span class="line">        <span class="attr">static</span>: path.<span class="title function_">join</span>(__dirname, <span class="string">&#x27;dist&#x27;</span>),</span><br><span class="line">        <span class="attr">hot</span>: <span class="literal">true</span>,</span><br><span class="line">        <span class="attr">port</span>: <span class="number">3001</span>,</span><br><span class="line">        <span class="attr">open</span>: <span class="literal">true</span>,</span><br><span class="line">        <span class="attr">hot</span>: <span class="literal">true</span>,</span><br><span class="line">        <span class="attr">compress</span>: <span class="literal">true</span>,</span><br><span class="line">        <span class="attr">historyApiFallback</span>: <span class="literal">true</span>,</span><br><span class="line">        </span><br><span class="line">    &#125;,</span><br><span class="line">    </span><br><span class="line">&#125;**</span><br></pre></td></tr></table></figure>
+<h5 id="在根目錄建立src目錄，在建立App-vue-index-html-main-js"><a href="#在根目錄建立src目錄，在建立App-vue-index-html-main-js" class="headerlink" title="在根目錄建立src目錄，在建立App.vue, index.html, main.js"></a>在根目錄建立src目錄，在建立App.vue, index.html, main.js</h5><p><code>App.vue</code></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">    &lt;div&gt;</span><br><span class="line">        &lt;h1&gt;&#123;&#123; message &#125;&#125;&lt;/h1&gt;</span><br><span class="line"></span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line">&lt;script setup&gt;</span><br><span class="line">import &#123; ref &#125; from &#x27;vue&#x27;</span><br><span class="line">const message = ref(&#x27;Hello World!&#x27;)</span><br><span class="line"></span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+<p><code>index.html</code></p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">&quot;en&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;UTF-8&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">&quot;viewport&quot;</span> <span class="attr">content</span>=<span class="string">&quot;width=device-width, initial-scale=1.0&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>Vue 3 Webpack<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- id是對應到main.js中的#app --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;app&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p><code>main.js</code></p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; createApp &#125; <span class="keyword">from</span> <span class="string">&#x27;vue&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="title class_">App</span> <span class="keyword">from</span> <span class="string">&#x27;./App.vue&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="title function_">createApp</span>(<span class="title class_">App</span>).<span class="title function_">mount</span>(<span class="string">&#x27;#app&#x27;</span>);</span><br></pre></td></tr></table></figure>
+
+<h5 id="結語"><a href="#結語" class="headerlink" title="結語"></a>結語</h5><p>打包工具就是把開發者寫的一大堆JS, CSS的檔案解析打包成一包，讓瀏覽器可以拿到可以運行的幾個執行檔案，而這當中還有使用到一些技術，例如Tree shaking(用來移除沒用到的function以減少檔案大小)…等等，而在框架來說，又需要做編譯把框架的語言轉換成js,css,html這些檔案，才能讓瀏覽器可以讀取。<br>如果要更細節可以再去研究到底打包工作裡面做了些什麼。</p>
+]]></content>
+      <categories>
+        <category>frontend</category>
+      </categories>
+      <tags>
+        <tag>Frontend</tag>
+        <tag>Webpack</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>什麼時候該git commit, commit message該如何寫？</title>
+    <url>/andy-tech-note/how-git-commit-message/</url>
+    <content><![CDATA[<h2 id="何時該git-commit？"><a href="#何時該git-commit？" class="headerlink" title="何時該git commit？"></a>何時該git commit？</h2><p>我一直在想到底幾時該commit，有時後在commit都會覺得怎麼這麼多程式碼，這樣會不會太雜？<br>是否要等到整個feature都完成後才commit？</p>
+<p>我稍微找一下資料，可以參考以下文章<a href="https://gist.github.com/luismts/495d982e8c5b1a0ced4a57cf3d93cf60">Git Commit Best Practices</a></p>
+<h3 id="Commit-建議"><a href="#Commit-建議" class="headerlink" title="Commit 建議"></a>Commit 建議</h3><ul>
+<li>Commit Related Changes : commit相關的修改，如果有不同功能的bug&#x2F;feature，要分開commit，不要一次commit，這樣才不容易搞混此次commit的內容</li>
+<li>Commit Often : 經常commit，不要程式碼已經變得非常大包才commit，這樣如果其他人pull下來碰到conflict就會變得非常難處理<br>Don’t Commit Half-Done Work : 如果該功能或是bug還沒完成不要commit，使用的人可能會碰到crash之類的狀況</li>
+<li>Test Your Code Before You Commit : 當你認為完成了，要做測試，而且是確認功能正常運作</li>
+<li>Write Good Commit Messages：除了描述做什麼，還查了下網路上的一些文章，有些人會推薦前面加上feat, bugfix, style之類的前綴字，讓commit message可以一眼就知道該commit是做什麼<br>-Use Branches：使用brach，如果有修改bug, feature時，切出去分支，可以讓你的開發與main branch以及其他開發者開發不會混在一起。</li>
+</ul>
+<p>參考文章<br><a href="https://wadehuanglearning.blogspot.com/2019/05/commit-commit-commit-why-what-commit.html">https://wadehuanglearning.blogspot.com/2019/05/commit-commit-commit-why-what-commit.html</a><br><a href="https://hackmd.io/@dh46tw/S1NPMsy5L">https://hackmd.io/@dh46tw/S1NPMsy5L</a></p>
+]]></content>
+      <categories>
+        <category>frontend</category>
+      </categories>
+      <tags>
+        <tag>git</tag>
+        <tag>Frontend</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>vue-reactivity-fundamentals-system</title>
+    <url>/andy-tech-note/vue-reactivity-fundamentals-system/</url>
+    <content><![CDATA[<h2 id="Vue的響應式系統是如何設計的？"><a href="#Vue的響應式系統是如何設計的？" class="headerlink" title="Vue的響應式系統是如何設計的？"></a>Vue的響應式系統是如何設計的？</h2><p>Vue團隊中的霍春陽撰寫的Vue.js實戰中有解釋到Vue的響應式系統是如何設計的。</p>
+<h3 id="要如何達到響應式？"><a href="#要如何達到響應式？" class="headerlink" title="要如何達到響應式？"></a>要如何達到響應式？</h3><p>假設有一個object如下</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> obj = &#123;</span><br><span class="line">  <span class="attr">text</span>: <span class="string">&#x27;Hello Vue!&#x27;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>我希望在裡面的text這個property在其值有變動時可以觸發某個effect()函式，例如可以把text更新的內容顯示在網頁上。<br>effect()函式大概可以如下：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">effect</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="variable language_">document</span>.<span class="property">body</span>.<span class="property">innerText</span> = obj.<span class="property">text</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>那該如何讓這個effect()在text的值改變時可以觸發呢？簡單的來想就是你需要有一個監聽或是攔截的行為，當偵測這個值改變時可以去執行effect()，這就有點類似github的webhook的概念，也就是當repo有push code時可以觸發某些行為。<br>要如何可以觸發？可以透過Javascript的Proxy來達成，也就是把<code>obj</code>用Proxy代理，Proxy中有提供getter及setter的方法，在getter中做一個儲存effect()的行為，也就是當有讀取<code>obj.text</code>時就會把effect()存到一個bucket中，這個bucket會是以Set的方式存在，另外在setter被執行時(也就是有人來修改<code>obj.text</code>)，就去把bucket中的effect()撈出來並執行。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 儲存effect()的bucket</span></span><br><span class="line"><span class="keyword">const</span> bucket = <span class="keyword">new</span> <span class="title class_">Set</span>();</span><br><span class="line"><span class="keyword">const</span> data = &#123; <span class="attr">text</span>: <span class="string">&#x27;Hello World!&#x27;</span> &#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> obj = <span class="keyword">new</span> <span class="title class_">Proxy</span>(data, &#123;</span><br><span class="line">  <span class="attr">get</span>: <span class="keyword">function</span> (<span class="params">target, key</span>) &#123;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 把讀取該`obj.text` 的effect()存到bucket中</span></span><br><span class="line">    bucket.<span class="title function_">add</span>(effect);</span><br><span class="line">    <span class="keyword">return</span> target[key];</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="comment">// 攔截設定設錯，也就是當有人修改`obj.text`時就會被攔截</span></span><br><span class="line">  <span class="attr">set</span>: <span class="keyword">function</span> (<span class="params">target, key, newValue</span>) &#123;</span><br><span class="line">    <span class="comment">// 設定新的值</span></span><br><span class="line">    target[key] = newValue;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 把effect()撈出來並執行，這裡可能有多個effect()有使用到`obj.text`，所以在bucket裡面不一定只有一個effect()。</span></span><br><span class="line">    bucket.<span class="title function_">forEach</span>(<span class="function"><span class="params">fn</span> =&gt;</span> <span class="title function_">fn</span>());</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">effect</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="variable language_">document</span>.<span class="property">body</span>.<span class="property">innerText</span> = obj.<span class="property">text</span> </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="title function_">effect</span>();</span><br><span class="line"><span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123;  </span><br><span class="line">  obj.<span class="property">text</span> = <span class="string">&#x27;Hello Vue!&#x27;</span>;</span><br><span class="line">&#125;,<span class="number">1000</span></span><br><span class="line">)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>這裡在一開始effect會先第一次執行，執行後因為有proxy，所以有讀取<code>obj.text</code>的effect就會被加入到bucket中，當後面的setTimeout在修改<code>obj.text</code>的值時，就會觸發setter，並且再次執行effect()，也就是把最新的obj.text更新到網頁上。</p>
+<h3 id="obj-新增一個property卻觸發effect"><a href="#obj-新增一個property卻觸發effect" class="headerlink" title="obj 新增一個property卻觸發effect()?"></a>obj 新增一個property卻觸發effect()?</h3><p>上面的方法會有個問題，當如果我建立一個新的property，例如<code>obj.name</code>，這個時候因為obj本身就被Proxy代理，只要setter被設定就會執行<code>effect()</code>，這樣就需要一一對應obj中所有property，來確保effect()不會被錯誤執行？</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h3 id="如何觸發？"><a href="#如何觸發？" class="headerlink" title="如何觸發？"></a>如何觸發？</h3>]]></content>
+      <categories>
+        <category>frontend</category>
+      </categories>
+      <tags>
+        <tag>Frontend</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Javascript中使用structuredClone做深拷貝</title>
+    <url>/andy-tech-note/structuredClone-deep-clone/</url>
+    <content><![CDATA[<h2 id="深拷貝是什麼？"><a href="#深拷貝是什麼？" class="headerlink" title="深拷貝是什麼？"></a>深拷貝是什麼？</h2><p>先前有寫過如何處理深拷貝，深拷貝是要幹嘛？<br>簡單的說就是當有個物件他裡面有巢狀結構，不只有一層，如果直接以變數assign的方式賦值給一個新的變數，這時候在第二層開始的元素會是指向原先的物件，所以當使用者在對新的物件第二層的元素操作時就會修改到舊有的物件的值，這時候就需要深拷貝來處理，詳細請參閱👇</p>
+<p><a href="https://crazycjh.github.io/andy-tech-note/deep-copy-Shallow-copy/">在JS中複製object-深拷貝&#x2F;淺拷貝</a>。</p>
+<h3 id="進階版structuredClone"><a href="#進階版structuredClone" class="headerlink" title="進階版structuredClone"></a>進階版structuredClone</h3><p>先前都是使用JSON.stringify &amp; JSON.parse來組合處理，現在只要透過structuredClone來處理，這個有什麼差異呢？<br>舊有的方法只能準確地處理 primitive Value，若是碰到Map, Set 非primitive的物件就會被變成空object{}，也就會造成資料的不完整。</p>
+<p>可以看以下程式碼 或是<a href="https://codepen.io/jean-hao-chen/pen/KKYxPOe">玩玩看</a></p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> obj = &#123;</span><br><span class="line">  <span class="string">&#x27;name&#x27;</span>: <span class="string">&#x27;Andy&#x27;</span>, </span><br><span class="line">  <span class="string">&#x27;profile&#x27;</span>: &#123;</span><br><span class="line">    <span class="attr">height</span>:<span class="number">182</span>,</span><br><span class="line">    <span class="attr">age</span>:<span class="number">18</span>,</span><br><span class="line">    <span class="attr">fn</span>: <span class="keyword">new</span> <span class="title class_">Set</span>([<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>])</span><br><span class="line">    </span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> objStructuredClone = <span class="title function_">structuredClone</span>(obj);</span><br><span class="line"><span class="keyword">const</span> objJson = <span class="title class_">JSON</span>.<span class="title function_">parse</span>(<span class="title class_">JSON</span>.<span class="title function_">stringify</span>(obj))</span><br><span class="line"></span><br><span class="line">objStructuredClone[<span class="string">&#x27;profile&#x27;</span>][<span class="string">&#x27;age&#x27;</span>] = <span class="number">35</span>;</span><br><span class="line">objStructuredClone[<span class="string">&#x27;profile&#x27;</span>][<span class="string">&#x27;fn&#x27;</span>].<span class="title function_">add</span>(<span class="number">5</span>);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(objStructuredClone[<span class="string">&#x27;profile&#x27;</span>][<span class="string">&#x27;fn&#x27;</span>]);</span><br><span class="line"><span class="comment">// Set(4) &#123;1, 2, 3, 5&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(obj[<span class="string">&#x27;profile&#x27;</span>][<span class="string">&#x27;fn&#x27;</span>]);</span><br><span class="line"><span class="comment">// Set(3) &#123;1, 2, 3&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(objJson[<span class="string">&#x27;profile&#x27;</span>][<span class="string">&#x27;fn&#x27;</span>])</span><br><span class="line"><span class="comment">// &#123;&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(objStructuredClone[<span class="string">&#x27;profile&#x27;</span>]);</span><br><span class="line"><span class="comment">// &#123;height: 182, age: 35, fn: Set(4) &#123;1, 2, 3, 5&#125;&#125;</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(obj[<span class="string">&#x27;profile&#x27;</span>]);</span><br><span class="line"><span class="comment">// &#123;height: 182, age: 18, fn: Set(3) &#123;1, 2, 3&#125;&#125;</span></span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
 ]]></content>
       <categories>
         <category>frontend</category>
@@ -806,53 +875,6 @@
       </categories>
       <tags>
         <tag>Javascript</tag>
-        <tag>Frontend</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>如何不依靠Vue CLI搭建Vue專案</title>
-    <url>/andy-tech-note/webpack-vue-project/</url>
-    <content><![CDATA[<h2 id="Vue-CLI做什麼？"><a href="#Vue-CLI做什麼？" class="headerlink" title="Vue CLI做什麼？"></a>Vue CLI做什麼？</h2><p>在Vite還沒出來前，要建立一個 Vue 專案可以透過Vue CLI，只要下簡單的指令都幫你把專案搭建好，例如安裝Vue,跟一些相依套件, 設定好webpack config…等等</p>
-<h3 id="從-Webpack-開始搭建一個-Vue-專案"><a href="#從-Webpack-開始搭建一個-Vue-專案" class="headerlink" title="從 Webpack 開始搭建一個 Vue 專案"></a>從 Webpack 開始搭建一個 Vue 專案</h3><p>自從開始開發前端網站時就會思考到底Vite, Webpack這類打包工具到底做了哪些事，讓框架或是單純的js, html, css的檔案可以被打包成幾個檔案。</p>
-<h3 id="開始囉"><a href="#開始囉" class="headerlink" title="開始囉"></a>開始囉</h3><p>首先，先初始化npm</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm init -y </span><br><span class="line"><span class="comment">#安裝webpack相關套件 </span></span><br><span class="line">npm install webpack webpack-cli --save-dev</span><br><span class="line"></span><br><span class="line"><span class="comment"># 安裝vue</span></span><br><span class="line">npm install vue@3</span><br><span class="line"></span><br><span class="line"><span class="comment"># 安裝vue相關套件 vue-loader用來解析Vue的在過程中需要後者來處理</span></span><br><span class="line">npm install vue-loader@next @vue/compiler-sfc --save-dev</span><br><span class="line"></span><br><span class="line"><span class="comment"># 處理 style的</span></span><br><span class="line">npm install --save-dev vue-style-loader</span><br><span class="line"></span><br><span class="line"><span class="comment"># html-webpack-plugin 用來處理html </span></span><br><span class="line"><span class="comment"># webpack-dev-server 用來建立一個開發server</span></span><br><span class="line">npm install html-webpack-plugin webpack-dev-server --save-dev</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h5 id="在根目錄建立一個webpack-config-js-設定檔"><a href="#在根目錄建立一個webpack-config-js-設定檔" class="headerlink" title="在根目錄建立一個webpack.config.js 設定檔"></a>在根目錄建立一個<code>webpack.config.js 設定檔</code></h5><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> path = <span class="built_in">require</span>(<span class="string">&#x27;path&#x27;</span>)</span><br><span class="line"><span class="keyword">const</span> &#123; <span class="title class_">VueLoaderPlugin</span> &#125; = <span class="built_in">require</span>(<span class="string">&#x27;vue-loader&#x27;</span>)</span><br><span class="line"><span class="keyword">const</span> <span class="title class_">HtmlWebpackPlugin</span> = <span class="built_in">require</span>(<span class="string">&#x27;html-webpack-plugin&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = &#123;</span><br><span class="line">    <span class="attr">mode</span>: <span class="string">&#x27;development&#x27;</span>,</span><br><span class="line">    <span class="comment">// 設定js的進入點檔案，bundle是輸出檔案的名稱</span></span><br><span class="line">    <span class="attr">entry</span>: &#123;</span><br><span class="line">        <span class="attr">bundle</span>: path.<span class="title function_">resolve</span>(__dirname, <span class="string">&#x27;src/main.js&#x27;</span>),</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="comment">// entry: path.resolve(__dirname, &#x27;src/main.js&#x27;),</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// build完後產生的檔案路徑</span></span><br><span class="line">    <span class="attr">output</span>: &#123;</span><br><span class="line">        <span class="comment">// dist 資料夾為通用名稱，也可以自行取名</span></span><br><span class="line">        <span class="attr">path</span>: path.<span class="title function_">resolve</span>(__dirname, <span class="string">&#x27;dist&#x27;</span>),</span><br><span class="line">        <span class="comment">// 設定輸出的js檔案，而上面有設定bundle name，這裡多社定一個hash值，主要是為了防止重複，讓網頁可以更新，不會因為cache而不更新畫面</span></span><br><span class="line">        <span class="attr">filename</span>: <span class="string">&#x27;[name].[contenthash].js&#x27;</span>,</span><br><span class="line">    &#125;,</span><br><span class="line">   ** <span class="attr">module</span>: &#123;</span><br><span class="line">        <span class="comment">//處理css, Vue檔案，SASS之類的檔案也是在這裡處理</span></span><br><span class="line">        <span class="attr">rules</span>:[</span><br><span class="line">            &#123;</span><br><span class="line">                test : <span class="regexp">/\.vue$/</span>,</span><br><span class="line">                loader : <span class="string">&#x27;vue-loader&#x27;</span>,</span><br><span class="line">            &#125;,</span><br><span class="line">            &#123;</span><br><span class="line">                test : <span class="regexp">/\.css$/</span>,</span><br><span class="line">                use : [</span><br><span class="line">                    <span class="comment">// 有多個loader的時候要寫use，只有單一個loader才能寫loader當作key</span></span><br><span class="line">                    <span class="string">&#x27;vue-style-loader&#x27;</span>,</span><br><span class="line">                    <span class="string">&#x27;css-loader&#x27;</span>,</span><br><span class="line">                ]</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">        ]</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">plugins</span>: [</span><br><span class="line">        <span class="keyword">new</span> <span class="title class_">VueLoaderPlugin</span>(),</span><br><span class="line">        <span class="keyword">new</span> <span class="title class_">HtmlWebpackPlugin</span>(&#123;</span><br><span class="line">            <span class="attr">template</span>: path.<span class="title function_">resolve</span>(__dirname, <span class="string">&#x27;src/index.html&#x27;</span>),</span><br><span class="line">        &#125;),</span><br><span class="line">    ],</span><br><span class="line">    <span class="attr">devServer</span>: &#123;</span><br><span class="line">        <span class="attr">static</span>: path.<span class="title function_">join</span>(__dirname, <span class="string">&#x27;dist&#x27;</span>),</span><br><span class="line">        <span class="attr">hot</span>: <span class="literal">true</span>,</span><br><span class="line">        <span class="attr">port</span>: <span class="number">3001</span>,</span><br><span class="line">        <span class="attr">open</span>: <span class="literal">true</span>,</span><br><span class="line">        <span class="attr">hot</span>: <span class="literal">true</span>,</span><br><span class="line">        <span class="attr">compress</span>: <span class="literal">true</span>,</span><br><span class="line">        <span class="attr">historyApiFallback</span>: <span class="literal">true</span>,</span><br><span class="line">        </span><br><span class="line">    &#125;,</span><br><span class="line">    </span><br><span class="line">&#125;**</span><br></pre></td></tr></table></figure>
-<h5 id="在根目錄建立src目錄，在建立App-vue-index-html-main-js"><a href="#在根目錄建立src目錄，在建立App-vue-index-html-main-js" class="headerlink" title="在根目錄建立src目錄，在建立App.vue, index.html, main.js"></a>在根目錄建立src目錄，在建立App.vue, index.html, main.js</h5><p><code>App.vue</code></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">    &lt;div&gt;</span><br><span class="line">        &lt;h1&gt;&#123;&#123; message &#125;&#125;&lt;/h1&gt;</span><br><span class="line"></span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line">&lt;script setup&gt;</span><br><span class="line">import &#123; ref &#125; from &#x27;vue&#x27;</span><br><span class="line">const message = ref(&#x27;Hello World!&#x27;)</span><br><span class="line"></span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
-<p><code>index.html</code></p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">&quot;en&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;UTF-8&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">&quot;viewport&quot;</span> <span class="attr">content</span>=<span class="string">&quot;width=device-width, initial-scale=1.0&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>Vue 3 Webpack<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- id是對應到main.js中的#app --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;app&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p><code>main.js</code></p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; createApp &#125; <span class="keyword">from</span> <span class="string">&#x27;vue&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="title class_">App</span> <span class="keyword">from</span> <span class="string">&#x27;./App.vue&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="title function_">createApp</span>(<span class="title class_">App</span>)****.<span class="title function_">mount</span>(<span class="string">&#x27;#app&#x27;</span>);</span><br></pre></td></tr></table></figure>
-
-<h5 id="結語"><a href="#結語" class="headerlink" title="結語"></a>結語</h5><p>打包工具就是把開發者寫的一大堆JS, CSS的檔案解析打包成一包，讓瀏覽器可以拿到可以運行的幾個執行檔案，而這當中還有使用到一些技術，例如Tree shaking(用來移除沒用到的function以減少檔案大小)…等等，而在框架來說，又需要做編譯把框架的語言轉換成js,css,html這些檔案，才能讓瀏覽器可以讀取。<br>如果要更細節可以再去研究到底打包工作裡面做了些什麼。</p>
-]]></content>
-      <categories>
-        <category>frontend</category>
-      </categories>
-      <tags>
-        <tag>Frontend</tag>
-        <tag>Webpack</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>什麼時候該git commit, commit message該如何寫？</title>
-    <url>/andy-tech-note/how-git-commit-message/</url>
-    <content><![CDATA[<h2 id="何時該git-commit？"><a href="#何時該git-commit？" class="headerlink" title="何時該git commit？"></a>何時該git commit？</h2><p>我一直在想到底幾時該commit，有時後在commit都會覺得怎麼這麼多程式碼，這樣會不會太雜？<br>是否要等到整個feature都完成後才commit？</p>
-<p>我稍微找一下資料，可以參考以下文章<a href="https://gist.github.com/luismts/495d982e8c5b1a0ced4a57cf3d93cf60">Git Commit Best Practices</a></p>
-<h3 id="Commit-建議"><a href="#Commit-建議" class="headerlink" title="Commit 建議"></a>Commit 建議</h3><ul>
-<li>Commit Related Changes : commit相關的修改，如果有不同功能的bug&#x2F;feature，要分開commit，不要一次commit，這樣才不容易搞混此次commit的內容</li>
-<li>Commit Often : 經常commit，不要程式碼已經變得非常大包才commit，這樣如果其他人pull下來碰到conflict就會變得非常難處理<br>Don’t Commit Half-Done Work : 如果該功能或是bug還沒完成不要commit，使用的人可能會碰到crash之類的狀況</li>
-<li>Test Your Code Before You Commit : 當你認為完成了，要做測試，而且是確認功能正常運作</li>
-<li>Write Good Commit Messages：除了描述做什麼，還查了下網路上的一些文章，有些人會推薦前面加上feat, bugfix, style之類的前綴字，讓commit message可以一眼就知道該commit是做什麼<br>-Use Branches：使用brach，如果有修改bug, feature時，切出去分支，可以讓你的開發與main branch以及其他開發者開發不會混在一起。</li>
-</ul>
-<p>參考文章<br><a href="https://wadehuanglearning.blogspot.com/2019/05/commit-commit-commit-why-what-commit.html">https://wadehuanglearning.blogspot.com/2019/05/commit-commit-commit-why-what-commit.html</a><br><a href="https://hackmd.io/@dh46tw/S1NPMsy5L">https://hackmd.io/@dh46tw/S1NPMsy5L</a></p>
-]]></content>
-      <categories>
-        <category>frontend</category>
-      </categories>
-      <tags>
-        <tag>git</tag>
         <tag>Frontend</tag>
       </tags>
   </entry>
